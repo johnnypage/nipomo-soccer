@@ -1,4 +1,5 @@
 import { SiFacebook, SiInstagram, SiYoutube } from "react-icons/si";
+import clubLogo from "@assets/NSC_1764979848772.png";
 
 interface FooterProps {
   onNavigate?: (section: string) => void;
@@ -9,7 +10,7 @@ export default function Footer({ onNavigate }: FooterProps) {
 
   const footerLinks = {
     programs: [
-      { label: "Grow (Ages 5-8)", section: "programs" },
+      { label: "Roots (Ages 5-8)", section: "programs" },
       { label: "Rise (Ages 9-13)", section: "programs" },
       { label: "Reign (Ages 14-18)", section: "programs" },
     ],
@@ -36,16 +37,12 @@ export default function Footer({ onNavigate }: FooterProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-full bg-crimson flex items-center justify-center">
-                <span className="font-display text-warmwhite text-lg">NSC</span>
-              </div>
-              <div>
-                <h3 className="font-heading font-bold text-warmwhite text-sm leading-tight">
-                  Nipomo Soccer
-                </h3>
-                <span className="text-purple text-xs font-medium">EST. 2025</span>
-              </div>
+            <div className="flex items-center gap-3 mb-4">
+              <img 
+                src={clubLogo} 
+                alt="Nipomo SC" 
+                className="h-14 w-auto object-contain"
+              />
             </div>
             <p className="text-warmwhite/60 text-sm mb-4">
               Building champions on and off the field. Youth soccer development 

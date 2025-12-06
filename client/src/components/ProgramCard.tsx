@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Sprout, TrendingUp, Crown } from "lucide-react";
 
-export type ProgramType = "grow" | "rise" | "reign";
+export type ProgramType = "roots" | "rise" | "reign";
 
 interface ProgramCardProps {
   type: ProgramType;
@@ -11,11 +11,12 @@ interface ProgramCardProps {
   description: string;
   features: string[];
   imageSrc: string;
+  logoSrc: string;
   onLearnMore?: () => void;
 }
 
 const programStyles = {
-  grow: {
+  roots: {
     bg: "bg-warmwhite",
     text: "text-night",
     accent: "text-crimson",
@@ -48,10 +49,10 @@ export default function ProgramCard({
   description,
   features,
   imageSrc,
+  logoSrc,
   onLearnMore,
 }: ProgramCardProps) {
   const styles = programStyles[type];
-  const Icon = styles.icon;
 
   return (
     <Card className={`${styles.bg} border-0 overflow-hidden`}>
@@ -62,13 +63,12 @@ export default function ProgramCard({
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-        <div className="absolute bottom-4 left-4 flex items-center gap-2">
-          <div className={`p-2 rounded-full ${styles.iconBg}`}>
-            <Icon className={`h-5 w-5 ${styles.accent}`} />
-          </div>
-          <span className="font-display text-2xl text-white tracking-wide">
-            {title.toUpperCase()}
-          </span>
+        <div className="absolute bottom-4 left-4 right-4 flex items-center gap-3">
+          <img 
+            src={logoSrc} 
+            alt={`${title} logo`} 
+            className="h-14 w-auto object-contain"
+          />
         </div>
       </div>
       

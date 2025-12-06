@@ -1,7 +1,10 @@
 import ProgramCard from "./ProgramCard";
-import growImage from "@assets/generated_images/grow_program_youth_training.png";
+import rootsImage from "@assets/generated_images/grow_program_youth_training.png";
 import riseImage from "@assets/generated_images/rise_program_competitive_training.png";
 import reignImage from "@assets/generated_images/reign_program_elite_level.png";
+import rootsLogo from "@assets/NSC_Roots_1764979848772.png";
+import riseLogo from "@assets/NSC_Rise_1764979848772.png";
+import reignLogo from "@assets/NSC_Reign_1764979848771.png";
 
 interface ProgramsProps {
   onProgramSelect?: (program: string) => void;
@@ -11,8 +14,8 @@ export default function Programs({ onProgramSelect }: ProgramsProps) {
   // todo: remove mock functionality - these should come from CMS/API
   const programs = [
     {
-      type: "grow" as const,
-      title: "Grow",
+      type: "roots" as const,
+      title: "Roots",
       ageRange: "Ages 5-8",
       description: "Where young players discover the joy of soccer through fun, skill-building activities. Our foundation program focuses on creating a love for the game.",
       features: [
@@ -21,7 +24,8 @@ export default function Programs({ onProgramSelect }: ProgramsProps) {
         "Team play introduction",
         "2x weekly sessions",
       ],
-      imageSrc: growImage,
+      imageSrc: rootsImage,
+      logoSrc: rootsLogo,
     },
     {
       type: "rise" as const,
@@ -35,6 +39,7 @@ export default function Programs({ onProgramSelect }: ProgramsProps) {
         "3x weekly sessions",
       ],
       imageSrc: riseImage,
+      logoSrc: riseLogo,
     },
     {
       type: "reign" as const,
@@ -48,6 +53,7 @@ export default function Programs({ onProgramSelect }: ProgramsProps) {
         "4x weekly + matches",
       ],
       imageSrc: reignImage,
+      logoSrc: reignLogo,
     },
   ];
 
@@ -81,7 +87,7 @@ export default function Programs({ onProgramSelect }: ProgramsProps) {
           <div className="inline-flex items-center gap-8 text-warmwhite/60 text-sm">
             <div className="flex items-center gap-2">
               <span className="w-8 h-0.5 bg-crimson" />
-              <span>Grow</span>
+              <span>Roots</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-8 h-0.5 bg-crimson" />

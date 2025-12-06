@@ -130,7 +130,7 @@ export default function Contact() {
                       <SelectValue placeholder="Select Program" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="grow">Grow (Ages 5-8)</SelectItem>
+                      <SelectItem value="roots">Roots (Ages 5-8)</SelectItem>
                       <SelectItem value="rise">Rise (Ages 9-13)</SelectItem>
                       <SelectItem value="reign">Reign (Ages 14-18)</SelectItem>
                       <SelectItem value="general">General Inquiry</SelectItem>

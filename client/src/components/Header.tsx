@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import clubLogo from "@assets/NSC_1764979848772.png";
 
 interface HeaderProps {
   onNavigate?: (section: string) => void;
@@ -24,15 +25,16 @@ export default function Header({ onNavigate }: HeaderProps) {
     <header className="fixed top-0 left-0 right-0 z-50 bg-night/95 backdrop-blur-sm border-b border-slate/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4 h-16">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full bg-crimson flex items-center justify-center">
-              <span className="font-display text-warmwhite text-lg">NSC</span>
-            </div>
+          <div className="flex items-center gap-3">
+            <img 
+              src={clubLogo} 
+              alt="Nipomo SC" 
+              className="h-12 w-auto object-contain"
+            />
             <div className="hidden sm:block">
               <h1 className="font-heading font-bold text-warmwhite text-lg leading-tight">
-                Nipomo Soccer
+                Nipomo Soccer Club
               </h1>
-              <span className="text-purple text-xs font-medium">EST. 2025</span>
             </div>
           </div>
 
