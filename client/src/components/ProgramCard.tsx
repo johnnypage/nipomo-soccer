@@ -59,8 +59,8 @@ export default function ProgramCard({
   const styles = programStyles[type];
 
   return (
-    <Card className={`${styles.bg} border-0 overflow-hidden`}>
-      <div className="relative h-48 overflow-hidden">
+    <Card className={`${styles.bg} border-0 overflow-hidden h-full flex flex-col`}>
+      <div className="relative h-48 overflow-hidden flex-shrink-0">
         <img
           src={imageSrc}
           alt={`${title} program`}
@@ -76,7 +76,7 @@ export default function ProgramCard({
         </div>
       </div>
       
-      <CardContent className="p-6">
+      <CardContent className="p-6 flex flex-col flex-grow">
         <h3 className={`font-integral text-2xl uppercase tracking-wide ${styles.text} mb-1`}>
           {title}
         </h3>
@@ -91,11 +91,6 @@ export default function ProgramCard({
           <span className={`${styles.text} opacity-70 text-sm`}>
             {season}
           </span>
-          {type === "reign" && (
-            <span className="px-2 py-0.5 bg-gold/20 text-gold text-xs font-medium rounded-full ml-auto">
-              Elite
-            </span>
-          )}
         </div>
         
         <p className={`${styles.text} opacity-80 text-sm mb-4`}>
@@ -113,7 +108,7 @@ export default function ProgramCard({
         
         <Button
           onClick={onLearnMore}
-          className={`w-full ${styles.button}`}
+          className={`w-full mt-auto ${styles.button}`}
           data-testid={`button-learn-more-${type}`}
         >
           Learn More

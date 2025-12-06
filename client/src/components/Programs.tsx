@@ -78,7 +78,7 @@ export default function Programs({ onProgramSelect }: ProgramsProps) {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
           {programs.map((program) => (
             <ProgramCard
               key={program.type}
