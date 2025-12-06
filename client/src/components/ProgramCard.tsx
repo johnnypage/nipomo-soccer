@@ -77,6 +77,9 @@ export default function ProgramCard({
       </div>
       
       <CardContent className="p-6">
+        <h3 className={`font-integral text-2xl uppercase tracking-wide ${styles.text} mb-1`}>
+          {title}
+        </h3>
         <p className={`${styles.accent} text-sm font-medium mb-1`}>
           {subtitle}
         </p>
