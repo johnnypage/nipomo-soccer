@@ -3,23 +3,23 @@ import { Target, Users, Trophy, Heart } from "lucide-react";
 const values = [
   {
     icon: Target,
-    title: "Excellence",
-    description: "We strive for the highest standards in player development, coaching, and sportsmanship.",
+    title: "Accessible",
+    description: "High quality year-round player development that's affordable to every family in Nipomo.",
   },
   {
     icon: Users,
-    title: "Community",
-    description: "Building lasting bonds between players, families, and our local Nipomo community.",
+    title: "Community First",
+    description: "Building real development opportunities for local kids and keeping families engaged in the sport they love.",
   },
   {
     icon: Trophy,
-    title: "Competition",
-    description: "Preparing players for success at every level, from recreational to elite competition.",
+    title: "Complete Pathway",
+    description: "A connected journey from first steps to advanced competition — a program that grows with every child.",
   },
   {
     icon: Heart,
-    title: "Character",
-    description: "Developing not just athletes, but leaders with integrity, respect, and dedication.",
+    title: "Player Focused",
+    description: "Teams built intentionally so every player is developed with care, fostering a lifelong love for the game.",
   },
 ];
 
@@ -30,36 +30,27 @@ export default function About() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
             <span className="inline-block px-3 py-1 bg-purple/10 dark:bg-purple/20 border border-purple/30 rounded-full text-purple text-sm font-medium mb-4">
-              About Us
+              Community First
             </span>
             <h2 className="font-display text-4xl sm:text-5xl text-night dark:text-warmwhite tracking-wide mb-6">
-              BUILDING CHAMPIONS
+              OUR MISSION
             </h2>
-            <p className="text-slate dark:text-warmwhite/70 mb-4">
-              Nipomo Soccer Club was founded in 2025 with a vision to create a premier youth 
-              soccer program on California's Central Coast. Nestled at the base of the beautiful 
-              coastal mountains, we're building a club that develops complete players and 
-              outstanding individuals.
+            <p className="text-slate dark:text-warmwhite/70 mb-4 text-lg font-medium">
+              To make high quality year-round player development accessible and affordable to every 
+              family in Nipomo while fostering a strong community culture and developing the next 
+              generation of proud Nipomo athletes.
             </p>
             <p className="text-slate dark:text-warmwhite/70 mb-6">
-              Our three-tier development pathway — Grow, Rise, and Reign — ensures every player 
-              has a clear path forward, from their first touch to elite competition. We believe 
-              in the power of sport to transform lives and strengthen communities.
+              Nipomo is filled with talented and passionate young athletes who love soccer. For years, 
+              many local families struggled to find a program that is high quality, affordable, and close 
+              to home. Nipomo Soccer Club was created to solve that. We believe that great soccer can be 
+              both accessible and development focused.
             </p>
             
-            <div className="flex flex-wrap items-center gap-6 text-sm">
-              <div className="text-center">
-                <p className="font-display text-3xl text-crimson">200+</p>
-                <p className="text-slate dark:text-warmwhite/60">Players</p>
-              </div>
-              <div className="text-center">
-                <p className="font-display text-3xl text-crimson">15</p>
-                <p className="text-slate dark:text-warmwhite/60">Teams</p>
-              </div>
-              <div className="text-center">
-                <p className="font-display text-3xl text-gold">12</p>
-                <p className="text-slate dark:text-warmwhite/60">Coaches</p>
-              </div>
+            <div className="bg-crimson/10 dark:bg-crimson/20 rounded-md p-4 border border-crimson/20">
+              <p className="text-slate dark:text-warmwhite/80 text-sm italic">
+                "We are creating a soccer culture that makes Nipomo proud."
+              </p>
             </div>
           </div>
 

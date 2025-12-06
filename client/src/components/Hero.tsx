@@ -22,7 +22,7 @@ export default function Hero({ onGetStarted, onLearnMore }: HeroProps) {
         </span>
         
         <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-warmwhite tracking-wide mb-4">
-          GROW. RISE. REIGN.
+          ROOTS. RISE. REIGN.
         </h1>
         
         <p className="font-heading text-xl sm:text-2xl text-warmwhite/90 font-medium mb-2">
@@ -30,8 +30,8 @@ export default function Hero({ onGetStarted, onLearnMore }: HeroProps) {
         </p>
         
         <p className="text-warmwhite/70 text-lg max-w-2xl mx-auto mb-8">
-          Building champions on and off the field. Youth soccer development programs 
-          for every skill level, from first touches to elite competition.
+          Building a complete player pathway in Nipomo. High quality, affordable youth 
+          soccer development close to home — from first touches to elite competition.
         </p>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -50,7 +50,7 @@ export default function Hero({ onGetStarted, onLearnMore }: HeroProps) {
             className="border-warmwhite/30 text-warmwhite bg-warmwhite/10 backdrop-blur-sm hover:bg-warmwhite/20"
             data-testid="button-learn-more"
           >
-            View Programs
+            Our Programs
           </Button>
         </div>
       </div>

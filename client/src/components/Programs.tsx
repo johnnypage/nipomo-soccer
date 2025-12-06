@@ -11,18 +11,19 @@ interface ProgramsProps {
 }
 
 export default function Programs({ onProgramSelect }: ProgramsProps) {
-  // todo: remove mock functionality - these should come from CMS/API
   const programs = [
     {
       type: "roots" as const,
       title: "Roots",
-      ageRange: "Ages 5-8",
-      description: "Where young players discover the joy of soccer through fun, skill-building activities. Our foundation program focuses on creating a love for the game.",
+      subtitle: "Community Recreational Soccer",
+      ageRange: "U4 and up",
+      season: "Fall Season",
+      description: "Where players discover their love for the game. Focuses on fun, skill fundamentals, and teamwork in a supportive environment. Every player plays. Every player belongs.",
       features: [
+        "Fun skill-building activities",
         "Fundamental ball skills",
-        "Coordination & movement",
-        "Team play introduction",
-        "2x weekly sessions",
+        "Teamwork & coordination",
+        "Supportive environment",
       ],
       imageSrc: rootsImage,
       logoSrc: rootsLogo,
@@ -30,13 +31,15 @@ export default function Programs({ onProgramSelect }: ProgramsProps) {
     {
       type: "rise" as const,
       title: "Rise",
-      ageRange: "Ages 9-13",
-      description: "Developing competitive players through structured training, tactical awareness, and character building. The next step in your soccer journey.",
+      subtitle: "Spring Development League",
+      ageRange: "U8 and up",
+      season: "Spring Season",
+      description: "For motivated players who want more soccer without a full year commitment. Training focuses on technical skills, decision making, and confidence with pod-based training and small-sided play.",
       features: [
-        "Advanced techniques",
-        "Position-specific training",
-        "Game strategy basics",
-        "3x weekly sessions",
+        "Technical skill development",
+        "Decision making training",
+        "Pod-based training",
+        "Small-sided play",
       ],
       imageSrc: riseImage,
       logoSrc: riseLogo,
@@ -44,13 +47,15 @@ export default function Programs({ onProgramSelect }: ProgramsProps) {
     {
       type: "reign" as const,
       title: "Reign",
-      ageRange: "Ages 14-18",
-      description: "Elite-level training for players pursuing excellence. Comprehensive development for those aiming for high school, club, and collegiate competition.",
+      subtitle: "Competitive Club Soccer",
+      ageRange: "U8 and up",
+      season: "Year-Round",
+      description: "Our highest level of play. Players receive advanced training, competitive matches, and strong coaching. Teams are built intentionally so every player is developed with care.",
       features: [
-        "Elite skill refinement",
-        "Advanced tactical systems",
-        "Physical conditioning",
-        "4x weekly + matches",
+        "Advanced training",
+        "Competitive matches",
+        "Strong coaching",
+        "Selection-based entry",
       ],
       imageSrc: reignImage,
       logoSrc: reignLogo,
@@ -62,14 +67,14 @@ export default function Programs({ onProgramSelect }: ProgramsProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <span className="inline-block px-3 py-1 bg-purple/20 border border-purple/40 rounded-full text-purple text-sm font-medium mb-4">
-            Our Programs
+            Three Connected Programs
           </span>
           <h2 className="font-display text-4xl sm:text-5xl text-warmwhite tracking-wide mb-4">
-            THREE PATHS TO EXCELLENCE
+            A FULL PLAYER PATHWAY
           </h2>
           <p className="text-warmwhite/70 max-w-2xl mx-auto">
-            Every player's journey is unique. Choose the program that matches your current 
-            level and aspirations. Progress through our pathway as you develop.
+            We offer a full pathway designed to support every level of play. Each stage 
+            builds on the one before it so players can learn, grow, and advance at their own pace.
           </p>
         </div>
 

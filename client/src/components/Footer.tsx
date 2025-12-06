@@ -10,9 +10,9 @@ export default function Footer({ onNavigate }: FooterProps) {
 
   const footerLinks = {
     programs: [
-      { label: "Roots (Ages 5-8)", section: "programs" },
-      { label: "Rise (Ages 9-13)", section: "programs" },
-      { label: "Reign (Ages 14-18)", section: "programs" },
+      { label: "Roots (U4 and up)", section: "programs" },
+      { label: "Rise (U8 and up)", section: "programs" },
+      { label: "Reign (U8 and up)", section: "programs" },
     ],
     club: [
       { label: "About Us", section: "about" },
@@ -45,8 +45,8 @@ export default function Footer({ onNavigate }: FooterProps) {
               />
             </div>
             <p className="text-warmwhite/60 text-sm mb-4">
-              Building champions on and off the field. Youth soccer development 
-              on California's Central Coast.
+              Building a complete player pathway in Nipomo. High quality, affordable 
+              youth soccer development close to home.
             </p>
             <div className="flex items-center gap-3">
               {socialLinks.map((social, idx) => (
@@ -142,7 +142,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             © {currentYear} Nipomo Soccer Club. All rights reserved.
           </p>
           <p className="text-warmwhite/40 text-sm">
-            <span className="font-display text-warmwhite/60">GROW. RISE. REIGN.</span>
+            <span className="font-display text-warmwhite/60">ROOTS. RISE. REIGN.</span>
           </p>
         </div>
       </div>

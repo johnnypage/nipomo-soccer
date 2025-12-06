@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Mail, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export default function Contact() {
@@ -41,22 +41,17 @@ export default function Contact() {
     {
       icon: MapPin,
       label: "Location",
-      value: "Nipomo, California 93444",
-    },
-    {
-      icon: Phone,
-      label: "Phone",
-      value: "(805) 555-0123",
+      value: "Nipomo, California",
     },
     {
       icon: Mail,
       label: "Email",
-      value: "info@nipomosoccer.club",
+      value: "admin@nipomosc.org",
     },
     {
       icon: Clock,
-      label: "Training Hours",
-      value: "Mon-Sat: 4PM - 8PM",
+      label: "Website",
+      value: "NipomoSoccer.com",
     },
   ];
 
@@ -65,14 +60,14 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <span className="inline-block px-3 py-1 bg-purple/20 border border-purple/40 rounded-full text-purple text-sm font-medium mb-4">
-            Get In Touch
+            Join the Movement
           </span>
           <h2 className="font-display text-4xl sm:text-5xl text-warmwhite tracking-wide mb-4">
-            JOIN THE CLUB
+            BE PART OF THE FUTURE
           </h2>
           <p className="text-warmwhite/70 max-w-2xl mx-auto">
-            Ready to start your soccer journey? Reach out to learn more about our programs, 
-            tryouts, and registration.
+            Be part of the future of soccer in Nipomo. Whether you are a parent, a player, 
+            a coach, or a sponsor, there is a place for you here.
           </p>
         </div>
 
@@ -130,9 +125,11 @@ export default function Contact() {
                       <SelectValue placeholder="Select Program" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="roots">Roots (Ages 5-8)</SelectItem>
-                      <SelectItem value="rise">Rise (Ages 9-13)</SelectItem>
-                      <SelectItem value="reign">Reign (Ages 14-18)</SelectItem>
+                      <SelectItem value="roots">Roots (U4 and up)</SelectItem>
+                      <SelectItem value="rise">Rise (U8 and up)</SelectItem>
+                      <SelectItem value="reign">Reign (U8 and up)</SelectItem>
+                      <SelectItem value="coaching">Coaching</SelectItem>
+                      <SelectItem value="sponsor">Sponsorship</SelectItem>
                       <SelectItem value="general">General Inquiry</SelectItem>
                     </SelectContent>
                   </Select>
@@ -182,11 +179,11 @@ export default function Contact() {
 
             <div className="bg-slate/10 rounded-md p-6 border border-slate/20">
               <h4 className="font-heading font-semibold text-warmwhite mb-2">
-                Tryouts & Registration
+                Player Pathway
               </h4>
               <p className="text-warmwhite/70 text-sm mb-4">
-                New player evaluations are held monthly. Contact us to schedule 
-                a tryout or learn about our registration process.
+                Roots → Rise → Reign. A connected journey from first steps to advanced 
+                competition. Selection for Reign is earned through performance in Roots and Rise.
               </p>
               <div className="flex items-center gap-2 text-sm">
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
