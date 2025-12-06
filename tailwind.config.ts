@@ -81,11 +81,22 @@ export default {
           busy: "rgb(239 68 68)",
           offline: "rgb(156 163 175)",
         },
+        crimson: {
+          DEFAULT: "#8B1D24",
+          dark: "#6B161C",
+        },
+        night: "#0D0D0D",
+        warmwhite: "#F4EDE1",
+        slate: "#55524D",
+        gold: "#C6A045",
+        purple: "#4A2B73",
       },
       fontFamily: {
         sans: ["var(--font-sans)"],
         serif: ["var(--font-serif)"],
         mono: ["var(--font-mono)"],
+        heading: ["Montserrat", "sans-serif"],
+        display: ["Bebas Neue", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
