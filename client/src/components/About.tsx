@@ -74,22 +74,6 @@ export default function About() {
           </div>
         </div>
 
-        <div className="mt-16 relative">
-          <div className="h-px bg-gradient-to-r from-transparent via-slate/30 to-transparent" />
-          <svg
-            className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 h-12 w-full max-w-lg text-slate/20"
-            viewBox="0 0 400 40"
-            fill="none"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M0 35 L50 25 L100 30 L150 20 L200 25 L250 15 L300 22 L350 18 L400 25"
-              stroke="currentColor"
-              strokeWidth="2"
-              fill="none"
-            />
-          </svg>
-        </div>
       </div>
     </section>
   );
