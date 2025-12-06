@@ -32,7 +32,7 @@ export default function Header({ onNavigate }: HeaderProps) {
               className="h-12 w-auto object-contain"
             />
             <div className="hidden sm:block">
-              <h1 className="font-heading font-bold text-warmwhite text-lg leading-tight">
+              <h1 className="font-integral font-bold text-warmwhite text-lg leading-tight uppercase tracking-wide">
                 Nipomo Soccer Club
               </h1>
             </div>
@@ -43,7 +43,7 @@ export default function Header({ onNavigate }: HeaderProps) {
               <button
                 key={item.section}
                 onClick={() => handleNavigate(item.section)}
-                className="text-warmwhite/80 hover:text-warmwhite font-medium transition-colors"
+                className="font-integral text-warmwhite/80 hover:text-warmwhite font-bold uppercase tracking-wide transition-colors"
                 data-testid={`nav-${item.section}`}
               >
                 {item.label}

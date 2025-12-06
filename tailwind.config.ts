@@ -96,7 +96,8 @@ export default {
         serif: ["var(--font-serif)"],
         mono: ["var(--font-mono)"],
         heading: ["Montserrat", "sans-serif"],
-        display: ["Bebas Neue", "sans-serif"],
+        display: ["Integral", "Bebas Neue", "sans-serif"],
+        integral: ["Integral", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Integral';
+  src: url('/attached_assets/Integral-Bold_1764980846232.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* LIGHT MODE - Nipomo Soccer Club Branding */
 :root {
   --button-outline: rgba(0,0,0, .10);
