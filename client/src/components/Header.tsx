@@ -19,9 +19,9 @@ export default function Header({ onNavigate }: HeaderProps) {
   const [location] = useLocation();
 
   const programLinks = [
-    { label: "Roots", href: "/#programs", description: "U4 and up" },
-    { label: "Rise", href: "/#programs", description: "U8 and up" },
-    { label: "Reign", href: "/reign", description: "Competitive" },
+    { label: "Roots", href: "/#programs", description: "Community Recreational Soccer" },
+    { label: "Rise", href: "/#programs", description: "Spring Development League" },
+    { label: "Reign", href: "/reign", description: "Competitive Club Soccer" },
   ];
 
   const navItems = [
