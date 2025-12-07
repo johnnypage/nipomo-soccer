@@ -13,8 +13,8 @@ export async function registerRoutes(
     try {
       const { name, email, phone, program, message } = req.body;
 
-      if (!name || !email || !message) {
-        return res.status(400).json({ error: "Name, email, and message are required" });
+      if (!name || !email || !phone || !program || !message) {
+        return res.status(400).json({ error: "All fields are required" });
       }
 
       const programLabels: Record<string, string> = {

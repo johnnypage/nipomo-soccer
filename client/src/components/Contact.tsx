@@ -130,6 +130,7 @@ export default function Contact() {
                     value={formData.phone}
                     onChange={(e) => handleChange("phone", e.target.value)}
                     className="bg-night border-slate/30 text-warmwhite placeholder:text-warmwhite/40"
+                    required
                     data-testid="input-phone"
                   />
                 </div>
@@ -137,6 +138,7 @@ export default function Contact() {
                   <Select
                     value={formData.program}
                     onValueChange={(value) => handleChange("program", value)}
+                    required
                   >
                     <SelectTrigger 
                       className="bg-night border-slate/30 text-warmwhite"
