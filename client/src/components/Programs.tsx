@@ -1,3 +1,4 @@
+import { useLocation } from "wouter";
 import ProgramCard from "./ProgramCard";
 import rootsImage from "@assets/generated_images/grow_program_youth_training.png";
 import riseImage from "@assets/generated_images/rise_program_competitive_training.png";
@@ -11,6 +12,16 @@ interface ProgramsProps {
 }
 
 export default function Programs({ onProgramSelect }: ProgramsProps) {
+  const [, setLocation] = useLocation();
+  
+  const handleLearnMore = (programType: string) => {
+    if (programType === "reign") {
+      setLocation("/reign");
+    } else {
+      onProgramSelect?.(programType);
+    }
+  };
+
   const programs = [
     {
       type: "roots" as const,
@@ -83,7 +94,7 @@ export default function Programs({ onProgramSelect }: ProgramsProps) {
             <ProgramCard
               key={program.type}
               {...program}
-              onLearnMore={() => onProgramSelect?.(program.type)}
+              onLearnMore={() => handleLearnMore(program.type)}
             />
           ))}
         </div>
