@@ -42,7 +42,7 @@ export default function Header({ onNavigate }: HeaderProps) {
     <header className="fixed top-0 left-0 right-0 z-50 bg-night/95 backdrop-blur-sm border-b border-slate/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between gap-4 h-16">
-          <div className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3 cursor-pointer" data-testid="link-home-logo">
             <img 
               src={clubLogo} 
               alt="Nipomo SC" 
@@ -53,9 +53,18 @@ export default function Header({ onNavigate }: HeaderProps) {
                 Nipomo Soccer Club
               </h1>
             </div>
-          </div>
+          </Link>
 
           <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+            {location !== "/" && (
+              <Link
+                href="/"
+                className="font-integral text-warmwhite/80 hover:text-warmwhite font-bold uppercase tracking-wide transition-colors"
+                data-testid="nav-home"
+              >
+                Home
+              </Link>
+            )}
             <DropdownMenu>
               <DropdownMenuTrigger className="font-integral text-warmwhite/80 hover:text-warmwhite font-bold uppercase tracking-wide transition-colors flex items-center gap-1" data-testid="nav-programs">
                 Programs
@@ -121,6 +130,16 @@ export default function Header({ onNavigate }: HeaderProps) {
               </Link>
             ))}
             <div className="border-t border-slate/20 pt-3">
+              {location !== "/" && (
+                <Link
+                  href="/"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full text-left text-warmwhite/80 hover:text-warmwhite font-medium py-2"
+                  data-testid="mobile-nav-home"
+                >
+                  Home
+                </Link>
+              )}
               {navItems.map((item) => (
                 <button
                   key={item.section}
