@@ -5,6 +5,7 @@ import { Link } from "wouter";
 import { Trophy, Users, Target, DollarSign, Award, ArrowRight, Calendar, MapPin, CheckCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ContactFormDialog from "@/components/ContactFormDialog";
 import reignLogo from "@assets/NSC_Reign_1764979848771.png";
 import reignHero from "@assets/generated_images/reign_program_elite_level.png";
 
@@ -89,14 +90,17 @@ export default function Reign() {
             </p>
             
             <div className="flex flex-wrap gap-4">
-              <Button 
-                className="bg-crimson hover:bg-crimson-dark text-warmwhite"
-                onClick={() => scrollToSection("join")}
-                data-testid="button-hero-cta"
-              >
-                Join Interest List
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <ContactFormDialog 
+                trigger={
+                  <Button 
+                    className="bg-crimson hover:bg-crimson-dark text-warmwhite"
+                    data-testid="button-hero-cta"
+                  >
+                    Join Interest List
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                }
+              />
               <Button 
                 variant="outline" 
                 className="border-warmwhite/30 text-warmwhite bg-warmwhite/10 backdrop-blur-sm"
@@ -442,15 +446,17 @@ export default function Reign() {
             </p>
             
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/#contact">
-                <Button 
-                  className="bg-crimson hover:bg-crimson-dark text-warmwhite"
-                  data-testid="button-join-interest-list"
-                >
-                  Join Interest List
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
+              <ContactFormDialog 
+                trigger={
+                  <Button 
+                    className="bg-crimson hover:bg-crimson-dark text-warmwhite"
+                    data-testid="button-join-interest-list"
+                  >
+                    Join Interest List
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                }
+              />
               <Link href="/">
                 <Button 
                   variant="outline" 
