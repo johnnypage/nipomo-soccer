@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Link, useLocation } from "wouter";
 import clubLogo from "@assets/NSC_1764979848772.png";
 
 interface HeaderProps {
@@ -9,15 +16,25 @@ interface HeaderProps {
 
 export default function Header({ onNavigate }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [location] = useLocation();
+
+  const programLinks = [
+    { label: "Roots", href: "/#programs", description: "U4 and up" },
+    { label: "Rise", href: "/#programs", description: "U8 and up" },
+    { label: "Reign", href: "/reign", description: "Competitive" },
+  ];
 
   const navItems = [
-    { label: "Programs", section: "programs" },
     { label: "About", section: "about" },
     { label: "Contact", section: "contact" },
   ];
 
   const handleNavigate = (section: string) => {
-    onNavigate?.(section);
+    if (location !== "/") {
+      window.location.href = `/#${section}`;
+    } else {
+      onNavigate?.(section);
+    }
     setMobileMenuOpen(false);
   };
 
@@ -39,6 +56,22 @@ export default function Header({ onNavigate }: HeaderProps) {
           </div>
 
           <nav className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+            <DropdownMenu>
+              <DropdownMenuTrigger className="font-integral text-warmwhite/80 hover:text-warmwhite font-bold uppercase tracking-wide transition-colors flex items-center gap-1" data-testid="nav-programs">
+                Programs
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-night border-slate/30">
+                {programLinks.map((program) => (
+                  <DropdownMenuItem key={program.href} asChild className="cursor-pointer">
+                    <Link href={program.href} className="flex flex-col items-start" data-testid={`nav-program-${program.label.toLowerCase()}`}>
+                      <span className="font-heading font-semibold text-warmwhite">{program.label}</span>
+                      <span className="text-xs text-warmwhite/60">{program.description}</span>
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             {navItems.map((item) => (
               <button
                 key={item.section}
@@ -75,16 +108,30 @@ export default function Header({ onNavigate }: HeaderProps) {
       {mobileMenuOpen && (
         <div className="md:hidden bg-night border-t border-slate/20">
           <div className="px-4 py-4 space-y-3">
-            {navItems.map((item) => (
-              <button
-                key={item.section}
-                onClick={() => handleNavigate(item.section)}
-                className="block w-full text-left text-warmwhite/80 hover:text-warmwhite font-medium py-2"
-                data-testid={`mobile-nav-${item.section}`}
+            <div className="text-warmwhite/60 text-sm font-medium uppercase tracking-wide">Programs</div>
+            {programLinks.map((program) => (
+              <Link
+                key={program.href}
+                href={program.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="block w-full text-left text-warmwhite/80 hover:text-warmwhite font-medium py-2 pl-3"
+                data-testid={`mobile-nav-${program.label.toLowerCase()}`}
               >
-                {item.label}
-              </button>
+                {program.label} <span className="text-warmwhite/50 text-sm">({program.description})</span>
+              </Link>
             ))}
+            <div className="border-t border-slate/20 pt-3">
+              {navItems.map((item) => (
+                <button
+                  key={item.section}
+                  onClick={() => handleNavigate(item.section)}
+                  className="block w-full text-left text-warmwhite/80 hover:text-warmwhite font-medium py-2"
+                  data-testid={`mobile-nav-${item.section}`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
             <Button
               onClick={() => handleNavigate("contact")}
               className="w-full bg-crimson hover:bg-crimson-dark text-warmwhite border-crimson mt-2"
