@@ -30,8 +30,7 @@ export default function Hero({ onGetStarted, onLearnMore }: HeroProps) {
         </p>
         
         <p className="text-warmwhite/70 text-lg max-w-2xl mx-auto mb-8">
-          Building a complete player pathway in Nipomo. High quality, affordable youth 
-          soccer development close to home — from first touches to elite competition.
+          High quality, affordable youth soccer development close to home. From first touches to elite competition.
         </p>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
