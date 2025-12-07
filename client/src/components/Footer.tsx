@@ -1,4 +1,4 @@
-import { SiFacebook, SiInstagram, SiYoutube } from "react-icons/si";
+import { SiFacebook, SiInstagram } from "react-icons/si";
 import clubLogo from "@assets/NSC_1764979848772.png";
 
 interface FooterProps {
@@ -28,8 +28,7 @@ export default function Footer({ onNavigate }: FooterProps) {
 
   const socialLinks = [
     { icon: SiFacebook, label: "Facebook", href: "#" },
-    { icon: SiInstagram, label: "Instagram", href: "#" },
-    { icon: SiYoutube, label: "YouTube", href: "#" },
+    { icon: SiInstagram, label: "Instagram", href: "https://www.instagram.com/nipomo.soccer/" },
   ];
 
   return (
