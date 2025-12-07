@@ -141,9 +141,9 @@ export default function ContactFormDialog({ trigger, defaultProgram = "reign" }:
                   <SelectValue placeholder="Select Program" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="roots">Roots (U4 and up)</SelectItem>
-                  <SelectItem value="rise">Rise (U8 and up)</SelectItem>
-                  <SelectItem value="reign">Reign (U8 and up)</SelectItem>
+                  <SelectItem value="roots">Roots - Community Recreational Soccer</SelectItem>
+                  <SelectItem value="rise">Rise - Spring Development League</SelectItem>
+                  <SelectItem value="reign">Reign - Competitive Club Soccer</SelectItem>
                   <SelectItem value="coaching">Coaching</SelectItem>
                   <SelectItem value="sponsor">Sponsorship</SelectItem>
                   <SelectItem value="general">General Inquiry</SelectItem>
