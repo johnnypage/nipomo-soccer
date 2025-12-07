@@ -1,4 +1,9 @@
+import { useState } from "react";
 import { SiFacebook, SiInstagram } from "react-icons/si";
+import { Mail, Loader2, CheckCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { apiRequest } from "@/lib/queryClient";
 import clubLogo from "@assets/NSC_1764979848772.png";
 
 interface FooterProps {
@@ -7,6 +12,28 @@ interface FooterProps {
 
 export default function Footer({ onNavigate }: FooterProps) {
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setIsLoading(true);
+    setMessage(null);
+
+    try {
+      await apiRequest("POST", "/api/subscribe", { email });
+      setMessage({ type: "success", text: "Thanks for subscribing!" });
+      setEmail("");
+    } catch (error: any) {
+      const errorText = error?.message || "Failed to subscribe. Please try again.";
+      setMessage({ type: "error", text: errorText });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const footerLinks = {
     programs: [
@@ -47,11 +74,13 @@ export default function Footer({ onNavigate }: FooterProps) {
               Building a complete player pathway in Nipomo. High quality, affordable 
               youth soccer development close to home.
             </p>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 mb-6">
               {socialLinks.map((social, idx) => (
                 <a
                   key={idx}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-9 h-9 rounded-full bg-slate/20 flex items-center justify-center text-warmwhite/60 hover:text-crimson hover:bg-crimson/10 transition-colors"
                   aria-label={social.label}
                   data-testid={`link-social-${social.label.toLowerCase()}`}
@@ -59,6 +88,44 @@ export default function Footer({ onNavigate }: FooterProps) {
                   <social.icon className="h-4 w-4" />
                 </a>
               ))}
+            </div>
+            <div>
+              <h4 className="font-heading font-semibold text-warmwhite text-sm mb-2">
+                Stay Updated
+              </h4>
+              <p className="text-warmwhite/60 text-xs mb-3">
+                Get news and updates from Nipomo Soccer.
+              </p>
+              <form onSubmit={handleSubscribe} className="flex gap-2">
+                <Input
+                  type="email"
+                  placeholder="Your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="bg-slate/20 border-slate/30 text-warmwhite placeholder:text-warmwhite/40 text-sm h-9"
+                  data-testid="input-subscribe-email"
+                  disabled={isLoading}
+                />
+                <Button
+                  type="submit"
+                  size="sm"
+                  className="bg-crimson hover:bg-crimson-dark text-warmwhite border-crimson shrink-0"
+                  disabled={isLoading || !email}
+                  data-testid="button-subscribe"
+                >
+                  {isLoading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <Mail className="h-4 w-4" />
+                  )}
+                </Button>
+              </form>
+              {message && (
+                <p className={`text-xs mt-2 ${message.type === "success" ? "text-green-400" : "text-red-400"}`} data-testid="text-subscribe-message">
+                  {message.type === "success" && <CheckCircle className="inline h-3 w-3 mr-1" />}
+                  {message.text}
+                </p>
+              )}
             </div>
           </div>
 
