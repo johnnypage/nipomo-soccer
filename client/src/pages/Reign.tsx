@@ -22,15 +22,18 @@ export default function Reign() {
     }
   };
 
-  const teams = [
-    { name: "Girls U8", status: "Active" },
-    { name: "Girls U9", status: "Active" },
-    { name: "Girls U10", status: "Active" },
-    { name: "Girls U11", status: "Active" },
-    { name: "Boys U8", status: "Active" },
-    { name: "Boys U10", status: "Active" },
-    { name: "Boys U14 (Team 1)", status: "Active" },
-    { name: "Boys U14 (Team 2)", status: "Active" },
+  const girlsTeams = [
+    { name: "Girls U8", birthRange: "Born between Aug 2017 and Jul 2018" },
+    { name: "Girls U9", birthRange: "Born between Aug 2016 and Jul 2017" },
+    { name: "Girls U10", birthRange: "Born between Aug 2015 and Jul 2016" },
+    { name: "Girls U11", birthRange: "Born between Aug 2014 and Jul 2015" },
+  ];
+
+  const boysTeams = [
+    { name: "Boys U8", birthRange: "Born between Aug 2017 and Jul 2018" },
+    { name: "Boys U10", birthRange: "Born between Aug 2015 and Jul 2016" },
+    { name: "Boys U12", birthRange: "Born between Aug 2013 and Jul 2014" },
+    { name: "Boys U14", birthRange: "Born between Aug 2010 and Jul 2011" },
   ];
 
   const values = [
@@ -243,17 +246,50 @@ export default function Reign() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {teams.map((team, idx) => (
-              <Card key={idx} className="bg-slate/10 border-slate/20">
-                <CardContent className="p-4 flex items-center justify-between gap-2">
-                  <span className="font-heading font-semibold text-warmwhite">{team.name}</span>
-                  <Badge variant="secondary" className="bg-green-500/20 text-green-400 border-green-500/40">
-                    {team.status}
-                  </Badge>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="font-heading font-semibold text-lg text-warmwhite mb-4 flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-pink-500" />
+                Girls Teams
+              </h3>
+              <div className="space-y-3">
+                {girlsTeams.map((team, idx) => (
+                  <Card key={idx} className="bg-slate/10 border-slate/20">
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <span className="font-heading font-semibold text-warmwhite">{team.name}</span>
+                        <Badge variant="secondary" className="bg-green-500/20 text-green-400 border-green-500/40">
+                          Active
+                        </Badge>
+                      </div>
+                      <p className="text-warmwhite/60 text-sm">{team.birthRange}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-heading font-semibold text-lg text-warmwhite mb-4 flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-blue-500" />
+                Boys Teams
+              </h3>
+              <div className="space-y-3">
+                {boysTeams.map((team, idx) => (
+                  <Card key={idx} className="bg-slate/10 border-slate/20">
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <span className="font-heading font-semibold text-warmwhite">{team.name}</span>
+                        <Badge variant="secondary" className="bg-green-500/20 text-green-400 border-green-500/40">
+                          Active
+                        </Badge>
+                      </div>
+                      <p className="text-warmwhite/60 text-sm">{team.birthRange}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div className="mt-8 text-center">
