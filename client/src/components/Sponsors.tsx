@@ -8,7 +8,7 @@ export default function Sponsors() {
   ];
 
   return (
-    <section id="sponsors" className="py-16 bg-slate/10">
+    <section id="sponsors" className="py-16 bg-gradient-to-br from-crimson/20 to-gold/10 border-y border-crimson/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <span className="inline-block px-3 py-1 bg-gold/20 border border-gold/40 rounded-full text-gold text-sm font-medium mb-4">
