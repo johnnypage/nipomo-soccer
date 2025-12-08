@@ -76,7 +76,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-night">
+    <section id="contact" className="py-20 bg-gradient-to-b from-transparent via-night/50 to-night">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <span className="inline-block px-3 py-1 bg-purple/20 border border-purple/40 rounded-full text-purple text-sm font-medium mb-4">
