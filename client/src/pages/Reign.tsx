@@ -23,17 +23,17 @@ export default function Reign() {
   };
 
   const girlsTeams = [
-    { name: "Girls U8", birthRange: "Born between Aug 2017 and Jul 2018" },
-    { name: "Girls U9", birthRange: "Born between Aug 2016 and Jul 2017" },
-    { name: "Girls U10", birthRange: "Born between Aug 2015 and Jul 2016" },
-    { name: "Girls U11", birthRange: "Born between Aug 2014 and Jul 2015" },
+    { name: "Girls", birthRange: "Born between Aug 2017 and Jul 2018" },
+    { name: "Girls", birthRange: "Born between Aug 2016 and Jul 2017" },
+    { name: "Girls", birthRange: "Born between Aug 2015 and Jul 2016" },
+    { name: "Girls", birthRange: "Born between Aug 2014 and Jul 2015" },
   ];
 
   const boysTeams = [
-    { name: "Boys U8", birthRange: "Born between Aug 2017 and Jul 2018" },
-    { name: "Boys U10", birthRange: "Born between Aug 2015 and Jul 2016" },
-    { name: "Boys U12", birthRange: "Born between Aug 2013 and Jul 2014" },
-    { name: "Boys U14", birthRange: "Born between Aug 2010 and Jul 2011" },
+    { name: "Boys", birthRange: "Born between Aug 2017 and Jul 2018" },
+    { name: "Boys", birthRange: "Born between Aug 2015 and Jul 2016" },
+    { name: "Boys", birthRange: "Born between Aug 2013 and Jul 2014" },
+    { name: "Boys", birthRange: "Born between Aug 2010 and Jul 2011" },
   ];
 
   const values = [
