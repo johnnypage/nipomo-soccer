@@ -2,6 +2,8 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import sgMail from "@sendgrid/mail";
+import { db } from "./db";
+import { contactSubmissions } from "@shared/schema";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
 
@@ -20,6 +22,15 @@ export async function registerRoutes(
       if (!name || !email || !phone || !program || !message) {
         return res.status(400).json({ error: "All fields are required" });
       }
+
+      // Save to database first (this ensures we never lose a submission)
+      await db.insert(contactSubmissions).values({
+        name,
+        email,
+        phone,
+        program,
+        message,
+      });
 
       const programLabels: Record<string, string> = {
         roots: "Roots (U4 and up)",
@@ -59,17 +70,17 @@ ${message}
         `.trim(),
       };
 
-      await sgMail.send(msg);
-      res.json({ success: true, message: "Email sent successfully" });
+      // Try to send email, but don't fail if it doesn't work
+      try {
+        await sgMail.send(msg);
+      } catch (emailError: any) {
+        console.error("SendGrid error (submission saved to database):", emailError?.response?.body || emailError);
+      }
+
+      res.json({ success: true, message: "Message received successfully" });
     } catch (error: any) {
-      console.error("SendGrid error:", error?.response?.body || error);
-      
-      // Check for common SendGrid errors
-      const errorMessage = error?.response?.body?.errors?.[0]?.message || 
-                          error?.message || 
-                          "Failed to send email";
-      
-      res.status(500).json({ error: errorMessage });
+      console.error("Contact form error:", error);
+      res.status(500).json({ error: "Failed to submit message. Please try again." });
     }
   });
 
