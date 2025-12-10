@@ -348,12 +348,12 @@ export default function Tournament() {
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <a 
-              href="mailto:info@nipomosc.org" 
+              href="mailto:admin@nipomosc.org" 
               className="flex items-center gap-2 text-iceblue hover:text-iceblue/80 transition-colors"
               data-testid="link-tournament-email"
             >
               <Mail className="h-5 w-5" />
-              <span className="font-body">info@nipomosc.org</span>
+              <span className="font-body">admin@nipomosc.org</span>
             </a>
             <div className="hidden sm:block w-px h-6 bg-navy/50" />
             <div className="flex items-center gap-2 text-silver">
