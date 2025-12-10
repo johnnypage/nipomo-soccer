@@ -11,7 +11,7 @@ import { apiRequest } from "@/lib/queryClient";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { MapPin, Calendar, Trophy, Users, Shield, Building, Heart, Mail, Phone, Loader2 } from "lucide-react";
-import tournamentLogo from "@assets/image_1765347903367.png";
+import tournamentLogo from "@assets/winter_classic_logo_1765349865718.png";
 
 const divisions = ["10U", "11U", "12U", "13U", "14U", "15U", "16U"];
 
