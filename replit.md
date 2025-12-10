@@ -52,9 +52,12 @@ Preferred communication style: Simple, everyday language.
 
 **Database ORM**: Drizzle ORM configured for PostgreSQL, though the database is not yet provisioned or actively used.
 
-**Schema Definition**: User schema defined in `shared/schema.ts` with Zod validation schemas for type-safe data operations.
+**Schema Definition**: Schemas defined in `shared/schema.ts` with Zod validation schemas for type-safe data operations:
+- `users` - User accounts (not currently used)
+- `contactSubmissions` - Contact form entries with name, email, phone, program interest, and message
+- `tournamentInterests` - Team interest submissions for tournaments with club/contact info, divisions, and team count
 
-**Current Implementation**: In-memory storage using Map-based collections for development and testing purposes.
+**Current Implementation**: PostgreSQL database is actively used for form submissions. Database tables store all contact and tournament interest submissions as backup regardless of email delivery status.
 
 **Future State**: The application is architected to support PostgreSQL with connection pooling via the `pg` library and session management through `connect-pg-simple`.
 
@@ -81,10 +84,14 @@ Preferred communication style: Simple, everyday language.
 - TypeScript for type safety
 - ESBuild and Vite for build optimization
 
+**Active Integrations**:
+- SendGrid for transactional emails (contact form, tournament interest notifications)
+- Mailchimp for newsletter subscription management
+- PostgreSQL for form submission storage
+
 **Planned Integrations** (dependencies present but not implemented):
 - Express session management with connect-pg-simple
 - Authentication scaffolding (passport, jsonwebtoken)
-- Email capabilities (nodemailer)
 - File uploads (multer)
 - Payment processing (stripe)
 - AI integration (OpenAI, Google Generative AI)
@@ -100,3 +107,15 @@ Preferred communication style: Simple, everyday language.
 **Spacing System**: Consistent spacing primitives using Tailwind's default scale (4px base unit).
 
 **Component Patterns**: All interactive components follow accessibility best practices through Radix UI primitives, with ARIA labels and keyboard navigation support.
+
+## Pages
+
+- **Home** (`/`) - Main landing page with hero, program showcase (Roots, Rise, Reign), about section, sponsors, contact form, and newsletter signup
+- **Reign** (`/reign`) - Detailed page for the Reign competitive program with teams organized by birth year ranges
+- **Tournament** (`/tournament`) - Reign Winter Classic tournament page (February 20-22, 2025) with event details, team interest form, and contact information
+
+## Recent Changes
+
+- Added Tournament page with complete Reign Winter Classic event information
+- Implemented tournament team interest form with PostgreSQL storage and SendGrid notifications
+- Added Tournament navigation link in header (desktop and mobile)
