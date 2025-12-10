@@ -131,7 +131,7 @@ export default function Tournament() {
               </div>
               <div className="flex items-center justify-center lg:justify-start gap-2 text-silver mb-6">
                 <MapPin className="h-5 w-5" />
-                <span className="font-body">Nipomo, California</span>
+                <span className="font-body">Nipomo High School, 525 N Thompson Rd, Nipomo, CA 93444</span>
               </div>
               <p className="text-warmwhite/70 text-lg max-w-xl font-body leading-relaxed">
                 The Reign Winter Classic is a competitive tournament on the Central Coast hosted by Nipomo SC. 

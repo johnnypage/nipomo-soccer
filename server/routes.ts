@@ -105,7 +105,7 @@ ${message}
       });
 
       const msg = {
-        to: "info@nipomosc.org",
+        to: "admin@nipomosc.org",
         from: "admin@nipomosc.org",
         replyTo: email,
         subject: `Reign Winter Classic - Team Interest from ${clubName}`,
