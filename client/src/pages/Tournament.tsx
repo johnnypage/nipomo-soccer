@@ -134,9 +134,9 @@ export default function Tournament() {
                 <span className="font-body">Nipomo, California</span>
               </div>
               <p className="text-warmwhite/70 text-lg max-w-xl font-body leading-relaxed">
-                The Reign Winter Classic is a new competitive tournament on the Central Coast hosted by Nipomo SC. 
-                Teams from Northern California, Southern California, and the Central Valley are invited to join us 
-                for a well run, three game weekend of competitive play.
+                The Reign Winter Classic is a competitive tournament on the Central Coast hosted by Nipomo SC. 
+                Teams from Northern California, Southern California, the Central Valley and the coast are invited 
+                to compete in this winter showdown.
               </p>
             </div>
           </div>
