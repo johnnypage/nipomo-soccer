@@ -34,3 +34,23 @@ export const insertContactSubmissionSchema = createInsertSchema(contactSubmissio
 
 export type InsertContactSubmission = z.infer<typeof insertContactSubmissionSchema>;
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
+
+export const tournamentInterests = pgTable("tournament_interests", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  clubName: text("club_name").notNull(),
+  contactName: text("contact_name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  divisions: text("divisions").notNull(),
+  teamCount: text("team_count").notNull(),
+  notes: text("notes"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertTournamentInterestSchema = createInsertSchema(tournamentInterests).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertTournamentInterest = z.infer<typeof insertTournamentInterestSchema>;
+export type TournamentInterest = typeof tournamentInterests.$inferSelect;

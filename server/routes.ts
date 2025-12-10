@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import sgMail from "@sendgrid/mail";
 import { db } from "./db";
-import { contactSubmissions } from "@shared/schema";
+import { contactSubmissions, tournamentInterests, insertTournamentInterestSchema } from "@shared/schema";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
 
@@ -81,6 +81,67 @@ ${message}
     } catch (error: any) {
       console.error("Contact form error:", error);
       res.status(500).json({ error: "Failed to submit message. Please try again." });
+    }
+  });
+
+  app.post("/api/tournament-interest", async (req, res) => {
+    try {
+      const parseResult = insertTournamentInterestSchema.safeParse(req.body);
+      
+      if (!parseResult.success) {
+        return res.status(400).json({ error: "All required fields must be filled" });
+      }
+
+      const { clubName, contactName, email, phone, divisions, teamCount, notes } = parseResult.data;
+
+      await db.insert(tournamentInterests).values({
+        clubName,
+        contactName,
+        email,
+        phone,
+        divisions,
+        teamCount,
+        notes: notes || null,
+      });
+
+      const msg = {
+        to: "info@nipomosc.org",
+        from: "admin@nipomosc.org",
+        replyTo: email,
+        subject: `Reign Winter Classic - Team Interest from ${clubName}`,
+        text: `
+New tournament interest submission for Reign Winter Classic:
+
+Club Name: ${clubName}
+Contact Name: ${contactName}
+Email: ${email}
+Phone: ${phone}
+Divisions Interested: ${divisions}
+Number of Teams: ${teamCount}
+${notes ? `\nAdditional Notes:\n${notes}` : ""}
+        `.trim(),
+        html: `
+<h2>Reign Winter Classic - Team Interest</h2>
+<p><strong>Club Name:</strong> ${clubName}</p>
+<p><strong>Contact Name:</strong> ${contactName}</p>
+<p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+<p><strong>Phone:</strong> ${phone}</p>
+<p><strong>Divisions Interested:</strong> ${divisions}</p>
+<p><strong>Number of Teams:</strong> ${teamCount}</p>
+${notes ? `<h3>Additional Notes:</h3><p>${notes.replace(/\n/g, "<br>")}</p>` : ""}
+        `.trim(),
+      };
+
+      try {
+        await sgMail.send(msg);
+      } catch (emailError: any) {
+        console.error("SendGrid error (submission saved to database):", emailError?.response?.body || emailError);
+      }
+
+      res.json({ success: true, message: "Team interest submitted successfully" });
+    } catch (error: any) {
+      console.error("Tournament interest error:", error);
+      res.status(500).json({ error: "Failed to submit interest. Please try again." });
     }
   });
 
