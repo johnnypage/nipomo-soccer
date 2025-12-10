@@ -74,7 +74,7 @@ export default function Header({ onNavigate }: HeaderProps) {
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-night border-slate/30">
                 {programLinks.map((program) => (
-                  <DropdownMenuItem key={program.href} asChild className="cursor-pointer">
+                  <DropdownMenuItem key={program.label} asChild className="cursor-pointer">
                     <Link href={program.href} className="flex flex-col items-start" data-testid={`nav-program-${program.label.toLowerCase()}`}>
                       <span className="font-heading font-semibold text-warmwhite">{program.label}</span>
                       <span className="text-xs text-warmwhite/60">{program.description}</span>
@@ -129,7 +129,7 @@ export default function Header({ onNavigate }: HeaderProps) {
             <div className="text-warmwhite/60 text-sm font-medium uppercase tracking-wide">Programs</div>
             {programLinks.map((program) => (
               <Link
-                key={program.href}
+                key={program.label}
                 href={program.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className="block w-full text-left text-warmwhite/80 hover:text-warmwhite font-medium py-2 pl-3"

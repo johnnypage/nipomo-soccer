@@ -90,6 +90,9 @@ export default {
         slate: "#55524D",
         gold: "#C6A045",
         purple: "#4A2B73",
+        navy: "#2A3F5F",
+        silver: "#A8ADB5",
+        iceblue: "#B8D4E8",
       },
       fontFamily: {
         sans: ["var(--font-sans)"],

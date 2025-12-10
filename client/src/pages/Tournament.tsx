@@ -125,11 +125,11 @@ export default function Tournament() {
               />
             </div>
             <div className="text-center lg:text-left">
-              <div className="flex items-center justify-center lg:justify-start gap-2 text-gold mb-4">
+              <div className="flex items-center justify-center lg:justify-start gap-2 text-iceblue mb-4">
                 <Calendar className="h-5 w-5" />
                 <span className="font-heading font-semibold text-lg">February 20-22, 2025</span>
               </div>
-              <div className="flex items-center justify-center lg:justify-start gap-2 text-warmwhite/80 mb-6">
+              <div className="flex items-center justify-center lg:justify-start gap-2 text-silver mb-6">
                 <MapPin className="h-5 w-5" />
                 <span className="font-body">Nipomo, California</span>
               </div>
@@ -146,28 +146,28 @@ export default function Tournament() {
       <section className="py-16 bg-night">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-6">
-            <Card className="bg-slate/20 border-slate/30">
+            <Card className="bg-navy/40 border-navy/60">
               <CardContent className="p-6 text-center">
-                <Users className="h-10 w-10 text-gold mx-auto mb-4" />
+                <Users className="h-10 w-10 text-iceblue mx-auto mb-4" />
                 <h3 className="font-heading font-bold text-xl text-warmwhite mb-2">Divisions</h3>
                 <p className="text-warmwhite/80 font-body text-lg">10U through 16U</p>
               </CardContent>
             </Card>
             
-            <Card className="bg-slate/20 border-slate/30">
+            <Card className="bg-navy/40 border-navy/60">
               <CardContent className="p-6 text-center">
-                <div className="text-4xl font-display text-gold mb-2">$</div>
+                <div className="text-4xl font-display text-silver mb-2">$</div>
                 <h3 className="font-heading font-bold text-xl text-warmwhite mb-2">Entry Fees</h3>
                 <div className="space-y-1 text-warmwhite/80 font-body">
-                  <p>10U and 11U: <span className="text-gold font-semibold">$650</span></p>
-                  <p>12U and up: <span className="text-gold font-semibold">$750</span></p>
+                  <p>10U and 11U: <span className="text-iceblue font-semibold">$650</span></p>
+                  <p>12U and up: <span className="text-iceblue font-semibold">$750</span></p>
                 </div>
               </CardContent>
             </Card>
             
-            <Card className="bg-slate/20 border-slate/30">
+            <Card className="bg-navy/40 border-navy/60">
               <CardContent className="p-6 text-center">
-                <Trophy className="h-10 w-10 text-gold mx-auto mb-4" />
+                <Trophy className="h-10 w-10 text-iceblue mx-auto mb-4" />
                 <h3 className="font-heading font-bold text-xl text-warmwhite mb-2">Game Guarantee</h3>
                 <p className="text-warmwhite/80 font-body text-lg">Three games</p>
               </CardContent>
@@ -176,7 +176,7 @@ export default function Tournament() {
         </div>
       </section>
 
-      <section className="py-16 bg-gradient-to-b from-night to-slate/10">
+      <section className="py-16 bg-gradient-to-b from-night to-navy/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl sm:text-4xl text-warmwhite text-center mb-4">
             Why Teams Attend
@@ -187,9 +187,9 @@ export default function Tournament() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map((benefit, index) => (
-              <Card key={index} className="bg-slate/20 border-slate/30">
+              <Card key={index} className="bg-navy/30 border-navy/50">
                 <CardContent className="p-6">
-                  <benefit.icon className="h-8 w-8 text-crimson mb-4" />
+                  <benefit.icon className="h-8 w-8 text-silver mb-4" />
                   <h3 className="font-heading font-bold text-lg text-warmwhite mb-2">{benefit.title}</h3>
                   <p className="text-warmwhite/70 font-body">{benefit.description}</p>
                 </CardContent>
@@ -199,7 +199,7 @@ export default function Tournament() {
         </div>
       </section>
 
-      <section className="py-16 bg-slate/10">
+      <section className="py-16 bg-navy/20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="font-display text-3xl sm:text-4xl text-warmwhite mb-4">
@@ -211,7 +211,7 @@ export default function Tournament() {
             </p>
           </div>
           
-          <Card className="bg-night border-slate/30">
+          <Card className="bg-night border-navy/40">
             <CardContent className="p-6 sm:p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -222,7 +222,7 @@ export default function Tournament() {
                       value={formData.clubName}
                       onChange={(e) => setFormData(prev => ({ ...prev, clubName: e.target.value }))}
                       required
-                      className="bg-slate/20 border-slate/30 text-warmwhite"
+                      className="bg-navy/30 border-navy/50 text-warmwhite"
                       data-testid="input-club-name"
                     />
                   </div>
@@ -233,7 +233,7 @@ export default function Tournament() {
                       value={formData.contactName}
                       onChange={(e) => setFormData(prev => ({ ...prev, contactName: e.target.value }))}
                       required
-                      className="bg-slate/20 border-slate/30 text-warmwhite"
+                      className="bg-navy/30 border-navy/50 text-warmwhite"
                       data-testid="input-contact-name"
                     />
                   </div>
@@ -248,7 +248,7 @@ export default function Tournament() {
                       value={formData.email}
                       onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                       required
-                      className="bg-slate/20 border-slate/30 text-warmwhite"
+                      className="bg-navy/30 border-navy/50 text-warmwhite"
                       data-testid="input-email"
                     />
                   </div>
@@ -260,7 +260,7 @@ export default function Tournament() {
                       value={formData.phone}
                       onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
                       required
-                      className="bg-slate/20 border-slate/30 text-warmwhite"
+                      className="bg-navy/30 border-navy/50 text-warmwhite"
                       data-testid="input-phone"
                     />
                   </div>
@@ -274,8 +274,8 @@ export default function Tournament() {
                         key={division}
                         className={`flex items-center gap-2 px-4 py-2 rounded-md cursor-pointer transition-colors ${
                           selectedDivisions.includes(division)
-                            ? "bg-crimson text-warmwhite"
-                            : "bg-slate/20 text-warmwhite/80 hover:bg-slate/30"
+                            ? "bg-iceblue text-navy font-semibold"
+                            : "bg-navy/40 text-warmwhite/80 hover:bg-navy/60"
                         }`}
                         data-testid={`checkbox-division-${division.toLowerCase()}`}
                       >
@@ -299,7 +299,7 @@ export default function Tournament() {
                     value={formData.teamCount}
                     onChange={(e) => setFormData(prev => ({ ...prev, teamCount: e.target.value }))}
                     required
-                    className="bg-slate/20 border-slate/30 text-warmwhite"
+                    className="bg-navy/30 border-navy/50 text-warmwhite"
                     data-testid="input-team-count"
                   />
                 </div>
@@ -311,7 +311,7 @@ export default function Tournament() {
                     placeholder="Any questions or additional information..."
                     value={formData.notes}
                     onChange={(e) => setFormData(prev => ({ ...prev, notes: e.target.value }))}
-                    className="bg-slate/20 border-slate/30 text-warmwhite min-h-[100px]"
+                    className="bg-navy/30 border-navy/50 text-warmwhite min-h-[100px]"
                     data-testid="input-notes"
                   />
                 </div>
@@ -319,7 +319,7 @@ export default function Tournament() {
                 <Button 
                   type="submit" 
                   disabled={submitMutation.isPending}
-                  className="w-full bg-crimson hover:bg-crimson-dark text-warmwhite border-crimson"
+                  className="w-full bg-iceblue hover:bg-iceblue/90 text-navy font-semibold border-iceblue"
                   data-testid="button-submit-interest"
                 >
                   {submitMutation.isPending ? (
@@ -349,16 +349,16 @@ export default function Tournament() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <a 
               href="mailto:info@nipomosc.org" 
-              className="flex items-center gap-2 text-gold hover:text-gold/80 transition-colors"
+              className="flex items-center gap-2 text-iceblue hover:text-iceblue/80 transition-colors"
               data-testid="link-tournament-email"
             >
               <Mail className="h-5 w-5" />
               <span className="font-body">info@nipomosc.org</span>
             </a>
-            <div className="hidden sm:block w-px h-6 bg-slate/30" />
-            <div className="flex items-center gap-2 text-warmwhite/80">
+            <div className="hidden sm:block w-px h-6 bg-navy/50" />
+            <div className="flex items-center gap-2 text-silver">
               <Phone className="h-5 w-5" />
-              <span className="font-body">Tournament Director: Adrian</span>
+              <span className="font-body">Tournament Director: Adrian Dalton</span>
             </div>
           </div>
         </div>
