@@ -29,8 +29,6 @@ export default function Header({ onNavigate }: HeaderProps) {
     { label: "Contact", section: "contact" },
   ];
 
-  const tournamentLink = { label: "Tournament", href: "/tournament" };
-
   const handleNavigate = (section: string) => {
     if (location !== "/") {
       window.location.href = `/#${section}`;
@@ -83,13 +81,6 @@ export default function Header({ onNavigate }: HeaderProps) {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <Link
-              href={tournamentLink.href}
-              className="font-integral text-warmwhite/80 hover:text-warmwhite font-bold uppercase tracking-wide transition-colors"
-              data-testid="nav-tournament"
-            >
-              {tournamentLink.label}
-            </Link>
             {navItems.map((item) => (
               <button
                 key={item.section}
@@ -149,14 +140,6 @@ export default function Header({ onNavigate }: HeaderProps) {
                   Home
                 </Link>
               )}
-              <Link
-                href={tournamentLink.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block w-full text-left text-warmwhite/80 hover:text-warmwhite font-medium py-2"
-                data-testid="mobile-nav-tournament"
-              >
-                {tournamentLink.label}
-              </Link>
               {navItems.map((item) => (
                 <button
                   key={item.section}
