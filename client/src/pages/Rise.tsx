@@ -55,17 +55,17 @@ export default function Rise() {
 
   const phases = [
     {
-      weeks: "Weeks 1–2",
+      weeks: "Weeks 1-2",
       title: "Dribbling & Ball Control",
       icon: Dribbble,
     },
     {
-      weeks: "Weeks 3–4",
+      weeks: "Weeks 3-4",
       title: "Passing & Receiving",
       icon: Target,
     },
     {
-      weeks: "Weeks 5–6",
+      weeks: "Weeks 5-6",
       title: "Attacking & Defending",
       icon: Swords,
     },
@@ -74,25 +74,25 @@ export default function Rise() {
   const divisions = [
     {
       division: "Division 1",
-      grades: "1st–2nd",
+      grades: "1st - 2nd",
       session: "60 minutes",
       format: "Warm-up → Station rotations → Scrimmage",
     },
     {
       division: "Division 2",
-      grades: "3rd–4th",
+      grades: "3rd - 4th",
       session: "90 minutes",
       format: "Warm-up → Station rotations → Scrimmage",
     },
     {
       division: "Division 3",
-      grades: "5th–6th",
+      grades: "5th - 6th",
       session: "120 minutes",
       format: "Warm-up → Stations + skill application → Scrimmage",
     },
     {
       division: "Division 4",
-      grades: "7th–8th",
+      grades: "7th - 8th",
       session: "120 minutes",
       format: "Warm-up → Stations + skill application → Scrimmage",
     },
@@ -109,19 +109,19 @@ export default function Rise() {
   const pricing = [
     {
       tier: "Early Bird",
-      dates: "February 15 – March 15",
+      dates: "February 15 - March 15",
       price: "$85",
       highlighted: true,
     },
     {
       tier: "Regular",
-      dates: "March 16 – April 5",
+      dates: "March 16 - April 5",
       price: "$100",
       highlighted: false,
     },
     {
       tier: "Late",
-      dates: "April 6 – April 10",
+      dates: "April 6 - April 10",
       price: "$120",
       highlighted: false,
     },
@@ -151,7 +151,7 @@ export default function Rise() {
   const faqs = [
     {
       q: "Do I need soccer experience to sign up?",
-      a: "Nope. RISE is open to all skill levels, grades 1–8. No tryouts.",
+      a: "Nope. RISE is open to all skill levels, grades 1-8. No tryouts.",
     },
     {
       q: "What days are training?",
@@ -159,7 +159,7 @@ export default function Rise() {
     },
     {
       q: "What if my kid plays another sport in the spring?",
-      a: "That's exactly who this program is built for. Six weeks, twice a week — designed to fit alongside other activities.",
+      a: "That's exactly who this program is built for. Six weeks, twice a week, designed to fit alongside other activities.",
     },
     {
       q: "Are there refunds?",
@@ -174,8 +174,8 @@ export default function Rise() {
       a: "Cleats, shin guards, water bottle, and a good attitude. Program shirts will be provided.",
     },
     {
-      q: "What about the tournaments — do I need to be there all day?",
-      a: "Each tournament runs about 4–5 hours on a Saturday. All players should plan to be there for the full half-day.",
+      q: "What about the tournaments? Do I need to be there all day?",
+      a: "Each tournament runs about 4-5 hours on a Saturday. All players should plan to be there for the full half-day.",
     },
     {
       q: "How are tournament teams formed?",
@@ -216,11 +216,11 @@ export default function Rise() {
               <div className="flex flex-wrap gap-4 sm:gap-6 mb-10 text-warmwhite/90 text-sm sm:text-base">
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-gold" />
-                  <span>April 13 – May 23</span>
+                  <span>April 13 - May 23</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <GraduationCap className="h-4 w-4 text-gold" />
-                  <span>Grades 1–8</span>
+                  <span>Grades 1-8</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4 text-gold" />
@@ -267,7 +267,7 @@ export default function Rise() {
                 WHAT IS RISE?
               </h2>
               <p className="text-night/80 text-lg leading-relaxed mb-6">
-                RISE is a 6-week spring program built for kids who love soccer but play other sports too. Instead of forming teams and jumping straight into games, RISE focuses on developing individual skills through structured, coach-led training sessions — and then puts those skills to the test in two Saturday tournaments.
+                RISE is a 6-week spring program built for kids who love soccer but play other sports too. Instead of forming teams and jumping straight into games, RISE focuses on developing individual skills through structured, coach-led training sessions, then puts those skills to the test in two Saturday tournaments.
               </p>
               <div className="bg-purple/5 border-l-4 border-purple p-4 rounded-r-lg mb-6">
                 <p className="text-night/90 italic text-lg">
@@ -275,7 +275,7 @@ export default function Rise() {
                 </p>
               </div>
               <p className="text-night/80 text-lg leading-relaxed">
-                Your kid gets 12 training sessions, works with experienced coaches, and walks away a better player — all without a year-round commitment.
+                Your kid gets 12 training sessions, works with experienced coaches, and walks away a better player, all without a year-round commitment.
               </p>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg" data-testid="img-what-is-rise">
@@ -306,10 +306,10 @@ export default function Rise() {
                 <div className="w-8 h-8 rounded-full bg-crimson flex items-center justify-center">
                   <Users className="h-4 w-4 text-warmwhite" />
                 </div>
-                <h3 className="font-heading font-bold text-xl text-night uppercase tracking-wide">Training (Weeks 1–6)</h3>
+                <h3 className="font-heading font-bold text-xl text-night uppercase tracking-wide">Training (Weeks 1-6)</h3>
               </div>
               <p className="text-night/80 mb-6 leading-relaxed">
-                Players train twice per week in co-ed age divisions. Sessions are run by experienced coaches with support from teen helpers recruited from our REIGN club teams and local high school players. Every session follows a progressive curriculum focused on individual technical skills — not team tactics.
+                Players train twice per week in co-ed age divisions. Sessions are run by experienced coaches with support from teen helpers recruited from our REIGN club teams and local high school players. Every session follows a progressive curriculum focused on individual technical skills, not team tactics.
               </p>
               <div className="space-y-4">
                 {phases.map((phase, idx) => (
@@ -358,7 +358,7 @@ export default function Rise() {
                 </Card>
               </div>
               <p className="text-night/80 leading-relaxed">
-                Teams are formed the day before each tournament — gender-separated, balanced by coaches based on what they've seen in training. Parent volunteers step in as team coaches for the day. It's competitive, it's fun, and there's no season-long standings drama.
+                Teams are formed the day before each tournament, gender-separated and balanced by coaches based on what they've seen in training. Parent volunteers step in as team coaches for the day. It's competitive, it's fun, and there's no season-long standings drama.
               </p>
               <div className="mt-6 rounded-xl overflow-hidden shadow-lg" data-testid="img-scrimmage">
                 <img
