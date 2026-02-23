@@ -358,7 +358,7 @@ export default function Rise() {
                 </Card>
               </div>
               <p className="text-night/80 leading-relaxed">
-                Teams are formed the day before each tournament, gender-separated and balanced by coaches based on what they've seen in training. Parent volunteers step in as team coaches for the day. It's competitive, it's fun, and there's no season-long standings drama.
+                Teams are formed the day before each tournament, gender-separated and balanced by coaches based on what they've seen in training. Parent volunteers step in as team coaches for the day. It's competitive, it's fun, and every tournament is a fresh start.
               </p>
               <div className="mt-6 rounded-xl overflow-hidden shadow-lg" data-testid="img-scrimmage">
                 <img
