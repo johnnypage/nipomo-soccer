@@ -231,7 +231,7 @@ export default function Rise() {
                   <span>2 tournaments</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-gold font-semibold">$85–$120</span>
+                  <span className="text-gold font-semibold">$100</span>
                 </div>
               </div>
 
