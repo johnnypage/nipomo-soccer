@@ -21,10 +21,7 @@ import {
   Dribbble,
   Target,
   Swords,
-  Sparkles,
   GraduationCap,
-  Heart,
-  Star,
   ChevronRight,
 } from "lucide-react";
 import Header from "@/components/Header";
@@ -52,34 +49,6 @@ export default function Rise() {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  const whoIsRiseFor = [
-    {
-      icon: Sparkles,
-      title: "Multi-sport athletes",
-      description: "who want to stay sharp on the soccer field between seasons",
-    },
-    {
-      icon: Dribbble,
-      title: "Rec soccer players",
-      description: "who love the game and are ready for more structured skill development",
-    },
-    {
-      icon: Target,
-      title: "Club-curious players",
-      description: "interested in competitive soccer but not ready to commit to REIGN",
-    },
-    {
-      icon: Heart,
-      title: "New families",
-      description: "looking for a low-pressure way to try Nipomo Soccer Club",
-    },
-    {
-      icon: Star,
-      title: "Any player",
-      description: "who wants more touches on the ball and focused coaching",
-    },
-  ];
 
   const phases = [
     {
@@ -314,32 +283,6 @@ export default function Rise() {
                 <p className="text-sm">Wide shot of kids in a training session doing station rotation drills on a grass field</p>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="who-is-rise-for" className="py-16 sm:py-20 bg-night/[0.03]" data-testid="section-who-is-rise-for">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="inline-block px-3 py-1 bg-purple/10 border border-purple/30 rounded-full text-purple text-sm font-medium mb-4 uppercase tracking-wide">
-              Perfect Fit
-            </span>
-            <h2 className="font-display text-3xl sm:text-4xl text-night tracking-wide">
-              WHO IS RISE FOR?
-            </h2>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
-            {whoIsRiseFor.map((item, idx) => (
-              <Card key={idx} className="bg-white border-slate/15 shadow-sm hover:shadow-md transition-shadow rounded-xl" data-testid={`card-who-${idx}`}>
-                <CardContent className="p-6 text-center">
-                  <div className="w-12 h-12 rounded-full bg-crimson/10 flex items-center justify-center mx-auto mb-4">
-                    <item.icon className="h-6 w-6 text-crimson" />
-                  </div>
-                  <h3 className="font-heading font-bold text-night mb-2">{item.title}</h3>
-                  <p className="text-slate text-sm">{item.description}</p>
-                </CardContent>
-              </Card>
-            ))}
           </div>
         </div>
       </section>
