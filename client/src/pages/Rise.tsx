@@ -143,7 +143,7 @@ export default function Rise() {
     {
       name: "REIGN",
       label: "Competitive",
-      description: "Year-round club teams. Professional coaching. League play.",
+      description: "Year-round competitive play, tournaments, and leagues.",
       current: false,
     },
   ];
