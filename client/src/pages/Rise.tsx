@@ -27,6 +27,8 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import riseLogo from "@assets/NSC_Rise_1771869672687.png";
+import riseTraining from "@assets/generated_images/rise_training_session.png";
+import riseScrimmage from "@assets/generated_images/rise_scrimmage_game.png";
 
 export default function Rise() {
   const [showMobileCta, setShowMobileCta] = useState(false);
@@ -277,17 +279,18 @@ export default function Rise() {
                 Your kid gets 12 training sessions, works with certified coaches, and walks away a better player — all without a year-round commitment.
               </p>
             </div>
-            <div className="bg-slate/10 border border-slate/20 rounded-xl aspect-[4/3] flex items-center justify-center" data-testid="placeholder-what-is-rise">
-              <div className="text-center text-slate p-6">
-                <div className="text-sm font-medium uppercase tracking-wide mb-2">Photo Placeholder</div>
-                <p className="text-sm">Wide shot of kids in a training session doing station rotation drills on a grass field</p>
-              </div>
+            <div className="rounded-xl overflow-hidden shadow-lg" data-testid="img-what-is-rise">
+              <img
+                src={riseTraining}
+                alt="Kids in a training session doing station rotation drills"
+                className="w-full h-full object-cover aspect-[4/3]"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      <section id="how-it-works" className="py-16 sm:py-20 bg-warmwhite" data-testid="section-how-it-works">
+      <section id="how-it-works" className="py-16 sm:py-20 bg-night/[0.03]" data-testid="section-how-it-works">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="inline-block px-3 py-1 bg-gold/10 border border-gold/30 rounded-full text-gold text-sm font-medium mb-4 uppercase tracking-wide">
@@ -358,18 +361,19 @@ export default function Rise() {
               <p className="text-night/80 leading-relaxed">
                 Teams are formed the day before each tournament — gender-separated, balanced by coaches based on what they've seen in training. Parent volunteers step in as team coaches for the day. It's competitive, it's fun, and there's no season-long standings drama.
               </p>
-              <div className="mt-6 bg-slate/10 border border-slate/20 rounded-xl aspect-[16/9] flex items-center justify-center" data-testid="placeholder-scrimmage">
-                <div className="text-center text-slate p-6">
-                  <div className="text-sm font-medium uppercase tracking-wide mb-2">Photo Placeholder</div>
-                  <p className="text-sm">Kids in pinnies playing a small-sided scrimmage game</p>
-                </div>
+              <div className="mt-6 rounded-xl overflow-hidden shadow-lg" data-testid="img-scrimmage">
+                <img
+                  src={riseScrimmage}
+                  alt="Kids in pinnies playing a small-sided scrimmage game"
+                  className="w-full h-full object-cover aspect-[16/9]"
+                />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="divisions" className="py-16 sm:py-20 bg-night/[0.03]" data-testid="section-divisions">
+      <section id="divisions" className="py-16 sm:py-20 bg-warmwhite" data-testid="section-divisions">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="inline-block px-3 py-1 bg-crimson/10 border border-crimson/30 rounded-full text-crimson text-sm font-medium mb-4 uppercase tracking-wide">
@@ -406,7 +410,7 @@ export default function Rise() {
         </div>
       </section>
 
-      <section id="whats-included" className="py-16 sm:py-20 bg-warmwhite" data-testid="section-whats-included">
+      <section id="whats-included" className="py-16 sm:py-20 bg-night/[0.03]" data-testid="section-whats-included">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="inline-block px-3 py-1 bg-gold/10 border border-gold/30 rounded-full text-gold text-sm font-medium mb-4 uppercase tracking-wide">
@@ -510,7 +514,7 @@ export default function Rise() {
         </div>
       </section>
 
-      <section id="pathway" className="py-16 sm:py-20 bg-night/[0.03]" data-testid="section-pathway">
+      <section id="pathway" className="py-16 sm:py-20 bg-warmwhite" data-testid="section-pathway">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="inline-block px-3 py-1 bg-crimson/10 border border-crimson/30 rounded-full text-crimson text-sm font-medium mb-4 uppercase tracking-wide">
@@ -560,7 +564,7 @@ export default function Rise() {
         </div>
       </section>
 
-      <section id="faq" className="py-16 sm:py-20 bg-warmwhite" data-testid="section-faq">
+      <section id="faq" className="py-16 sm:py-20 bg-night/[0.03]" data-testid="section-faq">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="inline-block px-3 py-1 bg-crimson/10 border border-crimson/30 rounded-full text-crimson text-sm font-medium mb-4 uppercase tracking-wide">
