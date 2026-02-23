@@ -27,6 +27,7 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import riseLogo from "@assets/NSC_Rise_1771869672687.png";
+import riseHero from "@assets/generated_images/rise_hero_aerial.png";
 import riseTraining from "@assets/generated_images/rise_training_session.png";
 import riseScrimmage from "@assets/generated_images/rise_scrimmage_game.png";
 
@@ -188,17 +189,15 @@ export default function Rise() {
     <div className="min-h-screen bg-warmwhite">
       <Header onNavigate={scrollToSection} />
 
-      <section className="relative pt-16 min-h-[80vh] flex items-center bg-night" data-testid="section-hero">
-        <div className="absolute inset-0 opacity-[0.04]">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `repeating-linear-gradient(
-              45deg,
-              transparent,
-              transparent 20px,
-              rgba(139,29,36,0.15) 20px,
-              rgba(139,29,36,0.15) 40px
-            )`,
-          }} />
+      <section className="relative pt-16 min-h-[80vh] flex items-center" data-testid="section-hero">
+        <div className="absolute inset-0">
+          <img
+            src={riseHero}
+            alt="Aerial view of soccer training camp"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-night via-night/85 to-night/60" />
+          <div className="absolute inset-0 bg-night/40" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 w-full">
           <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
@@ -217,7 +216,7 @@ export default function Rise() {
               <div className="flex flex-wrap gap-4 sm:gap-6 mb-10 text-warmwhite/90 text-sm sm:text-base">
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-gold" />
-                  <span>April 13 – May 24</span>
+                  <span>April 13 – May 23</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <GraduationCap className="h-4 w-4 text-gold" />
