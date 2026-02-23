@@ -111,11 +111,14 @@ Preferred communication style: Simple, everyday language.
 ## Pages
 
 - **Home** (`/`) - Main landing page with hero, program showcase (Roots, Rise, Reign), about section, sponsors, contact form, and newsletter signup
+- **Rise** (`/rise`) - RISE Spring Development League page with hero, program details, age divisions, pricing tiers, FAQ accordion, pathway visualization, and sticky mobile CTA. Uses custom green (#2E7D32) and amber (#F9A825) color scheme.
 - **Reign** (`/reign`) - Detailed page for the Reign competitive program with teams organized by birth year ranges
-- **Tournament** (`/tournament`) - Reign Winter Classic tournament page (February 20-22, 2025) with event details, team interest form, and contact information
+- **Tournament** (`/tournament`) - Hidden; redirects to home. Reign Winter Classic tournament page with event details, team interest form, and contact information
 
 ## Recent Changes
 
-- Added Tournament page with complete Reign Winter Classic event information
-- Implemented tournament team interest form with PostgreSQL storage and SendGrid notifications
-- Added Tournament navigation link in header (desktop and mobile)
+- Built RISE program page with all sections: hero, what is RISE, who is it for, how it works, age divisions, what's included, registration/pricing, why RISE is different, pathway visualization, FAQ accordion, and final CTA
+- Added sticky mobile "Register Now" CTA bar on RISE page
+- Added risegreen and amber color tokens to Tailwind config
+- Updated navigation to link Rise to /rise page
+- Tournament page hidden from navigation, /tournament redirects to home

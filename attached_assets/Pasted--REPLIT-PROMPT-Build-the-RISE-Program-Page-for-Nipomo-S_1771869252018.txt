@@ -1,0 +1,321 @@
+# REPLIT PROMPT: Build the RISE Program Page for Nipomo Soccer Club
+
+## CONTEXT
+I need a standalone program page for RISE — the Spring Development League run by Nipomo Soccer Club (nipomosc.org). This page will live at nipomosc.org/rise (or be embedded into our existing site). The club's tagline is "Roots. Rise. Reign." — three tiers of youth soccer programming. RISE is the middle tier: a 6-week spring development program for grades 1–8.
+
+The audience is parents of kids ages 6–14 on California's Central Coast. They're deciding whether to sign their kid up. The page needs to be clear, scannable, and drive them toward the registration button.
+
+## TECH REQUIREMENTS
+- Single-page responsive design (mobile-first — most parents will see this on their phone)
+- HTML/CSS/JS (no framework needed, keep it simple)
+- Smooth scroll between sections
+- Sticky or fixed CTA button on mobile ("Register Now")
+- Fast loading — no heavy assets
+
+## VISUAL DIRECTION & DESIGN NOTES
+
+### Brand Colors
+- Primary: Deep green (think soccer field, growth, "rise") — use something like #1B5E20 or #2E7D32
+- Accent: Gold/amber — #F9A825 or #FFB300 (energy, medals, achievement)
+- Neutral dark: #1A1A1A for text
+- Neutral light: #F5F5F0 or warm off-white for backgrounds
+- White for cards and content blocks
+
+### Typography
+- Headlines: A bold, slightly condensed sans-serif — something like Oswald, Barlow Condensed, or Bebas Neue. Sporty and confident, not corporate.
+- Body: Clean and readable — Lato, Source Sans Pro, or similar. 16px minimum on mobile.
+- Use ALL CAPS sparingly for section labels or small category tags (like "TRAINING" or "TOURNAMENTS")
+
+### Overall Vibe
+- Clean, modern, youth sports energy. NOT corporate. NOT generic template.
+- Think: club soccer website meets camp signup page.
+- Lots of white space. Let the content breathe.
+- Subtle green-to-white gradient backgrounds to break up sections
+- Rounded corners on cards and buttons (8–12px radius)
+- Slight drop shadows on cards for depth
+
+### Photography Direction
+- Use placeholder image blocks (gray with dimensions labeled) where photos would go. I'll add real photos later.
+- Photo placements: hero section (kids playing soccer, wide shot), inline between sections (action shots of training), and near the CTA (tournament energy shot)
+- All placeholder blocks should be labeled with what type of photo goes there (e.g., "PHOTO: Kids in training session, station rotation drill" or "PHOTO: Tournament action, celebration")
+
+### Icons
+- Use simple line icons or filled icons (Lucide, Heroicons, or Font Awesome) for the "What's Included" section and FAQ
+- Soccer ball icon near the headline or as a subtle repeating motif
+
+### Section Design Notes (see copy below for content)
+
+**HERO SECTION**
+- Full-width section, generous height (70–80vh on desktop, auto on mobile)
+- Large bold headline: "RISE Spring Development League"
+- Subheadline underneath in lighter weight
+- Key details bar: a horizontal strip with icon + text pairs (calendar icon + dates, grade icon + grades, etc.) — on mobile these stack vertically
+- Primary CTA button: "Register Now →" in gold/amber with dark text, prominent
+- Background: photo placeholder with dark overlay so white text pops, OR solid deep green with a subtle pattern/texture
+
+**INTRO SECTION — "What is RISE?"**
+- White or light background
+- Two-column on desktop: text left, photo placeholder right
+- Short paragraphs, conversational tone
+- Maybe a pull quote or callout box: "Think of it as a soccer skills camp with a competitive edge."
+
+**"WHO IS RISE FOR?" SECTION**
+- Light green or subtle green-tinted background to differentiate
+- Use a grid of 5 cards (icon + short text) for the target player profiles
+- Cards should feel like quick "that's my kid" moments for parents scanning
+
+**"HOW IT WORKS" SECTION**
+- White background
+- Split into two visual blocks: TRAINING and TOURNAMENTS
+- Training block: show the 3 curriculum phases (Weeks 1–2, 3–4, 5–6) as a horizontal timeline or 3 stacked cards with week ranges, topic, and a brief description
+- Tournament block: two date cards side by side with key details
+- This section should feel like a clear visual roadmap of the 6 weeks
+
+**AGE DIVISIONS TABLE**
+- Clean table or card-based layout (on mobile, cards work better than tables)
+- 4 divisions, each showing: grade range, session length, session structure
+- Subtle color coding or left-border accent per division
+
+**"WHAT'S INCLUDED" SECTION**
+- Icon grid — 5 items in a row on desktop, stacked on mobile
+- Each item: icon + short label (e.g., soccer ball icon + "12 Training Sessions")
+- Keep it visual and scannable
+
+**REGISTRATION & PRICING**
+- This is a conversion section — make it pop
+- Three pricing tiers as cards side by side: Early Bird ($85), Regular ($100), Late ($120)
+- Early Bird card should be visually emphasized (gold border, "Best Value" badge, or slightly larger)
+- Payment plan note below the cards
+- "No tryouts. No experience required. Just show up ready to play." as a bold callout line
+- Big CTA button: "Register Now →"
+
+**"WHY RISE IS DIFFERENT" SECTION**
+- Alternating background (light green tint)
+- This is the persuasion section — let the copy do the work
+- Could use a simple two-column layout: left column = what typical rec does, right column = what RISE does. Or just let it flow as styled paragraphs with a subtle divider.
+
+**"THE NIPOMO SC PATHWAY" SECTION**
+- Visual representation of the three-tier pathway: ROOTS → RISE → REIGN
+- Horizontal on desktop, vertical on mobile
+- Three connected cards or steps with an arrow/connector between them
+- RISE card should be highlighted (gold border or "YOU ARE HERE" indicator)
+- Brief description under each tier name
+
+**FAQ SECTION**
+- Accordion-style expand/collapse
+- Clean, minimal — question in bold, answer appears on click/tap
+- 8 questions total
+
+**FINAL CTA / FOOTER**
+- Full-width section, deep green background
+- "Ready to RISE?" headline in white
+- Subtext about early bird pricing
+- Gold CTA button
+- Contact info below
+- Footer: "Nipomo Soccer Club — Roots. Rise. Reign."
+
+---
+
+## PAGE COPY
+
+Below is the full copy for each section. Use it exactly as written — do not rewrite or add filler language.
+
+---
+
+### HERO
+
+**Headline:** RISE Spring Development League
+
+**Subheadline:** 6 weeks of skill-focused training for players who love soccer but aren't ready for year-round club.
+
+**CTA:** Register Now →
+
+**Details bar:** April 13 – May 24 | Grades 1–8 | 2x/week training | 2 tournaments | $85–$120
+
+---
+
+### WHAT IS RISE?
+
+RISE is a 6-week spring program built for kids who love soccer but play other sports too. Instead of forming teams and jumping straight into games, RISE focuses on developing individual skills through structured, coach-led training sessions — and then puts those skills to the test in two Saturday tournaments.
+
+Think of it as a soccer skills camp with a competitive edge. Your kid gets 12 training sessions, works with certified coaches, and walks away a better player — all without a year-round commitment.
+
+[PHOTO PLACEHOLDER: Wide shot of kids in a training session doing station rotation drills on a grass field]
+
+---
+
+### WHO IS RISE FOR?
+
+Card 1: **Multi-sport athletes** who want to stay sharp on the soccer field between seasons
+
+Card 2: **Rec soccer players** who love the game and are ready for more structured skill development
+
+Card 3: **Club-curious players** interested in competitive soccer but not ready to commit to REIGN
+
+Card 4: **New families** looking for a low-pressure way to try Nipomo Soccer Club
+
+Card 5: **Any player** who wants more touches on the ball and focused coaching
+
+---
+
+### HOW IT WORKS
+
+**TRAINING (Weeks 1–6)**
+
+Players train twice per week in co-ed age divisions. Sessions are run by certified coaches with support from teen helpers recruited from our REIGN club teams and local high school players. Every session follows a progressive curriculum focused on individual technical skills — not team tactics.
+
+Weeks 1–2: Dribbling & Ball Control
+Weeks 3–4: Passing & Receiving
+Weeks 5–6: Attacking & Defending
+
+**TOURNAMENTS (2 Saturdays)**
+
+Tournament #1: May 2
+Tournament #2: May 23
+
+Teams are formed the day before each tournament — gender-separated, balanced by coaches based on what they've seen in training. Parent volunteers step in as team coaches for the day. It's competitive, it's fun, and there's no season-long standings drama.
+
+[PHOTO PLACEHOLDER: Kids in pinnies playing a small-sided scrimmage game]
+
+---
+
+### AGE DIVISIONS
+
+Division 1:
+- Grades: 1st–2nd
+- Session: 60 minutes
+- Format: Warm-up → Station rotations → Scrimmage
+
+Division 2:
+- Grades: 3rd–4th
+- Session: 90 minutes
+- Format: Warm-up → Station rotations → Game play
+
+Division 3:
+- Grades: 5th–6th
+- Session: 120 minutes
+- Format: Warm-up → Stations + skill application → Scrimmage
+
+Division 4:
+- Grades: 7th–8th
+- Session: 120 minutes
+- Format: Warm-up → Stations + skill application → Scrimmage
+
+Note below table: Training days are co-ed. Tournaments are gender-separated with boys and girls brackets. Final division structure is confirmed one week before the program starts based on enrollment.
+
+---
+
+### WHAT'S INCLUDED
+
+- 12 structured training sessions (2x/week for 6 weeks)
+- 2 tournament entries
+- Program shirt
+- Insurance coverage
+- Medal for tournament winners
+
+---
+
+### REGISTRATION & PRICING
+
+Tier 1 (highlight this one):
+- Label: Early Bird
+- Dates: February 15 – March 15
+- Price: $85
+
+Tier 2:
+- Label: Regular
+- Dates: March 16 – April 5
+- Price: $100
+
+Tier 3:
+- Label: Late
+- Dates: April 6 – April 10
+- Price: $120
+
+**Payment plan available** during Early Bird and Regular registration: pay 50% at signup, 50% by April 1. No extra fees. Late registration requires full payment.
+
+**Callout line:** No tryouts. No experience required. Just show up ready to play.
+
+**CTA:** Register Now →
+
+---
+
+### WHY RISE IS DIFFERENT
+
+Most spring rec programs put kids on a team, hand them a game schedule, and call it a season. RISE flips that.
+
+Your kid gets 12 focused training sessions where they're actually developing skills — dribbling, passing, attacking, defending — with certified coaches running every session. That's way more touches on the ball than a typical rec season of weekly games.
+
+And the two tournaments? They're there so kids can actually apply what they've been learning. Teams are formed fresh for each tournament, so there's no politics, no drama — just soccer.
+
+---
+
+### THE NIPOMO SC PATHWAY
+
+Step 1 — ROOTS (Recreational):
+Our fall rec program. Parent-coached. Weekly games. Where it all starts. Coming Fall 2026.
+
+Step 2 — RISE (Development) ← YOU ARE HERE:
+Spring. 6 weeks. Certified coaches. Skill-focused training.
+
+Step 3 — REIGN (Competitive):
+Year-round club teams. Professional coaching. League play.
+
+Note: RISE is designed to bridge the gap between recreational and competitive soccer. If your player ends up wanting more after 6 weeks, REIGN tryout info will be shared at the end of the program.
+
+---
+
+### FAQ
+
+Q: Do I need soccer experience to sign up?
+A: Nope. RISE is open to all skill levels, grades 1–8. No tryouts.
+
+Q: What days are training?
+A: Training days will be confirmed and communicated at registration based on field availability.
+
+Q: What if my kid plays another sport in the spring?
+A: That's exactly who this program is built for. Six weeks, twice a week — designed to fit alongside other activities.
+
+Q: Are there refunds?
+A: No refunds. If your child is injured, credit toward a future Nipomo SC program may be offered at the director's discretion.
+
+Q: Is there a sibling discount?
+A: Not at this time.
+
+Q: What should my kid bring?
+A: Cleats, shin guards, water bottle, and a good attitude. Program shirts will be provided.
+
+Q: What about the tournaments — do I need to be there all day?
+A: Each tournament runs about 4–5 hours on a Saturday. All players should plan to be there for the full half-day.
+
+Q: How are tournament teams formed?
+A: The Program Director creates balanced, gender-separated teams the day before each tournament based on coach observations from training. A parent volunteer is assigned as team coach for the day.
+
+---
+
+### FINAL CTA
+
+**Headline:** Ready to RISE?
+
+**Subtext:** Early bird registration is open now. Lock in the best price and get your player on the field this spring.
+
+**CTA:** Register for RISE →
+
+**Contact:** Questions? Reach out to [email] or [phone]
+
+**Footer:** Nipomo Soccer Club — Roots. Rise. Reign.
+
+---
+
+## ADDITIONAL NOTES FOR DEVELOPER
+
+1. Registration buttons should all link to: [REGISTRATION URL — I'll provide this]
+2. Make sure the page has a clear favicon and page title: "RISE Spring Development League | Nipomo Soccer Club"
+3. Add Open Graph meta tags so the page previews well when shared on social:
+   - Title: RISE Spring Development League
+   - Description: 6 weeks of skill-focused soccer training for grades 1–8. April 13 – May 24. Register now starting at $85.
+   - Image: [I'll provide a hero image]
+4. Page should score 90+ on Lighthouse for performance and accessibility
+5. All photo placeholders should be clearly labeled so I can swap in real images later
+6. Smooth scroll behavior for any anchor links
+7. Consider adding a subtle scroll-triggered fade-in animation on sections as they enter viewport — nothing aggressive, just enough to feel polished

@@ -20,7 +20,7 @@ export default function Header({ onNavigate }: HeaderProps) {
 
   const programLinks = [
     { label: "Roots", href: "/#programs", description: "Community Recreational Soccer" },
-    { label: "Rise", href: "/#programs", description: "Spring Development League" },
+    { label: "Rise", href: "/rise", description: "Spring Development League" },
     { label: "Reign", href: "/reign", description: "Competitive Club Soccer" },
   ];
 
