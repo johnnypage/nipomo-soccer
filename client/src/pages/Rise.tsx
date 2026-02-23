@@ -131,13 +131,13 @@ export default function Rise() {
     {
       name: "ROOTS",
       label: "Recreational",
-      description: "Our fall rec program. Parent-coached. Weekly games. Where it all starts. Coming Fall 2026.",
+      description: "Our fall rec program. Weekly games. Where it all starts. Coming Fall 2026.",
       current: false,
     },
     {
       name: "RISE",
       label: "Development",
-      description: "Spring. 6 weeks. Certified coaches. Skill-focused training.",
+      description: "Spring. 6 weeks. Experienced coaches. Skill-focused training.",
       current: true,
     },
     {
