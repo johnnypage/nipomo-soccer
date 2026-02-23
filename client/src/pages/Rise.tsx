@@ -275,7 +275,7 @@ export default function Rise() {
                 </p>
               </div>
               <p className="text-night/80 text-lg leading-relaxed">
-                Your kid gets 12 training sessions, works with certified coaches, and walks away a better player — all without a year-round commitment.
+                Your kid gets 12 training sessions, works with experienced coaches, and walks away a better player — all without a year-round commitment.
               </p>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg" data-testid="img-what-is-rise">
@@ -309,7 +309,7 @@ export default function Rise() {
                 <h3 className="font-heading font-bold text-xl text-night uppercase tracking-wide">Training (Weeks 1–6)</h3>
               </div>
               <p className="text-night/80 mb-6 leading-relaxed">
-                Players train twice per week in co-ed age divisions. Sessions are run by certified coaches with support from teen helpers recruited from our REIGN club teams and local high school players. Every session follows a progressive curriculum focused on individual technical skills — not team tactics.
+                Players train twice per week in co-ed age divisions. Sessions are run by experienced coaches with support from teen helpers recruited from our REIGN club teams and local high school players. Every session follows a progressive curriculum focused on individual technical skills — not team tactics.
               </p>
               <div className="space-y-4">
                 {phases.map((phase, idx) => (
@@ -503,7 +503,7 @@ export default function Rise() {
                 Most spring rec programs put kids on a team, hand them a game schedule, and call it a season. RISE flips that.
               </p>
               <p>
-                Your kid gets 12 focused training sessions where they're actually developing skills — dribbling, passing, attacking, defending — with certified coaches running every session. That's way more touches on the ball than a typical rec season of weekly games.
+                Your kid gets 12 focused training sessions where they're actually developing skills — dribbling, passing, attacking, defending — with experienced coaches running every session. That's way more touches on the ball than a typical rec season of weekly games.
               </p>
               <p>
                 And the two tournaments? They're there so kids can actually apply what they've been learning. Teams are formed fresh for each tournament, so there's no politics, no drama — just soccer.
