@@ -82,7 +82,7 @@ export default function Rise() {
       division: "Division 2",
       grades: "3rd–4th",
       session: "90 minutes",
-      format: "Warm-up → Station rotations → Game play",
+      format: "Warm-up → Station rotations → Scrimmage",
     },
     {
       division: "Division 3",
