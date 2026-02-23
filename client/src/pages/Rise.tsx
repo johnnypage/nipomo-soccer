@@ -489,30 +489,6 @@ export default function Rise() {
         </div>
       </section>
 
-      <section id="why-rise" className="py-16 sm:py-20 bg-warmwhite" data-testid="section-why-rise">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto">
-            <span className="inline-block px-3 py-1 bg-purple/10 border border-purple/30 rounded-full text-purple text-sm font-medium mb-4 uppercase tracking-wide">
-              The Difference
-            </span>
-            <h2 className="font-display text-3xl sm:text-4xl text-night tracking-wide mb-8">
-              WHY RISE IS DIFFERENT
-            </h2>
-            <div className="space-y-6 text-night/80 text-lg leading-relaxed">
-              <p>
-                Most spring rec programs put kids on a team, hand them a game schedule, and call it a season. RISE flips that.
-              </p>
-              <p>
-                Your kid gets 12 focused training sessions where they're actually developing skills — dribbling, passing, attacking, defending — with experienced coaches running every session. That's way more touches on the ball than a typical rec season of weekly games.
-              </p>
-              <p>
-                And the two tournaments? They're there so kids can actually apply what they've been learning. Teams are formed fresh for each tournament, so there's no politics, no drama — just soccer.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section id="pathway" className="py-16 sm:py-20 bg-warmwhite" data-testid="section-pathway">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
