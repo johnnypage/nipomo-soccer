@@ -183,7 +183,7 @@ export default function Rise() {
     },
   ];
 
-  const registrationUrl = "#register";
+  const registrationUrl = "https://club.spond.com/landing/signup/nipomosc/form/A22902569DA04BE2B95994D93EE5C602";
 
   return (
     <div className="min-h-screen bg-warmwhite">
