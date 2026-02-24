@@ -233,7 +233,7 @@ export default function Rise() {
               <div className="flex flex-wrap gap-4 sm:gap-6 mb-10 text-warmwhite/90 text-sm sm:text-base">
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-gold" />
-                  <span>April 13 - May 24</span>
+                  <span>April 13 - May 23</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <GraduationCap className="h-4 w-4 text-gold" />
@@ -370,7 +370,7 @@ export default function Rise() {
                     </div>
                     <div>
                       <div className="font-heading font-bold text-night">Tournament #2</div>
-                      <div className="text-slate">May 24</div>
+                      <div className="text-slate">May 23</div>
                     </div>
                   </CardContent>
                 </Card>
