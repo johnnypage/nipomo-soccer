@@ -206,7 +206,6 @@ export default function Rise() {
   return (
     <div className="min-h-screen bg-warmwhite">
       <Header onNavigate={scrollToSection} />
-
       <section className="relative pt-16 min-h-[80vh] flex items-center" data-testid="section-hero">
         <div className="absolute inset-0">
           <img
@@ -273,7 +272,6 @@ export default function Rise() {
           </div>
         </div>
       </section>
-
       <section id="what-is-rise" className="py-16 sm:py-20 bg-warmwhite" data-testid="section-what-is-rise">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -301,7 +299,6 @@ export default function Rise() {
           </div>
         </div>
       </section>
-
       <section id="how-it-works" className="py-16 sm:py-20 bg-night/[0.03]" data-testid="section-how-it-works">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -321,9 +318,7 @@ export default function Rise() {
                 </div>
                 <h3 className="font-heading font-bold text-xl text-night uppercase tracking-wide">Training (Weeks 1-6)</h3>
               </div>
-              <p className="text-night/80 mb-6 leading-relaxed">
-                Players train twice per week in co-ed age divisions. Sessions follow a progressive curriculum, each two-week block builds on the last, so consistent attendance matters.
-              </p>
+              <p className="text-night/80 mb-6 leading-relaxed">Players train twice per week in co-ed age divisions. Sessions follow a progressive curriculum, each two-week block builds on the last.</p>
               <div className="space-y-4">
                 {phases.map((phase, idx) => (
                   <div key={idx} className="bg-night/[0.03] rounded-xl p-4" data-testid={`phase-${idx}`}>
@@ -394,7 +389,6 @@ export default function Rise() {
           </div>
         </div>
       </section>
-
       <section id="divisions" className="py-16 sm:py-20 bg-warmwhite" data-testid="section-divisions">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -431,7 +425,6 @@ export default function Rise() {
           </p>
         </div>
       </section>
-
       <section id="whats-included" className="py-16 sm:py-20 bg-night/[0.03]" data-testid="section-whats-included">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -458,7 +451,6 @@ export default function Rise() {
           </p>
         </div>
       </section>
-
       <section id="register" className="py-16 sm:py-20 bg-night" data-testid="section-register">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -515,7 +507,6 @@ export default function Rise() {
           </div>
         </div>
       </section>
-
       <section id="pathway" className="py-16 sm:py-20 bg-warmwhite" data-testid="section-pathway">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -565,7 +556,6 @@ export default function Rise() {
           </p>
         </div>
       </section>
-
       <section id="faq" className="py-16 sm:py-20 bg-night/[0.03]" data-testid="section-faq">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -595,7 +585,6 @@ export default function Rise() {
           </Accordion>
         </div>
       </section>
-
       <section className="py-16 sm:py-20 bg-night text-center" data-testid="section-final-cta">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-4xl sm:text-5xl text-warmwhite tracking-wide mb-4">
@@ -622,9 +611,7 @@ export default function Rise() {
           </p>
         </div>
       </section>
-
       <Footer onNavigate={scrollToSection} />
-
       {showMobileCta && (
         <div className="fixed bottom-0 left-0 right-0 z-50 p-3 bg-night/95 backdrop-blur-sm border-t border-slate/20 md:hidden" data-testid="mobile-cta-bar">
           <Button
