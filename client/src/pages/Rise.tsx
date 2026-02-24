@@ -407,7 +407,7 @@ export default function Rise() {
                   <div className="space-y-3">
                     <div className="flex items-center gap-2">
                       <Clock className="h-4 w-4 text-slate" />
-                      <span className="text-night/70 text-sm">{div.session}</span>
+                      <span className="text-night/70 text-sm">{div.session} per session</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <ChevronRight className="h-4 w-4 text-slate mt-0.5 flex-shrink-0" />
