@@ -375,9 +375,7 @@ export default function Rise() {
                   </CardContent>
                 </Card>
               </div>
-              <p className="text-night/80 leading-relaxed">
-                Teams are formed the day before each tournament, gender-separated and balanced by coaches based on what they've observed in training. A parent volunteer is assigned to each team for the day to help get kids to the right field.
-              </p>
+              <p className="text-night/80 leading-relaxed">Teams are formed the day before each tournament and balanced by coaches based on what they've observed in training. Games are small-sided (4v4 to 6v6 depending on registration and attendance), designed to give every player maximum touches on the ball and a chance to apply the skills they've been developing in training sessions throughout the week.</p>
               <div className="mt-6 rounded-xl overflow-hidden shadow-lg" data-testid="img-scrimmage">
                 <img
                   src={riseScrimmage}
