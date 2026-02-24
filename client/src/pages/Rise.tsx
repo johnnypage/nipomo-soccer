@@ -76,25 +76,25 @@ export default function Rise() {
       division: "Division 1",
       grades: "1st - 2nd",
       session: "60 minutes",
-      format: "Warm-up → Station rotations → Scrimmage",
+      format: "Warm-up → Station rotations",
     },
     {
       division: "Division 2",
       grades: "3rd - 4th",
       session: "90 minutes",
-      format: "Warm-up → Station rotations → Scrimmage",
+      format: "Warm-up → Station rotations",
     },
     {
       division: "Division 3",
       grades: "5th - 6th",
       session: "120 minutes",
-      format: "Warm-up → Stations + skill application → Scrimmage",
+      format: "Warm-up → Stations + skill application",
     },
     {
       division: "Division 4",
       grades: "7th - 8th",
       session: "120 minutes",
-      format: "Warm-up → Stations + skill application → Scrimmage",
+      format: "Warm-up → Stations + skill application",
     },
   ];
 
