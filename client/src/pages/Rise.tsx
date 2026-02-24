@@ -449,36 +449,37 @@ export default function Rise() {
                 key={idx}
                 className={`rounded-xl overflow-hidden shadow-lg ${
                   tier.highlighted
-                    ? "bg-white border-2 border-gold scale-105 relative"
+                    ? "bg-white border-2 border-gold relative"
                     : "bg-white/95 border-slate/20"
                 }`}
                 data-testid={`card-pricing-${idx}`}
               >
                 {tier.highlighted && (
-                  <div className="absolute top-0 left-0 right-0 bg-gold text-night text-xs font-bold uppercase tracking-wider text-center py-1.5">
+                  <div className="bg-gold text-night text-xs font-bold uppercase tracking-wider text-center py-1.5">
                     Best Value
                   </div>
                 )}
-                <CardContent className={`p-6 text-center ${tier.highlighted ? "pt-10" : ""}`}>
-                  <div className="font-heading font-bold text-lg text-night mb-1">{tier.tier}</div>
-                  <div className="text-slate text-xs mb-4">{tier.dates}</div>
-                  <div className="font-display text-4xl text-crimson mb-4">{tier.price}</div>
-                  <Button
-                    className={`w-full rounded-lg font-semibold ${
-                      tier.highlighted
-                        ? "bg-crimson hover:bg-crimson-dark text-warmwhite"
-                        : "bg-night hover:bg-night/90 text-warmwhite"
-                    }`}
-                    asChild
-                    data-testid={`button-register-${idx}`}
-                  >
-                    <a href={registrationUrl}>Register</a>
-                  </Button>
+                <CardContent className={`p-6 text-center ${tier.highlighted ? "pt-4" : ""}`}>
+                  <div className="font-display text-4xl text-crimson mb-2">{tier.price}</div>
+                  <div className="font-heading font-bold text-lg text-night mb-2">{tier.tier}</div>
+                  <div className="text-slate text-sm font-medium bg-night/5 rounded-lg py-2 px-3">
+                    {tier.dates}
+                  </div>
                 </CardContent>
               </Card>
             ))}
           </div>
-          <div className="text-center space-y-4 max-w-xl mx-auto">
+          <div className="text-center space-y-6 max-w-xl mx-auto">
+            <Button
+              className="bg-crimson hover:bg-crimson-dark text-warmwhite font-bold text-lg px-10 py-6 rounded-xl shadow-lg"
+              asChild
+              data-testid="button-register-main"
+            >
+              <a href={registrationUrl}>
+                Register Now
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
+            </Button>
             <p className="text-warmwhite/80 text-sm">
               <span className="font-semibold text-warmwhite">Payment plan available</span> during Early Bird and Regular registration: pay 50% at signup, 50% by April 1. No extra fees. Late registration requires full payment.
             </p>
