@@ -288,7 +288,7 @@ export default function Rise() {
                 RISE is a 6-week developmental program for players in grades 1-8. It's built for kids who love soccer, whether they play other sports, come from rec leagues, or are just getting started.
               </p>
               <p className="text-night/80 text-lg leading-relaxed">
-                Instead of forming teams and jumping into games, RISE focuses on individual skill development through 12 structured training sessions led by experienced coaches. Players work through a progressive curriculum, then put those skills to the test in two Saturday tournaments. No tryouts, no permanent teams, and equal playing time for everyone.
+                Players work through 12 structured training sessions led by experienced coaches, following a progressive curriculum focused on individual skill development. Two Saturday tournaments give them a chance to apply what they've learned in a competitive setting. Open to all skill levels, with equal playing time for everyone.
               </p>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg" data-testid="img-what-is-rise">
@@ -381,7 +381,7 @@ export default function Rise() {
                 </Card>
               </div>
               <p className="text-night/80 leading-relaxed">
-                Teams are formed the day before each tournament, gender-separated and balanced by coaches based on what they've observed in training. A parent volunteer is assigned to each team for the day to help get kids to the right field. No season-long standings, just soccer.
+                Teams are formed the day before each tournament, gender-separated and balanced by coaches based on what they've observed in training. A parent volunteer is assigned to each team for the day to help get kids to the right field.
               </p>
               <div className="mt-6 rounded-xl overflow-hidden shadow-lg" data-testid="img-scrimmage">
                 <img
