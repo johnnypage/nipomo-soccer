@@ -189,7 +189,7 @@ export default function Rise() {
     },
     {
       q: "What should my kid bring?",
-      a: "Cleats, shin guards, water bottle, and a good attitude. Program shirts will be provided.",
+      a: "Shin guards, cleats, and a water bottle. Program shirts are provided.",
     },
     {
       q: "What about the tournaments? Do I need to be there all day?",
@@ -444,9 +444,6 @@ export default function Rise() {
               </div>
             ))}
           </div>
-          <p className="text-center text-night/70 text-sm mt-8">
-            <span className="font-semibold text-night">What to bring:</span> Shin guards, cleats, and a water bottle. Program shirts are provided.
-          </p>
         </div>
       </section>
       <section id="register" className="py-16 sm:py-20 bg-night" data-testid="section-register">
