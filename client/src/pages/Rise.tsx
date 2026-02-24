@@ -210,7 +210,7 @@ export default function Rise() {
                 RISE
               </h1>
               <p className="text-warmwhite/80 text-lg sm:text-xl mb-8 leading-relaxed max-w-2xl">
-                6 weeks of skill-focused training for players who love soccer but aren't ready for year-round club.
+                RISE is a 6-week developmental program designed to help players build confidence, sharpen technical skills, and gain meaningful touches on the ball through structured training sessions and small-sided tournament play.
               </p>
 
               <div className="flex flex-wrap gap-4 sm:gap-6 mb-10 text-warmwhite/90 text-sm sm:text-base">
