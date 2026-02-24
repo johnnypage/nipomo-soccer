@@ -375,7 +375,9 @@ export default function Rise() {
                   </CardContent>
                 </Card>
               </div>
-              <p className="text-night/80 leading-relaxed">Teams are formed the day before each tournament and balanced by coaches based on what they've observed in training. Games are small-sided (4v4 to 6v6 depending on registration and attendance), designed to give every player maximum touches on the ball and a chance to apply the skills they've been developing in training sessions throughout the week.</p>
+              <p className="text-night/80 leading-relaxed">Teams are formed the day before each tournament and balanced by coaches based on what they've observed in training. Games are small-sided (4v4 to 6v6 depending on registration and attendance), designed to give every player maximum touches on the ball and a chance to apply the skills they've been developing in training sessions throughout the week.  
+
+              Plan for a half-day commitment (approximately 4–5 hours), with the full schedule and number of games communicated the week of each tournament.</p>
               <div className="mt-6 rounded-xl overflow-hidden shadow-lg" data-testid="img-scrimmage">
                 <img
                   src={riseScrimmage}
