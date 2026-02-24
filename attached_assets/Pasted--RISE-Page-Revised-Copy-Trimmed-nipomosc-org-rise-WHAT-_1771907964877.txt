@@ -1,0 +1,125 @@
+# RISE Page — Revised Copy (Trimmed)
+## nipomosc.org/rise
+
+---
+
+## WHAT'S CHANGING
+
+The page layout and design are solid. This is a copy pass — tighter language, a few additions, and killing the redundancy between sections. No new sections needed. Everything folds into what's already there.
+
+---
+
+## FIXES
+
+**Hero details bar:**
+- "May 23" → **"May 24"**
+- "$100" → **"Starting at $85"**
+
+**Hero subheadline (replace):**
+
+> A 6-week spring program designed to build confidence, sharpen technical skills, and give players meaningful touches on the ball.
+
+---
+
+## "WHAT IS RISE?" — Replace Entire Section
+
+Current version explains what the program is, then "How It Works" explains it again with more detail. Merge the value prop, the "who it's for," and the program overview into one section. Kill the pull quote — it's clever but takes up space saying what the paragraph already says.
+
+**New copy:**
+
+RISE is a 6-week developmental program for players in grades 1–8. It's built for kids who love soccer — whether they play other sports, come from rec leagues, or are just getting started.
+
+Instead of forming teams and jumping into games, RISE focuses on individual skill development through 12 structured training sessions led by experienced coaches. Players work through a progressive curriculum, then put those skills to the test in two Saturday tournaments. No tryouts, no permanent teams, and equal playing time for everyone.
+
+*Visual note: Keep the two-column layout (text left, photo right). Drop the pull quote block.*
+
+---
+
+## "HOW IT WORKS" — TRAINING (Revised Copy)
+
+**Replace intro paragraph:**
+
+Players train twice per week in co-ed age divisions. Sessions follow a progressive curriculum — each two-week block builds on the last, so consistent attendance matters.
+
+**Curriculum cards — add sub-bullets inside each card:**
+
+**Weeks 1–2: Dribbling & Ball Mastery**
+- Close control
+- Change of direction and speed
+- Ball protection
+- Carrying the ball under pressure
+
+**Weeks 3–4: Passing & Receiving**
+- Clean first touch
+- Accurate short passing
+- Proper body shape
+- Movement after passing
+
+**Weeks 5–6: Attacking & Defending**
+- 1v1 attacking and defending
+- Finishing technique
+- Decision-making in the final third
+- Transition play
+
+*Visual note: Add the 4 sub-bullets inside each existing card in smaller text. This is the single biggest upgrade — makes the curriculum feel real instead of generic.*
+
+---
+
+## "HOW IT WORKS" — TOURNAMENTS (One Line Change)
+
+**Replace the description paragraph:**
+
+Teams are formed the day before each tournament — gender-separated and balanced by coaches based on what they've observed in training. A parent volunteer is assigned to each team for the day to help get kids to the right field. No season-long standings, no drama — just soccer.
+
+---
+
+## "WHAT'S INCLUDED" — Add One Line
+
+Keep the 5 icon items as-is. Add below them:
+
+**What to bring:** Shin guards, cleats, and a water bottle. Program shirts are provided.
+
+---
+
+## REGISTRATION & PRICING — One Layout Tweak
+
+Move the "No tryouts. No experience required. Just show up ready to play." line **above** the pricing cards instead of below. Answer the hesitation before they see the price.
+
+---
+
+## EVERYTHING ELSE — NO CHANGES
+
+- Age Divisions ✓
+- Nipomo SC Pathway ✓
+- FAQ ✓
+- Ready to RISE CTA ✓
+
+---
+
+## FINAL PAGE FLOW
+
+1. Hero (fixed data + revised subheadline)
+2. What is RISE? (consolidated — covers what, who, and why in one shot)
+3. How It Works: Training (tighter intro + curriculum sub-bullets)
+4. How It Works: Tournaments (parent coach clarification)
+5. Age Divisions (no change)
+6. What's Included (+ "What to bring" line)
+7. Registration & Pricing ("No tryouts" moved above cards)
+8. Nipomo SC Pathway (no change)
+9. FAQ (no change)
+10. Ready to RISE? (no change)
+
+---
+
+## CHANGE SUMMARY
+
+| Change | Effort |
+|---|---|
+| Fix hero date and price | 5 min |
+| Swap hero subheadline | 5 min |
+| Replace "What is RISE?" copy | 10 min |
+| Tighten training intro paragraph | 5 min |
+| Add sub-bullets to 3 curriculum cards | 15 min |
+| Swap tournament description (1 paragraph) | 5 min |
+| Add "What to bring" line under What's Included | 5 min |
+| Move "No tryouts" line above pricing cards | 5 min |

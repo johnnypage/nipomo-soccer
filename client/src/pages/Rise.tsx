@@ -56,18 +56,36 @@ export default function Rise() {
   const phases = [
     {
       weeks: "Weeks 1-2",
-      title: "Dribbling & Ball Control",
+      title: "Dribbling & Ball Mastery",
       icon: Dribbble,
+      bullets: [
+        "Close control",
+        "Change of direction and speed",
+        "Ball protection",
+        "Carrying the ball under pressure",
+      ],
     },
     {
       weeks: "Weeks 3-4",
       title: "Passing & Receiving",
       icon: Target,
+      bullets: [
+        "Clean first touch",
+        "Accurate short passing",
+        "Proper body shape",
+        "Movement after passing",
+      ],
     },
     {
       weeks: "Weeks 5-6",
       title: "Attacking & Defending",
       icon: Swords,
+      bullets: [
+        "1v1 attacking and defending",
+        "Finishing technique",
+        "Decision-making in the final third",
+        "Transition play",
+      ],
     },
   ];
 
@@ -210,13 +228,13 @@ export default function Rise() {
                 RISE
               </h1>
               <p className="text-warmwhite/80 text-lg sm:text-xl mb-8 leading-relaxed max-w-2xl">
-                RISE is a 6-week developmental program designed to help players build confidence, sharpen technical skills, and gain meaningful touches on the ball through structured training sessions and small-sided tournament play.
+                A 6-week spring program designed to build confidence, sharpen technical skills, and give players meaningful touches on the ball.
               </p>
 
               <div className="flex flex-wrap gap-4 sm:gap-6 mb-10 text-warmwhite/90 text-sm sm:text-base">
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4 text-gold" />
-                  <span>April 13 - May 23</span>
+                  <span>April 13 - May 24</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <GraduationCap className="h-4 w-4 text-gold" />
@@ -231,7 +249,7 @@ export default function Rise() {
                   <span>2 tournaments</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-gold font-semibold">$100</span>
+                  <span className="text-gold font-semibold">Starting at $85</span>
                 </div>
               </div>
 
@@ -267,15 +285,10 @@ export default function Rise() {
                 WHAT IS RISE?
               </h2>
               <p className="text-night/80 text-lg leading-relaxed mb-6">
-                RISE is a 6-week spring program built for kids who love soccer but play other sports too. Instead of forming teams and jumping straight into games, RISE focuses on developing individual skills through structured, coach-led training sessions, then puts those skills to the test in two Saturday tournaments.
+                RISE is a 6-week developmental program for players in grades 1-8. It's built for kids who love soccer, whether they play other sports, come from rec leagues, or are just getting started.
               </p>
-              <div className="bg-purple/5 border-l-4 border-purple p-4 rounded-r-lg mb-6">
-                <p className="text-night/90 italic text-lg">
-                  "Think of it as a soccer skills camp with a competitive edge."
-                </p>
-              </div>
               <p className="text-night/80 text-lg leading-relaxed">
-                Your kid gets 12 training sessions, works with experienced coaches, and walks away a better player, all without a year-round commitment.
+                Instead of forming teams and jumping into games, RISE focuses on individual skill development through 12 structured training sessions led by experienced coaches. Players work through a progressive curriculum, then put those skills to the test in two Saturday tournaments. No tryouts, no permanent teams, and equal playing time for everyone.
               </p>
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg" data-testid="img-what-is-rise">
@@ -309,18 +322,28 @@ export default function Rise() {
                 <h3 className="font-heading font-bold text-xl text-night uppercase tracking-wide">Training (Weeks 1-6)</h3>
               </div>
               <p className="text-night/80 mb-6 leading-relaxed">
-                Players train twice per week in co-ed age divisions. Sessions are run by experienced coaches with support from teen helpers recruited from our REIGN club teams and local high school players. Every session follows a progressive curriculum focused on individual technical skills, not team tactics.
+                Players train twice per week in co-ed age divisions. Sessions follow a progressive curriculum, each two-week block builds on the last, so consistent attendance matters.
               </p>
               <div className="space-y-4">
                 {phases.map((phase, idx) => (
-                  <div key={idx} className="flex items-center gap-4 bg-night/[0.03] rounded-xl p-4" data-testid={`phase-${idx}`}>
-                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-crimson/10 flex items-center justify-center">
-                      <phase.icon className="h-5 w-5 text-crimson" />
+                  <div key={idx} className="bg-night/[0.03] rounded-xl p-4" data-testid={`phase-${idx}`}>
+                    <div className="flex items-center gap-4 mb-2">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-crimson/10 flex items-center justify-center">
+                        <phase.icon className="h-5 w-5 text-crimson" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-crimson uppercase tracking-wide">{phase.weeks}</div>
+                        <div className="font-heading font-semibold text-night">{phase.title}</div>
+                      </div>
                     </div>
-                    <div>
-                      <div className="text-xs font-semibold text-crimson uppercase tracking-wide">{phase.weeks}</div>
-                      <div className="font-heading font-semibold text-night">{phase.title}</div>
-                    </div>
+                    <ul className="ml-14 space-y-1">
+                      {phase.bullets.map((bullet, bIdx) => (
+                        <li key={bIdx} className="text-night/60 text-sm flex items-center gap-2">
+                          <span className="w-1 h-1 rounded-full bg-crimson/40 flex-shrink-0" />
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 ))}
               </div>
@@ -352,13 +375,13 @@ export default function Rise() {
                     </div>
                     <div>
                       <div className="font-heading font-bold text-night">Tournament #2</div>
-                      <div className="text-slate">May 23</div>
+                      <div className="text-slate">May 24</div>
                     </div>
                   </CardContent>
                 </Card>
               </div>
               <p className="text-night/80 leading-relaxed">
-                Teams are formed the day before each tournament, gender-separated and balanced by coaches based on what they've seen in training. Parent volunteers step in as team coaches for the day. It's competitive, it's fun, and every tournament is a fresh start.
+                Teams are formed the day before each tournament, gender-separated and balanced by coaches based on what they've observed in training. A parent volunteer is assigned to each team for the day to help get kids to the right field. No season-long standings, just soccer.
               </p>
               <div className="mt-6 rounded-xl overflow-hidden shadow-lg" data-testid="img-scrimmage">
                 <img
@@ -430,6 +453,9 @@ export default function Rise() {
               </div>
             ))}
           </div>
+          <p className="text-center text-night/70 text-sm mt-8">
+            <span className="font-semibold text-night">What to bring:</span> Shin guards, cleats, and a water bottle. Program shirts are provided.
+          </p>
         </div>
       </section>
 
@@ -443,6 +469,9 @@ export default function Rise() {
               REGISTRATION & PRICING
             </h2>
           </div>
+          <p className="font-heading font-bold text-xl text-warmwhite text-center mb-10">
+            No tryouts. No experience required. Just show up ready to play.
+          </p>
           <div className="grid sm:grid-cols-3 gap-4 sm:gap-6 max-w-3xl mx-auto mb-10">
             {pricing.map((tier, idx) => (
               <Card
@@ -482,9 +511,6 @@ export default function Rise() {
             </Button>
             <p className="text-warmwhite/80 text-sm">
               <span className="font-semibold text-warmwhite">Payment plan available</span> during Early Bird and Regular registration: pay 50% at signup, 50% by April 1. No extra fees. Late registration requires full payment.
-            </p>
-            <p className="font-heading font-bold text-xl text-warmwhite">
-              No tryouts. No experience required. Just show up ready to play.
             </p>
           </div>
         </div>
