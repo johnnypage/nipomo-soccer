@@ -348,7 +348,7 @@ export default function Compare() {
     <div className="bg-[#F3ECE2] min-h-screen">
       <Header />
 
-      <main className="max-w-[720px] mx-auto px-5 sm:px-6 pt-28 pb-20">
+      <main className="max-w-[720px] mx-auto px-5 sm:px-6 pt-36 sm:pt-40 pb-20">
         <motion.article initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.08 } } }}>
 
           <motion.h1
