@@ -502,8 +502,8 @@ export default function Compare() {
                     <feature.icon className="h-5 w-5 text-crimson" />
                   </div>
                   <div>
-                    <h3 className="font-display text-base uppercase tracking-wide text-night mb-2">{feature.title}</h3>
-                    <p className="text-night/70 leading-relaxed text-sm">{feature.desc}</p>
+                    <h3 className="font-display text-lg uppercase tracking-wide text-night mb-2">{feature.title}</h3>
+                    <p className="text-night/70 leading-relaxed">{feature.desc}</p>
                   </div>
                 </div>
               </motion.div>
@@ -538,17 +538,17 @@ export default function Compare() {
             <table className="hidden md:table w-full" data-testid="table-comparison">
               <thead>
                 <tr className="border-b border-warmwhite/10">
-                  <th className="text-left py-4 px-4 font-display text-warmwhite/50 uppercase tracking-wider text-sm w-[140px]"></th>
-                  <th className="text-left py-4 px-4 font-display text-crimson uppercase tracking-wider text-sm">Nipomo SC</th>
-                  <th className="text-left py-4 px-4 font-display text-warmwhite/40 uppercase tracking-wider text-sm">AYSO</th>
+                  <th className="text-left py-4 px-5 font-display text-warmwhite/50 uppercase tracking-wider text-base w-[160px]"></th>
+                  <th className="text-left py-4 px-5 font-display text-crimson uppercase tracking-wider text-base">Nipomo SC</th>
+                  <th className="text-left py-4 px-5 font-display text-warmwhite/40 uppercase tracking-wider text-base">AYSO</th>
                 </tr>
               </thead>
               <tbody>
                 {comparisonRows.map((row, i) => (
                   <tr key={i} className="border-b border-warmwhite/5" data-testid={`comparison-row-${row.label.toLowerCase().replace(/\s+/g, "-")}`}>
-                    <td className="py-5 px-4 font-heading font-semibold text-gold text-sm uppercase tracking-wider align-top">{row.label}</td>
-                    <td className="py-5 px-4 text-warmwhite/80 text-sm leading-relaxed align-top">{row.nsc}</td>
-                    <td className="py-5 px-4 text-warmwhite/40 text-sm leading-relaxed align-top">{row.ayso}</td>
+                    <td className="py-5 px-5 font-heading font-semibold text-gold text-base uppercase tracking-wider align-top">{row.label}</td>
+                    <td className="py-5 px-5 text-warmwhite/80 text-base leading-relaxed align-top">{row.nsc}</td>
+                    <td className="py-5 px-5 text-warmwhite/40 text-base leading-relaxed align-top">{row.ayso}</td>
                   </tr>
                 ))}
               </tbody>
@@ -563,15 +563,15 @@ export default function Compare() {
                   className="bg-warmwhite/5 rounded-xl p-5"
                   data-testid={`comparison-card-${row.label.toLowerCase().replace(/\s+/g, "-")}`}
                 >
-                  <h4 className="font-heading font-semibold text-gold text-sm uppercase tracking-wider mb-3">{row.label}</h4>
+                  <h4 className="font-heading font-semibold text-gold text-base uppercase tracking-wider mb-3">{row.label}</h4>
                   <div className="space-y-3">
                     <div>
-                      <span className="text-crimson font-heading font-semibold text-xs uppercase tracking-wider">Nipomo SC</span>
-                      <p className="text-warmwhite/80 text-sm leading-relaxed mt-1">{row.nsc}</p>
+                      <span className="text-crimson font-heading font-semibold text-sm uppercase tracking-wider">Nipomo SC</span>
+                      <p className="text-warmwhite/80 text-base leading-relaxed mt-1">{row.nsc}</p>
                     </div>
                     <div>
-                      <span className="text-warmwhite/40 font-heading font-semibold text-xs uppercase tracking-wider">AYSO</span>
-                      <p className="text-warmwhite/40 text-sm leading-relaxed mt-1">{row.ayso}</p>
+                      <span className="text-warmwhite/40 font-heading font-semibold text-sm uppercase tracking-wider">AYSO</span>
+                      <p className="text-warmwhite/40 text-base leading-relaxed mt-1">{row.ayso}</p>
                     </div>
                   </div>
                 </motion.div>
