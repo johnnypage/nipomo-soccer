@@ -77,9 +77,16 @@ export default function ProgramCard({
       </div>
       
       <CardContent className="p-6 flex flex-col flex-grow">
-        <h3 className={`font-integral text-2xl uppercase tracking-wide ${styles.text} mb-1`}>
-          {title}
-        </h3>
+        <div className="flex items-center gap-2 mb-1">
+          <h3 className={`font-integral text-2xl uppercase tracking-wide ${styles.text}`}>
+            {title}
+          </h3>
+          {type === "rise" && (
+            <span className="px-2 py-0.5 bg-risegreen text-warmwhite text-[10px] font-heading font-bold uppercase tracking-wider rounded-full whitespace-nowrap" data-testid="tag-rise-registration-open">
+              Now Open
+            </span>
+          )}
+        </div>
         <p className={`${styles.accent} text-sm font-medium mb-1`}>
           {subtitle}
         </p>
@@ -113,13 +120,6 @@ export default function ProgramCard({
         >
           Learn More
         </Button>
-        {type === "rise" && (
-          <div className="mt-3 text-center" data-testid="tag-rise-registration-open">
-            <span className="inline-block px-3 py-1 bg-risegreen/20 text-risegreen text-xs font-heading font-bold uppercase tracking-wider rounded-full">
-              Registration is now open
-            </span>
-          </div>
-        )}
       </CardContent>
     </Card>
   );
