@@ -207,7 +207,7 @@ export default function Compare() {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="font-display text-warmwhite text-4xl sm:text-5xl md:text-7xl lg:text-8xl uppercase tracking-wider leading-none mb-6"
           >
-            NIPOMO SC VS. AYSO
+            NIPOMO SC<br />VS. AYSO
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
