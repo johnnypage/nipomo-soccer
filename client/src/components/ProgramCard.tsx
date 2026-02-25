@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Sprout, TrendingUp, Crown } from "lucide-react";
+import { Link } from "wouter";
 
 export type ProgramType = "roots" | "rise" | "reign";
 
@@ -61,6 +62,15 @@ export default function ProgramCard({
   return (
     <Card className={`${styles.bg} border-0 overflow-hidden h-full flex flex-col`}>
       <div className="relative h-48 overflow-hidden flex-shrink-0">
+        {type === "rise" && (
+          <Link
+            href="/rise"
+            className="absolute top-0 left-0 right-0 z-10 bg-risegreen text-warmwhite text-center py-1.5 px-3 text-xs font-heading font-bold uppercase tracking-wider hover:bg-risegreen/90 transition-colors cursor-pointer"
+            data-testid="banner-rise-registration"
+          >
+            Registration Now Open
+          </Link>
+        )}
         <img
           src={imageSrc}
           alt={`${title} program`}
