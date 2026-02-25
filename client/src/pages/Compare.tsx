@@ -525,29 +525,8 @@ export default function Compare() {
             All-Star Postseason
           </motion.h3>
 
-          <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-6">
-            AYSO's certification requirements for All-Star play hit our community hard.
-          </motion.p>
-
-          <motion.div variants={fadeUp} className="bg-[#0D0D0D] rounded-xl px-6 py-6 my-8 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 text-center" data-testid="callout-stat-allstar">
-            <div>
-              <span className="text-3xl sm:text-4xl font-heading font-bold text-[#F3ECE2]">25+</span>
-              <p className="text-[#F3ECE2]/80 text-sm mt-1">referees in the region</p>
-            </div>
-            <div className="hidden sm:block w-px h-12 bg-[#F3ECE2]/20" />
-            <div>
-              <span className="text-3xl sm:text-4xl font-heading font-bold text-[#F3ECE2]">5</span>
-              <p className="text-[#F3ECE2]/80 text-sm mt-1">qualified for All-Star level</p>
-            </div>
-            <div className="hidden sm:block w-px h-12 bg-[#F3ECE2]/20" />
-            <div>
-              <span className="text-3xl sm:text-4xl font-heading font-bold text-[#F3ECE2]">1</span>
-              <p className="text-[#F3ECE2]/80 text-sm mt-1">division made postseason</p>
-            </div>
-          </motion.div>
-
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-8">
-            Kids who deserved a chance to play all-stars couldn't, because we didn't have enough certified officials to staff their divisions. Only our 12U boys division qualified based on the referees available. Every other division was left out. Not because of any competing teams or clubs, but because the AYSO system made it nearly impossible to meet the requirements with volunteer officials alone.
+            AYSO's certification requirements for All-Star play hit our community hard. Of our 25+ referees in the region, only 5 qualified to officiate at the All-Star level. Kids who deserved a chance to play all-stars couldn't, because we didn't have enough certified officials to staff their divisions. Only our 12U boys division qualified based on the referees available. Every other division was left out. Not because of any competing teams or clubs, but because the AYSO system made it nearly impossible to meet the requirements with volunteer officials alone.
           </motion.p>
 
           <motion.h3 variants={fadeUp} className="font-heading font-bold text-xl text-[#0D0D0D] mb-4">
