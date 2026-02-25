@@ -415,10 +415,6 @@ export default function Compare() {
           </motion.p>
 
           <motion.div variants={fadeUp}>
-            <AnimatedBarChart />
-          </motion.div>
-
-          <motion.div variants={fadeUp}>
             <SatisfactionCard />
           </motion.div>
 
@@ -476,6 +472,10 @@ export default function Compare() {
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-6">
             On top of that, the AYSO referee pathway creates a direct pipeline out. Volunteers invest heavily in training through AYSO, then cross-certify with USSF so they can work paid matches in other leagues. We lost many of our best referees to organizations that actually compensate their officials.
           </motion.p>
+
+          <motion.div variants={fadeUp}>
+            <AnimatedBarChart />
+          </motion.div>
 
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-6">
             Running the Nipomo AYSO region required over 200 volunteers across coaching, board positions, and officiating. There are real benefits to a volunteer-driven model, and we're proud of what this community stepped up to do. But the demands on referees in particular led to burnout. Referee shortages were our biggest challenge last season. Games ran with a single official. AYSO's referee guidance is built around the traditional one-center, two-assistant system, and region guidelines determine minimum staffing. That means when we didn't have enough certified referees, games either ran short-staffed or risked not being played at all.
