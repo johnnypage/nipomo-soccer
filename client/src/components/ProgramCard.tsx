@@ -92,9 +92,9 @@ export default function ProgramCard({
             {title}
           </h3>
           {type === "rise" && (
-            <span className="px-2 py-0.5 bg-risegreen text-warmwhite text-[10px] font-heading font-bold uppercase tracking-wider rounded-full whitespace-nowrap" data-testid="tag-rise-registration-open">
-              Now Open
-            </span>
+            <Link href="/rise" className="px-2 py-0.5 bg-risegreen text-warmwhite text-[10px] font-heading font-bold uppercase tracking-wider rounded-full whitespace-nowrap hover:bg-risegreen/90 transition-colors" data-testid="tag-rise-registration-open">
+              Register Today
+            </Link>
           )}
         </div>
         <p className={`${styles.accent} text-sm font-medium mb-1`}>
