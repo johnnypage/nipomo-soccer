@@ -416,7 +416,7 @@ export default function Compare() {
             Nipomo SC didn't come out of nowhere. We looked into making improvements within AYSO, and when it became clear that the area and national structure wouldn't allow us to build what this community deserved, we built something well suited for Nipomo.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="bg-[#0D0D0D] rounded-xl px-6 py-6 my-8 text-center" data-testid="callout-stat-board">
+          <motion.div variants={fadeUp} className="bg-[#8B1D24] rounded-xl px-6 py-6 my-8 text-center" data-testid="callout-stat-board">
             <span className="text-3xl sm:text-4xl font-heading font-bold text-[#F3ECE2]">~75%</span>
             <p className="text-[#F3ECE2]/80 text-sm sm:text-base mt-2">of the board running the 2025 AYSO season is now running Nipomo SC</p>
           </motion.div>
