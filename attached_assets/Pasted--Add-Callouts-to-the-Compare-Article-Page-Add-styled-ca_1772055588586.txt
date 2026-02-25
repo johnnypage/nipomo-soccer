@@ -1,0 +1,93 @@
+# Add Callouts to the Compare Article Page
+
+Add styled callout elements throughout the article on `/about/compare` to break up large text blocks and highlight key stats, quotes, and takeaways. These should feel native to the existing design system.
+
+---
+
+## Callout Styles Needed (3 types)
+
+### 1. Pull Quote
+A centered, visually distinct quote block. Use a left border accent (green `#2E7D32`), slightly larger italic text, generous padding, and the card background (`#F8F5F1`). No quotation marks needed, just the styling should signal "this is important."
+
+### 2. Stat Callout
+A compact, high-contrast box for key numbers. Dark background (`#0D0D0D`) with cream text (`#F3ECE2`). Numbers should be large and bold. Can include 1-3 stats side by side. Rounded corners, centered.
+
+### 3. Key Point Callout
+A subtle highlighted box for important takeaways. Use a light green-tinted background with a thin green left border. Body-sized text, bold. Think "highlighted paragraph" not "alert box."
+
+---
+
+## Where to Place Each Callout (in order of appearance)
+
+### Callout 1: Pull Quote
+**Location:** After the intro section, right before "The Same People, a Local Structure" heading
+**Content:**
+> We started it because we spent years trying to fix the things that weren't working, and we hit a wall.
+
+---
+
+### Callout 2: Stat Callout
+**Location:** In "The Same People" section. Pull this stat OUT of the paragraph it's currently embedded in and render it as a standalone callout between the two paragraphs (after "...well suited for Nipomo" and before "Last season, this group invested...")
+**Content:**
+- **~75%** of the board running the 2025 AYSO season is now running Nipomo SC
+
+---
+
+### Callout 3: Pull Quote
+**Location:** In the Referees subsection of "Why We Left AYSO." After the compliance stack paragraph (the one listing fingerprinting, Safe Haven, SafeSport, etc.) and before "It's just not sustainable..."
+**Content:**
+> These are all good standards, and Nipomo SC upholds them. But asking someone to meet all of those requirements and then officiate every Saturday without compensation is a lot.
+
+Note: This text already exists in the article as a bold line. When you add the callout, remove the bold inline version so it doesn't appear twice. The callout replaces it.
+
+---
+
+### Callout 4: Stat Callout
+**Location:** In the Referees subsection, after the sentence "We lost many of our best referees to organizations that actually compensate their officials." and before the paragraph starting with "Running the Nipomo AYSO region required over 200 volunteers..."
+**Content:**
+- **200+** volunteers needed to run the season
+- **Referees** were the hardest to recruit and retain
+
+---
+
+### Callout 5: Stat Callout
+**Location:** In the "All-Star Postseason" subsection. Place this after the first sentence ("AYSO's certification requirements for All-Star play hit our community hard.") and before the rest of the paragraph.
+**Content:**
+- **25+** referees in the region
+- **5** qualified for All-Star level
+- **1** division made postseason
+
+---
+
+### Callout 6: Pull Quote
+**Location:** In the "Inadequate National Support" subsection, between the two paragraphs (after the paragraph ending with "...from the national office." and before "In practice, that means...")
+**Content:**
+> "Many issues can only be solved by your local AYSO" — from AYSO's own support pages
+
+Note: This is the one place where a dash is acceptable since it's attribution formatting. Use an em dash or a simple hyphen, just be consistent with the site's style.
+
+---
+
+### Callout 7: Key Point Callout
+**Location:** In the "Balanced teams in Roots" subsection, after the last paragraph about coach assessment data. Place it after "...every player should have a great experience."
+**Content:**
+> All teams will be formed by someone who has no ties to a player in that division, removing any conflict of interest from the process.
+
+---
+
+### Callout 8: Key Point Callout (full-width, high emphasis)
+**Location:** In the "What About AYSO This Year?" section. After "What we can tell you is this:" and before the paragraph about not waiting.
+**Content:**
+> There is 100% going to be a Nipomo SC Roots season.
+
+Style this one slightly differently from the other key point callouts. Make it full-width, centered text, larger font, green background (`#2E7D32`) with cream text (`#F3ECE2`). This is the closer and should feel like a confident, definitive statement.
+
+---
+
+## Design Notes
+
+- Callouts should have consistent spacing (margin top and bottom) so they breathe between paragraphs
+- On mobile, stat callouts with multiple numbers should stack vertically
+- Pull quotes should never be wider than the article text column
+- Animate callouts with a subtle fade-in on scroll if the page already has scroll animations
+- Make sure the callout text is NOT duplicated in the body text. If a callout pulls a sentence from a paragraph, either remove that sentence from the paragraph or rephrase the paragraph so it flows without the extracted line.

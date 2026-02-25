@@ -387,6 +387,12 @@ export default function Compare() {
             This article is our attempt to explain where we're coming from, why we made this decision, and what we have planned.
           </motion.p>
 
+          <motion.div variants={fadeUp} className="bg-[#F8F5F1] border-l-4 border-[#2E7D32] rounded-r-lg px-6 py-5 my-10" data-testid="callout-pull-quote-1">
+            <p className="text-[#0D0D0D] text-lg sm:text-xl italic leading-relaxed">
+              We started it because we spent years trying to fix the things that weren't working, and we hit a wall.
+            </p>
+          </motion.div>
+
           <motion.hr variants={fadeUp} className="border-[#CFCCC9] my-10" />
 
           {/* THE SAME PEOPLE */}
@@ -395,11 +401,16 @@ export default function Compare() {
           </motion.h2>
 
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-6">
-            Nipomo SC didn't come out of nowhere. We looked into making improvements within AYSO, and when it became clear that the area and national structure wouldn't allow us to build what this community deserved, we built something well suited for Nipomo. <strong className="text-[#0D0D0D]">~75% of the board members running the day to day operations of the 2025 AYSO soccer season are now running Nipomo Soccer Club</strong>, and many of us have been volunteering in the Nipomo soccer community for several years.
+            Nipomo SC didn't come out of nowhere. We looked into making improvements within AYSO, and when it became clear that the area and national structure wouldn't allow us to build what this community deserved, we built something well suited for Nipomo.
           </motion.p>
 
+          <motion.div variants={fadeUp} className="bg-[#0D0D0D] rounded-xl px-6 py-6 my-8 text-center" data-testid="callout-stat-board">
+            <span className="text-3xl sm:text-4xl font-heading font-bold text-[#F3ECE2]">~75%</span>
+            <p className="text-[#F3ECE2]/80 text-sm sm:text-base mt-2">of the board running the 2025 AYSO season is now running Nipomo SC</p>
+          </motion.div>
+
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-6">
-            Last season, this group invested in making the game-day experience better for players, families, and volunteers. That included several improvements that dramatically reduced the volunteer hours needed to run the season, adding benches to every sideline in the 10U, 12U, and 14U divisions, buying new goals, upgrading coaching gear, compressing the Saturday schedule so families and volunteers weren't stuck at the fields all day, and expanding cross-play with neighboring regions while maintaining a competitive local schedule.
+            Many of us have been volunteering in the Nipomo soccer community for several years. Last season, this group invested in making the game-day experience better for players, families, and volunteers. That included several improvements that dramatically reduced the volunteer hours needed to run the season, adding benches to every sideline in the 10U, 12U, and 14U divisions, buying new goals, upgrading coaching gear, compressing the Saturday schedule so families and volunteers weren't stuck at the fields all day, and expanding cross-play with neighboring regions while maintaining a competitive local schedule.
           </motion.p>
 
           <motion.h3 variants={fadeUp} className="font-heading font-bold text-xl text-[#0D0D0D] mb-4 mt-10">
@@ -461,9 +472,11 @@ export default function Compare() {
             And that's just the referee coursework. Before an adult volunteer can even step on the field, they also need to complete annual registration, a background check, state-mandated fingerprinting under California AB 506, Safe Haven training, SafeSport certification, CDC concussion awareness training, and sudden cardiac arrest training.
           </motion.p>
 
-          <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-6">
-            <strong className="text-[#0D0D0D]">These are all good standards, and Nipomo SC upholds them.</strong> But asking someone to meet all of those requirements and then officiate every Saturday without compensation is a lot.
-          </motion.p>
+          <motion.div variants={fadeUp} className="bg-[#F8F5F1] border-l-4 border-[#2E7D32] rounded-r-lg px-6 py-5 my-8" data-testid="callout-pull-quote-referees">
+            <p className="text-[#0D0D0D] text-lg sm:text-xl italic leading-relaxed">
+              These are all good standards, and Nipomo SC upholds them. But asking someone to meet all of those requirements and then officiate every Saturday without compensation is a lot.
+            </p>
+          </motion.div>
 
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-6">
             It's just not sustainable when the people doing the work aren't paid for it.
@@ -472,6 +485,18 @@ export default function Compare() {
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-6">
             On top of that, the AYSO referee pathway creates a direct pipeline out. Volunteers invest heavily in training through AYSO, then cross-certify with USSF so they can work paid matches in other leagues. We lost many of our best referees to organizations that actually compensate their officials.
           </motion.p>
+
+          <motion.div variants={fadeUp} className="bg-[#0D0D0D] rounded-xl px-6 py-6 my-8 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 text-center" data-testid="callout-stat-volunteers">
+            <div>
+              <span className="text-3xl sm:text-4xl font-heading font-bold text-[#F3ECE2]">200+</span>
+              <p className="text-[#F3ECE2]/80 text-sm mt-1">volunteers needed to run the season</p>
+            </div>
+            <div className="hidden sm:block w-px h-12 bg-[#F3ECE2]/20" />
+            <div>
+              <span className="text-3xl sm:text-4xl font-heading font-bold text-[#F3ECE2]">Referees</span>
+              <p className="text-[#F3ECE2]/80 text-sm mt-1">were the hardest to recruit and retain</p>
+            </div>
+          </motion.div>
 
           <motion.div variants={fadeUp}>
             <AnimatedBarChart />
@@ -493,8 +518,29 @@ export default function Compare() {
             All-Star Postseason
           </motion.h3>
 
+          <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-6">
+            AYSO's certification requirements for All-Star play hit our community hard.
+          </motion.p>
+
+          <motion.div variants={fadeUp} className="bg-[#0D0D0D] rounded-xl px-6 py-6 my-8 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 text-center" data-testid="callout-stat-allstar">
+            <div>
+              <span className="text-3xl sm:text-4xl font-heading font-bold text-[#F3ECE2]">25+</span>
+              <p className="text-[#F3ECE2]/80 text-sm mt-1">referees in the region</p>
+            </div>
+            <div className="hidden sm:block w-px h-12 bg-[#F3ECE2]/20" />
+            <div>
+              <span className="text-3xl sm:text-4xl font-heading font-bold text-[#F3ECE2]">5</span>
+              <p className="text-[#F3ECE2]/80 text-sm mt-1">qualified for All-Star level</p>
+            </div>
+            <div className="hidden sm:block w-px h-12 bg-[#F3ECE2]/20" />
+            <div>
+              <span className="text-3xl sm:text-4xl font-heading font-bold text-[#F3ECE2]">1</span>
+              <p className="text-[#F3ECE2]/80 text-sm mt-1">division made postseason</p>
+            </div>
+          </motion.div>
+
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-8">
-            AYSO's certification requirements for All-Star play hit our community hard. Of our 25+ referees in the region, only 5 qualified to officiate at the All-Star level. Kids who deserved a chance to play all-stars couldn't, because we didn't have enough certified officials to staff their divisions. Only our 12U boys division qualified based on the referees available. Every other division was left out. Not because of any competing teams or clubs, but because the AYSO system made it nearly impossible to meet the requirements with volunteer officials alone.
+            Kids who deserved a chance to play all-stars couldn't, because we didn't have enough certified officials to staff their divisions. Only our 12U boys division qualified based on the referees available. Every other division was left out. Not because of any competing teams or clubs, but because the AYSO system made it nearly impossible to meet the requirements with volunteer officials alone.
           </motion.p>
 
           <motion.h3 variants={fadeUp} className="font-heading font-bold text-xl text-[#0D0D0D] mb-4">
@@ -502,8 +548,14 @@ export default function Compare() {
           </motion.h3>
 
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-8">
-            AYSO does an excellent job creating rules, policies, and training requirements at the national level. There are manuals for everything: referee upgrades, volunteer compliance, Safe Haven, SafeSport, All-Star eligibility, and more. But when you read AYSO's own support pages, they make it clear that 'many issues can only be solved by your local AYSO' and that volunteers should go first to their Regional, Area, or Section leaders rather than expecting hands-on help from the national office.
+            AYSO does an excellent job creating rules, policies, and training requirements at the national level. There are manuals for everything: referee upgrades, volunteer compliance, Safe Haven, SafeSport, All-Star eligibility, and more. But when you read AYSO's own support pages, the message is clear: volunteers should go first to their Regional, Area, or Section leaders rather than expecting hands-on help from the national office.
           </motion.p>
+
+          <motion.div variants={fadeUp} className="bg-[#F8F5F1] border-l-4 border-[#2E7D32] rounded-r-lg px-6 py-5 my-8" data-testid="callout-pull-quote-ayso-support">
+            <p className="text-[#0D0D0D] text-lg sm:text-xl italic leading-relaxed">
+              "Many issues can only be solved by your local AYSO" - from AYSO's own support pages
+            </p>
+          </motion.div>
 
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-8">
             In practice, that means the organization sets a thick stack of standards and restrictions, then expects small, volunteer-run regions to figure out how to implement them, even when those policies make it harder to do what is obviously better for local players and families. The gap we ran into in Nipomo was the lack of practical support and flexibility to adapt those rules to what our community actually needed.
@@ -594,8 +646,14 @@ export default function Compare() {
             First, players registered on a competitive team (Reign or any outside club) are not eligible to play in Roots. Recreational soccer should feel recreational.
           </motion.p>
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-8">
-            Second, we'll be collecting detailed coach assessment data on players and using that data to balance Roots teams fairly across every division. All teams will be formed by someone who has no ties to a player in that division, removing any conflict of interest from the process. The goal is simple: every team should have a real chance to compete, and every player should have a great experience.
+            Second, we'll be collecting detailed coach assessment data on players and using that data to balance Roots teams fairly across every division. The goal is simple: every team should have a real chance to compete, and every player should have a great experience.
           </motion.p>
+
+          <motion.div variants={fadeUp} className="bg-[#E8F5E9] border-l-4 border-[#2E7D32] rounded-r-lg px-6 py-5 my-8" data-testid="callout-key-point-balanced">
+            <p className="text-[#0D0D0D] text-base sm:text-lg font-semibold leading-relaxed">
+              All teams will be formed by someone who has no ties to a player in that division, removing any conflict of interest from the process.
+            </p>
+          </motion.div>
 
           <motion.h3 variants={fadeUp} className="font-heading font-bold text-xl text-[#0D0D0D] mb-3">
             A complete player pathway
@@ -674,7 +732,17 @@ export default function Compare() {
           </motion.p>
 
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-6">
-            What we can tell you is this: <strong className="text-[#0D0D0D]">there is 100% going to be a Nipomo SC Roots season.</strong> The people, the infrastructure, and the plan are in place to deliver a great season for your family.
+            What we can tell you is this:
+          </motion.p>
+
+          <motion.div variants={fadeUp} className="bg-[#2E7D32] rounded-xl px-6 py-8 my-8 text-center" data-testid="callout-key-point-roots-season">
+            <p className="text-[#F3ECE2] text-xl sm:text-2xl md:text-3xl font-heading font-bold leading-snug">
+              There is 100% going to be a Nipomo SC Roots season.
+            </p>
+          </motion.div>
+
+          <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-6">
+            The people, the infrastructure, and the plan are in place to deliver a great season for your family.
           </motion.p>
 
           <motion.p variants={fadeUp} className="text-[#0D0D0D] text-lg leading-relaxed mb-6 font-semibold">
