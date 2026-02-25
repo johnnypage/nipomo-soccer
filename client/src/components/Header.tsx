@@ -24,12 +24,8 @@ export default function Header({ onNavigate }: HeaderProps) {
     { label: "Reign", href: "/reign", description: "Competitive Club Soccer" },
   ];
 
-  const aboutLinks = [
-    { label: "About Us", href: "/#about" },
-    { label: "Nipomo SC vs. AYSO", href: "/about/compare" },
-  ];
-
   const navItems = [
+    { label: "About", section: "about" },
     { label: "Contact", section: "contact" },
   ];
 
@@ -86,21 +82,6 @@ export default function Header({ onNavigate }: HeaderProps) {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="font-integral text-warmwhite/80 hover:text-warmwhite font-bold uppercase tracking-wide transition-colors flex items-center gap-1" data-testid="nav-about">
-                About
-                <ChevronDown className="h-4 w-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-night border-slate/30">
-                {aboutLinks.map((link) => (
-                  <DropdownMenuItem key={link.label} asChild className="cursor-pointer">
-                    <Link href={link.href} data-testid={`nav-about-${link.label.toLowerCase().replace(/\s+/g, '-')}`}>
-                      <span className="font-heading font-semibold text-warmwhite">{link.label}</span>
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
             {navItems.map((item) => (
               <button
                 key={item.section}
@@ -147,18 +128,6 @@ export default function Header({ onNavigate }: HeaderProps) {
                 data-testid={`mobile-nav-${program.label.toLowerCase()}`}
               >
                 {program.label} <span className="text-warmwhite/50 text-sm">({program.description})</span>
-              </Link>
-            ))}
-            <div className="text-warmwhite/60 text-sm font-medium uppercase tracking-wide pt-2">About</div>
-            {aboutLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block w-full text-left text-warmwhite/80 hover:text-warmwhite font-medium py-2 pl-3"
-                data-testid={`mobile-nav-about-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
-              >
-                {link.label}
               </Link>
             ))}
             <div className="border-t border-slate/20 pt-3">
