@@ -38,7 +38,7 @@ const features = [
   {
     icon: DollarSign,
     title: "Referees Can Be Paid",
-    desc: "This won't solve every challenge overnight, but it fundamentally changes the equation. It gives us a real incentive to recruit new officials, helps us retain the ones we train instead of losing them to organizations that already pay, and allows us to move on from referees who aren't meeting our standards. When we surveyed families, 75% said they'd support a small registration increase to make this happen.",
+    desc: "This won't solve every challenge overnight, but it fundamentally changes the equation. It gives us a real incentive to recruit new officials, helps us retain the ones we train instead of losing them to organizations that already pay, and allows us to move on from referees who aren't meeting our standards. In a fully volunteer model, you can't hold people accountable the same way. When we surveyed families, 75% said they'd support a small registration increase to make this happen.",
   },
   {
     icon: Shield,
@@ -48,7 +48,7 @@ const features = [
   {
     icon: Scale,
     title: "Balanced Teams in Roots",
-    desc: "Players registered on a competitive team (Reign or any outside club) are not eligible to play in Roots. Recreational soccer should feel recreational. We'll also be collecting detailed coach assessment data on all players and using that data to balance teams fairly across every division.",
+    desc: "One of the most common concerns from last season, especially in 12U Boys, was the competitive gap between teams, often driven by the presence of club-level players in the recreational divisions. Under Nipomo SC, that changes in two ways. First, players registered on a competitive team (Reign or any outside club) are not eligible to play in Roots. Recreational soccer should feel recreational. Second, we'll be collecting detailed coach assessment data on all players and using that data to balance teams fairly across every division.",
   },
   {
     icon: TrendingUp,
@@ -58,12 +58,12 @@ const features = [
   {
     icon: Shirt,
     title: "Jersey Sponsorships",
-    desc: "Under AYSO, jersey sponsorships were sold at a national level with none of those funds benefiting local teams. Under Nipomo SC, local businesses can support local teams directly, helping offset costs for families.",
+    desc: "Under AYSO, jersey sponsorships were sold at a national level with none of those funds benefiting local teams. Under Nipomo SC, local businesses can support local teams. This opens up a new way for the community to support the program and for local businesses to get involved, while helping offset costs for families.",
   },
   {
     icon: Calendar,
     title: "More Soccer, More Often",
-    desc: "68% of families said they'd be interested in a spring season. Under AYSO, that wasn't something we could offer. Under Nipomo SC, it is, and we're launching a spring developmental season this year.",
+    desc: "In the same survey, 68% of families said they'd be interested in a spring season. Under AYSO, that wasn't something we could offer. Under Nipomo SC, it is, and we're launching a spring developmental season this year. More details at nipomosc.org.",
   },
 ];
 
@@ -75,18 +75,18 @@ const comparisonRows = [
   },
   {
     label: "Team Balancing",
-    nsc: "Roots is exclusively for non-club players; coach assessment data used to balance all Roots teams",
+    nsc: "Roots is exclusively for non-club players; coach assessment data collected and used to balance teams fairly across every division",
     ayso: "No restrictions on club players in rec divisions; team balancing varies by region",
   },
   {
     label: "Player Pathway",
-    nsc: "Roots (rec), Rise (developmental), Reign (competitive), all under one organization",
+    nsc: "Roots (rec), Rise (developmental), Reign (competitive), all under one organization. Players won't have to leave Nipomo to play the next level",
     ayso: "Recreational focus with limited competitive pathways (All-Stars, postseason)",
   },
   {
     label: "Rec Postseason",
     nsc: "Roots teams that qualify move on to a regional tournament",
-    ayso: "Teams must have 3 volunteer referees who volunteered 20+ hours to advance",
+    ayso: "For teams to advance, they must have 3 volunteer referees who have volunteered 20+ hours. Most teams that move on are those that qualify, not those that played the best",
   },
   {
     label: "Spring Season",
@@ -95,8 +95,8 @@ const comparisonRows = [
   },
   {
     label: "Jersey Sponsorships",
-    nsc: "Local business sponsorships support local teams, helping offset costs",
-    ayso: "Sponsorships sold at national level with no funds benefiting local teams",
+    nsc: "Local businesses sponsor local teams, helping offset costs for families",
+    ayso: "Sponsorship funds sold at national level with none benefiting local teams",
   },
   {
     label: "Local Control",
@@ -105,8 +105,8 @@ const comparisonRows = [
   },
   {
     label: "Home Field",
-    nsc: "Nipomo High School with active permits in place",
-    ayso: "Nipomo High School",
+    nsc: "NHS",
+    ayso: "NHS",
   },
   {
     label: "Registration Cost",
@@ -473,6 +473,16 @@ export default function Compare() {
             className="text-night/80 text-lg leading-relaxed mb-12 text-center"
           >
             Nipomo SC meets all standards set forth by California and the U.S. Soccer Federation, so your child still has the same insurance coverage, background checks, and organizational standards you'd expect. The difference is that we now have the flexibility to do what's best for this community without the AYSO policies that held us back.
+          </motion.p>
+
+          <motion.p
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="text-night/80 text-lg leading-relaxed mb-12 text-center font-semibold"
+          >
+            Here's what that means in practice:
           </motion.p>
 
           <motion.div
