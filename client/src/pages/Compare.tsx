@@ -425,13 +425,6 @@ export default function Compare() {
             Many of us have been volunteering in the Nipomo soccer community for several years. Last season, this group invested in making the game-day experience better for players, families, and volunteers. That included several improvements that dramatically reduced the volunteer hours needed to run the season, adding benches to every sideline in the 10U, 12U, and 14U divisions, buying new goals, upgrading coaching gear, compressing the Saturday schedule so families and volunteers weren't stuck at the fields all day, and expanding cross-play with neighboring regions while maintaining a competitive local schedule.
           </motion.p>
 
-          <motion.div variants={fadeUp}>
-            <ParentVoice
-              quote="The parents shared that this was a great season and they really appreciated the new board members and the changes implemented."
-              testId="parent-voice-same-people"
-            />
-          </motion.div>
-
           <motion.h3 variants={fadeUp} className="font-heading font-bold text-xl text-[#0D0D0D] mb-4 mt-10">
             Community Feedback on the 2025 Season
           </motion.h3>
