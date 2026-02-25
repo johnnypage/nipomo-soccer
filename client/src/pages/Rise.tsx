@@ -289,12 +289,13 @@ export default function Rise() {
                 Players work through 12 structured training sessions led by experienced coaches, following a progressive curriculum focused on individual skill development. Two Saturday tournaments give them a chance to apply what they've learned in a competitive setting. Open to all skill levels, with equal playing time for everyone.
               </p>
             </div>
-            <div className="rounded-xl overflow-hidden shadow-lg" data-testid="img-what-is-rise">
+            <div className="rounded-xl overflow-hidden shadow-lg relative" data-testid="img-what-is-rise">
               <img
                 src={riseTraining}
                 alt="Kids in a training session doing station rotation drills"
                 className="w-full h-full object-cover aspect-[4/3]"
               />
+              <div className="absolute inset-0 bg-night/20" />
             </div>
           </div>
         </div>
