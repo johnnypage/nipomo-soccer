@@ -43,6 +43,7 @@ export default function Header({ onNavigate }: HeaderProps) {
   };
 
   return (
+    <>
     <header className="fixed top-0 left-0 right-0 z-50 bg-night/95 backdrop-blur-sm border-b border-slate/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between gap-4 h-16">
@@ -193,5 +194,13 @@ export default function Header({ onNavigate }: HeaderProps) {
         </div>
       )}
     </header>
+    <Link
+      href="/rise"
+      className="fixed top-16 left-0 right-0 z-40 bg-risegreen text-warmwhite text-center py-2 px-4 text-sm font-heading font-semibold hover:bg-risegreen/90 transition-colors cursor-pointer"
+      data-testid="banner-spring-soccer"
+    >
+      Ready for Spring Soccer? <span className="underline underline-offset-2">Click here to learn more about Rise.</span>
+    </Link>
+    </>
   );
 }
