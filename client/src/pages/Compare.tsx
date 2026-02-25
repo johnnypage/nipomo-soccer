@@ -661,7 +661,7 @@ export default function Compare() {
             A complete player pathway
           </motion.h3>
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-8">
-            We have 3 programs. Roots, Rise, and Reign give every player in Nipomo a place to play and a path to grow, all within one organization. Players won't have to leave Nipomo to play the next level of competitive soccer.
+            We have 3 programs. Roots, <a href="/rise" className="text-[#8B1D24] font-semibold underline underline-offset-2" data-testid="link-rise-pathway">Rise</a>, and <a href="/reign" className="text-[#8B1D24] font-semibold underline underline-offset-2" data-testid="link-reign-pathway">Reign</a> give every player in Nipomo a place to play and a path to grow, all within one organization. Players won't have to leave Nipomo to play the next level of competitive soccer.
           </motion.p>
 
           <motion.h3 variants={fadeUp} className="font-heading font-bold text-xl text-[#0D0D0D] mb-3">
