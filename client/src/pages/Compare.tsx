@@ -639,7 +639,7 @@ export default function Compare() {
 
           <motion.div variants={fadeUp}>
             <ParentVoice
-              quote="It felt like several teams had club &quot;ringers&quot; who you never knew if they would show up. When they didn't on game days, we were asked to sit some of our kids to even the teams, so we lost playing time."
+              quote="It felt like several teams had club &quot;ringers&quot; who you never knew if they would show up. If they weren't there on game days, their team was left short and we were asked to sit some of our kids to even out the teams, so our kids lost playing time."
               testId="parent-voice-balanced-teams"
             />
           </motion.div>
