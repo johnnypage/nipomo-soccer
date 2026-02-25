@@ -695,8 +695,8 @@ export default function Compare() {
             Nipomo SC vs. AYSO at a Glance
           </motion.h2>
 
-          <motion.div variants={fadeUp} className="overflow-x-auto -mx-5 sm:mx-0 mb-6">
-            <div className="min-w-[600px] sm:min-w-0 px-5 sm:px-0">
+          <motion.div variants={fadeUp} className="overflow-x-auto -mx-5 sm:mx-0 mb-6 border-2 border-[#8B1D24]/30 rounded-lg sm:rounded-xl">
+            <div className="min-w-[600px] sm:min-w-0">
               <table className="w-full border-collapse" data-testid="table-comparison">
                 <thead>
                   <tr className="bg-[#8B1D24]">
