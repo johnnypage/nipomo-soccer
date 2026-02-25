@@ -607,19 +607,19 @@ export default function Compare() {
           </motion.p>
 
           <motion.div variants={fadeUp}>
-            <ParentVoice
-              quote="The refs deserve compensation. I think a managed increase is well worth it both because then the refs get better training, and volunteers and board members aren't so pressed for time."
-              testId="parent-voice-paid-refs"
-            />
-          </motion.div>
-
-          <motion.div variants={fadeUp}>
             <DonutChart
               data={refereeDonut}
               centerValue="74%"
               centerLabel="support"
               title="Would you support a small increase for paid, trained referees?"
               testId="chart-referee-support"
+            />
+          </motion.div>
+
+          <motion.div variants={fadeUp}>
+            <ParentVoice
+              quote="The refs deserve compensation. I think a managed increase is well worth it both because then the refs get better training, and volunteers and board members aren't so pressed for time."
+              testId="parent-voice-paid-refs"
             />
           </motion.div>
 
