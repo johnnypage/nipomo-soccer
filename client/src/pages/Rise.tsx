@@ -214,7 +214,7 @@ export default function Rise() {
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-night via-night/85 to-night/60" />
-          <div className="absolute inset-0 bg-night/40" />
+          <div className="absolute inset-0 bg-night/50" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 w-full">
           <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
@@ -378,12 +378,13 @@ export default function Rise() {
               <p className="text-night/80 leading-relaxed">Teams are formed the day before each tournament and balanced by coaches based on what they've observed in training. Games are small-sided (4v4 to 6v6 depending on registration and attendance), designed to give every player maximum touches on the ball and a chance to apply the skills they've been developing in training sessions throughout the week.  
 
               Plan for a half-day commitment (approximately 4–5 hours), with the full schedule and number of games communicated the week of each tournament.</p>
-              <div className="mt-6 rounded-xl overflow-hidden shadow-lg" data-testid="img-scrimmage">
+              <div className="mt-6 rounded-xl overflow-hidden shadow-lg relative" data-testid="img-scrimmage">
                 <img
                   src={riseScrimmage}
                   alt="Kids in pinnies playing a small-sided scrimmage game"
                   className="w-full h-full object-cover aspect-[16/9]"
                 />
+                <div className="absolute inset-0 bg-night/20" />
               </div>
             </div>
           </div>
