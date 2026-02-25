@@ -498,11 +498,6 @@ export default function Compare() {
             On top of that, the AYSO referee pathway creates a direct pipeline out. Volunteers invest heavily in training through AYSO, then cross-certify with USSF so they can work paid matches in other leagues. We lost many of our best referees to organizations that actually compensate their officials.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="bg-[#0D0D0D] rounded-xl px-6 py-6 my-8 text-center" data-testid="callout-stat-volunteers">
-            <span className="text-4xl sm:text-5xl font-heading font-bold text-[#F3ECE2]">200+</span>
-            <p className="text-[#F3ECE2]/80 text-sm sm:text-base mt-2">volunteers needed to run the season — and referees were the hardest to find</p>
-          </motion.div>
-
           <motion.div variants={fadeUp}>
             <AnimatedBarChart />
           </motion.div>
