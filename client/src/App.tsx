@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Reign from "@/pages/Reign";
 import Rise from "@/pages/Rise";
+import Compare from "@/pages/Compare";
 
 function Router() {
   return (
@@ -14,6 +15,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/reign" component={Reign} />
       <Route path="/rise" component={Rise} />
+      <Route path="/about/compare" component={Compare} />
       <Route path="/tournament">{() => <Redirect to="/" />}</Route>
       <Route component={NotFound} />
     </Switch>

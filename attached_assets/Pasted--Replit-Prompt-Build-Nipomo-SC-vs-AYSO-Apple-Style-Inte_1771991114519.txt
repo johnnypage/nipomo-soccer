@@ -1,0 +1,257 @@
+# Replit Prompt: Build "Nipomo SC vs. AYSO" — Apple-Style Interactive Scroll Page
+
+## Overview
+
+Build a single-page, scroll-driven interactive experience for nipomosc.org that explains the difference between Nipomo SC and AYSO. Think Apple product pages (like the iPhone or AirPods Pro pages) — content that reveals as you scroll, parallax backgrounds, sticky sections, numbers that animate/count up, and text that fades in with purpose.
+
+This is NOT a blog post. It's a story told through scroll. Every section should feel like its own moment.
+
+---
+
+## Brand & Design Direction
+
+- **Primary color:** Dark green (#1a472a)
+- **Accent color:** Gold (#c8a951)
+- **Background:** Alternate between dark (dark green, near-black #111) and light (warm off-white #fafaf7) sections for dramatic contrast as the user scrolls
+- **Typography:** Large, confident serif headings (Georgia, Playfair Display, or similar). Clean sans-serif body. Headings should be BIG — 48px+ on desktop, 32px+ on mobile. Let the words breathe.
+- **Imagery:** Use free soccer stock photos (Unsplash/Pexels) as parallax backgrounds. Keywords: youth soccer, kids on field, soccer ball on grass, community sports, soccer goal at sunset. Use dark overlays on images so white/gold text pops.
+- **Motion:** Scroll-triggered animations using Framer Motion, GSAP ScrollTrigger, or Intersection Observer. Elements should fade in, slide up, or scale into view as the user reaches them. Numbers should count up when they enter the viewport. Keep it smooth — no jarring transitions.
+- **Feel:** Confident, community-driven, premium but approachable. This should feel like a movement, not a memo.
+
+---
+
+## Page Flow — Section by Section
+
+### Section 1: HERO (Full viewport, dark)
+- Full-screen background: parallax soccer field image with dark overlay
+- Large centered text, fades in on load:
+  - Small gold caps label: "NIPOMO SOCCER CLUB"
+  - Main headline (white, huge): "This Is Your Home for Soccer in Nipomo."
+  - Subtitle (white, lighter weight): "Recreational. Developmental. Competitive. All under one roof."
+- Subtle scroll indicator arrow at bottom, gently bouncing
+
+---
+
+### Section 2: THE NAME (Light background, sticky text)
+- Section title (large, dark green): "Soccer Club" Doesn't Mean Club-Only
+- Sticky left-side text that stays pinned while the right side scrolls through three cards:
+
+**Card 1 — Roots**
+- Icon or small image
+- "Roots — Recreational Soccer"
+- "Saturday games, weekday practices, team assignments, ages 4–14. If your family is looking for rec soccer, Roots is your home."
+
+**Card 2 — Rise**
+- "Rise — Developmental"
+- "A bridge for players who want more training without the full commitment of a competitive team."
+
+**Card 3 — Reign**
+- "Reign — Competitive"
+- "Year-round training and tournament play for players ready for that level."
+
+After all three cards scroll through, a centered statement fades in:
+**"Your child can play Roots every season. Or grow into Rise and Reign over time. No pressure. No wrong path."**
+
+---
+
+### Section 3: SAME PEOPLE (Dark background, parallax image)
+- Parallax background: youth soccer team photo or community sports image, dark overlay
+- Text fades in as user scrolls:
+  - Gold label: "THE TEAM BEHIND IT"
+  - Large white headline: "80% of last year's AYSO board now leads Nipomo SC."
+  - Body text (white): "Many of us have been volunteering in the Nipomo soccer community for years. Last season, we invested in a TurfTank robotic field painter, added benches for upper divisions, bought new goals, upgraded coaching gear, compressed the Saturday schedule, and coordinated cross-play with neighboring regions."
+
+Then transition into...
+
+---
+
+### Section 4: THE DATA (Light background — this is the big visual section)
+- Section title: "What 126 Families Told Us"
+- Subtitle: "End-of-season survey results from the 2025 AYSO season — run by the team now leading Nipomo SC."
+
+**Animated stat cards** (count up when they scroll into view):
+| Stat | Label |
+|------|-------|
+| 8.8 / 10 | Recommendation Score |
+| 75% | Support Paid Referees |
+| 68% | Want a Spring Season |
+| 126 | Families Surveyed |
+
+**Chart 1: Season Ratings by Category**
+Horizontal bar chart. Bars animate/grow from left as they enter viewport. All bars green except "Referees" in red.
+
+| Category | Rating |
+|---|---|
+| Equipment | 4.60 |
+| Communication | 4.55 |
+| Coaching | 4.46 |
+| Food Options | 4.43 |
+| Jerseys | 4.37 |
+| Field Quality | 4.24 |
+| Photo Day | 4.00 |
+| Referees | 3.89 |
+
+Caption: "Every category scored 4.0+ — except referees, our biggest structural challenge under AYSO."
+
+**Chart 2: Paid Referee Support** (side by side with Chart 3 on desktop, stacked on mobile)
+- Yes — 75% (94) — green
+- Not Sure — 13% (17) — amber
+- No — 12% (15) — red
+- Callout: "3 out of 4 families supported this change. Under Cal South, we can now make it happen."
+
+**Chart 3: Spring Season Interest**
+- Very Likely — 42% (53) — dark green
+- Somewhat Likely — 26% (33) — light green
+- Not Likely — 23% (29) — gray
+- Unsure — 9% (11) — light gray
+- Callout: "68% expressed interest. Nipomo SC's spring developmental season is a direct answer."
+
+**Chart 4: Recommendation Score**
+Bar chart, scores 1–10 on x-axis, count on y-axis. Color coded:
+- Detractors (1–6): red — 15 total
+- Passives (7–8): amber — 24 total
+- Promoters (9–10): green — 87 total
+
+Score distribution: 1:1, 2:0, 3:2, 4:3, 5:6, 6:3, 7:5, 8:19, 9:20, 10:67
+
+Callout: "69% gave a 9 or 10. The board that earned those scores is the one running Nipomo SC."
+
+---
+
+### Section 5: MEET THE BOARD (Light background)
+- Section title: "Meet the Board"
+- Render as a grid of minimal cards (name, role, one-line background). Fade in staggered as user scrolls.
+
+| Name | Role | Background |
+|------|------|------------|
+| Adrian Dalton | President | Former AYSO Region 716 Regional Commissioner. Current Nipomo HS men's soccer head coach. |
+| Autumn Dalton | Board Member | Former AYSO board member. |
+| Johnny Page | Head of Marketing & Recruiting | Former AYSO Coach Administrator. |
+| Ashley Page | Operations & Social Media | Ran social media and operations for AYSO; continues for NSC. |
+| Justin Marsh | Operations Director | Former AYSO Assistant Regional Commissioner. |
+| Ashley Marsh | Referee Administrator | AYSO Referee Admin; continues for NSC. |
+| Andres Lopez | Treasurer | |
+| Giovanni Garcia | Club Director, Reign | Head JV coach, Pioneer Valley HS soccer. |
+| Carla [Last Name] | Registrar | |
+| Che Coho | Board Member | |
+
+Callout box below: "We're still filling board positions. If you're passionate about youth soccer, reach out at admin@nipomosc.org."
+
+---
+
+### Section 6: WHY WE LEFT AYSO (Dark background, text-heavy but well-paced)
+- Parallax background: empty soccer field or goalpost image, dark overlay
+- Gold label: "WHY THE CHANGE"
+- Large white headline: "We Didn't Leave Lightly."
+- Body text fades in in chunks as user scrolls (don't dump it all at once):
+
+**Chunk 1:** "AYSO has served communities for decades, and it served Nipomo for many years. But the challenges of operating within AYSO's structure became harder to overcome — not because of local volunteers, but because of area and national governing bodies."
+
+**Chunk 2 — "The Referee Problem":**
+"AYSO requires all referees to be unpaid volunteers while imposing demanding certification standards — 10+ hours of training for upper-level certification. We were routinely losing qualified refs to the Los Padres Soccer Referees Association and other organizations that pay. Running our region required 200+ volunteers. The demands on referees led to burnout, shortages, and games with a single official. Referees scored 3.89/5 — our lowest category."
+
+**Chunk 3 — "Postseason":**
+"Only 5 of our 40+ referees qualified to officiate postseason. Our 12U boys division was the only one that could play. Every other division was shut out — not because of the players, but because the system made it impossible."
+
+**Chunk 4 — "Support":**
+"Requirements from AYSO grew more rigid. Support didn't keep pace. After our longtime referee trainer departed, we had no local certified trainer and became dependent on neighboring regions."
+
+---
+
+### Section 7: WHAT CHANGES (Light background, feature-style layout)
+- Section title: "What Changes Under Cal South"
+- Subtitle: "Nipomo SC is now a Cal South organization, affiliated with US Youth Soccer and the U.S. Soccer Federation."
+
+Render as a feature grid (icon + headline + short description), staggered fade-in:
+
+**Feature 1:** Referees Can Be Paid
+"75% of families supported this. It transforms recruitment, retention, and accountability."
+
+**Feature 2:** More Local Control
+"Flexibility to make decisions that fit this community — scheduling, team formation, volunteer support."
+
+**Feature 3:** Complete Player Pathway
+"Roots → Rise → Reign. Every player has a place and a path to grow."
+
+**Feature 4:** Jersey Sponsorships
+"Local businesses can now sponsor jerseys — not allowed under AYSO. A new way to support the program and offset costs."
+
+**Feature 5:** More Soccer, More Often
+"68% wanted a spring season. We're launching one this year."
+
+---
+
+### Section 8: AYSO THIS YEAR? (Dark background, short and punchy)
+- Centered text on dark background, large:
+- "What about AYSO this year?"
+- Smaller: "We're not sure if there will be an AYSO season in Nipomo. That's not our decision."
+- Then, animated/emphasized: **"There is 100% going to be a Nipomo SC Roots season."**
+- "The people, the infrastructure, and the plan are in place."
+- Final line, gold text: **"You don't need to wait and wonder."**
+
+---
+
+### Section 9: FAQ (Light background, accordion)
+Expandable accordion FAQ. Clean, minimal. Click to expand/collapse.
+
+**Is Nipomo SC a non-profit?**
+Yes. Nipomo Soccer Club is a registered non-profit organization.
+
+**Will it cost more than AYSO?**
+We expect registration to be around $155 — the same as last year's AYSO season. That's despite having to purchase all new equipment from scratch, including goals, balls, and jerseys, and now paying referees.
+
+**Do I have to volunteer?**
+Not required per parent, but Nipomo SC depends heavily on community support. Our entire board and all coaches are volunteer. As we grow revenue through fundraisers, sponsorships, and hosting tournaments, we expect to add paid positions over time.
+
+**Can my child play both AYSO and Nipomo SC?**
+If your child is in Roots (recreational), yes — they can also play AYSO rec with no conflict. However, if your child plays on a Reign (competitive) team, they cannot also play in Roots or AYSO rec — Cal South does not allow competitive players to be dual-registered in recreational programs. But Reign runs year-round with consistent playing opportunities built in, so there's no gap to fill. Some clubs in the area have relied on AYSO regions to give their competitive players extra playing time. That's not how we operate, and Cal South doesn't allow it.
+
+**Can local businesses sponsor jerseys?**
+Yes — this is new. Under AYSO, jersey sponsorships weren't permitted. Email admin@nipomosc.org if interested.
+
+**What ages does Nipomo SC cover?**
+Roots (recreational) serves ages 4–14. Visit nipomosc.org for Rise and Reign age ranges.
+
+**When does the season start?**
+Visit nipomosc.org for the latest on season dates and registration.
+
+**How can I get involved?**
+We're looking for board members, coaches, referees, and volunteers. Email admin@nipomosc.org.
+
+---
+
+### Section 10: FOOTER / CTA (Dark green background)
+- Large centered: "Roots. Rise. Reign."
+- "Visit nipomosc.org to learn more"
+- "admin@nipomosc.org"
+- All links clickable
+
+---
+
+## Technical Requirements
+
+- **Framework:** React (Next.js or Vite) preferred. Plain HTML + GSAP is also fine.
+- **Scroll animations:** Use Framer Motion, GSAP ScrollTrigger, or Intersection Observer API. Scroll-triggered fade-ins, slide-ups, and count-up animations on stat numbers.
+- **Parallax:** CSS background-attachment: fixed for simple parallax, or GSAP for more controlled parallax effects on the hero, "Same People," and "Why We Left" sections.
+- **Charts:** Recharts (if React) or Chart.js. Bars should animate/grow when scrolled into view.
+- **Responsive:** Mobile-first. The sticky left/right layout in Section 2 should stack vertically on mobile. Stat cards should be 2x2 grid on mobile. Charts stack on mobile.
+- **Performance:** Lazy load images. Use will-change and transform for animations (no layout thrashing). Keep bundle small.
+- **Stock images:** Use 3-4 high-quality soccer images from Unsplash. Suggested search terms: "youth soccer field," "soccer ball grass," "kids soccer team," "soccer goal sunset." Apply dark overlays (background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(...)) for text readability.
+- **Smooth scroll:** Implement smooth scrolling between sections.
+- **FAQ:** Accordion with smooth expand/collapse animation.
+- **Links:** All email addresses should be mailto: links. All nipomosc.org references should link to https://nipomosc.org.
+
+---
+
+## Design Reference
+
+Look at these Apple pages for the scroll-driven storytelling style:
+- https://www.apple.com/airpods-pro/ — sticky sections, text reveals, parallax
+- https://www.apple.com/iphone/ — large typography, scroll-triggered animations, alternating dark/light sections
+
+We're not trying to clone Apple. We're borrowing the scroll storytelling pattern and applying it to a community soccer organization. Keep it warm and grounded, not corporate.
+
+---
+
+## Note
+There is one placeholder: "Carla [Last Name]" in the board section. Will be filled in before publishing.
