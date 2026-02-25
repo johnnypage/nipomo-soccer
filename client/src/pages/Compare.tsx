@@ -695,14 +695,14 @@ export default function Compare() {
             Nipomo SC vs. AYSO at a Glance
           </motion.h2>
 
-          <motion.div variants={fadeUp} className="overflow-x-auto -mx-5 sm:mx-0 mb-6 border-2 border-[#8B1D24]/30 rounded-lg sm:rounded-xl">
-            <div className="min-w-[600px] sm:min-w-0">
-              <table className="w-full border-collapse" data-testid="table-comparison">
-                <thead>
+          <motion.div variants={fadeUp} className="-mx-5 sm:mx-0 mb-6 border-x-2 border-b-2 border-[#8B1D24]/30 sm:rounded-xl" style={{ overflow: "visible" }}>
+            <div>
+              <table className="w-full border-collapse min-w-[540px]" data-testid="table-comparison">
+                <thead className="sticky top-[104px] z-10">
                   <tr className="bg-[#8B1D24]">
-                    <th className="text-left py-3 px-4 text-white font-heading font-bold text-sm uppercase tracking-wide rounded-tl-lg">Category</th>
-                    <th className="text-left py-3 px-4 text-white font-heading font-bold text-sm uppercase tracking-wide">Nipomo SC</th>
-                    <th className="text-left py-3 px-4 text-white font-heading font-bold text-sm uppercase tracking-wide rounded-tr-lg">AYSO</th>
+                    <th className="bg-[#8B1D24] text-left py-3 px-4 text-white font-heading font-bold text-sm uppercase tracking-wide">Category</th>
+                    <th className="bg-[#8B1D24] text-left py-3 px-4 text-white font-heading font-bold text-sm uppercase tracking-wide">Nipomo SC</th>
+                    <th className="bg-[#8B1D24] text-left py-3 px-4 text-white font-heading font-bold text-sm uppercase tracking-wide">AYSO</th>
                   </tr>
                 </thead>
                 <tbody>
