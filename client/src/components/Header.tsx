@@ -199,7 +199,7 @@ export default function Header({ onNavigate }: HeaderProps) {
       className="fixed top-16 left-0 right-0 z-40 bg-risegreen text-warmwhite text-center py-2 px-4 text-sm font-heading font-semibold hover:bg-risegreen/90 transition-colors cursor-pointer"
       data-testid="banner-spring-soccer"
     >
-      Ready for Spring Soccer? <span className="underline underline-offset-2">Click here to learn more about Rise.</span>
+      Ready for Spring Soccer? <span className="underline underline-offset-2">Registration is now open.</span>
     </Link>
     </>
   );
