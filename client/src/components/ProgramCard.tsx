@@ -113,6 +113,13 @@ export default function ProgramCard({
         >
           Learn More
         </Button>
+        {type === "rise" && (
+          <div className="mt-3 text-center" data-testid="tag-rise-registration-open">
+            <span className="inline-block px-3 py-1 bg-risegreen/20 text-risegreen text-xs font-heading font-bold uppercase tracking-wider rounded-full">
+              Registration is now open
+            </span>
+          </div>
+        )}
       </CardContent>
     </Card>
   );
