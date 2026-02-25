@@ -1,0 +1,343 @@
+# Replit Prompt: Nipomo SC Blog Article Page
+
+Build a single-page blog-style article for Nipomo Soccer Club. This page should feel like it belongs on nipomosc.org. It contains an article comparing Nipomo SC to AYSO, with embedded data visualizations built as inline charts (not images). The page should be responsive, clean, and professional.
+
+---
+
+## Brand Guidelines (pulled from nipomosc.org)
+
+**Colors:**
+- Primary (deep maroon): `#8B1D24`
+- Green (soccer green): `#2E7D32`
+- Gold (accent): `#C6A045`
+- Purple (secondary): `#4A2B73`
+- Background (warm cream): `#F3ECE2`
+- Card background: `#F8F5F1`
+- Foreground (near black): `#0D0D0D`
+- Muted text: `#555249`
+- Border: `#CFCCC9`
+- Dark sections: `#0D0D0D`
+
+**Fonts:**
+- Headings: `Montserrat` (bold/black weight). The site uses a custom font called "Integral" for the main headers, but Montserrat is the closest available Google Font.
+- Body: `Inter`
+
+**Design notes from the site:**
+- Warm cream background, not white
+- Cards with subtle borders and slightly lighter cream backgrounds
+- Dark near-black sections used for contrast/emphasis
+- Clean, modern feel with generous whitespace
+- Buttons use the maroon primary color
+
+---
+
+## Page Structure
+
+Build this as a single HTML page (or React component) with:
+1. A top navigation bar or header strip with the Nipomo SC wordmark/logo (just text "Nipomo Soccer Club" is fine)
+2. The article rendered as a blog post with a clean reading width (max ~720px centered)
+3. Data visualizations rendered inline as interactive/animated charts using a charting library (Chart.js, Recharts, or similar)
+4. A comparison table styled to match the brand
+5. Mobile responsive
+
+---
+
+## Data Visualizations to Build (4 charts)
+
+### Chart 1: End-of-Season Category Ratings
+**Type:** Horizontal bar chart
+**Placement:** After the "Community Feedback on the 2025 Season" paragraph
+**Data:**
+- Equipment: 4.61
+- Communication: 4.53
+- Coach Experience: 4.44
+- Food Options: 4.39
+- Jerseys & Uniforms: 4.37
+- Field Space & Quality: 4.21
+- Photo Day: 3.99
+- Referee Experience: 3.86
+
+**Design notes:**
+- All bars use the green (`#2E7D32`) except "Referee Experience" which uses the maroon primary (`#8B1D24`) to visually call it out as the problem area
+- Score labels at the end of each bar
+- Footer text: "142 families surveyed | 2025 End-of-Season Survey"
+- Chart background should be the card color or transparent on the cream background
+
+### Chart 2: Overall Family Satisfaction
+**Type:** Stat card / big number display (not a traditional chart)
+**Placement:** Paired with Chart 1, either above or below it
+**Data:**
+- Headline: 83% of families rated their experience 8 or higher out of 10
+- Breakdown: 53% gave a 10 (75 families), 15% gave a 9 (21 families), 15% gave an 8 (22 families)
+
+**Design notes:**
+- Large "83%" as the hero number
+- Three smaller stat boxes below showing the 10/9/8 breakdown
+- Use green for the accent numbers
+- Footer: "142 families surveyed | 2025 End-of-Season Survey"
+
+### Chart 3: Paid Referee Support
+**Type:** Donut chart
+**Placement:** In the "Referees can be paid" section under "What's Different Under Nipomo SC"
+**Data:**
+- Yes, support paid referees: 74% (105 families)
+- Not sure / need details: 14% (20 families)
+- No, keep costs the same: 12% (17 families)
+
+**Design notes:**
+- "Yes" segment uses green (`#2E7D32`)
+- "Not sure" segment uses muted/gray
+- "No" segment uses maroon (`#8B1D24`)
+- Large "74%" in the center of the donut with "support" underneath
+- Title: "Would you support a small increase for paid, trained referees?"
+- Footer: "142 families surveyed | 2025 End-of-Season Survey"
+
+### Chart 4: Spring Season Interest
+**Type:** Donut chart
+**Placement:** In the "More soccer, more often" section
+**Data:**
+- Very likely: 42% (59 families)
+- Somewhat likely: 29% (41 families)
+- Unsure: 8% (11 families)
+- Not likely: 22% (31 families)
+
+**Design notes:**
+- "Very likely" uses green (`#2E7D32`)
+- "Somewhat likely" uses a lighter green
+- "Unsure" and "Not likely" use grays
+- Large "70%" in the center with "interested" underneath
+- Title: "How likely would your child be to participate in a spring season?"
+- Footer: "142 families surveyed | 2025 End-of-Season Survey"
+
+---
+
+## Full Article Content
+
+Use the exact text below. Render markdown-style formatting (bold, headers, etc.) as proper HTML. Do not use em dashes anywhere in the text.
+
+```
+# Nipomo SC Roots vs AYSO Nipomo: What's the Difference?
+
+The goal of this article is to break down what Nipomo SC is, how it's different from AYSO, and why we made this change. But before we get into any of that, we want to acknowledge something important.
+
+AYSO has been part of Nipomo for over 20 years. Many of us on this board grew up playing in it, put our own kids through it, coached in it, and eventually joined the board to try to make it better.
+
+We didn't start Nipomo SC because we wanted to walk away from that. We started it because we spent years trying to fix the things that weren't working, and we hit a wall.
+
+We got involved on the board. We worked with and learned from previous AYSO leadership, with area leadership, and with other regions to find solutions within AYSO's structure.
+
+Some of the problems got better. But the ones that didn't, no matter who is running things locally, are structural to how AYSO operates.
+
+That said, Nipomo SC isn't starting from scratch. We're building on the values and the foundation that previous volunteers and community members laid over the years. We've learned from the people who came before us, and we hope to involve the next generation of soccer leaders in this community as we grow.
+
+This article is our attempt to explain where we're coming from, why we made this decision, and what we have planned.
+
+---
+
+## The Same People, a Local Structure
+
+Nipomo SC didn't come out of nowhere. We looked into making improvements within AYSO, and when it became clear that the area and national structure wouldn't allow us to build what this community deserved, we built something well suited for Nipomo. **~75% of the board members running the day to day operations of the 2025 AYSO soccer season are now running Nipomo Soccer Club**, and many of us have been volunteering in the Nipomo soccer community for several years.
+
+Last season, this group invested in making the game-day experience better for players, families, and volunteers. That included several improvements that dramatically reduced the volunteer hours needed to run the season, adding benches to every sideline in the 10U, 12U, and 14U divisions, buying new goals, upgrading coaching gear, compressing the Saturday schedule so families and volunteers weren't stuck at the fields all day, and expanding cross-play with neighboring regions while hosting all games at NHS.
+
+### Community Feedback on the 2025 Season
+
+In our end-of-season survey of 142 families, the results speak for themselves. Every category we measured scored well, with one clear exception: referees. That wasn't a surprise to us, and it's the single biggest reason we made this change. Overall, 83% of families rated their experience an 8 or higher out of 10. The community showed up, the volunteers showed up, and families noticed.
+
+The team that executed the 2025 season is the team that's starting Nipomo Soccer Club.
+
+[INSERT CHART 1: Category Ratings HERE]
+
+[INSERT CHART 2: Overall Satisfaction HERE]
+
+That commitment hasn't gone anywhere. It's operating under a local structure better suited to our community's needs, not requirements set by a national governing body.
+
+---
+
+## Why We Left AYSO
+
+This wasn't a decision made lightly. AYSO has served communities across the country for decades, and it served Nipomo for many years. Many of us participated within AYSO as players, coaches, board members, referees, and volunteers for years. But the challenges of operating within AYSO's structure became harder to overcome. Not because of local volunteers, but because of the national governing body.
+
+Before we get into the specifics, it helps to understand how AYSO is structured. AYSO is a national organization. What most families in Nipomo know as "AYSO soccer" is Region 716, run entirely by local volunteers.
+
+But those volunteers operate under rules, certification requirements, and policies set at the area and national level. The local board doesn't get to decide how referees are certified, what's required for All-Star play, or how sponsorship revenue is handled. That distinction matters, because the challenges we ran into weren't about the people running things here. They were about the system those people were required to work within.
+
+There were three main challenges:
+
+### Referees
+
+AYSO requires all referees to be unpaid volunteers while imposing demanding certification standards.
+
+A basic Regional certification takes a full day. Intermediate requires a full-day course (10 to 11 hours) plus 25 games of experience. Advanced requires even more.
+
+And that's just the referee coursework. Before an adult volunteer can even step on the field, they also need to complete annual registration, a background check, state-mandated fingerprinting under California AB 506, Safe Haven training, SafeSport certification, CDC concussion awareness training, and sudden cardiac arrest training.
+
+**These are all good standards, and Nipomo SC upholds them.** But asking someone to meet all of those requirements and then officiate every Saturday without compensation is a lot.
+
+It's just not sustainable when the people doing the work aren't paid for it.
+
+On top of that, the AYSO referee pathway creates a direct pipeline out. Volunteers invest heavily in training through AYSO, then cross-certify with USSF so they can work paid matches in other leagues. We lost many of our best referees to organizations that actually compensate their officials.
+
+Running the Nipomo AYSO region required over 200 volunteers across coaching, board positions, and officiating. There are real benefits to a volunteer-driven model, and we're proud of what this community stepped up to do. But the demands on referees in particular led to burnout. Referee shortages were our biggest challenge last season. Games ran with a single official. AYSO's referee guidance is built around the traditional one-center, two-assistant system, and region guidelines describe full three-referee crews as the standard for matches. When we were short on officials, we weren't allowed to adopt pragmatic solutions like running dual-center crews to mentor new referees; anything outside the official model was treated as non-compliant or only acceptable as a scrimmage.
+
+In past seasons, the short-term fix had been to spread games out across more time slots and ask the same small pool of referees to cover more games. It only deepened the burnout over time, drove more referees out, and left us in a worse position year after year.
+
+The results from our survey tell the story.
+
+### All-Star Postseason
+
+AYSO's certification requirements for All-Star play hit our community hard. Of our 25+ referees in the region, only 5 qualified to officiate at the All-Star level. Kids who deserved a chance to play all-stars couldn't, because we didn't have enough certified officials to staff their divisions. Only our 12U boys division qualified based on the referees available. Every other division was left out. Not because of any competing teams or clubs, but because the AYSO system made it nearly impossible to meet the requirements.
+
+### Inadequate National Support
+
+AYSO does an excellent job creating rules, policies, and training requirements at the national level. There are manuals for everything: referee upgrades, volunteer compliance, Safe Haven, SafeSport, All-Star eligibility, and more. But when you read AYSO's own support pages, they make it clear that 'many issues can only be solved by your local AYSO' and that volunteers should go first to their Regional, Area, or Section leaders rather than expecting hands-on help from the national office.
+
+In practice, that means the organization sets a thick stack of standards and restrictions, then expects small, volunteer-run regions to figure out how to implement them, even when those policies make it harder to do what is obviously better for local players and families. The gap we ran into in Nipomo was the lack of practical support and flexibility to adapt those rules to what our community actually needed.
+
+### We're Not the Only Ones
+
+Within a short drive of Nipomo, several towns now operate their primary programs through independent, non-AYSO leagues. Estero Bay Youth Soccer League serves Morro Bay, Los Osos, Cambria, Templeton, and Atascadero. Atascadero Youth Soccer Association runs as its own independent organization. Orcutt United Soccer League does the same for Orcutt and surrounding communities. The point is that there are several individual communities choosing the structure that works best for their families and volunteers. Nipomo is doing the same.
+
+---
+
+## Meet the Board
+
+- **Adrian Dalton,** *President.* Former AYSO Region 716 Regional Commissioner. Current Nipomo High School men's soccer head coach.
+- **Autumn Dalton,** *Board Member.* Former AYSO board member.
+- **Johnny Page,** *Head of Marketing & Recruiting.* Former AYSO Coach Administrator.
+- **Ashley Page,** *Operations & Social Media.* Ran social media and operations for AYSO; continues in that role for NSC.
+- **Justin Marsh,** *Operations Director.* Former AYSO Assistant Regional Commissioner.
+- **Ashley Marsh,** *Referee Administrator.* Served as AYSO Referee Administrator; continues in that role for NSC.
+- **Andres Lopez,** *Treasurer.*
+- **Giovanni Garcia,** *Club Director, Reign.* Head JV coach, Pioneer Valley High School soccer.
+- **Carla Alonso,** *Registrar.*
+- **Che Coho,** *Board Member.*
+
+We're still filling additional board positions. If you're passionate about youth soccer and want to help build something meaningful for this community, reach out at **admin@nipomosc.org**.
+
+---
+
+## What's Different Under Nipomo SC
+
+Nipomo SC meets all standards set forth by California and the U.S. Soccer Federation, so your child still has the same insurance coverage, background checks, and organizational standards you'd expect. The difference is that we now have the flexibility to do what's best for this community without the AYSO policies that held us back.
+
+Here's what that means in practice:
+
+### Referees can be paid
+
+This won't solve every challenge overnight, but it fundamentally changes the equation. It gives us a real incentive to recruit new officials, helps us retain the ones we train instead of losing them to organizations that already pay, and allows us to move on from referees who aren't meeting our standards. In a fully volunteer model, you can't hold people accountable the same way. When we surveyed families, 74% said they'd support a small registration increase for paid, trained referees. We can now deliver on that.
+
+[INSERT CHART 3: Paid Referee Support HERE]
+
+### More local control
+
+As an independent organization, we have the flexibility to make decisions that fit this community, from scheduling to team formation, to tournaments and cross-play, to how we train and support volunteers.
+
+### Balanced teams in Roots
+
+One of the most common concerns from last season, especially in 12U Boys, was the competitive gap between teams, often driven by the presence of club-level players in the recreational divisions. Under Nipomo SC, that changes in two ways.
+
+First, players registered on a competitive team (Reign or any outside club) are not eligible to play in Roots. Recreational soccer should feel recreational.
+
+Second, we'll be collecting detailed coach assessment data on players and using that data to balance Roots teams fairly across every division. All teams will be formed by someone who has no ties to a player in that division, removing any conflict of interest from the process. The goal is simple: every team should have a real chance to compete, and every player should have a great experience.
+
+### A complete player pathway
+
+We have 3 programs. Roots, Rise, and Reign give every player in Nipomo a place to play and a path to grow, all within one organization. Players won't have to leave Nipomo to play the next level of competitive soccer.
+
+### Jersey sponsorships
+
+Under AYSO, jersey sponsorships were sold at a national level with none of those funds benefiting local teams. Under Nipomo SC, local businesses can support local teams. This opens up a new way for the community to support the program and for local businesses to get involved, while helping offset costs for families.
+
+### More soccer, more often
+
+In the same survey, 70% of families said they'd be interested in a spring season. Under AYSO, that wasn't something we could offer. Under Nipomo SC, it is, and we're launching a spring developmental season this year. More details at nipomosc.org.
+
+[INSERT CHART 4: Spring Season Interest HERE]
+
+---
+
+## Nipomo SC vs. AYSO at a Glance
+
+[INSERT COMPARISON TABLE - see table data below]
+
+---
+
+## What About AYSO This Year?
+
+We'll be straightforward: **we're not sure if there will be an AYSO season in Nipomo this year.** That's not our decision to make.
+
+What we can tell you is this: **there is 100% going to be a Nipomo SC Roots season.** The people, the infrastructure, and the plan are in place to deliver a great season for your family.
+
+You don't need to wait and wonder. Nipomo SC is here.
+
+---
+
+## Frequently Asked Questions
+
+**Is Nipomo SC a non-profit?**
+Yes. Nipomo Soccer Club is a registered non-profit organization.
+
+**Does "soccer club" mean it's only for competitive players?**
+Not at all. The word "club" refers to the organization, not the level of play. Nipomo SC is the umbrella for all soccer in Nipomo. **Roots** is recreational soccer: Saturday games, weekday practices, team assignments, ages 4 to 14. **Rise** is a developmental bridge for players who want more training without the full commitment of a competitive team. **Reign** is competitive, year-round training and tournament play. Your child can play Roots every season and have a great experience, or they can grow into Rise or Reign over time. No pressure, no wrong path.
+
+**Will Roots cost more than AYSO?**
+We expect registration to be around $155, the same as last year's AYSO season. That's despite Nipomo SC having to purchase all new equipment from scratch, including goals, balls, and jerseys, and now paying referees. We've worked hard to keep costs the same for families.
+
+**Do I have to volunteer?**
+Volunteering isn't mandatory per parent, but Nipomo SC still depends heavily on community support. Our entire board is volunteer. All coaches are volunteer. As we grow revenue through fundraisers, sponsorships, and hosting club tournaments, we expect to add paid positions over time to reduce the volunteer burden. Right now, every helping hand makes a real difference.
+
+**How will teams be balanced?**
+Two ways. First, players on competitive teams, whether Reign or any outside club, are not eligible to play in Roots. Recreational soccer should feel recreational. Second, we'll be collecting detailed coach assessment data on all players and using that data to balance teams fairly across every division. All teams will be formed by someone who has no ties to a player in that division, removing any conflict of interest from the process. No more lopsided matchups.
+
+**Can local businesses sponsor jerseys?**
+Yes, this is new. Under AYSO, jersey sponsorship funds didn't benefit local teams. Under Nipomo SC, local businesses can sponsor jerseys and support the program directly. If you're a business owner interested in sponsoring, email **admin@nipomosc.org**.
+
+**What ages does Nipomo SC cover?**
+Roots (recreational) serves ages 4 to 14. Visit nipomosc.org for details on Rise and Reign age ranges.
+
+**When does the season start?**
+Visit nipomosc.org for the latest on season dates and registration.
+
+**How can I get involved?**
+We're actively looking for board members, coaches, referees, and volunteers. Email **admin@nipomosc.org** to learn more.
+
+---
+
+Visit **nipomosc.org** to learn more, or email **admin@nipomosc.org** with questions.
+
+**Roots. Rise. Reign.**
+```
+
+---
+
+## Comparison Table Data
+
+Render this as a styled HTML table with alternating row backgrounds. Use the card background for the table and the maroon primary for the header row.
+
+| Category | Nipomo SC | AYSO |
+|---|---|---|
+| Referees | Paid, trained referees with better coverage, accountability, and retention | Volunteer-only with no compensation allowed, even with demanding certification requirements |
+| Team Balancing | Roots is exclusively for non-club players; coach assessment data used to balance all Roots teams; teams formed by someone with no ties to players in that division | No restrictions on club players in rec divisions; team balancing varies by region |
+| Player Pathway | Roots (rec) > Rise (developmental) > Reign (competitive), all under one organization | Recreational focus with limited competitive pathways (All-Stars, postseason) |
+| Rec Postseason | Roots teams that qualify move on to a regional tournament | For teams to advance, they must have 3 volunteer referees who have volunteered 20+ hours. Most teams that advance are the ones that meet referee requirements, not necessarily the ones that played the best |
+| Spring Season | Yes. Launching a spring developmental season this year | Not available under our previous AYSO structure |
+| Jersey Sponsorships | Local business sponsorships support local teams, helping offset costs | Sponsorships sold at national level with no funds benefiting local teams |
+| Local Control | Independent organization with scheduling, team formation, and policies set by the local board | Subject to area and national AYSO governance requirements |
+| Home Field | Nipomo High School with active permits in place | Nipomo High School |
+| Registration Cost | ~$155, same as last year | ~$155 last season |
+| Coaching | Volunteer coaches with local training and support | Volunteer coaches with AYSO training requirements |
+
+---
+
+## Technical Requirements
+
+- Use a charting library (Chart.js, Recharts, or D3) for the 4 data visualizations
+- Charts should animate in on scroll if possible
+- Page should be mobile responsive
+- Use Google Fonts: Montserrat for headings, Inter for body text
+- No em dashes anywhere in any text
+- FAQ section should use an accordion/collapsible pattern
+- Add smooth scroll behavior for any anchor links
+- The comparison table should be horizontally scrollable on mobile
+- Footer with "Nipomo Soccer Club" and links to nipomosc.org and admin@nipomosc.org

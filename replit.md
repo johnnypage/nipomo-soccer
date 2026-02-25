@@ -114,13 +114,15 @@ Preferred communication style: Simple, everyday language.
 - **Rise** (`/rise`) - RISE Spring Development League page with hero, program details, age divisions, pricing tiers, FAQ accordion, pathway visualization, and sticky mobile CTA. Uses custom green (#2E7D32) and amber (#F9A825) color scheme.
 - **Reign** (`/reign`) - Detailed page for the Reign competitive program with teams organized by birth year ranges
 - **Tournament** (`/tournament`) - Hidden; redirects to home. Reign Winter Classic tournament page with event details, team interest form, and contact information
-- **Nipomo SC vs. AYSO** (`/about/compare`) - Apple-style scroll-driven comparison page explaining the transition from AYSO to Nipomo SC. Features parallax backgrounds, scroll-triggered animations (framer-motion), animated stat cards with count-up effects, recharts bar charts (season ratings, NPS distribution), percent bar visualizations, board member grid, FAQ accordion, and alternating dark/light sections. Uses dark green (#1a472a) and gold (#c8a951) color scheme. Accessible via About dropdown in navigation.
+- **Nipomo SC vs. AYSO** (`/about/compare`) - Blog-style article page comparing Nipomo SC to AYSO. Clean reading layout (max 720px), warm cream background (#F3ECE2), 4 inline data visualizations (recharts): horizontal bar chart for category ratings, satisfaction stat card, two donut charts for referee support and spring interest. Board member cards, styled comparison table with alternating rows, FAQ accordion. Currently NOT routed or linked in navigation (hidden until ready). File exists at `client/src/pages/Compare.tsx`.
 
 ## Recent Changes
 
-- Added "Nipomo SC vs. AYSO" comparison page with 10 scroll-driven sections, animated charts, and parallax effects
-- Updated Header navigation: converted "About" to a dropdown menu with "About Us" and "Nipomo SC vs. AYSO" links
-- Installed framer-motion and recharts packages
+- Rebuilt Nipomo SC vs. AYSO page as a blog-style article with inline recharts data visualizations (bar chart, stat card, 2 donut charts)
+- Removed /about/compare route and About dropdown from navigation (page hidden until ready)
+- Added sitewide green banner below nav: "Ready for Spring Soccer? Registration is now open." linking to /rise
+- Added "Register Today" tag next to Rise title in program card, plus "Registration Now Open" banner on Rise card image
+- Unified photo treatments across Rise page (overlays on hero, What is RISE, and scrimmage photos)
 - Built RISE program page with all sections: hero, what is RISE, who is it for, how it works, age divisions, what's included, registration/pricing, why RISE is different, pathway visualization, FAQ accordion, and final CTA
 - Added sticky mobile "Register Now" CTA bar on RISE page
 - Added risegreen and amber color tokens to Tailwind config
