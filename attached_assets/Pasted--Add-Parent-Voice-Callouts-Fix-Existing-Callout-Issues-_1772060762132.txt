@@ -1,0 +1,113 @@
+# Add Parent Voice Callouts + Fix Existing Callout Issues
+
+Two things to do on `/about/compare`:
+
+1. Add a new **Parent Voice** callout type with real survey quotes
+2. Fix a couple of existing callout issues
+
+---
+
+## Part 1: New Callout Type — Parent Voice
+
+These are real quotes from the end-of-season survey. They need their own visual treatment that's clearly distinct from the existing pull quotes (green left border, italic).
+
+### Design spec
+
+- **Opening quotation mark**: Large decorative `"` in green (#2E7D32), roughly 36–48px, positioned top-left of the quote as a visual accent — not inline with the text
+- **Quote text**: Regular weight (not italic — that's for board voice pull quotes), slightly larger than body text (~18px), dark foreground color
+- **Attribution**: Below the quote, smaller text, muted gray: `— Nipomo soccer parent, end-of-season survey`
+- **Background**: White or very slightly warm white (`#FDFCFA` or similar) — NOT the cream card background used by pull quotes. This subtle difference separates the two quote types visually.
+- **Border**: None. The decorative quotation mark does the work. No left border (that's the pull quote treatment).
+- **Spacing**: Generous padding inside, comfortable margins above and below
+
+The goal: when someone scrolls past a pull quote and then a parent quote, they should immediately feel like different voices are speaking — the board explaining, and then a parent confirming.
+
+---
+
+### Placement 1: Referee section
+
+**Location:** In the Referees subsection, after the paragraph about burnout and spreading games across more time slots ("It only deepened the burnout over time..."). Place it right before or after the "The results from our survey tell the story." line.
+
+**Quote:**
+> To pay $161 for one child and to not have refs for MOST games was really disappointing. I saw other coaches we played against frustrated with this issue.
+
+**Attribution:** — Nipomo soccer parent, end-of-season survey
+
+---
+
+### Placement 2: After the category ratings chart
+
+**Location:** Right after the End-of-Season Category Ratings bar chart, before the paragraph about running 200+ volunteers.
+
+**Quote:**
+> Refs were the biggest problem this year.
+
+**Attribution:** — Nipomo soccer parent, end-of-season survey
+
+This is short and blunt. That's the point. One line, gut punch, directly validates the red bar they just saw.
+
+---
+
+### Placement 3: Paid referees section
+
+**Location:** In the "Referees can be paid" subsection under "What's Different," after the paragraph ending "We can now deliver on that." and before the paid refs donut chart.
+
+**Quote:**
+> The refs deserve compensation. I think a managed increase is well worth it both because then the refs get better training, and volunteers and board members aren't so pressed for time.
+
+**Attribution:** — Nipomo soccer parent, end-of-season survey
+
+---
+
+### Placement 4: Balanced teams section
+
+**Location:** In the "Balanced teams in Roots" subsection, after the first paragraph about the competitive gap in 12U Boys. Place it before the paragraph starting "First, players registered on a competitive team..."
+
+**Quote:**
+> It felt like several teams had club "ringers" who you never knew if they would show up. When they didn't on game days, we were asked to sit some of our kids to even the teams, so we lost playing time.
+
+**Attribution:** — Nipomo soccer parent, end-of-season survey
+
+---
+
+### Placement 5: The Same People section
+
+**Location:** In "The Same People, a Local Structure" section, after the paragraph about investments made last season (benches, goals, compressed schedule, etc.). This is the credibility section — a parent confirming the board did good work.
+
+**Quote:**
+> The parents shared that this was a great season and they really appreciated the new board members and the changes implemented.
+
+**Attribution:** — Nipomo soccer parent, end-of-season survey
+
+---
+
+## Part 2: Fix Existing Callout Issues
+
+### Fix 1: AYSO pull quote — make it visually distinct
+
+The pull quote that reads *"Many issues can only be solved by your local AYSO" — from AYSO's own support pages* currently looks identical to the other two pull quotes (green left border, italic).
+
+This one should look different because it's not the board's voice — it's AYSO's own words being used as evidence. Change its styling:
+
+- **Left border color**: Change from green to a muted gray or the maroon (#8B1D24) — this is the opponent's words, not ours
+- **Add a subtle background tint** that's slightly different from the other pull quotes (a very light gray, or a very light warm tone)
+- Keep the italic, but this visual distinction separates "our voice" pull quotes from "their words" pull quotes
+
+### Fix 2: "200+ / Referees" stat callout
+
+The current two-column stat callout has "200+" on the left and "Referees" on the right. The problem is one side is a number and the other is just a word — it reads unbalanced compared to the 25/5/1 block which works because all three columns are numbers.
+
+Replace with a single centered stat:
+
+**200+** volunteers needed to run the season — and referees were the hardest to find
+
+Style it as a single-line stat with the number big and bold, and the descriptor text below it in one line. No divider, no two-column layout.
+
+---
+
+## Design Notes
+
+- Parent voice callouts should animate in on scroll the same way other callouts do
+- Don't overdo it — 5 parent quotes is the max. The article shouldn't feel like a testimonials page. These are surgical placements that validate a specific argument being made in the surrounding text.
+- On mobile, the decorative quotation mark should scale down but still be visible
+- Make sure no quote text is duplicated in the body paragraphs around it

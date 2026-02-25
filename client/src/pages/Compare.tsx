@@ -339,6 +339,18 @@ function DonutChart({
   );
 }
 
+function ParentVoice({ quote, testId }: { quote: string; testId: string }) {
+  return (
+    <div className="bg-[#FDFCFA] rounded-xl px-6 sm:px-8 py-6 my-8 relative" data-testid={testId}>
+      <span className="text-[#2E7D32] text-5xl sm:text-6xl font-serif leading-none absolute top-4 left-5 sm:left-7 select-none" aria-hidden="true">&ldquo;</span>
+      <div className="pt-8 sm:pt-6 sm:pl-8">
+        <p className="text-[#0D0D0D] text-lg leading-relaxed">{quote}</p>
+        <p className="text-[#555249]/70 text-sm mt-3 italic">— Nipomo soccer parent, end-of-season survey</p>
+      </div>
+    </div>
+  );
+}
+
 export default function Compare() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -413,6 +425,13 @@ export default function Compare() {
             Many of us have been volunteering in the Nipomo soccer community for several years. Last season, this group invested in making the game-day experience better for players, families, and volunteers. That included several improvements that dramatically reduced the volunteer hours needed to run the season, adding benches to every sideline in the 10U, 12U, and 14U divisions, buying new goals, upgrading coaching gear, compressing the Saturday schedule so families and volunteers weren't stuck at the fields all day, and expanding cross-play with neighboring regions while maintaining a competitive local schedule.
           </motion.p>
 
+          <motion.div variants={fadeUp}>
+            <ParentVoice
+              quote="The parents shared that this was a great season and they really appreciated the new board members and the changes implemented."
+              testId="parent-voice-same-people"
+            />
+          </motion.div>
+
           <motion.h3 variants={fadeUp} className="font-heading font-bold text-xl text-[#0D0D0D] mb-4 mt-10">
             Community Feedback on the 2025 Season
           </motion.h3>
@@ -486,20 +505,20 @@ export default function Compare() {
             On top of that, the AYSO referee pathway creates a direct pipeline out. Volunteers invest heavily in training through AYSO, then cross-certify with USSF so they can work paid matches in other leagues. We lost many of our best referees to organizations that actually compensate their officials.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="bg-[#0D0D0D] rounded-xl px-6 py-6 my-8 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 text-center" data-testid="callout-stat-volunteers">
-            <div>
-              <span className="text-3xl sm:text-4xl font-heading font-bold text-[#F3ECE2]">200+</span>
-              <p className="text-[#F3ECE2]/80 text-sm mt-1">volunteers needed to run the season</p>
-            </div>
-            <div className="hidden sm:block w-px h-12 bg-[#F3ECE2]/20" />
-            <div>
-              <span className="text-3xl sm:text-4xl font-heading font-bold text-[#F3ECE2]">Referees</span>
-              <p className="text-[#F3ECE2]/80 text-sm mt-1">were the hardest to recruit and retain</p>
-            </div>
+          <motion.div variants={fadeUp} className="bg-[#0D0D0D] rounded-xl px-6 py-6 my-8 text-center" data-testid="callout-stat-volunteers">
+            <span className="text-4xl sm:text-5xl font-heading font-bold text-[#F3ECE2]">200+</span>
+            <p className="text-[#F3ECE2]/80 text-sm sm:text-base mt-2">volunteers needed to run the season — and referees were the hardest to find</p>
           </motion.div>
 
           <motion.div variants={fadeUp}>
             <AnimatedBarChart />
+          </motion.div>
+
+          <motion.div variants={fadeUp}>
+            <ParentVoice
+              quote="Refs were the biggest problem this year."
+              testId="parent-voice-refs-biggest-problem"
+            />
           </motion.div>
 
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-6">
@@ -510,9 +529,16 @@ export default function Compare() {
             In past seasons, the short-term fix had been to spread games out across more time slots and ask the same small pool of referees to cover more games. It only deepened the burnout over time, drove more referees out, and left us in a worse position year after year.
           </motion.p>
 
-          <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-8">
+          <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-6">
             The results from our survey tell the story.
           </motion.p>
+
+          <motion.div variants={fadeUp}>
+            <ParentVoice
+              quote="To pay $161 for one child and to not have refs for MOST games was really disappointing. I saw other coaches we played against frustrated with this issue."
+              testId="parent-voice-referee-burnout"
+            />
+          </motion.div>
 
           <motion.h3 variants={fadeUp} className="font-heading font-bold text-xl text-[#0D0D0D] mb-4">
             All-Star Postseason
@@ -551,7 +577,7 @@ export default function Compare() {
             AYSO does an excellent job creating rules, policies, and training requirements at the national level. There are manuals for everything: referee upgrades, volunteer compliance, Safe Haven, SafeSport, All-Star eligibility, and more. But when you read AYSO's own support pages, the message is clear: volunteers should go first to their Regional, Area, or Section leaders rather than expecting hands-on help from the national office.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="bg-[#F8F5F1] border-l-4 border-[#2E7D32] rounded-r-lg px-6 py-5 my-8" data-testid="callout-pull-quote-ayso-support">
+          <motion.div variants={fadeUp} className="bg-[#F0EDEA] border-l-4 border-[#8B1D24] rounded-r-lg px-6 py-5 my-8" data-testid="callout-pull-quote-ayso-support">
             <p className="text-[#0D0D0D] text-lg sm:text-xl italic leading-relaxed">
               "Many issues can only be solved by your local AYSO" - from AYSO's own support pages
             </p>
@@ -619,6 +645,14 @@ export default function Compare() {
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-4">
             This won't solve every challenge overnight, but it fundamentally changes the equation. It gives us a real incentive to recruit new officials, helps us retain the ones we train instead of losing them to organizations that already pay, and allows us to move on from referees who aren't meeting our standards. In a fully volunteer model, you can't hold people accountable the same way. When we surveyed families, 74% said they'd support a small registration increase for paid, trained referees. We can now deliver on that.
           </motion.p>
+
+          <motion.div variants={fadeUp}>
+            <ParentVoice
+              quote="The refs deserve compensation. I think a managed increase is well worth it both because then the refs get better training, and volunteers and board members aren't so pressed for time."
+              testId="parent-voice-paid-refs"
+            />
+          </motion.div>
+
           <motion.div variants={fadeUp}>
             <DonutChart
               data={refereeDonut}
@@ -642,6 +676,14 @@ export default function Compare() {
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-4">
             One of the most common concerns from last season, especially in 12U Boys, was the competitive gap between teams, often driven by the presence of club-level players in the recreational divisions. Under Nipomo SC, that changes in two ways.
           </motion.p>
+
+          <motion.div variants={fadeUp}>
+            <ParentVoice
+              quote="It felt like several teams had club &quot;ringers&quot; who you never knew if they would show up. When they didn't on game days, we were asked to sit some of our kids to even the teams, so we lost playing time."
+              testId="parent-voice-balanced-teams"
+            />
+          </motion.div>
+
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-4">
             First, players registered on a competitive team (Reign or any outside club) are not eligible to play in Roots. Recreational soccer should feel recreational.
           </motion.p>
