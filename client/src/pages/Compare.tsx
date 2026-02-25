@@ -9,6 +9,7 @@ import {
   Tooltip,
   ResponsiveContainer,
   Cell,
+  LabelList,
 } from "recharts";
 import {
   Accordion,
@@ -17,15 +18,22 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Header from "@/components/Header";
-import { ChevronDown, Shield, DollarSign, Users, Shirt, Calendar, TreePine, TrendingUp, Award } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ChevronDown, DollarSign, Shield, TrendingUp, Shirt, Calendar } from "lucide-react";
+import heroImage from "@assets/generated_images/youth_soccer_hero_image.png";
+import rootsLogo from "@assets/NSC_Roots_1764979848772.png";
+import riseLogo from "@assets/NSC_Rise_1764979848772.png";
+import reignLogo from "@assets/NSC_Reign_1764979848771.png";
 
 function useCountUp(end: number, duration: number = 2000, decimals: number = 0) {
   const [count, setCount] = useState(0);
+  const [done, setDone] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const inViewRef = useRef(null);
+  const isInView = useInView(inViewRef, { once: true, amount: 0.3 });
 
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView || done) return;
     let startTime: number;
     let animationFrame: number;
 
@@ -36,50 +44,47 @@ function useCountUp(end: number, duration: number = 2000, decimals: number = 0) 
       setCount(parseFloat((eased * end).toFixed(decimals)));
       if (progress < 1) {
         animationFrame = requestAnimationFrame(animate);
+      } else {
+        setCount(parseFloat(end.toFixed(decimals)));
+        setDone(true);
       }
     };
 
     animationFrame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrame);
-  }, [isInView, end, duration, decimals]);
+  }, [isInView, end, duration, decimals, done]);
 
-  return { count, ref };
+  return { count, ref, inViewRef };
 }
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
 const staggerContainer = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.15 } },
+  visible: { transition: { staggerChildren: 0.12 } },
 };
 
 const programs = [
   {
     name: "Roots",
     type: "Recreational Soccer",
-    description:
-      "Saturday games, weekday practices, team assignments, ages 4 to 14. If your family is looking for rec soccer, Roots is your home.",
-    icon: TreePine,
-    color: "#2E7D32",
+    description: "Saturday games, weekday practices, team assignments, ages 4 to 14. If your family is looking for rec soccer, Roots is your home.",
+    logo: rootsLogo,
   },
   {
     name: "Rise",
     type: "Developmental",
-    description:
-      "A bridge for players who want more training without the full commitment of a competitive team.",
-    icon: TrendingUp,
-    color: "#c8a951",
+    description: "A bridge for players who want more training without the full commitment of a competitive team.",
+    logo: riseLogo,
   },
   {
     name: "Reign",
     type: "Competitive",
-    description:
-      "Year-round training and tournament play for players ready for that level.",
-    icon: Award,
-    color: "#8B1D24",
+    description: "Year-round training and tournament play for players ready for that level.",
+    logo: reignLogo,
   },
 ];
 
@@ -90,10 +95,10 @@ const boardMembers = [
   { name: "Ashley Page", role: "Operations & Social Media", bg: "Ran social media and operations for AYSO; continues for NSC." },
   { name: "Justin Marsh", role: "Operations Director", bg: "Former AYSO Assistant Regional Commissioner." },
   { name: "Ashley Marsh", role: "Referee Administrator", bg: "AYSO Referee Admin; continues for NSC." },
-  { name: "Andres Lopez", role: "Treasurer", bg: "" },
+  { name: "Andres Lopez", role: "Treasurer", bg: "Nipomo soccer community volunteer." },
   { name: "Giovanni Garcia", role: "Club Director, Reign", bg: "Head JV coach, Pioneer Valley HS soccer." },
-  { name: "Carla", role: "Registrar", bg: "" },
-  { name: "Che Coho", role: "Board Member", bg: "" },
+  { name: "Carla", role: "Registrar", bg: "Nipomo soccer community volunteer." },
+  { name: "Che Coho", role: "Board Member", bg: "Nipomo soccer community volunteer." },
 ];
 
 const seasonRatings = [
@@ -167,7 +172,7 @@ const faqItems = [
   },
   {
     q: "Can local businesses sponsor jerseys?",
-    a: 'Yes. This is new. Under AYSO, jersey sponsorships weren\'t permitted. Email admin@nipomosc.org if interested.',
+    a: "Yes. This is new. Under AYSO, jersey sponsorships weren't permitted. Email admin@nipomosc.org if interested.",
   },
   {
     q: "What ages does Nipomo SC cover?",
@@ -184,37 +189,40 @@ const faqItems = [
 ];
 
 function StatCard({ value, label, decimals = 0, suffix = "" }: { value: number; label: string; decimals?: number; suffix?: string }) {
-  const { count, ref } = useCountUp(value, 2000, decimals);
+  const { count, inViewRef } = useCountUp(value, 2000, decimals);
   return (
     <motion.div
+      ref={inViewRef}
       variants={fadeUp}
-      className="bg-white rounded-2xl p-8 text-center shadow-lg"
+      className="bg-warmwhite rounded-xl p-6 md:p-8 text-center"
       data-testid={`stat-${label.toLowerCase().replace(/\s+/g, "-")}`}
     >
-      <span ref={ref} className="block text-5xl md:text-6xl font-bold text-[#1a472a]">
+      <span className="block text-4xl sm:text-5xl md:text-6xl font-bold text-crimson font-display">
         {count}{suffix}
       </span>
-      <span className="block mt-2 text-lg text-gray-600">{label}</span>
+      <span className="block mt-2 text-sm md:text-base text-night/60 font-heading font-medium uppercase tracking-wider">
+        {label}
+      </span>
     </motion.div>
   );
 }
 
 function PercentBar({ label, percent, count, color }: { label: string; percent: number; count: number; color: string }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
   return (
-    <div ref={ref} className="mb-3" data-testid={`percent-bar-${label.toLowerCase().replace(/\s+/g, "-")}`}>
-      <div className="flex justify-between text-sm mb-1">
-        <span className="font-medium text-gray-800">{label}</span>
-        <span className="text-gray-600">{percent}% ({count})</span>
+    <div ref={ref} className="mb-4" data-testid={`percent-bar-${label.toLowerCase().replace(/\s+/g, "-")}`}>
+      <div className="flex justify-between text-sm mb-1.5">
+        <span className="font-heading font-semibold text-night">{label}</span>
+        <span className="text-night/60">{percent}% ({count})</span>
       </div>
-      <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+      <div className="w-full bg-night/10 rounded-full h-4 overflow-hidden">
         <motion.div
           className="h-full rounded-full"
           style={{ backgroundColor: color }}
-          initial={{ width: 0 }}
-          animate={isInView ? { width: `${percent}%` } : { width: 0 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+          initial={{ width: "0%" }}
+          animate={isInView ? { width: `${percent}%` } : { width: "0%" }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
         />
       </div>
     </div>
@@ -222,9 +230,6 @@ function PercentBar({ label, percent, count, color }: { label: string; percent: 
 }
 
 export default function Compare() {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const stickyRef = useRef<HTMLDivElement>(null);
-
   const scrollToContent = useCallback(() => {
     const el = document.getElementById("section-name");
     if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -235,28 +240,26 @@ export default function Compare() {
   }, []);
 
   return (
-    <div className="bg-[#fafaf7]" style={{ fontFamily: "'Inter', sans-serif" }}>
+    <div className="bg-night">
       <Header />
 
-      {/* Section 1: Hero */}
+      {/* SECTION 1: HERO */}
       <section
-        ref={heroRef}
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
         style={{
-          backgroundImage:
-            "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1920&q=80')",
+          backgroundImage: `linear-gradient(rgba(13,13,13,0.6), rgba(13,13,13,0.6)), url(${heroImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
         }}
         data-testid="section-hero"
       >
-        <div className="text-center px-6 max-w-4xl mx-auto pt-16">
+        <div className="text-center px-6 max-w-5xl mx-auto pt-16">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="text-[#c8a951] uppercase tracking-[0.25em] text-sm md:text-base font-semibold mb-6"
+            className="text-gold uppercase tracking-[0.3em] text-xs md:text-sm font-heading font-semibold mb-6"
           >
             Nipomo Soccer Club
           </motion.p>
@@ -264,16 +267,15 @@ export default function Compare() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-tight mb-6"
-            style={{ fontFamily: "'Georgia', 'Playfair Display', serif" }}
+            className="font-display text-warmwhite text-4xl sm:text-5xl md:text-7xl lg:text-8xl uppercase tracking-wider leading-none mb-6"
           >
-            This Is Your Home for Soccer in Nipomo.
+            THIS IS YOUR HOME FOR SOCCER IN NIPOMO
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
-            className="text-white/80 text-lg md:text-xl font-light max-w-2xl mx-auto"
+            className="text-warmwhite/80 text-lg md:text-xl max-w-2xl mx-auto"
           >
             Recreational. Developmental. Competitive. All under one roof.
           </motion.p>
@@ -283,7 +285,7 @@ export default function Compare() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, y: [0, 10, 0] }}
           transition={{ opacity: { delay: 1.2 }, y: { repeat: Infinity, duration: 2 } }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/60 hover:text-white transition-colors"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-warmwhite/50 hover:text-warmwhite transition-colors"
           aria-label="Scroll down"
           data-testid="button-scroll-down"
         >
@@ -291,21 +293,21 @@ export default function Compare() {
         </motion.button>
       </section>
 
-      {/* Section 2: The Name */}
-      <section id="section-name" className="py-20 md:py-32 bg-[#fafaf7]" data-testid="section-name">
+      {/* SECTION 2: THE NAME */}
+      <section id="section-name" className="py-20 md:py-28 bg-warmwhite" data-testid="section-name">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, margin: "-80px" }}
             variants={fadeUp}
             className="text-center mb-16"
           >
-            <h2
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a472a] leading-tight"
-              style={{ fontFamily: "'Georgia', 'Playfair Display', serif" }}
-            >
-              "Soccer Club" Doesn't Mean Club-Only
+            <span className="inline-block px-4 py-1.5 bg-purple/10 rounded-full text-purple text-xs font-heading font-semibold uppercase tracking-wider mb-4">
+              Three Connected Programs
+            </span>
+            <h2 className="font-display text-night text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide">
+              "SOCCER CLUB" DOESN'T MEAN CLUB-ONLY
             </h2>
           </motion.div>
 
@@ -316,7 +318,7 @@ export default function Compare() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeUp}
-                className="text-lg md:text-xl text-gray-600 leading-relaxed"
+                className="text-lg md:text-xl text-night/70 leading-relaxed"
               >
                 Nipomo SC offers three programs for every level of player. Whether your kid wants to play for fun on Saturdays or compete year-round, there's a place here.
               </motion.p>
@@ -327,28 +329,23 @@ export default function Compare() {
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
               variants={staggerContainer}
-              className="space-y-6"
+              className="space-y-5"
             >
               {programs.map((prog) => (
                 <motion.div
                   key={prog.name}
                   variants={fadeUp}
-                  className="bg-white rounded-2xl p-8 shadow-md border border-gray-100"
+                  className="bg-white rounded-xl p-6 border border-night/5"
                   data-testid={`card-program-${prog.name.toLowerCase()}`}
                 >
                   <div className="flex items-center gap-4 mb-3">
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center"
-                      style={{ backgroundColor: `${prog.color}15` }}
-                    >
-                      <prog.icon className="h-6 w-6" style={{ color: prog.color }} />
-                    </div>
+                    <img src={prog.logo} alt={prog.name} className="w-14 h-14 object-contain" />
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900">{prog.name}</h3>
-                      <p className="text-sm text-gray-500">{prog.type}</p>
+                      <h3 className="font-display text-lg uppercase tracking-wide text-night">{prog.name}</h3>
+                      <p className="text-xs text-night/50 font-heading font-medium uppercase tracking-wider">{prog.type}</p>
                     </div>
                   </div>
-                  <p className="text-gray-600 leading-relaxed">{prog.description}</p>
+                  <p className="text-night/70 leading-relaxed">{prog.description}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -359,24 +356,20 @@ export default function Compare() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="mt-20 text-center"
+            className="mt-16 text-center"
           >
-            <p
-              className="text-xl md:text-2xl text-[#1a472a] font-medium max-w-3xl mx-auto leading-relaxed"
-              style={{ fontFamily: "'Georgia', 'Playfair Display', serif" }}
-            >
+            <p className="text-xl md:text-2xl font-heading font-semibold text-crimson max-w-3xl mx-auto leading-relaxed">
               Your child can play Roots every season. Or grow into Rise and Reign over time. No pressure. No wrong path.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Section 3: Same People */}
+      {/* SECTION 3: SAME PEOPLE */}
       <section
         className="relative py-24 md:py-36"
         style={{
-          backgroundImage:
-            "linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1920&q=80')",
+          backgroundImage: `linear-gradient(rgba(13,13,13,0.75), rgba(13,13,13,0.75)), url('https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1920&q=80')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
@@ -389,7 +382,7 @@ export default function Compare() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-[#c8a951] uppercase tracking-[0.2em] text-sm font-semibold mb-6"
+            className="text-gold uppercase tracking-[0.3em] text-xs font-heading font-semibold mb-6"
           >
             The Team Behind It
           </motion.p>
@@ -398,25 +391,24 @@ export default function Compare() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-8"
-            style={{ fontFamily: "'Georgia', 'Playfair Display', serif" }}
+            className="font-display text-warmwhite text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide leading-tight mb-8"
           >
-            80% of last year's AYSO board now leads Nipomo SC.
+            80% OF LAST YEAR'S AYSO BOARD NOW LEADS NIPOMO SC
           </motion.h2>
           <motion.p
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-white/80 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto"
+            className="text-warmwhite/80 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto"
           >
             Many of us have been volunteering in the Nipomo soccer community for years. Last season, we invested in a TurfTank robotic field painter, added benches for upper divisions, bought new goals, upgraded coaching gear, compressed the Saturday schedule, and coordinated cross-play with neighboring regions.
           </motion.p>
         </div>
       </section>
 
-      {/* Section 4: The Data */}
-      <section className="py-20 md:py-32 bg-[#fafaf7]" data-testid="section-data">
+      {/* SECTION 4: THE DATA */}
+      <section className="py-20 md:py-28 bg-warmwhite" data-testid="section-data">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             initial="hidden"
@@ -425,85 +417,83 @@ export default function Compare() {
             variants={fadeUp}
             className="text-center mb-16"
           >
-            <h2
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a472a] mb-4"
-              style={{ fontFamily: "'Georgia', 'Playfair Display', serif" }}
-            >
-              What 126 Families Told Us
+            <span className="inline-block px-4 py-1.5 bg-purple/10 rounded-full text-purple text-xs font-heading font-semibold uppercase tracking-wider mb-4">
+              Survey Results
+            </span>
+            <h2 className="font-display text-night text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide mb-4">
+              WHAT 126 FAMILIES TOLD US
             </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            <p className="text-night/60 text-lg max-w-2xl mx-auto">
               End-of-season survey results from the 2025 AYSO season, run by the team now leading Nipomo SC.
             </p>
           </motion.div>
 
-          {/* Stat Cards */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
             variants={staggerContainer}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-20"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 mb-16"
           >
-            <StatCard value={8.8} label="Recommendation Score" decimals={1} suffix=" / 10" />
+            <StatCard value={8.8} label="Recommendation Score" decimals={1} suffix="/10" />
             <StatCard value={75} label="Support Paid Referees" suffix="%" />
             <StatCard value={68} label="Want a Spring Season" suffix="%" />
             <StatCard value={126} label="Families Surveyed" />
           </motion.div>
 
-          {/* Chart 1: Season Ratings */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="bg-white rounded-2xl p-6 md:p-10 shadow-lg mb-12"
+            className="bg-white rounded-xl p-6 md:p-10 border border-night/5 mb-10"
           >
-            <h3 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: "'Georgia', serif" }}>
-              Season Ratings by Category
+            <h3 className="font-display text-xl md:text-2xl text-night uppercase tracking-wide mb-1">
+              SEASON RATINGS BY CATEGORY
             </h3>
-            <p className="text-gray-500 text-sm mb-8">Average rating out of 5.0</p>
+            <p className="text-night/50 text-sm mb-8">Average rating out of 5.0</p>
             <div className="w-full h-[400px]" data-testid="chart-season-ratings">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={seasonRatings} layout="vertical" margin={{ left: 20, right: 30, top: 5, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#eee" horizontal={false} />
-                  <XAxis type="number" domain={[0, 5]} tick={{ fontSize: 13 }} />
-                  <YAxis type="category" dataKey="category" width={110} tick={{ fontSize: 13 }} />
+                <BarChart data={seasonRatings} layout="vertical" margin={{ left: 10, right: 50, top: 5, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(13,13,13,0.06)" horizontal={false} />
+                  <XAxis type="number" domain={[0, 5]} tick={{ fontSize: 12, fill: "#55524D" }} />
+                  <YAxis type="category" dataKey="category" width={110} tick={{ fontSize: 12, fill: "#0D0D0D" }} />
                   <Tooltip
                     formatter={(value: number) => [value.toFixed(2), "Rating"]}
-                    contentStyle={{ borderRadius: 12, border: "1px solid #eee" }}
+                    contentStyle={{ borderRadius: 8, border: "1px solid rgba(13,13,13,0.1)", fontFamily: "Inter, sans-serif" }}
                   />
-                  <Bar dataKey="rating" radius={[0, 6, 6, 0]} barSize={28}>
+                  <Bar dataKey="rating" radius={[0, 4, 4, 0]} barSize={26}>
                     {seasonRatings.map((entry, index) => (
                       <Cell
                         key={`cell-${index}`}
-                        fill={entry.category === "Referees" ? "#dc2626" : "#1a472a"}
+                        fill={entry.category === "Referees" ? "#8B1D24" : "#0D0D0D"}
                       />
                     ))}
+                    <LabelList dataKey="rating" position="right" formatter={(v: number) => v.toFixed(2)} style={{ fontSize: 12, fill: "#55524D", fontWeight: 600 }} />
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
             </div>
-            <p className="text-gray-500 text-sm mt-4 italic">
+            <p className="text-night/50 text-sm mt-4 italic">
               Every category scored 4.0+, except referees, our biggest structural challenge under AYSO.
             </p>
           </motion.div>
 
-          {/* Charts Row: Paid Referee Support & Spring Season Interest */}
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-6 mb-10">
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeUp}
-              className="bg-white rounded-2xl p-6 md:p-8 shadow-lg"
+              className="bg-white rounded-xl p-6 md:p-8 border border-night/5"
             >
-              <h3 className="text-xl font-bold text-gray-900 mb-6" style={{ fontFamily: "'Georgia', serif" }}>
-                Paid Referee Support
+              <h3 className="font-display text-lg text-night uppercase tracking-wide mb-6">
+                PAID REFEREE SUPPORT
               </h3>
-              <PercentBar label="Yes" percent={75} count={94} color="#1a472a" />
-              <PercentBar label="Not Sure" percent={13} count={17} color="#d97706" />
-              <PercentBar label="No" percent={12} count={15} color="#dc2626" />
-              <p className="text-gray-500 text-sm mt-6 italic">
+              <PercentBar label="Yes" percent={75} count={94} color="#8B1D24" />
+              <PercentBar label="Not Sure" percent={13} count={17} color="#C6A045" />
+              <PercentBar label="No" percent={12} count={15} color="#55524D" />
+              <p className="text-night/50 text-sm mt-6 italic">
                 3 out of 4 families supported this change. Under Cal South, we can now make it happen.
               </p>
             </motion.div>
@@ -513,58 +503,57 @@ export default function Compare() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeUp}
-              className="bg-white rounded-2xl p-6 md:p-8 shadow-lg"
+              className="bg-white rounded-xl p-6 md:p-8 border border-night/5"
             >
-              <h3 className="text-xl font-bold text-gray-900 mb-6" style={{ fontFamily: "'Georgia', serif" }}>
-                Spring Season Interest
+              <h3 className="font-display text-lg text-night uppercase tracking-wide mb-6">
+                SPRING SEASON INTEREST
               </h3>
-              <PercentBar label="Very Likely" percent={42} count={53} color="#1a472a" />
-              <PercentBar label="Somewhat Likely" percent={26} count={33} color="#4ade80" />
-              <PercentBar label="Not Likely" percent={23} count={29} color="#9ca3af" />
-              <PercentBar label="Unsure" percent={9} count={11} color="#d1d5db" />
-              <p className="text-gray-500 text-sm mt-6 italic">
+              <PercentBar label="Very Likely" percent={42} count={53} color="#8B1D24" />
+              <PercentBar label="Somewhat Likely" percent={26} count={33} color="#C6A045" />
+              <PercentBar label="Not Likely" percent={23} count={29} color="#55524D" />
+              <PercentBar label="Unsure" percent={9} count={11} color="#A8ADB5" />
+              <p className="text-night/50 text-sm mt-6 italic">
                 68% expressed interest. Nipomo SC's spring developmental season is a direct answer.
               </p>
             </motion.div>
           </div>
 
-          {/* Chart 4: NPS Score Distribution */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="bg-white rounded-2xl p-6 md:p-10 shadow-lg"
+            className="bg-white rounded-xl p-6 md:p-10 border border-night/5"
           >
-            <h3 className="text-2xl font-bold text-gray-900 mb-2" style={{ fontFamily: "'Georgia', serif" }}>
-              Recommendation Score Distribution
+            <h3 className="font-display text-xl md:text-2xl text-night uppercase tracking-wide mb-1">
+              RECOMMENDATION SCORE DISTRIBUTION
             </h3>
-            <p className="text-gray-500 text-sm mb-8">Scores from 1 to 10, grouped by category</p>
-            <div className="flex gap-4 mb-4 text-sm flex-wrap">
-              <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-red-600 inline-block" /> Detractors (1-6): 15</span>
-              <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-amber-500 inline-block" /> Passives (7-8): 24</span>
-              <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-[#1a472a] inline-block" /> Promoters (9-10): 87</span>
+            <p className="text-night/50 text-sm mb-6">Scores from 1 to 10, grouped by category</p>
+            <div className="flex gap-4 mb-6 text-sm flex-wrap">
+              <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-crimson inline-block" /> Detractors (1-6): 15</span>
+              <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-gold inline-block" /> Passives (7-8): 24</span>
+              <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-night inline-block" /> Promoters (9-10): 87</span>
             </div>
             <div className="w-full h-[300px]" data-testid="chart-nps">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={npsData} margin={{ left: 0, right: 10, top: 5, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#eee" vertical={false} />
-                  <XAxis dataKey="score" tick={{ fontSize: 13 }} />
-                  <YAxis tick={{ fontSize: 13 }} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(13,13,13,0.06)" vertical={false} />
+                  <XAxis dataKey="score" tick={{ fontSize: 12, fill: "#55524D" }} />
+                  <YAxis tick={{ fontSize: 12, fill: "#55524D" }} />
                   <Tooltip
                     formatter={(value: number) => [value, "Responses"]}
-                    contentStyle={{ borderRadius: 12, border: "1px solid #eee" }}
+                    contentStyle={{ borderRadius: 8, border: "1px solid rgba(13,13,13,0.1)" }}
                   />
-                  <Bar dataKey="count" radius={[6, 6, 0, 0]} barSize={36}>
+                  <Bar dataKey="count" radius={[4, 4, 0, 0]} barSize={36}>
                     {npsData.map((entry, index) => (
                       <Cell
                         key={`nps-${index}`}
                         fill={
                           entry.type === "detractor"
-                            ? "#dc2626"
+                            ? "#8B1D24"
                             : entry.type === "passive"
-                            ? "#d97706"
-                            : "#1a472a"
+                            ? "#C6A045"
+                            : "#0D0D0D"
                         }
                       />
                     ))}
@@ -572,78 +561,18 @@ export default function Compare() {
                 </BarChart>
               </ResponsiveContainer>
             </div>
-            <p className="text-gray-500 text-sm mt-4 italic">
+            <p className="text-night/50 text-sm mt-4 italic">
               69% gave a 9 or 10. The board that earned those scores is the one running Nipomo SC.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Section 5: Meet the Board */}
-      <section className="py-20 md:py-32 bg-white" data-testid="section-board">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="text-center mb-16"
-          >
-            <h2
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a472a]"
-              style={{ fontFamily: "'Georgia', 'Playfair Display', serif" }}
-            >
-              Meet the Board
-            </h2>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={staggerContainer}
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {boardMembers.map((member) => (
-              <motion.div
-                key={member.name}
-                variants={fadeUp}
-                className="bg-[#fafaf7] rounded-2xl p-6 border border-gray-100"
-                data-testid={`card-board-${member.name.toLowerCase().replace(/\s+/g, "-")}`}
-              >
-                <div className="w-12 h-12 rounded-full bg-[#1a472a] flex items-center justify-center text-white font-bold text-lg mb-4">
-                  {member.name.charAt(0)}
-                </div>
-                <h3 className="text-lg font-bold text-gray-900">{member.name}</h3>
-                <p className="text-[#c8a951] font-medium text-sm mb-2">{member.role}</p>
-                {member.bg && <p className="text-gray-500 text-sm leading-relaxed">{member.bg}</p>}
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="mt-12 bg-[#1a472a]/5 border border-[#1a472a]/10 rounded-2xl p-8 text-center"
-          >
-            <p className="text-gray-700 text-lg">
-              We're still filling board positions. If you're passionate about youth soccer, reach out at{" "}
-              <a href="mailto:admin@nipomosc.org" className="text-[#1a472a] font-semibold underline" data-testid="link-board-email">
-                admin@nipomosc.org
-              </a>.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Section 6: Why We Left AYSO */}
+      {/* SECTION 5: WHY WE LEFT */}
       <section
         className="relative py-24 md:py-36"
         style={{
-          backgroundImage:
-            "linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=1920&q=80')",
+          backgroundImage: `linear-gradient(rgba(13,13,13,0.8), rgba(13,13,13,0.8)), url('https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=1920&q=80')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
@@ -656,7 +585,7 @@ export default function Compare() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-[#c8a951] uppercase tracking-[0.2em] text-sm font-semibold mb-6"
+            className="text-gold uppercase tracking-[0.3em] text-xs font-heading font-semibold mb-6"
           >
             Why the Change
           </motion.p>
@@ -665,10 +594,9 @@ export default function Compare() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-12"
-            style={{ fontFamily: "'Georgia', 'Playfair Display', serif" }}
+            className="font-display text-warmwhite text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide leading-tight mb-12"
           >
-            We Didn't Leave Lightly.
+            WE DIDN'T LEAVE LIGHTLY
           </motion.h2>
 
           <div className="space-y-10">
@@ -677,7 +605,7 @@ export default function Compare() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeUp}
-              className="text-white/85 text-lg leading-relaxed"
+              className="text-warmwhite/80 text-lg leading-relaxed"
             >
               AYSO has served communities for decades, and it served Nipomo for many years. But the challenges of operating within AYSO's structure became harder to overcome, not because of local volunteers, but because of area and national governing bodies.
             </motion.p>
@@ -688,8 +616,8 @@ export default function Compare() {
               viewport={{ once: true }}
               variants={fadeUp}
             >
-              <h3 className="text-[#c8a951] text-xl font-bold mb-3">The Referee Problem</h3>
-              <p className="text-white/85 text-lg leading-relaxed">
+              <h3 className="text-gold font-display text-lg uppercase tracking-wide mb-3">THE REFEREE PROBLEM</h3>
+              <p className="text-warmwhite/80 text-lg leading-relaxed">
                 AYSO requires all referees to be unpaid volunteers while imposing demanding certification standards: 10+ hours of training for upper-level certification. We were routinely losing qualified refs to the Los Padres Soccer Referees Association and other organizations that pay. Running our region required 200+ volunteers. The demands on referees led to burnout, shortages, and games with a single official. Referees scored 3.89/5, our lowest category.
               </p>
             </motion.div>
@@ -700,8 +628,8 @@ export default function Compare() {
               viewport={{ once: true }}
               variants={fadeUp}
             >
-              <h3 className="text-[#c8a951] text-xl font-bold mb-3">Postseason</h3>
-              <p className="text-white/85 text-lg leading-relaxed">
+              <h3 className="text-gold font-display text-lg uppercase tracking-wide mb-3">POSTSEASON</h3>
+              <p className="text-warmwhite/80 text-lg leading-relaxed">
                 Only 5 of our 40+ referees qualified to officiate postseason. Our 12U boys division was the only one that could play. Every other division was shut out, not because of the players, but because the system made it impossible.
               </p>
             </motion.div>
@@ -712,8 +640,8 @@ export default function Compare() {
               viewport={{ once: true }}
               variants={fadeUp}
             >
-              <h3 className="text-[#c8a951] text-xl font-bold mb-3">Support</h3>
-              <p className="text-white/85 text-lg leading-relaxed">
+              <h3 className="text-gold font-display text-lg uppercase tracking-wide mb-3">SUPPORT</h3>
+              <p className="text-warmwhite/80 text-lg leading-relaxed">
                 Requirements from AYSO grew more rigid. Support didn't keep pace. After our longtime referee trainer departed, we had no local certified trainer and became dependent on neighboring regions.
               </p>
             </motion.div>
@@ -721,8 +649,8 @@ export default function Compare() {
         </div>
       </section>
 
-      {/* Section 7: What Changes */}
-      <section className="py-20 md:py-32 bg-[#fafaf7]" data-testid="section-what-changes">
+      {/* SECTION 6: WHAT CHANGES */}
+      <section className="py-20 md:py-28 bg-warmwhite" data-testid="section-what-changes">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             initial="hidden"
@@ -731,13 +659,13 @@ export default function Compare() {
             variants={fadeUp}
             className="text-center mb-16"
           >
-            <h2
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a472a] mb-4"
-              style={{ fontFamily: "'Georgia', 'Playfair Display', serif" }}
-            >
-              What Changes Under Cal South
+            <span className="inline-block px-4 py-1.5 bg-purple/10 rounded-full text-purple text-xs font-heading font-semibold uppercase tracking-wider mb-4">
+              Cal South Affiliated
+            </span>
+            <h2 className="font-display text-night text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide mb-4">
+              WHAT CHANGES UNDER CAL SOUTH
             </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            <p className="text-night/60 text-lg max-w-2xl mx-auto">
               Nipomo SC is now a Cal South organization, affiliated with US Youth Soccer and the U.S. Soccer Federation.
             </p>
           </motion.div>
@@ -747,45 +675,103 @@ export default function Compare() {
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
             variants={staggerContainer}
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
           >
             {features.map((feature) => (
               <motion.div
                 key={feature.title}
                 variants={fadeUp}
-                className="bg-white rounded-2xl p-8 shadow-md border border-gray-100"
+                className="bg-white rounded-xl p-7 border border-night/5"
                 data-testid={`card-feature-${feature.title.toLowerCase().replace(/\s+/g, "-")}`}
               >
-                <div className="w-12 h-12 rounded-xl bg-[#1a472a]/10 flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-[#1a472a]" />
+                <div className="w-11 h-11 rounded-full bg-crimson/10 flex items-center justify-center mb-4">
+                  <feature.icon className="h-5 w-5 text-crimson" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
+                <h3 className="font-display text-base uppercase tracking-wide text-night mb-2">{feature.title}</h3>
+                <p className="text-night/60 leading-relaxed text-sm">{feature.desc}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Section 8: AYSO This Year? */}
-      <section className="py-24 md:py-36 bg-[#111]" data-testid="section-ayso-this-year">
+      {/* SECTION 7: MEET THE BOARD */}
+      <section className="py-20 md:py-28 bg-night" data-testid="section-board">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="text-center mb-16"
+          >
+            <span className="inline-block px-4 py-1.5 bg-purple/20 rounded-full text-warmwhite/70 text-xs font-heading font-semibold uppercase tracking-wider mb-4">
+              Leadership
+            </span>
+            <h2 className="font-display text-warmwhite text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide">
+              MEET THE BOARD
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={staggerContainer}
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          >
+            {boardMembers.map((member) => (
+              <motion.div
+                key={member.name}
+                variants={fadeUp}
+                className="bg-warmwhite rounded-xl p-6"
+                data-testid={`card-board-${member.name.toLowerCase().replace(/\s+/g, "-")}`}
+              >
+                <div className="w-11 h-11 rounded-full bg-crimson flex items-center justify-center text-warmwhite font-display text-lg mb-3">
+                  {member.name.charAt(0)}
+                </div>
+                <h3 className="font-display text-base uppercase tracking-wide text-night">{member.name}</h3>
+                <p className="text-crimson font-heading font-semibold text-xs uppercase tracking-wider mb-2">{member.role}</p>
+                <p className="text-night/50 text-sm leading-relaxed">{member.bg}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="mt-10 border border-warmwhite/15 rounded-xl p-8 text-center"
+          >
+            <p className="text-warmwhite/80 text-lg">
+              We're still filling board positions. If you're passionate about youth soccer, reach out at{" "}
+              <a href="mailto:admin@nipomosc.org" className="text-gold font-semibold underline underline-offset-2" data-testid="link-board-email">
+                admin@nipomosc.org
+              </a>
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* SECTION 8: WHAT ABOUT AYSO? */}
+      <section className="py-20 md:py-28 bg-night border-t border-warmwhite/5" data-testid="section-ayso-this-year">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <motion.h2
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6"
-            style={{ fontFamily: "'Georgia', 'Playfair Display', serif" }}
+            className="font-display text-warmwhite text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide mb-6"
           >
-            What about AYSO this year?
+            WHAT ABOUT AYSO THIS YEAR?
           </motion.h2>
           <motion.p
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-white/70 text-lg mb-8"
+            className="text-warmwhite/60 text-lg mb-8"
           >
             We're not sure if there will be an AYSO season in Nipomo. That's not our decision.
           </motion.p>
@@ -794,16 +780,16 @@ export default function Compare() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-white text-2xl md:text-3xl font-bold mb-6"
+            className="font-display text-warmwhite text-2xl md:text-4xl uppercase tracking-wide mb-6"
           >
-            There is 100% going to be a Nipomo SC Roots season.
+            THERE IS <span className="text-crimson">100%</span> GOING TO BE A NIPOMO SC ROOTS SEASON
           </motion.p>
           <motion.p
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-white/70 text-lg mb-8"
+            className="text-warmwhite/60 text-lg mb-8"
           >
             The people, the infrastructure, and the plan are in place.
           </motion.p>
@@ -812,16 +798,15 @@ export default function Compare() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-[#c8a951] text-xl md:text-2xl font-bold"
-            style={{ fontFamily: "'Georgia', serif" }}
+            className="text-gold font-display text-xl md:text-2xl uppercase tracking-wide"
           >
-            You don't need to wait and wonder.
+            YOU DON'T NEED TO WAIT AND WONDER
           </motion.p>
         </div>
       </section>
 
-      {/* Section 9: FAQ */}
-      <section className="py-20 md:py-32 bg-[#fafaf7]" data-testid="section-faq">
+      {/* SECTION 9: FAQ */}
+      <section className="py-20 md:py-28 bg-warmwhite" data-testid="section-faq">
         <div className="max-w-3xl mx-auto px-6">
           <motion.div
             initial="hidden"
@@ -830,11 +815,8 @@ export default function Compare() {
             variants={fadeUp}
             className="text-center mb-12"
           >
-            <h2
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a472a]"
-              style={{ fontFamily: "'Georgia', 'Playfair Display', serif" }}
-            >
-              Frequently Asked Questions
+            <h2 className="font-display text-night text-3xl sm:text-4xl md:text-5xl uppercase tracking-wide">
+              FREQUENTLY ASKED QUESTIONS
             </h2>
           </motion.div>
 
@@ -849,17 +831,17 @@ export default function Compare() {
                 <AccordionItem
                   key={i}
                   value={`faq-${i}`}
-                  className="bg-white rounded-xl border border-gray-100 px-6 shadow-sm"
+                  className="bg-white rounded-xl border border-night/5 px-6"
                   data-testid={`faq-item-${i}`}
                 >
-                  <AccordionTrigger className="text-left text-base md:text-lg font-semibold text-gray-900 hover:no-underline py-5" data-testid={`faq-trigger-${i}`}>
+                  <AccordionTrigger className="text-left text-base font-heading font-semibold text-night hover:no-underline py-5 [&>svg]:text-crimson" data-testid={`faq-trigger-${i}`}>
                     {item.q}
                   </AccordionTrigger>
-                  <AccordionContent className="text-gray-600 leading-relaxed pb-5 text-base">
+                  <AccordionContent className="text-night/70 leading-relaxed pb-5">
                     {item.a.includes("admin@nipomosc.org") ? (
                       <span>
                         {item.a.split("admin@nipomosc.org")[0]}
-                        <a href="mailto:admin@nipomosc.org" className="text-[#1a472a] font-semibold underline">
+                        <a href="mailto:admin@nipomosc.org" className="text-crimson font-semibold underline underline-offset-2">
                           admin@nipomosc.org
                         </a>
                         {item.a.split("admin@nipomosc.org")[1]}
@@ -867,7 +849,7 @@ export default function Compare() {
                     ) : item.a.includes("nipomosc.org") ? (
                       <span>
                         {item.a.split("nipomosc.org")[0]}
-                        <a href="https://nipomosc.org" className="text-[#1a472a] font-semibold underline" target="_blank" rel="noopener noreferrer">
+                        <a href="https://nipomosc.org" className="text-crimson font-semibold underline underline-offset-2" target="_blank" rel="noopener noreferrer">
                           nipomosc.org
                         </a>
                         {item.a.split("nipomosc.org")[1]}
@@ -883,46 +865,53 @@ export default function Compare() {
         </div>
       </section>
 
-      {/* Section 10: Footer CTA */}
-      <section className="py-24 md:py-32 bg-[#1a472a]" data-testid="section-footer-cta">
+      {/* SECTION 10: FOOTER CTA */}
+      <section className="py-24 md:py-32 bg-night" data-testid="section-footer-cta">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <motion.h2
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-8"
-            style={{ fontFamily: "'Georgia', 'Playfair Display', serif" }}
+            className="font-display text-warmwhite text-4xl sm:text-5xl md:text-7xl uppercase tracking-wider mb-8"
           >
-            Roots. Rise. Reign.
+            ROOTS. RISE. REIGN.
           </motion.h2>
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="space-y-4"
+            className="space-y-5"
           >
-            <p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="https://nipomosc.org"
-                className="text-white/90 hover:text-white text-lg underline underline-offset-4 transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="text-warmwhite/70 hover:text-warmwhite text-lg underline underline-offset-4 transition-colors"
                 data-testid="link-footer-website"
               >
-                Visit nipomosc.org to learn more
+                Visit nipomosc.org
               </a>
-            </p>
-            <p>
+              <span className="hidden sm:inline text-warmwhite/30">|</span>
               <a
                 href="mailto:admin@nipomosc.org"
-                className="text-[#c8a951] hover:text-[#dfc06a] text-lg underline underline-offset-4 transition-colors"
+                className="text-gold hover:text-gold/80 text-lg underline underline-offset-4 transition-colors"
                 data-testid="link-footer-email"
               >
                 admin@nipomosc.org
               </a>
-            </p>
+            </div>
+            <div>
+              <Button
+                asChild
+                className="bg-crimson hover:bg-crimson-dark text-warmwhite px-8 py-3 text-base font-heading font-semibold uppercase tracking-wider rounded-lg"
+                data-testid="button-get-started"
+              >
+                <a href="https://nipomosc.org/#contact">Get Started</a>
+              </Button>
+            </div>
           </motion.div>
         </div>
       </section>

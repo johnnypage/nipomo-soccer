@@ -1,0 +1,210 @@
+# Redesign: /about/compare Page — Brand Alignment + Story Flow
+
+## The Problem
+
+The `/about/compare` page feels like a different website. It uses different fonts, different colors, different card styles, and a different visual mood than the rest of nipomosc.org. It also reads like a collection of disconnected sections rather than a cohesive narrative that builds toward a conclusion.
+
+This prompt is a full redesign spec. The content stays mostly the same, but the design system, typography, color palette, section structure, and narrative flow all need to match the main site and tell one clear story.
+
+---
+
+## BRAND SYSTEM (extracted from nipomosc.org — match these exactly)
+
+### Typography
+- **Primary heading font**: `Integral, "Bebas Neue", sans-serif` — bold, blocky, uppercase, wide letter-spacing (~2.4px on H1, ~1.2px on H2)
+- **Body/card heading font**: `Integral, sans-serif` — weight 400-700
+- **Body text**: System sans-serif / Inter
+- **DO NOT USE**: Georgia, Playfair Display, or any serif fonts anywhere. The current compare page uses `Georgia, "Playfair Display", serif` for headings — this is completely wrong.
+
+### Heading Style
+- Section headings are **ALL CAPS** with letter-spacing (e.g., "A FULL PLAYER PATHWAY", "OUR MISSION", "OUR SPONSORS")
+- Sub-labels use small pill badges with rounded corners (e.g., "Three Connected Programs", "Community First")
+- **DO NOT USE**: Title Case serif headings like the current "What 126 Families Told Us" — rewrite as "WHAT 126 FAMILIES TOLD US" in Integral/Bebas
+
+### Colors
+| Token | Value | Usage |
+|-------|-------|-------|
+| Background (dark) | `rgb(13, 13, 13)` / `#0D0D0D` | Primary background, dark sections — this is the DOMINANT background on the main site |
+| Background (warm) | `rgb(244, 237, 225)` / `#F4EDE1` | Light sections, card backgrounds |
+| Body background | `rgb(243, 236, 226)` / `#F3ECE2` | Page body |
+| Text on dark | `rgba(244, 237, 225, 0.8)` | Body text on dark backgrounds |
+| Headings on dark | `rgb(244, 237, 225)` / `#F4EDE1` | Full opacity cream for headings |
+| Text on light | Dark/near-black | Body text on light sections |
+| Crimson red | `rgb(139, 29, 36)` / `#8B1D24` | CTA buttons, Roots/Rise accent, primary action color |
+| Gold | `rgb(198, 160, 69)` / `#C6A045` | Reign accent, premium/competitive feel, sponsor labels |
+| Purple (pills) | `rgb(74, 43, 115)` at 20% opacity bg | Section label pills/badges |
+| **WRONG — DO NOT USE** | `#1a472a` dark green | The current compare page uses this for headings — not in the brand |
+| **WRONG — DO NOT USE** | `#c8a951` gold | Close but not the right gold — use `#C6A045` |
+| **WRONG — DO NOT USE** | `#fafaf7` off-white | Too cool — the brand warm tone is `#F4EDE1` |
+
+### Cards
+- Background: `rgb(244, 237, 225)` (warm parchment)
+- Border-radius: `12px`
+- No heavy borders or shadows — subtle, clean
+- On dark backgrounds, cards should feel warm against the near-black
+
+### Buttons
+- Primary CTA: `#8B1D24` crimson with `#F4EDE1` text, rounded
+- Secondary/outline: border with cream text on dark, dark text on light
+- The current compare page has NO red CTAs anywhere — it needs them
+
+### Section Pattern
+The main site alternates between:
+1. **Dark sections** (`#0D0D0D` background) — hero images, parallax, dramatic moments
+2. **Warm sections** (`#F4EDE1` / `#F3ECE2` background) — content, cards, details
+
+The current compare page uses a light beige as its dominant background with occasional dark photo sections. It should feel **predominantly dark** like the main site, with warm sections for detail/data moments.
+
+### Overall Mood
+The main site feels like a **modern sports brand** — cinematic, confident, premium but accessible. Think Nike youth academy meets local community pride.
+
+The current compare page feels like a **newspaper editorial** or nonprofit newsletter. That's the core disconnect.
+
+---
+
+## STORY FLOW (the narrative arc)
+
+The current page has good content in the wrong order with weak transitions. It should read like one continuous argument:
+
+**The story in one sentence**: "We're the same people who ran your kid's soccer — we just built something better, and here's the proof."
+
+### Revised Section Flow
+
+#### 1. HERO (dark, full viewport, parallax)
+- Use a photo of actual Nipomo SC kids (from the main site's hero image set, or the practice field photo) — NOT a generic stock photo of an adult foot on a ball
+- Heading: **"THIS IS YOUR HOME FOR SOCCER IN NIPOMO."** (Integral font, all caps)
+- Subtext: "Recreational. Developmental. Competitive. All under one roof."
+- Scroll indicator arrow at bottom
+
+#### 2. THE NAME — "Soccer Club" doesn't mean club-only (warm background)
+- This is the first thing parents need to hear. Address the confusion immediately.
+- Left side: short paragraph explaining all three programs exist for all levels
+- Right side: Three stacked cards for Roots / Rise / Reign
+- Each card should use the **program badge icons from the main site** (the shield logos for Roots, Rise, Reign) — not generic emoji-style icons
+- Bottom pull quote: *"Your child can play Roots every season. Or grow into Rise and Reign over time. No pressure. No wrong path."* — give this line REAL presence, not washed-out footnote text. Use the brand crimson or gold for emphasis.
+
+#### 3. SAME PEOPLE, BETTER STRUCTURE (dark section, parallax background)
+- **"80% OF LAST YEAR'S AYSO BOARD NOW LEADS NIPOMO SC."** — This is the emotional hinge of the page. It answers the trust question before anyone asks.
+- Below the stat: short paragraph about volunteer continuity, investments made last season (TurfTank, benches, goals, schedule compression, cross-play)
+- This section does NOT need the board grid yet — save that for later. Keep this focused on the single powerful stat + proof.
+
+#### 4. THE DATA — What 126 Families Told Us (warm background)
+- **"WHAT 126 FAMILIES TOLD US"** heading in Integral/Bebas, all caps
+- Subtitle: "End-of-season survey results from the 2025 AYSO season, run by the team now leading Nipomo SC."
+- **Stat cards row** (3-4 cards): 8.8/10 NPS, 75% support paid refs, 68% want spring season, 126 families surveyed
+  - These MUST animate reliably. The count-up should trigger on scroll-into-view and complete to the final number. Currently they're buggy — showing intermediate values like "3/10" and "25%".
+  - Use brand colors: crimson or gold numbers on warm card backgrounds
+- **Bar chart: Season Ratings by Category**
+  - Use brand dark green or crimson for the bars, crimson/red for the Referees outlier
+  - ADD value labels at the end of each bar (4.60, 4.55, 4.46, etc.)
+  - The caption about referees being the lowest is great — keep it
+- **Two side-by-side cards**: Paid Referee Support + Spring Season Interest
+  - **FIX THE BARS** — they're currently only a few pixels wide instead of scaling to 75%, 42%, etc. This is the most visible bug on the page.
+  - Use brand colors for the bar fills (crimson for Yes, gold for Very Likely, muted for No/Unsure)
+- **NPS Distribution chart** — keep as-is, it works well. Use brand crimson for detractors, gold for passives, dark green or brand dark for promoters.
+
+#### 5. WHY WE LEFT (dark section, dramatic)
+- **"WE DIDN'T LEAVE LIGHTLY."** — all caps, Integral font
+- This is the "why" — structured in three sub-sections: Referees, Postseason, Support
+- Each sub-section gets a short bold heading in gold/crimson + 2-3 sentences
+- The content is good as-is, just needs brand-correct typography and text colors at ~0.8 opacity on dark (currently too washed out at ~0.6)
+- Use a darker, moodier parallax photo — game action at dusk, or the field under lights
+
+#### 6. WHAT CHANGES UNDER CAL SOUTH (warm background)
+- **"WHAT CHANGES UNDER CAL SOUTH"** — Integral, all caps
+- Feature grid: **5 cards** (currently only showing 2, should be 5):
+  1. Paid Referees — 75% of families supported this
+  2. Local Control — scheduling, team formation, volunteer flexibility
+  3. Complete Player Pathway — Roots → Rise → Reign under one org
+  4. Jersey Sponsorships — local business support (not allowed under AYSO)
+  5. Spring Season — 68% family interest, launching developmental season
+- Cards should use warm parchment bg, subtle icon in each, brand typography
+- Consider using the crimson-accent icon style from the main site's mission cards (the circle icons with the line-art)
+
+#### 7. MEET THE BOARD (dark section)
+- **"MEET THE BOARD"** — Integral, all caps
+- **3-column grid on desktop** (currently 2 — too much scrolling for 10 people)
+- Cards: warm parchment bg on dark section
+- Each card: initial avatar circle, name, role (in crimson/gold), one-line background
+- For board members without specific AYSO background, use a generic line like "Nipomo soccer community volunteer" rather than leaving it blank — keeps cards visually consistent
+- CTA at bottom: "We're still filling board positions. Reach out at admin@nipomosc.org" — style this as a bordered callout card, not plain text
+
+#### 8. WHAT ABOUT AYSO? (dark section, short and punchy)
+- Keep this brief — it answers a specific fear
+- "Roots players can play AYSO rec simultaneously. 100%."
+- "Reign (competitive) players cannot dual-register per Cal South rules — but Reign runs year-round with built-in playing opportunities."
+- Make the "100%" line visually prominent — large text, crimson or gold
+
+#### 9. FAQ (warm background)
+- **"FREQUENTLY ASKED QUESTIONS"** — Integral, all caps
+- Accordion style — the current implementation is fine mechanically
+- Style the accordion to match brand: warm bg, subtle borders, crimson accent on the expand/collapse icon
+- Questions: Is NSC a non-profit? / Will it cost more than AYSO? / Do I have to volunteer? / Can my child play both? / Are jersey sponsorships new? / What ages? / When does the season start? / How can I get involved?
+
+#### 10. FOOTER CTA (dark section)
+- **"ROOTS. RISE. REIGN."** — large, Integral font, cream text on dark
+- Two links: Visit nipomosc.org | admin@nipomosc.org
+- Red "Get Started" CTA button matching the main site's nav button style
+- Keep it clean and minimal
+
+---
+
+## SPECIFIC BUGS TO FIX
+
+1. **Paid Refs & Spring Season bar widths**: The colored percentage bars are rendering at ~2-3px wide instead of scaling proportionally. Fix the width calculation so 75% fills 75% of the bar track.
+
+2. **Stat card count-up animations**: Currently unreliable — they show intermediate values and may not complete. Tie the animation trigger to IntersectionObserver (threshold 0.3+) and ensure they always land on the final value.
+
+3. **Huge empty space**: There's roughly a full viewport of blank space between the Cal South feature cards section and the "What about AYSO?" section. Remove or compress this padding.
+
+4. **Only 2 of 5 Cal South feature cards rendering**: Should be 5 (Paid Refs, Local Control, Player Pathway, Jersey Sponsorships, Spring Season). Either add the missing ones or fix whatever is truncating the list.
+
+5. **Missing value labels on bar chart**: Add the numeric value (e.g., "4.60") at the end of each horizontal bar in the Season Ratings chart.
+
+---
+
+## TRANSITIONS & FLOW
+
+The sections need connective tissue. Right now they feel like standalone cards laid out sequentially. Add:
+
+- **Scroll-triggered fade-ins** on each section (Framer Motion or GSAP ScrollTrigger, matching whatever animation library is already in use)
+- **Dark-to-warm-to-dark alternation** that matches the main site's rhythm
+- The page should feel like scrolling through ONE argument, not flipping through slides
+
+The narrative thread is: *Name confusion → We serve everyone → Same trusted people → Families validated us → Here's why we moved → Here's what gets better → Here's the team → Your AYSO questions answered → Get started*
+
+Every section should feel like it earns the next one.
+
+---
+
+## SUMMARY OF WHAT'S WRONG vs WHAT TO DO
+
+| Current | Fix |
+|---------|-----|
+| Georgia/Playfair serif headings | Integral/Bebas Neue sans-serif, ALL CAPS |
+| Dark green `#1a472a` heading color | Cream `#F4EDE1` on dark, near-black on light |
+| Cool off-white `#fafaf7` backgrounds | Warm parchment `#F4EDE1` / `#F3ECE2` |
+| Predominantly light page | Predominantly dark, matching main site |
+| No red accent anywhere | Crimson `#8B1D24` for CTAs, accents, emphasis |
+| Generic stock hero photo | Use Nipomo SC practice/game photos |
+| Title case editorial headings | ALL CAPS with letter-spacing |
+| Sections feel disconnected | Dark/warm alternation with scroll animations |
+| Newspaper editorial mood | Modern sports brand mood |
+| 2-column board grid | 3-column on desktop |
+| Broken percentage bars | Fix width scaling |
+| Unreliable count-up animations | IntersectionObserver trigger, guaranteed completion |
+| Missing feature cards | All 5 Cal South benefit cards |
+| No CTAs on the page | Add crimson "Get Started" buttons |
+
+---
+
+## REFERENCE
+
+Study these pages on the main site for tone, spacing, and component patterns:
+- Homepage hero + "A Full Player Pathway" section
+- Roots/Rise/Reign program cards
+- "Our Mission" section with icon cards
+- Sponsors section (dark bg, gold accents)
+- Contact/footer section
+
+The compare page should feel like it belongs on nipomosc.org — if you covered the URL bar, a visitor should not be able to tell it's a different build.
