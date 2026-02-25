@@ -356,7 +356,7 @@ export default function Compare() {
             className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-[#0D0D0D] leading-tight mb-6"
             data-testid="text-article-title"
           >
-            Nipomo SC Roots vs AYSO Nipomo: What's the Difference?
+            Nipomo SC Roots vs AYSO Nipomo:<br />What's the Difference?
           </motion.h1>
 
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-6">
