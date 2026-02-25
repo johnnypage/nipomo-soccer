@@ -1,16 +1,5 @@
-import { useRef, useEffect, useState, useCallback } from "react";
-import { motion, useInView } from "framer-motion";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Cell,
-  LabelList,
-} from "recharts";
+import { useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
 import {
   Accordion,
   AccordionContent,
@@ -21,37 +10,6 @@ import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, DollarSign, Shield, TrendingUp, Shirt, Calendar, Scale } from "lucide-react";
 import heroImage from "@assets/generated_images/youth_soccer_hero_image.png";
-
-function useCountUp(end: number, duration: number = 2000, decimals: number = 0) {
-  const [count, setCount] = useState(0);
-  const [done, setDone] = useState(false);
-  const inViewRef = useRef(null);
-  const isInView = useInView(inViewRef, { once: true, amount: 0.3 });
-
-  useEffect(() => {
-    if (!isInView || done) return;
-    let startTime: number;
-    let animationFrame: number;
-
-    const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(parseFloat((eased * end).toFixed(decimals)));
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(animate);
-      } else {
-        setCount(parseFloat(end.toFixed(decimals)));
-        setDone(true);
-      }
-    };
-
-    animationFrame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrame);
-  }, [isInView, end, duration, decimals, done]);
-
-  return { count, inViewRef };
-}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -74,30 +32,6 @@ const boardMembers = [
   { name: "Giovanni Garcia", role: "Club Director, Reign", bg: "Head JV coach, Pioneer Valley High School soccer." },
   { name: "Carla Alonso", role: "Registrar", bg: "" },
   { name: "Che Coho", role: "Board Member", bg: "" },
-];
-
-const seasonRatings = [
-  { category: "Equipment", rating: 4.6 },
-  { category: "Communication", rating: 4.55 },
-  { category: "Coaching", rating: 4.46 },
-  { category: "Food Options", rating: 4.43 },
-  { category: "Jerseys", rating: 4.37 },
-  { category: "Field Quality", rating: 4.24 },
-  { category: "Photo Day", rating: 4.0 },
-  { category: "Referees", rating: 3.89 },
-];
-
-const npsData = [
-  { score: "1", count: 1, type: "detractor" },
-  { score: "2", count: 0, type: "detractor" },
-  { score: "3", count: 2, type: "detractor" },
-  { score: "4", count: 3, type: "detractor" },
-  { score: "5", count: 6, type: "detractor" },
-  { score: "6", count: 3, type: "detractor" },
-  { score: "7", count: 5, type: "passive" },
-  { score: "8", count: 19, type: "passive" },
-  { score: "9", count: 20, type: "promoter" },
-  { score: "10", count: 67, type: "promoter" },
 ];
 
 const features = [
@@ -219,47 +153,6 @@ const faqItems = [
     a: "We're actively looking for board members, coaches, referees, and volunteers. Email admin@nipomosc.org to learn more.",
   },
 ];
-
-function StatCard({ value, label, decimals = 0, suffix = "" }: { value: number; label: string; decimals?: number; suffix?: string }) {
-  const { count, inViewRef } = useCountUp(value, 2000, decimals);
-  return (
-    <motion.div
-      ref={inViewRef}
-      variants={fadeUp}
-      className="bg-warmwhite rounded-xl p-6 md:p-8 text-center"
-      data-testid={`stat-${label.toLowerCase().replace(/\s+/g, "-")}`}
-    >
-      <span className="block text-4xl sm:text-5xl md:text-6xl font-bold text-crimson font-display">
-        {count}{suffix}
-      </span>
-      <span className="block mt-2 text-sm md:text-base text-night/60 font-heading font-medium uppercase tracking-wider">
-        {label}
-      </span>
-    </motion.div>
-  );
-}
-
-function PercentBar({ label, percent, count, color }: { label: string; percent: number; count: number; color: string }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-  return (
-    <div ref={ref} className="mb-4" data-testid={`percent-bar-${label.toLowerCase().replace(/\s+/g, "-")}`}>
-      <div className="flex justify-between text-sm mb-1.5">
-        <span className="font-heading font-semibold text-night">{label}</span>
-        <span className="text-night/60">{percent}% ({count})</span>
-      </div>
-      <div className="w-full bg-night/10 rounded-full h-4 overflow-hidden">
-        <motion.div
-          className="h-full rounded-full"
-          style={{ backgroundColor: color }}
-          initial={{ width: "0%" }}
-          animate={isInView ? { width: `${percent}%` } : { width: "0%" }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
-        />
-      </div>
-    </div>
-  );
-}
 
 function renderFaqAnswer(text: string) {
   const parts = text.split(/(admin@nipomosc\.org|nipomosc\.org)/g);
@@ -406,141 +299,6 @@ export default function Compare() {
             </motion.p>
           </div>
 
-          {/* Inline survey data */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={staggerContainer}
-            className="grid grid-cols-2 gap-4 mt-12"
-          >
-            <StatCard value={8.8} label="Recommendation Score" decimals={1} suffix="/10" />
-            <StatCard value={75} label="Support Paid Referees" suffix="%" />
-            <StatCard value={68} label="Want a Spring Season" suffix="%" />
-            <StatCard value={126} label="Families Surveyed" />
-          </motion.div>
-
-          {/* Season Ratings Chart */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="bg-white rounded-xl p-6 md:p-10 border border-night/5 mt-10"
-          >
-            <h3 className="font-display text-lg md:text-xl text-night uppercase tracking-wide mb-1">
-              SEASON RATINGS BY CATEGORY
-            </h3>
-            <p className="text-night/50 text-sm mb-8">Average rating out of 5.0</p>
-            <div className="w-full h-[400px]" data-testid="chart-season-ratings">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={seasonRatings} layout="vertical" margin={{ left: 10, right: 50, top: 5, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(13,13,13,0.06)" horizontal={false} />
-                  <XAxis type="number" domain={[0, 5]} tick={{ fontSize: 12, fill: "#55524D" }} />
-                  <YAxis type="category" dataKey="category" width={110} tick={{ fontSize: 12, fill: "#0D0D0D" }} />
-                  <Tooltip
-                    formatter={(value: number) => [value.toFixed(2), "Rating"]}
-                    contentStyle={{ borderRadius: 8, border: "1px solid rgba(13,13,13,0.1)" }}
-                  />
-                  <Bar dataKey="rating" radius={[0, 4, 4, 0]} barSize={26}>
-                    {seasonRatings.map((entry, index) => (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={entry.category === "Referees" ? "#8B1D24" : "#0D0D0D"}
-                      />
-                    ))}
-                    <LabelList dataKey="rating" position="right" formatter={(v: number) => v.toFixed(2)} style={{ fontSize: 12, fill: "#55524D", fontWeight: 600 }} />
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-            <p className="text-night/50 text-sm mt-4 italic">
-              Every category scored 4.0+, except referees, our biggest structural challenge under AYSO.
-            </p>
-          </motion.div>
-
-          {/* Percent bar cards */}
-          <div className="grid md:grid-cols-2 gap-6 mt-8">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              className="bg-white rounded-xl p-6 md:p-8 border border-night/5"
-            >
-              <h3 className="font-display text-base text-night uppercase tracking-wide mb-6">
-                PAID REFEREE SUPPORT
-              </h3>
-              <PercentBar label="Yes" percent={75} count={94} color="#8B1D24" />
-              <PercentBar label="Not Sure" percent={13} count={17} color="#C6A045" />
-              <PercentBar label="No" percent={12} count={15} color="#55524D" />
-            </motion.div>
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              className="bg-white rounded-xl p-6 md:p-8 border border-night/5"
-            >
-              <h3 className="font-display text-base text-night uppercase tracking-wide mb-6">
-                SPRING SEASON INTEREST
-              </h3>
-              <PercentBar label="Very Likely" percent={42} count={53} color="#8B1D24" />
-              <PercentBar label="Somewhat Likely" percent={26} count={33} color="#C6A045" />
-              <PercentBar label="Not Likely" percent={23} count={29} color="#55524D" />
-              <PercentBar label="Unsure" percent={9} count={11} color="#A8ADB5" />
-            </motion.div>
-          </div>
-
-          {/* NPS Chart */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="bg-white rounded-xl p-6 md:p-10 border border-night/5 mt-8"
-          >
-            <h3 className="font-display text-lg md:text-xl text-night uppercase tracking-wide mb-1">
-              RECOMMENDATION SCORE DISTRIBUTION
-            </h3>
-            <p className="text-night/50 text-sm mb-6">Scores from 1 to 10</p>
-            <div className="flex gap-4 mb-6 text-sm flex-wrap">
-              <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-crimson inline-block" /> Detractors (1-6): 15</span>
-              <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-gold inline-block" /> Passives (7-8): 24</span>
-              <span className="flex items-center gap-2"><span className="w-3 h-3 rounded-full bg-night inline-block" /> Promoters (9-10): 87</span>
-            </div>
-            <div className="w-full h-[300px]" data-testid="chart-nps">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={npsData} margin={{ left: 0, right: 10, top: 5, bottom: 5 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(13,13,13,0.06)" vertical={false} />
-                  <XAxis dataKey="score" tick={{ fontSize: 12, fill: "#55524D" }} />
-                  <YAxis tick={{ fontSize: 12, fill: "#55524D" }} />
-                  <Tooltip
-                    formatter={(value: number) => [value, "Responses"]}
-                    contentStyle={{ borderRadius: 8, border: "1px solid rgba(13,13,13,0.1)" }}
-                  />
-                  <Bar dataKey="count" radius={[4, 4, 0, 0]} barSize={36}>
-                    {npsData.map((entry, index) => (
-                      <Cell
-                        key={`nps-${index}`}
-                        fill={
-                          entry.type === "detractor"
-                            ? "#8B1D24"
-                            : entry.type === "passive"
-                            ? "#C6A045"
-                            : "#0D0D0D"
-                        }
-                      />
-                    ))}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-            <p className="text-night/50 text-sm mt-4 italic">
-              69% gave a 9 or 10. The board that earned those scores is the one running Nipomo SC.
-            </p>
-          </motion.div>
         </div>
       </section>
 
