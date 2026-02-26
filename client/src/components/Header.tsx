@@ -198,7 +198,7 @@ export default function Header({ onNavigate }: HeaderProps) {
       href="https://club.spond.com/landing/signup/nipomosc/form/A22902569DA04BE2B95994D93EE5C602"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed top-16 left-0 right-0 z-40 bg-risegreen text-warmwhite text-center py-2 px-4 text-sm font-heading font-semibold hover:bg-risegreen/90 transition-colors cursor-pointer block"
+      className="fixed top-16 left-0 right-0 z-40 bg-risegreen text-warmwhite text-center py-3 px-4 text-base font-heading font-semibold hover:bg-risegreen/90 transition-colors cursor-pointer block"
       data-testid="banner-spring-soccer"
     >
       Ready for Spring Soccer? <span className="underline underline-offset-2">Registration is now open.</span>
