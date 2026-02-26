@@ -216,59 +216,53 @@ export default function Rise() {
           <div className="absolute inset-0 bg-gradient-to-r from-night via-night/85 to-night/60" />
           <div className="absolute inset-0 bg-night/50" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 w-full">
-          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
-            <div className="flex-1">
-              <Badge className="bg-crimson/20 text-crimson border-crimson/40 mb-6 text-sm" data-testid="badge-development">
-                Spring Development League
-              </Badge>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="max-w-2xl">
+            <Badge className="bg-crimson/20 text-crimson border-crimson/40 mb-6 text-sm" data-testid="badge-development">
+              Spring Development League
+            </Badge>
 
-              <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl text-warmwhite tracking-wide mb-4" data-testid="text-rise-title">
+            <div className="flex items-center gap-4 mb-6">
+              <img src={riseLogo} alt="RISE Program Logo" className="h-20 w-auto" data-testid="img-rise-logo" />
+              <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl text-warmwhite tracking-wide" data-testid="text-rise-title">
                 RISE
               </h1>
-              <p className="text-warmwhite/80 text-lg sm:text-xl mb-8 leading-relaxed max-w-2xl">
-                A 6-week spring program designed to build confidence, sharpen technical skills, and give players meaningful touches on the ball.
-              </p>
+            </div>
 
-              <div className="flex flex-wrap gap-4 sm:gap-6 mb-10 text-warmwhite/90 text-sm sm:text-base">
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-gold" />
-                  <span>April 13 - May 23</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <GraduationCap className="h-4 w-4 text-gold" />
-                  <span>Grades 1-8</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-gold" />
-                  <span>2x/week training</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Trophy className="h-4 w-4 text-gold" />
-                  <span>2 tournaments</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-gold font-semibold">Starting at $85</span>
-                </div>
+            <p className="text-warmwhite/80 text-lg sm:text-xl mb-8 leading-relaxed">
+              A 6-week spring program designed to build confidence, sharpen technical skills, and give players meaningful touches on the ball.
+            </p>
+
+            <div className="flex flex-wrap gap-4 sm:gap-6 mb-10 text-warmwhite/90 text-sm sm:text-base">
+              <div className="flex items-center gap-2">
+                <Calendar className="h-4 w-4 text-gold" />
+                <span>April 13 - May 23</span>
               </div>
+              <div className="flex items-center gap-2">
+                <GraduationCap className="h-4 w-4 text-gold" />
+                <span>Grades 1-8</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="h-4 w-4 text-gold" />
+                <span>2x/week training</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Trophy className="h-4 w-4 text-gold" />
+                <span>2 tournaments</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-gold font-semibold">Starting at $85</span>
+              </div>
+            </div>
 
-              <Button
-                className="bg-crimson hover:bg-crimson-dark text-warmwhite font-bold text-lg px-8 py-6 rounded-xl shadow-lg"
-                onClick={() => scrollToSection("register")}
-                data-testid="button-hero-register"
-              >
-                Register Now
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </div>
-            <div className="flex-shrink-0">
-              <img
-                src={riseLogo}
-                alt="RISE Program Logo"
-                className="h-48 sm:h-56 lg:h-72 w-auto object-contain drop-shadow-2xl"
-                data-testid="img-rise-logo"
-              />
-            </div>
+            <Button
+              className="bg-crimson hover:bg-crimson-dark text-warmwhite font-bold text-lg px-8 py-6 rounded-xl shadow-lg"
+              onClick={() => scrollToSection("register")}
+              data-testid="button-hero-register"
+            >
+              Register Now
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
           </div>
         </div>
       </section>
