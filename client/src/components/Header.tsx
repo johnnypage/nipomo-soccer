@@ -26,6 +26,7 @@ export default function Header({ onNavigate }: HeaderProps) {
 
   const aboutLinks = [
     { label: "About Us", href: "/#about" },
+    { label: "Nipomo SC vs. AYSO", href: "/about/compare" },
   ];
 
   const navItems = [
