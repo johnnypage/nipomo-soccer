@@ -233,7 +233,7 @@ export default function Rise() {
               A 6-week spring program designed to build confidence, sharpen technical skills, and give players meaningful touches on the ball.
             </p>
 
-            <div className="flex flex-wrap gap-4 sm:gap-6 mb-10 text-warmwhite/90 text-sm sm:text-base">
+            <div className="flex flex-wrap gap-4 sm:gap-6 mb-8 text-warmwhite/90 text-sm sm:text-base">
               <div className="flex items-center gap-2">
                 <Calendar className="h-4 w-4 text-gold" />
                 <span>April 13 - May 23</span>
@@ -256,12 +256,12 @@ export default function Rise() {
             </div>
 
             <Button
-              className="bg-crimson hover:bg-crimson-dark text-warmwhite font-bold text-lg px-8 py-6 rounded-xl shadow-lg"
+              className="bg-crimson hover:bg-crimson-dark text-warmwhite"
               onClick={() => scrollToSection("register")}
               data-testid="button-hero-register"
             >
               Register Now
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
         </div>
