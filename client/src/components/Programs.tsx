@@ -44,7 +44,7 @@ export default function Programs({ onProgramSelect }: ProgramsProps) {
     {
       type: "rise" as const,
       title: "Rise",
-      subtitle: "Spring Development League",
+      subtitle: "Individual Player Development",
       ageRange: "U8 and up",
       season: "Spring Season",
       description: "For motivated players who want more soccer without a full year commitment. Training focuses on technical skills, decision making, and confidence with pod-based training and small-sided play.",
