@@ -30,7 +30,7 @@ const programStyles = {
   rise: {
     bg: "bg-slate",
     text: "text-warmwhite",
-    accent: "text-crimson",
+    accent: "text-risegreen",
     icon: TrendingUp,
     iconBg: "bg-crimson/20",
     button: "bg-crimson hover:bg-crimson-dark text-warmwhite",
