@@ -1,0 +1,36 @@
+# Add "Short on Time?" Section to Top of Compare Article
+
+Add a compact section immediately after the page title ("Nipomo SC Roots vs AYSO Nipomo: What's the Difference?") and before the first paragraph of the article intro.
+
+---
+
+## Content
+
+**Heading:** Short on time? Here's what you need to know.
+
+**Body:**
+
+Nipomo Soccer Club is a new, independent soccer organization built by the same people who ran AYSO Nipomo last season. Despite the name, it's not just a club program.
+
+We offer three programs under one roof, from recreational soccer in the fall through a spring development league to competitive club soccer. If your child played AYSO rec, Roots is the program for them.
+
+We left AYSO because of structural issues that couldn't be fixed from inside the system, mainly around referees, postseason access, and limited local control. The experience your family had last season? That's what we're building on, with more flexibility to do it better.
+
+Same people. Same fields. Same price. Better structure.
+
+If you want the full backstory, keep reading. We've also been getting a lot of questions, so we've included an FAQ at the bottom for the ones we hear most.
+
+---
+
+## Design Spec
+
+- **Container**: A card or bordered box that's visually distinct from the article body. Use a slightly different background — could be white on the cream page, or a very subtle green-tinted background. It should feel like a helpful summary card, not a warning box.
+- **Border**: A thin border (1px solid, muted green or gray) with rounded corners. Or a left border accent in green. Either works — just make it feel intentional and set apart from the prose below.
+- **"Same people. Same fields. Same price. Better structure."**: Style this line with slightly more visual weight. Could be bold, slightly larger, or its own line with breathing room. It's the tagline of the section.
+- **"FAQ at the bottom"**: Make this a clickable anchor link that smooth-scrolls to the FAQ accordion section.
+- **Spacing**: Comfortable padding inside. Give it breathing room above and below so it doesn't crowd the title or the intro paragraphs.
+- **No icons, no emoji, no "TL;DR" label**. The heading "Short on time?" is friendly enough. Keep it clean.
+
+## Important
+
+This section should feel confident and organized — like "we respect your time and we thought about this." It should NOT read like an apology for the article being long.

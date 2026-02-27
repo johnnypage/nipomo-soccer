@@ -371,6 +371,38 @@ export default function Compare() {
             Nipomo SC Roots vs AYSO Nipomo:<br />What's the Difference?
           </motion.h1>
 
+          <motion.div
+            variants={fadeUp}
+            className="bg-[#FDFCFA] border border-[#D4D0CB] rounded-xl px-6 sm:px-8 py-6 sm:py-8 my-8"
+            data-testid="section-short-on-time"
+          >
+            <h2 className="font-heading font-bold text-xl sm:text-2xl text-[#0D0D0D] mb-4">
+              Short on time? Here's what you need to know.
+            </h2>
+            <p className="text-[#555249] text-base sm:text-lg leading-relaxed mb-4">
+              Nipomo Soccer Club is a new, independent soccer organization built by the same people who ran AYSO Nipomo last season. Despite the name, it's not just a club program.
+            </p>
+            <p className="text-[#555249] text-base sm:text-lg leading-relaxed mb-4">
+              We offer three programs under one roof, from recreational soccer in the fall through a spring development league to competitive club soccer. If your child played AYSO rec, Roots is the program for them.
+            </p>
+            <p className="text-[#555249] text-base sm:text-lg leading-relaxed mb-5">
+              We left AYSO because of structural issues that couldn't be fixed from inside the system, mainly around referees, postseason access, and limited local control. The experience your family had last season? That's what we're building on, with more flexibility to do it better.
+            </p>
+            <p className="text-[#0D0D0D] text-lg sm:text-xl font-bold leading-relaxed mb-5">
+              Same people. Same fields. Same price. Better structure.
+            </p>
+            <p className="text-[#555249] text-base sm:text-lg leading-relaxed">
+              If you want the full backstory, keep reading. We've also been getting a lot of questions, so we've included an{" "}
+              <a
+                href="#faq"
+                onClick={(e) => { e.preventDefault(); document.getElementById("faq")?.scrollIntoView({ behavior: "smooth" }); }}
+                className="text-[#8B1D24] font-semibold underline underline-offset-2"
+                data-testid="link-faq-anchor"
+              >FAQ at the bottom</a>{" "}
+              for the ones we hear most.
+            </p>
+          </motion.div>
+
           <motion.p variants={fadeUp} className="text-[#555249] text-lg leading-relaxed mb-6">
             The goal of this article is to break down what Nipomo SC is, how it's different from AYSO, and why we made this change. But before we get into any of that, we want to acknowledge something important.
           </motion.p>
@@ -754,7 +786,7 @@ export default function Compare() {
           <motion.hr variants={fadeUp} className="border-[#CFCCC9] my-10" />
 
           {/* FAQ */}
-          <motion.h2 variants={fadeUp} className="font-heading font-bold text-2xl sm:text-3xl text-[#0D0D0D] mb-6" data-testid="heading-faq">
+          <motion.h2 id="faq" variants={fadeUp} className="font-heading font-bold text-2xl sm:text-3xl text-[#0D0D0D] mb-6" data-testid="heading-faq">
             Frequently Asked Questions
           </motion.h2>
 
