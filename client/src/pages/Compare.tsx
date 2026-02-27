@@ -378,7 +378,7 @@ export default function Compare() {
             <h2 className="font-heading font-bold text-xl sm:text-2xl text-[#0D0D0D] mb-4">
               Short on time? Here's what you need to know.
             </h2>
-            <p className="text-[#555249] text-base sm:text-lg leading-relaxed mb-4">Nipomo Soccer Club is a new, independent soccer organization built buy a majority of the people who ran AYSO Nipomo for the 2025 season. Despite the name, it's not just a club program.</p>
+            <p className="text-[#555249] text-base sm:text-lg leading-relaxed mb-4">Nipomo Soccer Club is a new, independent soccer organization built by a majority of the people who ran AYSO Nipomo for the 2025 season. Despite the name, it's not just a club program.</p>
             <p className="text-[#555249] text-base sm:text-lg leading-relaxed mb-4">
               We offer three programs under one roof, from recreational soccer in the fall through a spring development league to competitive club soccer. If your child played AYSO rec, Roots is the program for them.
             </p>
