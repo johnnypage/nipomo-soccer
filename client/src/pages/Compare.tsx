@@ -385,9 +385,7 @@ export default function Compare() {
             <p className="text-[#555249] text-base sm:text-lg leading-relaxed mb-5">
               We left AYSO because of structural issues that couldn't be fixed from inside the system, mainly around referees, postseason access, and limited local control. The experience your family had last season? That's what we're building on, with more flexibility to do it better.
             </p>
-            <p className="text-[#0D0D0D] text-lg sm:text-xl font-bold leading-relaxed mb-5">
-              Same people. Same fields. Same price. Better structure.
-            </p>
+            <p className="text-[#0D0D0D] text-lg sm:text-xl font-bold leading-relaxed mb-5">Same Community. Same fields. Same price. Better structure.</p>
             <p className="text-[#555249] text-base sm:text-lg leading-relaxed">
               If you want the full backstory, keep reading. We've also been getting a lot of questions, so we've included an{" "}
               <a
