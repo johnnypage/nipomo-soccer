@@ -359,7 +359,6 @@ export default function Compare() {
   return (
     <div className="bg-[#F3ECE2] min-h-screen">
       <Header />
-
       <main className="max-w-[720px] mx-auto px-5 sm:px-6 pt-36 sm:pt-40 pb-20">
         <motion.article initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.08 } } }}>
 
@@ -379,9 +378,7 @@ export default function Compare() {
             <h2 className="font-heading font-bold text-xl sm:text-2xl text-[#0D0D0D] mb-4">
               Short on time? Here's what you need to know.
             </h2>
-            <p className="text-[#555249] text-base sm:text-lg leading-relaxed mb-4">
-              Nipomo Soccer Club is a new, independent soccer organization built by the same people who ran AYSO Nipomo last season. Despite the name, it's not just a club program.
-            </p>
+            <p className="text-[#555249] text-base sm:text-lg leading-relaxed mb-4">Nipomo Soccer Club is a new, independent soccer organization built by the same people who ran AYSO Nipomo for the 2025 season. Despite the name, it's not just a club program.</p>
             <p className="text-[#555249] text-base sm:text-lg leading-relaxed mb-4">
               We offer three programs under one roof, from recreational soccer in the fall through a spring development league to competitive club soccer. If your child played AYSO rec, Roots is the program for them.
             </p>
@@ -831,7 +828,6 @@ export default function Compare() {
 
         </motion.article>
       </main>
-
       <footer className="bg-[#0D0D0D] py-8 text-center">
         <p className="text-white/60 font-heading font-semibold text-sm uppercase tracking-wider">Nipomo Soccer Club</p>
         <div className="flex items-center justify-center gap-4 mt-3">
