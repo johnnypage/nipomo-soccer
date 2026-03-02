@@ -48,6 +48,27 @@ export async function setupVite(server: Server, app: Express) {
         `src="/src/main.tsx"`,
         `src="/src/main.tsx?v=${nanoid()}"`,
       );
+
+      if (url.startsWith("/about/compare")) {
+        const ogTags = `
+    <title>Nipomo SC vs. AYSO — What's the Difference? | Nipomo Soccer Club</title>
+    <meta name="description" content="The same people who ran AYSO Nipomo built something better. Learn why we made the switch, what's different, and what it means for your family." />
+    <meta property="og:title" content="Nipomo SC vs. AYSO — What's the Difference? | Nipomo Soccer Club" />
+    <meta property="og:description" content="The same people who ran AYSO Nipomo built something better. Learn why we made the switch, what's different, and what it means for your family." />
+    <meta property="og:image" content="${req.protocol}://${req.get("host")}/nsc-logo-og.png" />
+    <meta property="og:url" content="${req.protocol}://${req.get("host")}${url}" />
+    <meta property="og:type" content="article" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nipomo SC vs. AYSO — What's the Difference? | Nipomo Soccer Club" />
+    <meta name="twitter:description" content="The same people who ran AYSO Nipomo built something better. Learn why we made the switch, what's different, and what it means for your family." />
+    <meta name="twitter:image" content="${req.protocol}://${req.get("host")}/nsc-logo-og.png" />`;
+        template = template.replace("</head>", `${ogTags}\n  </head>`);
+        template = template.replace(
+          /<title>.*?<\/title>/,
+          `<title>Nipomo SC vs. AYSO — What's the Difference? | Nipomo Soccer Club</title>`
+        );
+      }
+
       const page = await vite.transformIndexHtml(url, template);
       res.status(200).set({ "Content-Type": "text/html" }).end(page);
     } catch (e) {

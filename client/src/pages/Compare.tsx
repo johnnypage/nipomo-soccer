@@ -354,6 +354,45 @@ function ParentVoice({ quote, testId }: { quote: string; testId: string }) {
 export default function Compare() {
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    const ogTitle = "Nipomo SC vs. AYSO — What's the Difference? | Nipomo Soccer Club";
+    const ogDescription = "The same people who ran AYSO Nipomo built something better. Learn why we made the switch, what's different, and what it means for your family.";
+    const ogImage = window.location.origin + "/nsc-logo-og.png";
+    const ogUrl = window.location.href;
+
+    document.title = ogTitle;
+
+    const metaTags: Record<string, string> = {
+      "description": ogDescription,
+      "og:title": ogTitle,
+      "og:description": ogDescription,
+      "og:image": ogImage,
+      "og:url": ogUrl,
+      "og:type": "article",
+      "twitter:card": "summary_large_image",
+      "twitter:title": ogTitle,
+      "twitter:description": ogDescription,
+      "twitter:image": ogImage,
+    };
+
+    const createdTags: HTMLMetaElement[] = [];
+    Object.entries(metaTags).forEach(([key, value]) => {
+      const isOg = key.startsWith("og:") || key.startsWith("twitter:");
+      const attr = isOg ? "property" : "name";
+      let tag = document.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null;
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute(attr, key);
+        document.head.appendChild(tag);
+        createdTags.push(tag);
+      }
+      tag.setAttribute("content", value);
+    });
+
+    return () => {
+      document.title = "Nipomo Soccer Club | Roots. Rise. Reign.";
+      createdTags.forEach((tag) => tag.remove());
+    };
   }, []);
 
   return (
