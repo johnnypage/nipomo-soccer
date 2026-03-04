@@ -173,7 +173,7 @@ export default function Rise() {
     },
     {
       q: "What days are training?",
-      a: "Training days will be confirmed and communicated at registration based on field availability.",
+      a: "Tuesdays and Thursdays. All sessions start at 5:00 PM.",
     },
     {
       q: "What if my kid plays another sport in the spring?",
