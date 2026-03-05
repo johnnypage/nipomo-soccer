@@ -91,6 +91,7 @@ interface ProductFormData {
   description: string;
   price: string;
   image: string;
+  imageData: string;
   sizes: string[];
   colors: { name: string; hex: string }[];
   active: boolean;
@@ -103,6 +104,7 @@ const EMPTY_FORM: ProductFormData = {
   description: "",
   price: "",
   image: "",
+  imageData: "",
   sizes: [],
   colors: [],
   active: true,
@@ -128,6 +130,7 @@ function ProductForm({
           description: product.description || "",
           price: (product.price / 100).toFixed(2),
           image: product.image || "",
+          imageData: "",
           sizes: (product.sizes as string[]) || [],
           colors: (product.colors as { name: string; hex: string }[]) || [],
           active: product.active,
@@ -197,7 +200,7 @@ function ProductForm({
     e.preventDefault();
     setSaving(true);
     try {
-      const body = {
+      const body: Record<string, any> = {
         name: form.name,
         description: form.description || null,
         price: Math.round(parseFloat(form.price) * 100),
@@ -208,6 +211,9 @@ function ProductForm({
         sortOrder: parseInt(form.sortOrder) || 0,
         printerNotes: form.printerNotes || null,
       };
+      if (form.imageData) {
+        body.imageData = form.imageData;
+      }
 
       const url = product ? `/api/admin/products/${product.id}` : "/api/admin/products";
       const method = product ? "PATCH" : "POST";
