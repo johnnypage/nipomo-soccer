@@ -49,24 +49,48 @@ export async function setupVite(server: Server, app: Express) {
         `src="/src/main.tsx?v=${nanoid()}"`,
       );
 
-      if (url.startsWith("/about/compare")) {
+      const origin = `${req.protocol}://${req.get("host")}`;
+      const ogImage = `${origin}/nsc-logo-og.png`;
+
+      const pageOg: Record<string, { title: string; description: string; type?: string }> = {
+        "/about/compare": {
+          title: "Nipomo SC vs. AYSO — What's the Difference? | Nipomo Soccer Club",
+          description: "The same people who ran AYSO Nipomo built something better. Learn why we made the switch, what's different, and what it means for your family.",
+          type: "article",
+        },
+        "/rise": {
+          title: "RISE Spring Development League | Nipomo Soccer Club",
+          description: "A 6-week spring program for grades 1-8. Build confidence, sharpen technical skills, and get meaningful touches on the ball. Tuesdays and Thursdays starting April 13.",
+        },
+        "/reign": {
+          title: "REIGN Competitive Program | Nipomo Soccer Club",
+          description: "The competitive program of Nipomo Soccer Club. A complete pathway for skilled and committed young athletes to pursue advanced soccer without leaving town.",
+        },
+      };
+
+      const matched = Object.entries(pageOg).find(([p]) => url.startsWith(p));
+      if (matched) {
+        const [, meta] = matched;
         const ogTags = `
-    <title>Nipomo SC vs. AYSO — What's the Difference? | Nipomo Soccer Club</title>
-    <meta name="description" content="The same people who ran AYSO Nipomo built something better. Learn why we made the switch, what's different, and what it means for your family." />
-    <meta property="og:title" content="Nipomo SC vs. AYSO — What's the Difference? | Nipomo Soccer Club" />
-    <meta property="og:description" content="The same people who ran AYSO Nipomo built something better. Learn why we made the switch, what's different, and what it means for your family." />
-    <meta property="og:image" content="${req.protocol}://${req.get("host")}/nsc-logo-og.png" />
-    <meta property="og:url" content="${req.protocol}://${req.get("host")}${url}" />
-    <meta property="og:type" content="article" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Nipomo SC vs. AYSO — What's the Difference? | Nipomo Soccer Club" />
-    <meta name="twitter:description" content="The same people who ran AYSO Nipomo built something better. Learn why we made the switch, what's different, and what it means for your family." />
-    <meta name="twitter:image" content="${req.protocol}://${req.get("host")}/nsc-logo-og.png" />`;
+    <title>${meta.title}</title>
+    <meta name="description" content="${meta.description}" />
+    <meta property="og:title" content="${meta.title}" />
+    <meta property="og:description" content="${meta.description}" />
+    <meta property="og:image" content="${ogImage}" />
+    <meta property="og:url" content="${origin}${url}" />
+    <meta property="og:type" content="${meta.type || "website"}" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="${meta.title}" />
+    <meta name="twitter:description" content="${meta.description}" />
+    <meta name="twitter:image" content="${ogImage}" />`;
         template = template.replace("</head>", `${ogTags}\n  </head>`);
+        template = template.replace(/<title>.*?<\/title>/, `<title>${meta.title}</title>`);
+      } else {
         template = template.replace(
-          /<title>.*?<\/title>/,
-          `<title>Nipomo SC vs. AYSO — What's the Difference? | Nipomo Soccer Club</title>`
+          /content="\/nsc-logo-og\.png"/g,
+          `content="${ogImage}"`
         );
+        template = template.replace("</head>", `    <meta property="og:url" content="${origin}${url}" />\n  </head>`);
       }
 
       const page = await vite.transformIndexHtml(url, template);
