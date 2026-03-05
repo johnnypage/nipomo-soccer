@@ -43,3 +43,6 @@ waitForPort = 5000
 
 [userenv.shared]
 MAILCHIMP_AUDIENCE_ID = "96b8786cc6"
+
+[agent]
+integrations = ["javascript_stripe:1.0.0"]

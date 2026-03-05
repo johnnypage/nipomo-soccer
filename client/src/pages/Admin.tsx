@@ -159,7 +159,7 @@ function ProductForm({
       });
       const data = await res.json();
       if (res.ok) {
-        setForm((f) => ({ ...f, image: data.path }));
+        setForm((f) => ({ ...f, image: data.path, imageData: data.imageData || "" }));
       }
     } catch {
       // ignore
