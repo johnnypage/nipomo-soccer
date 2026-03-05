@@ -76,6 +76,7 @@ export const shopProducts = pgTable("shop_products", {
   description: text("description"),
   price: integer("price").notNull(),
   image: text("image"),
+  imageData: text("image_data"),
   sizes: jsonb("sizes").$type<string[]>(),
   colors: jsonb("colors").$type<{ name: string; hex: string }[]>(),
   active: boolean("active").notNull().default(true),

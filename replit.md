@@ -128,3 +128,5 @@ Preferred communication style: Simple, everyday language.
 - Added risegreen and amber color tokens to Tailwind config
 - Updated navigation to link Rise to /rise page
 - Tournament page hidden from navigation, /tournament redirects to home
+- Shop product images now stored in PostgreSQL (base64 in `image_data` column) so they persist across deployments
+- Server-side OG meta tags for Compare page (/about/compare) for proper link previews

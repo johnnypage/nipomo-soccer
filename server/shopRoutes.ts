@@ -363,9 +363,20 @@ export function registerShopRoutes(app: Express) {
   app.post("/api/admin/products", async (req, res) => {
     if (!requireAuth(req, res)) return;
     try {
-      const { name, description, price, image, sizes, colors, active, sortOrder, printerNotes } = req.body;
+      const { name, description, price, image, imageData, sizes, colors, active, sortOrder, printerNotes } = req.body;
       if (!name || price == null) {
         return res.status(400).json({ error: "Name and price are required" });
+      }
+      let resolvedImageData = imageData || null;
+      if (!resolvedImageData && image) {
+        const filename = image.replace("/uploads/", "");
+        const localPath = path.resolve("uploads", filename);
+        if (fs.existsSync(localPath)) {
+          const buf = fs.readFileSync(localPath);
+          const ext = path.extname(filename).toLowerCase();
+          const mime = ext === ".png" ? "image/png" : ext === ".webp" ? "image/webp" : ext === ".gif" ? "image/gif" : "image/jpeg";
+          resolvedImageData = `data:${mime};base64,${buf.toString("base64")}`;
+        }
       }
       const [product] = await db
         .insert(shopProducts)
@@ -374,6 +385,7 @@ export function registerShopRoutes(app: Express) {
           description: description || null,
           price: Number(price),
           image: image || null,
+          imageData: resolvedImageData,
           sizes: sizes || null,
           colors: colors || null,
           active: active !== false,
@@ -394,7 +406,7 @@ export function registerShopRoutes(app: Express) {
     try {
       const { id } = req.params;
       const updates: Record<string, any> = {};
-      const allowed = ["name", "description", "price", "image", "sizes", "colors", "active", "sortOrder", "printerNotes"];
+      const allowed = ["name", "description", "price", "image", "imageData", "sizes", "colors", "active", "sortOrder", "printerNotes"];
       for (const key of allowed) {
         if (req.body[key] !== undefined) {
           if (key === "price" || key === "sortOrder") {
@@ -402,6 +414,16 @@ export function registerShopRoutes(app: Express) {
           } else {
             updates[key] = req.body[key];
           }
+        }
+      }
+      if (updates.image && !updates.imageData) {
+        const filename = updates.image.replace("/uploads/", "");
+        const localPath = path.resolve("uploads", filename);
+        if (fs.existsSync(localPath)) {
+          const buf = fs.readFileSync(localPath);
+          const ext = path.extname(filename).toLowerCase();
+          const mime = ext === ".png" ? "image/png" : ext === ".webp" ? "image/webp" : ext === ".gif" ? "image/gif" : "image/jpeg";
+          updates.imageData = `data:${mime};base64,${buf.toString("base64")}`;
         }
       }
       if (Object.keys(updates).length === 0) {
@@ -441,17 +463,53 @@ export function registerShopRoutes(app: Express) {
     }
   });
 
-  // Upload image
+  app.get("/uploads/:filename", async (req, res) => {
+    try {
+      const filename = req.params.filename;
+      const imagePath = `/uploads/${filename}`;
+      const [product] = await db
+        .select({ imageData: shopProducts.imageData })
+        .from(shopProducts)
+        .where(eq(shopProducts.image, imagePath))
+        .limit(1);
+      if (product?.imageData) {
+        const matches = product.imageData.match(/^data:(.+);base64,(.+)$/);
+        if (matches) {
+          const mimeType = matches[1];
+          const buffer = Buffer.from(matches[2], "base64");
+          res.set("Content-Type", mimeType);
+          res.set("Cache-Control", "public, max-age=31536000");
+          return res.send(buffer);
+        }
+      }
+      const localPath = path.resolve("uploads", filename);
+      if (fs.existsSync(localPath)) {
+        return res.sendFile(localPath);
+      }
+      res.status(404).json({ error: "Image not found" });
+    } catch {
+      res.status(500).json({ error: "Failed to serve image" });
+    }
+  });
+
   app.post("/api/admin/upload", (req, res) => {
     if (!requireAuth(req, res)) return;
-    upload.single("image")(req, res, (err) => {
+    upload.single("image")(req, res, async (err) => {
       if (err) {
         return res.status(400).json({ error: err.message });
       }
       if (!req.file) {
         return res.status(400).json({ error: "No file uploaded" });
       }
-      res.json({ path: `/uploads/${req.file.filename}` });
+      const filePath = path.resolve("uploads", req.file.filename);
+      const fileBuffer = fs.readFileSync(filePath);
+      const mimeType = req.file.mimetype;
+      const base64 = `data:${mimeType};base64,${fileBuffer.toString("base64")}`;
+      const imagePath = `/uploads/${req.file.filename}`;
+
+      (req as any)._uploadedImageData = { path: imagePath, data: base64 };
+
+      res.json({ path: imagePath, imageData: base64 });
     });
   });
 

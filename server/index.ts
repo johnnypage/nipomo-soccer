@@ -7,8 +7,6 @@ import { createServer } from "http";
 const app = express();
 const httpServer = createServer(app);
 
-// Serve uploaded images
-app.use("/uploads", express.static(path.resolve("uploads")));
 
 declare module "http" {
   interface IncomingMessage {
