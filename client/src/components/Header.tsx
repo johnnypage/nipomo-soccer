@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ShoppingBag } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Link, useLocation } from "wouter";
 import clubLogo from "@assets/NSC_1764979848772.png";
+import { useCart } from "@/hooks/use-cart";
+import CartSheet from "@/components/CartSheet";
 
 interface HeaderProps {
   onNavigate?: (section: string) => void;
@@ -16,7 +18,9 @@ interface HeaderProps {
 
 export default function Header({ onNavigate }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
   const [location] = useLocation();
+  const { totalItems } = useCart();
 
   const programLinks = [
     { label: "Roots", href: "/#programs", description: "Community Recreational Soccer" },
@@ -101,6 +105,13 @@ export default function Header({ onNavigate }: HeaderProps) {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+            <Link
+              href="/shop"
+              className="font-integral text-warmwhite/80 hover:text-warmwhite font-bold uppercase tracking-wide transition-colors"
+              data-testid="nav-shop"
+            >
+              Shop
+            </Link>
             {navItems.map((item) => (
               <button
                 key={item.section}
@@ -114,6 +125,18 @@ export default function Header({ onNavigate }: HeaderProps) {
           </nav>
 
           <div className="flex items-center gap-3">
+            <button
+              onClick={() => setCartOpen(true)}
+              className="relative text-warmwhite/80 hover:text-warmwhite transition-colors"
+              data-testid="button-cart"
+            >
+              <ShoppingBag className="h-5 w-5" />
+              {totalItems > 0 && (
+                <span className="absolute -top-2 -right-2 bg-crimson text-warmwhite text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+                  {totalItems}
+                </span>
+              )}
+            </button>
             <Button
               onClick={() => handleNavigate("contact")}
               className="hidden sm:flex bg-crimson hover:bg-crimson-dark text-warmwhite border-crimson"
@@ -172,6 +195,14 @@ export default function Header({ onNavigate }: HeaderProps) {
                   Home
                 </Link>
               )}
+              <Link
+                href="/shop"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block w-full text-left text-warmwhite/80 hover:text-warmwhite font-medium py-2"
+                data-testid="mobile-nav-shop"
+              >
+                Shop
+              </Link>
               {navItems.map((item) => (
                 <button
                   key={item.section}
@@ -203,6 +234,7 @@ export default function Header({ onNavigate }: HeaderProps) {
     >
       Ready for Spring Soccer? <span className="underline underline-offset-2">Registration is now open.</span>
     </a>
+    <CartSheet open={cartOpen} onOpenChange={setCartOpen} />
     </>
   );
 }

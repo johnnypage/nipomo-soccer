@@ -1,10 +1,14 @@
 import express, { type Request, Response, NextFunction } from "express";
+import path from "path";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
 
 const app = express();
 const httpServer = createServer(app);
+
+// Serve uploaded images
+app.use("/uploads", express.static(path.resolve("uploads")));
 
 declare module "http" {
   interface IncomingMessage {

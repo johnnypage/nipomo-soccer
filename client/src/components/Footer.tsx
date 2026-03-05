@@ -4,6 +4,7 @@ import { Mail, Loader2, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { apiRequest } from "@/lib/queryClient";
+import { Link } from "wouter";
 import clubLogo from "@assets/NSC_1764979848772.png";
 
 interface FooterProps {
@@ -43,6 +44,7 @@ export default function Footer({ onNavigate }: FooterProps) {
     ],
     club: [
       { label: "About Us", section: "about" },
+      { label: "Shop", section: "shop", href: "/shop" },
       { label: "Contact", section: "contact" },
       { label: "Join Now", section: "contact" },
     ],
@@ -155,13 +157,23 @@ export default function Footer({ onNavigate }: FooterProps) {
             <ul className="space-y-2">
               {footerLinks.club.map((link, idx) => (
                 <li key={idx}>
-                  <button
-                    onClick={() => onNavigate?.(link.section)}
-                    className="text-warmwhite/60 hover:text-warmwhite text-sm transition-colors"
-                    data-testid={`footer-link-${link.label.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
-                  >
-                    {link.label}
-                  </button>
+                  {"href" in link && link.href ? (
+                    <Link
+                      href={link.href}
+                      className="text-warmwhite/60 hover:text-warmwhite text-sm transition-colors"
+                      data-testid={`footer-link-${link.label.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => onNavigate?.(link.section)}
+                      className="text-warmwhite/60 hover:text-warmwhite text-sm transition-colors"
+                      data-testid={`footer-link-${link.label.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
+                    >
+                      {link.label}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>

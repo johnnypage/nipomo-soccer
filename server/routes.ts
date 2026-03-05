@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import sgMail from "@sendgrid/mail";
 import { db } from "./db";
 import { contactSubmissions, tournamentInterests, insertTournamentInterestSchema } from "@shared/schema";
+import { registerShopRoutes } from "./shopRoutes";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
 
@@ -15,6 +16,8 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  registerShopRoutes(app);
+
   app.post("/api/contact", async (req, res) => {
     try {
       const { name, email, phone, program, message } = req.body;
