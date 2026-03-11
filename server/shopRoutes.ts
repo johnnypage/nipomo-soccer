@@ -392,6 +392,71 @@ export function registerShopRoutes(app: Express) {
     }
   });
 
+  // Sync all completed Stripe sessions into orders DB (admin)
+  app.post("/api/admin/sync-orders-from-stripe", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      // Fetch up to 100 completed checkout sessions from Stripe
+      const sessions = await stripe.checkout.sessions.list({
+        limit: 100,
+        expand: ["data.line_items"],
+      });
+
+      const completed = sessions.data.filter(
+        (s) => s.payment_status === "paid" || s.status === "complete"
+      );
+
+      let imported = 0;
+      let skipped = 0;
+
+      for (const session of completed) {
+        // Check if already recorded
+        const existing = await db
+          .select({ id: shopOrders.id })
+          .from(shopOrders)
+          .where(eq(shopOrders.stripeSessionId, session.id))
+          .limit(1);
+
+        if (existing[0]) {
+          skipped++;
+          continue;
+        }
+
+        let items: any[] = [];
+        try {
+          const raw = session.metadata?.order_items;
+          if (raw && !raw.endsWith("...")) {
+            items = JSON.parse(raw);
+          } else if (session.line_items?.data) {
+            items = session.line_items.data.map((li: any) => ({
+              name: li.description || li.price?.product,
+              quantity: li.quantity,
+              price: li.amount_total,
+            }));
+          }
+        } catch {
+          // keep empty
+        }
+
+        await db.insert(shopOrders).values({
+          stripeSessionId: session.id,
+          customerEmail: session.customer_details?.email || "unknown",
+          customerName: session.customer_details?.name || "unknown",
+          customerPhone: session.customer_details?.phone || null,
+          items: items.length > 0 ? items : session.metadata?.order_items || "[]",
+          totalAmount: session.amount_total || 0,
+          status: "confirmed",
+        });
+        imported++;
+      }
+
+      res.json({ imported, skipped, total: completed.length });
+    } catch (error: any) {
+      console.error("Stripe sync error:", error);
+      res.status(500).json({ error: "Failed to sync from Stripe: " + error.message });
+    }
+  });
+
   // Admin login
   app.post("/api/admin/login", (req, res) => {
     const { password } = req.body;

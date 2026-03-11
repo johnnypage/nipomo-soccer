@@ -589,6 +589,8 @@ function OrderDashboard({ token }: { token: string }) {
   const [recoverSessionId, setRecoverSessionId] = useState("");
   const [recovering, setRecovering] = useState(false);
   const [recoverMsg, setRecoverMsg] = useState<{ type: "success" | "error"; text: string } | null>(null);
+  const [syncing, setSyncing] = useState(false);
+  const [syncMsg, setSyncMsg] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
 
@@ -646,6 +648,25 @@ function OrderDashboard({ token }: { token: string }) {
     }
   }
 
+  async function handleSyncFromStripe() {
+    setSyncing(true);
+    setSyncMsg(null);
+    try {
+      const res = await fetch("/api/admin/sync-orders-from-stripe", { method: "POST", headers });
+      const data = await res.json();
+      if (res.ok) {
+        setSyncMsg({ type: "success", text: `Imported ${data.imported} new order${data.imported !== 1 ? "s" : ""} from Stripe. (${data.skipped} already recorded)` });
+        fetchOrders();
+      } else {
+        setSyncMsg({ type: "error", text: data.error || "Sync failed." });
+      }
+    } catch {
+      setSyncMsg({ type: "error", text: "Network error." });
+    } finally {
+      setSyncing(false);
+    }
+  }
+
   function handleExport() {
     window.open(`/api/admin/orders/export?_t=${token}`, "_blank");
     fetch("/api/admin/orders/export", { headers })
@@ -694,9 +715,33 @@ function OrderDashboard({ token }: { token: string }) {
 
   return (
     <div>
-      {/* Recover missing order */}
+      {/* Sync from Stripe */}
+      <div className="bg-slate/10 border border-slate/20 rounded-lg p-4 mb-4">
+        <div className="flex items-center justify-between flex-wrap gap-3">
+          <div>
+            <p className="text-warmwhite text-sm font-semibold">Sync orders from Stripe</p>
+            <p className="text-warmwhite/50 text-xs mt-0.5">Imports all completed payments that aren't recorded yet</p>
+          </div>
+          <Button
+            onClick={handleSyncFromStripe}
+            disabled={syncing}
+            className="bg-risegreen hover:bg-risegreen/90 text-warmwhite text-sm"
+            data-testid="button-sync-stripe"
+          >
+            {syncing ? <Loader2 className="h-4 w-4 animate-spin mr-1" /> : null}
+            {syncing ? "Syncing…" : "Sync from Stripe"}
+          </Button>
+        </div>
+        {syncMsg && (
+          <p className={`text-sm mt-2 ${syncMsg.type === "success" ? "text-risegreen" : "text-red-400"}`} data-testid="text-sync-msg">
+            {syncMsg.text}
+          </p>
+        )}
+      </div>
+
+      {/* Recover missing order by session ID */}
       <div className="bg-slate/10 border border-slate/20 rounded-lg p-4 mb-6">
-        <p className="text-warmwhite/70 text-sm font-medium mb-3">Recover an order by Stripe Session ID</p>
+        <p className="text-warmwhite/70 text-sm font-medium mb-3">Recover a specific order by Stripe Session ID</p>
         <div className="flex gap-2 items-center flex-wrap">
           <input
             type="text"
@@ -713,7 +758,7 @@ function OrderDashboard({ token }: { token: string }) {
             data-testid="button-recover-order"
           >
             {recovering ? <Loader2 className="h-4 w-4 animate-spin mr-1" /> : null}
-            Recover Order
+            Recover
           </Button>
         </div>
         {recoverMsg && (
