@@ -114,19 +114,12 @@ Preferred communication style: Simple, everyday language.
 - **Rise** (`/rise`) - RISE Spring Development League page with hero, program details, age divisions, pricing tiers, FAQ accordion, pathway visualization, and sticky mobile CTA. Uses custom green (#2E7D32) and amber (#F9A825) color scheme.
 - **Reign** (`/reign`) - Detailed page for the Reign competitive program with teams organized by birth year ranges
 - **Tournament** (`/tournament`) - Hidden; redirects to home. Reign Winter Classic tournament page with event details, team interest form, and contact information
-- **Nipomo SC vs. AYSO** (`/about/compare`) - Blog-style article page comparing Nipomo SC to AYSO. Clean reading layout (max 720px), warm cream background (#F3ECE2), 4 inline data visualizations (recharts): horizontal bar chart for category ratings, satisfaction stat card, two donut charts for referee support and spring interest. Board member cards, styled comparison table with alternating rows, FAQ accordion. Currently NOT routed or linked in navigation (hidden until ready). File exists at `client/src/pages/Compare.tsx`.
+- **Nipomo SC vs. AYSO** (`/about/compare`) - Apple-style scroll-driven page comparing Nipomo SC to AYSO. 12 full-width sections with parallax backgrounds (Unsplash), framer-motion whileInView animations, count-up numbers, recharts bar chart and donut charts, board member grid, feature card grid with icons, comparison table, FAQ accordion. Linked in About dropdown nav. File: `client/src/pages/Compare.tsx`.
 
 ## Recent Changes
 
-- Rebuilt Nipomo SC vs. AYSO page as a blog-style article with inline recharts data visualizations (bar chart, stat card, 2 donut charts)
-- Removed /about/compare route and About dropdown from navigation (page hidden until ready)
-- Added sitewide green banner below nav: "Ready for Spring Soccer? Registration is now open." linking to /rise
-- Added "Register Today" tag next to Rise title in program card, plus "Registration Now Open" banner on Rise card image
-- Unified photo treatments across Rise page (overlays on hero, What is RISE, and scrimmage photos)
-- Built RISE program page with all sections: hero, what is RISE, who is it for, how it works, age divisions, what's included, registration/pricing, why RISE is different, pathway visualization, FAQ accordion, and final CTA
-- Added sticky mobile "Register Now" CTA bar on RISE page
-- Added risegreen and amber color tokens to Tailwind config
-- Updated navigation to link Rise to /rise page
-- Tournament page hidden from navigation, /tournament redirects to home
-- Shop product images now stored in PostgreSQL (base64 in `image_data` column) so they persist across deployments
-- Server-side OG meta tags for Compare page (/about/compare) for proper link previews
+- Rebuilt /about/compare as Apple-style scroll-driven page: full-screen hero with parallax, 12 distinct sections, count-up stat cards, animated charts, board member grid, feature card grid, comparison table, FAQ; linked in About nav dropdown
+- Fixed shop order recording: orders were silently failing because STRIPE_WEBHOOK_SECRET was not configured. Added `/api/shop/order-from-session` endpoint that records an order directly from a Stripe session ID. OrderConfirmation page now calls this on load, ensuring every paid order is recorded regardless of webhook status. Added "Recover Order" panel in admin Orders tab to manually recover past orders using session IDs from Stripe dashboard.
+- Admin panel imageData fix: upload response now stores base64 in form state and sends it with product save, ensuring images persist across deploys
+- Shop product images stored in PostgreSQL (base64 in `image_data` column) so they persist across deployments
+- Rebuilt /about/compare route and About dropdown added to navigation

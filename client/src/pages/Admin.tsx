@@ -586,6 +586,9 @@ function OrderDashboard({ token }: { token: string }) {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [recoverSessionId, setRecoverSessionId] = useState("");
+  const [recovering, setRecovering] = useState(false);
+  const [recoverMsg, setRecoverMsg] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
 
@@ -618,6 +621,28 @@ function OrderDashboard({ token }: { token: string }) {
       }
     } catch {
       console.error("Failed to update status");
+    }
+  }
+
+  async function handleRecoverOrder() {
+    const sid = recoverSessionId.trim();
+    if (!sid) return;
+    setRecovering(true);
+    setRecoverMsg(null);
+    try {
+      const res = await fetch(`/api/shop/order-from-session?session_id=${encodeURIComponent(sid)}`);
+      if (res.ok) {
+        setRecoverMsg({ type: "success", text: "Order recovered successfully." });
+        setRecoverSessionId("");
+        fetchOrders();
+      } else {
+        const data = await res.json();
+        setRecoverMsg({ type: "error", text: data.error || "Could not recover order." });
+      }
+    } catch {
+      setRecoverMsg({ type: "error", text: "Network error." });
+    } finally {
+      setRecovering(false);
     }
   }
 
@@ -669,6 +694,35 @@ function OrderDashboard({ token }: { token: string }) {
 
   return (
     <div>
+      {/* Recover missing order */}
+      <div className="bg-slate/10 border border-slate/20 rounded-lg p-4 mb-6">
+        <p className="text-warmwhite/70 text-sm font-medium mb-3">Recover an order by Stripe Session ID</p>
+        <div className="flex gap-2 items-center flex-wrap">
+          <input
+            type="text"
+            value={recoverSessionId}
+            onChange={(e) => setRecoverSessionId(e.target.value)}
+            placeholder="cs_live_..."
+            className="flex-1 min-w-0 bg-night border border-slate/30 rounded-md px-3 py-2 text-warmwhite text-sm placeholder:text-warmwhite/30 focus:outline-none focus:border-crimson"
+            data-testid="input-recover-session"
+          />
+          <Button
+            onClick={handleRecoverOrder}
+            disabled={recovering || !recoverSessionId.trim()}
+            className="bg-crimson hover:bg-crimson-dark text-warmwhite border-crimson text-sm"
+            data-testid="button-recover-order"
+          >
+            {recovering ? <Loader2 className="h-4 w-4 animate-spin mr-1" /> : null}
+            Recover Order
+          </Button>
+        </div>
+        {recoverMsg && (
+          <p className={`text-sm mt-2 ${recoverMsg.type === "success" ? "text-risegreen" : "text-red-400"}`} data-testid="text-recover-msg">
+            {recoverMsg.text}
+          </p>
+        )}
+      </div>
+
       <div className="flex items-center justify-end mb-6">
         <Button
           onClick={handleExport}

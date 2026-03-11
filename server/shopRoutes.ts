@@ -329,6 +329,69 @@ export function registerShopRoutes(app: Express) {
     res.json({ received: true });
   });
 
+  // Retrieve (and record) an order from a Stripe session ID — called by the order confirmation page
+  app.get("/api/shop/order-from-session", async (req, res) => {
+    const sessionId = req.query.session_id as string;
+    if (!sessionId) {
+      return res.status(400).json({ error: "session_id is required" });
+    }
+    try {
+      // Check if we already recorded this order
+      const existing = await db
+        .select()
+        .from(shopOrders)
+        .where(eq(shopOrders.stripeSessionId, sessionId))
+        .limit(1);
+
+      if (existing[0]) {
+        return res.json({ order: existing[0] });
+      }
+
+      // Retrieve the session from Stripe
+      const session = await stripe.checkout.sessions.retrieve(sessionId, {
+        expand: ["line_items"],
+      });
+
+      if (session.payment_status !== "paid") {
+        return res.status(400).json({ error: "Payment not completed" });
+      }
+
+      let items: any[] = [];
+      try {
+        const raw = session.metadata?.order_items;
+        if (raw && !raw.endsWith("...")) {
+          items = JSON.parse(raw);
+        } else if (session.line_items?.data) {
+          items = session.line_items.data.map((li) => ({
+            name: li.description || li.price?.product,
+            quantity: li.quantity,
+            price: li.amount_total,
+          }));
+        }
+      } catch {
+        // keep empty
+      }
+
+      const [order] = await db
+        .insert(shopOrders)
+        .values({
+          stripeSessionId: session.id,
+          customerEmail: session.customer_details?.email || "unknown",
+          customerName: session.customer_details?.name || "unknown",
+          customerPhone: session.customer_details?.phone || null,
+          items: items.length > 0 ? items : session.metadata?.order_items || "[]",
+          totalAmount: session.amount_total || 0,
+          status: "confirmed",
+        })
+        .returning();
+
+      res.json({ order });
+    } catch (error: any) {
+      console.error("Failed to retrieve/save order from session:", error);
+      res.status(500).json({ error: "Failed to retrieve order" });
+    }
+  });
+
   // Admin login
   app.post("/api/admin/login", (req, res) => {
     const { password } = req.body;
