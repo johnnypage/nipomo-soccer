@@ -4,12 +4,100 @@ import { createHmac, createHash, timingSafeEqual } from "crypto";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
+import sgMail from "@sendgrid/mail";
 import { db } from "./db";
 import { shopOrders, shopProducts } from "@shared/schema";
 import { checkoutRequestSchema, orderStatusSchema } from "@shared/shopValidation";
 import { eq, desc, asc } from "drizzle-orm";
 
+sgMail.setApiKey(process.env.SENDGRID_API_KEY || "");
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
+
+async function sendOrderConfirmationEmail(order: {
+  customerEmail: string;
+  customerName: string;
+  items: any;
+  totalAmount: number;
+}) {
+  const fromEmail = process.env.SENDGRID_FROM_EMAIL || "admin@nipomosc.org";
+
+  let parsedItems: any[] = [];
+  try {
+    parsedItems = typeof order.items === "string" ? JSON.parse(order.items) : order.items;
+  } catch { parsedItems = []; }
+
+  const itemRows = parsedItems.map((item: any) => {
+    const size = item.size ? ` — Size: ${item.size}` : "";
+    const color = item.color ? ` / ${item.color}` : "";
+    const price = item.price ? ` ($${(item.price / 100).toFixed(2)} ea.)` : "";
+    return `<tr>
+      <td style="padding:6px 12px;border-bottom:1px solid #e5e5e5;">${item.name || "Item"}${color}${size}</td>
+      <td style="padding:6px 12px;border-bottom:1px solid #e5e5e5;text-align:center;">${item.quantity || 1}</td>
+      <td style="padding:6px 12px;border-bottom:1px solid #e5e5e5;text-align:right;">${price}</td>
+    </tr>`;
+  }).join("");
+
+  const total = `$${(order.totalAmount / 100).toFixed(2)}`;
+  const firstName = order.customerName?.split(" ")[0] || "there";
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<body style="margin:0;padding:0;background:#f4ede1;font-family:Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4ede1;padding:32px 16px;">
+    <tr><td align="center">
+      <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;overflow:hidden;max-width:600px;width:100%;">
+        <tr>
+          <td style="background:#8B1D24;padding:28px 32px;text-align:center;">
+            <p style="margin:0;color:#F4EDE1;font-size:13px;letter-spacing:2px;text-transform:uppercase;">Nipomo Soccer Club</p>
+            <h1 style="margin:8px 0 0;color:#ffffff;font-size:26px;">Order Confirmed</h1>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:32px;">
+            <p style="color:#333;font-size:16px;margin:0 0 8px;">Hi ${firstName},</p>
+            <p style="color:#555;font-size:15px;margin:0 0 24px;">Thanks for your order! We've received your payment and your items are being prepared. We'll be in touch when your order is ready for pickup.</p>
+
+            <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5e5e5;border-radius:6px;overflow:hidden;margin-bottom:24px;">
+              <thead>
+                <tr style="background:#f8f8f8;">
+                  <th style="padding:10px 12px;text-align:left;font-size:12px;color:#888;text-transform:uppercase;letter-spacing:1px;">Item</th>
+                  <th style="padding:10px 12px;text-align:center;font-size:12px;color:#888;text-transform:uppercase;letter-spacing:1px;">Qty</th>
+                  <th style="padding:10px 12px;text-align:right;font-size:12px;color:#888;text-transform:uppercase;letter-spacing:1px;">Price</th>
+                </tr>
+              </thead>
+              <tbody>${itemRows || `<tr><td colspan="3" style="padding:12px;color:#888;text-align:center;">See your Stripe receipt for details.</td></tr>`}</tbody>
+              <tfoot>
+                <tr style="background:#f8f8f8;">
+                  <td colspan="2" style="padding:10px 12px;font-weight:bold;color:#333;">Total</td>
+                  <td style="padding:10px 12px;font-weight:bold;color:#8B1D24;text-align:right;">${total}</td>
+                </tr>
+              </tfoot>
+            </table>
+
+            <p style="color:#555;font-size:14px;margin:0 0 8px;">Questions? Reply to this email or reach us at <a href="mailto:shop@nipomosc.org" style="color:#8B1D24;">shop@nipomosc.org</a>.</p>
+            <p style="color:#555;font-size:14px;margin:0;">— Nipomo Soccer Club</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="background:#f4ede1;padding:20px 32px;text-align:center;">
+            <p style="margin:0;color:#999;font-size:12px;">Nipomo Soccer Club &nbsp;|&nbsp; Nipomo, CA &nbsp;|&nbsp; <a href="https://nipomosc.org" style="color:#8B1D24;">nipomosc.org</a></p>
+          </td>
+        </tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+
+  await sgMail.send({
+    to: order.customerEmail,
+    from: { email: fromEmail, name: "Nipomo Soccer Club Shop" },
+    subject: "Your Nipomo SC Order is Confirmed!",
+    html,
+  });
+}
 
 const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH || "";
 const HMAC_SECRET = process.env.STRIPE_SECRET_KEY || "dev-hmac-secret";
@@ -384,6 +472,16 @@ export function registerShopRoutes(app: Express) {
           status: "confirmed",
         })
         .returning();
+
+      // Send confirmation email to customer (best-effort, don't fail the order if email fails)
+      if (order.customerEmail && order.customerEmail !== "unknown") {
+        sendOrderConfirmationEmail({
+          customerEmail: order.customerEmail,
+          customerName: order.customerName,
+          items: order.items,
+          totalAmount: order.totalAmount,
+        }).catch((err) => console.error("Order confirmation email failed:", err?.response?.body || err));
+      }
 
       res.json({ order });
     } catch (error: any) {
