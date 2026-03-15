@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "QCSkJdvi7hYD-GMnHcRK-"
+uri = "file://nipomo-sc-website-copy.md"
+type = "text"
+title = "Nipomo SC Website Copy"
