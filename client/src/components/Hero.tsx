@@ -15,7 +15,6 @@ export default function Hero({ onGetStarted, onLearnMore }: HeroProps) {
         style={{ backgroundImage: `url(${heroImage})` }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-night via-night/70 to-night/30" />
-      
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto pt-16">
         <span className="inline-block px-3 py-1 bg-purple/20 border border-purple/40 rounded-full text-purple text-sm font-medium mb-6">
           EST. 2025
@@ -29,9 +28,8 @@ export default function Hero({ onGetStarted, onLearnMore }: HeroProps) {
           Nipomo Soccer Club
         </p>
         
-        <p className="text-warmwhite/70 text-lg max-w-2xl mx-auto mb-8">
-          High quality, affordable youth soccer development close to home. From first touches to elite competition.
-        </p>
+        <p className="text-warmwhite/70 text-lg max-w-2xl mx-auto mb-8">High quality, affordable youth soccer development close to home. 
+        From first touches to elite competition.</p>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
@@ -53,7 +51,6 @@ export default function Hero({ onGetStarted, onLearnMore }: HeroProps) {
           </Button>
         </div>
       </div>
-      
       <button
         onClick={onLearnMore}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 text-warmwhite/60 hover:text-warmwhite animate-bounce"
