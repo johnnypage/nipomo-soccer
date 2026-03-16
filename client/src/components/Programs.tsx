@@ -79,7 +79,7 @@ export default function Programs({ onProgramSelect }: ProgramsProps) {
     <section id="programs" className="py-20 bg-night">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <span className="inline-block px-3 py-1 bg-purple/20 border border-purple/40 rounded-full text-purple text-sm font-medium mb-4">
+          <span className="inline-block px-3 py-1 border border-purple/40 rounded-full text-sm font-medium mb-4 text-[#B21F24] bg-[#b21f2454]">
             Three Connected Programs
           </span>
           <h2 className="font-display text-4xl sm:text-5xl text-warmwhite tracking-wide mb-4">
