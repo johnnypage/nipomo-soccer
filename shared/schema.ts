@@ -86,3 +86,30 @@ export const shopProducts = pgTable("shop_products", {
 });
 
 export type ShopProduct = typeof shopProducts.$inferSelect;
+
+export const coachApplications = pgTable("coach_applications", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  city: text("city"),
+  playingExperience: text("playing_experience").notNull(),
+  coachingExperience: text("coaching_experience").notNull(),
+  certifications: text("certifications"),
+  programs: text("programs").notNull(),
+  ageGroups: text("age_groups").notNull(),
+  hasChildren: text("has_children"),
+  childrenAges: text("children_ages"),
+  whyCoach: text("why_coach"),
+  additionalNotes: text("additional_notes"),
+  backgroundCheckConsent: boolean("background_check_consent").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertCoachApplicationSchema = createInsertSchema(coachApplications).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertCoachApplication = z.infer<typeof insertCoachApplicationSchema>;
+export type CoachApplication = typeof coachApplications.$inferSelect;

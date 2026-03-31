@@ -47,6 +47,7 @@ export default function Footer({ onNavigate }: FooterProps) {
       { label: "Shop", section: "shop", href: "/shop" },
       { label: "Contact", section: "contact" },
       { label: "Join Now", section: "contact" },
+      { label: "Coach With Us", section: "coach", href: "/coach" },
     ],
     resources: [
       { label: "Training Schedule", section: "programs" },

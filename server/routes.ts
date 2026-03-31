@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import sgMail from "@sendgrid/mail";
 import { db } from "./db";
-import { contactSubmissions, tournamentInterests, insertTournamentInterestSchema } from "@shared/schema";
+import { contactSubmissions, tournamentInterests, coachApplications, insertTournamentInterestSchema, insertCoachApplicationSchema } from "@shared/schema";
 import { registerShopRoutes } from "./shopRoutes";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
@@ -145,6 +145,83 @@ ${notes ? `<h3>Additional Notes:</h3><p>${notes.replace(/\n/g, "<br>")}</p>` : "
     } catch (error: any) {
       console.error("Tournament interest error:", error);
       res.status(500).json({ error: "Failed to submit interest. Please try again." });
+    }
+  });
+
+  app.post("/api/coach-application", async (req, res) => {
+    try {
+      const parseResult = insertCoachApplicationSchema.safeParse(req.body);
+
+      if (!parseResult.success) {
+        return res.status(400).json({ error: "Please fill in all required fields" });
+      }
+
+      const data = parseResult.data;
+
+      await db.insert(coachApplications).values(data);
+
+      const msg = {
+        to: ["admin@nipomosc.org"],
+        from: "admin@nipomosc.org",
+        replyTo: data.email,
+        subject: `New Coaching Application - ${data.name}`,
+        text: `
+New coaching application from Nipomo Soccer Club website:
+
+Name: ${data.name}
+Email: ${data.email}
+Phone: ${data.phone}
+City: ${data.city || "Not provided"}
+
+Playing Experience: ${data.playingExperience}
+Coaching Experience: ${data.coachingExperience}
+Certifications: ${data.certifications || "None listed"}
+
+Programs Interested: ${data.programs}
+Age Groups: ${data.ageGroups}
+
+Children in Nipomo SC: ${data.hasChildren || "Not specified"}
+Children Ages: ${data.childrenAges || "N/A"}
+
+Why They Want to Coach:
+${data.whyCoach || "Not provided"}
+
+Additional Notes:
+${data.additionalNotes || "None"}
+
+Background Check Consent: ${data.backgroundCheckConsent ? "Yes" : "No"}
+        `.trim(),
+        html: `
+<h2>New Coaching Application</h2>
+<table style="border-collapse:collapse; width:100%; max-width:600px;">
+<tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Name</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.name}</td></tr>
+<tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Email</strong></td><td style="padding:8px; border-bottom:1px solid #eee;"><a href="mailto:${data.email}">${data.email}</a></td></tr>
+<tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Phone</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.phone}</td></tr>
+<tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>City</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.city || "Not provided"}</td></tr>
+<tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Playing Experience</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.playingExperience}</td></tr>
+<tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Coaching Experience</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.coachingExperience}</td></tr>
+<tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Certifications</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.certifications || "None listed"}</td></tr>
+<tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Programs</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.programs}</td></tr>
+<tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Age Groups</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.ageGroups}</td></tr>
+<tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Children in NSC</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.hasChildren || "Not specified"}</td></tr>
+<tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Children Ages</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.childrenAges || "N/A"}</td></tr>
+</table>
+${data.whyCoach ? `<h3>Why They Want to Coach:</h3><p>${data.whyCoach.replace(/\n/g, "<br>")}</p>` : ""}
+${data.additionalNotes ? `<h3>Additional Notes:</h3><p>${data.additionalNotes.replace(/\n/g, "<br>")}</p>` : ""}
+<p><strong>Background Check Consent:</strong> ${data.backgroundCheckConsent ? "Yes" : "No"}</p>
+        `.trim(),
+      };
+
+      try {
+        await sgMail.send(msg);
+      } catch (emailError: any) {
+        console.error("SendGrid error (application saved to database):", emailError?.response?.body || emailError);
+      }
+
+      res.json({ success: true, message: "Application submitted successfully" });
+    } catch (error: any) {
+      console.error("Coach application error:", error);
+      res.status(500).json({ error: "Failed to submit application. Please try again." });
     }
   });
 

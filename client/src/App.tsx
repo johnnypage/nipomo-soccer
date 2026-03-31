@@ -12,6 +12,7 @@ import Compare from "@/pages/Compare";
 import Shop from "@/pages/Shop";
 import OrderConfirmation from "@/pages/OrderConfirmation";
 import Admin from "@/pages/Admin";
+import CoachWithUs from "@/pages/CoachWithUs";
 
 function Router() {
   return (
@@ -20,6 +21,7 @@ function Router() {
       <Route path="/reign" component={Reign} />
       <Route path="/rise" component={Rise} />
       <Route path="/about/compare" component={Compare} />
+      <Route path="/coach" component={CoachWithUs} />
       <Route path="/shop" component={Shop} />
       <Route path="/order-confirmation" component={OrderConfirmation} />
       <Route path="/admin" component={Admin} />
