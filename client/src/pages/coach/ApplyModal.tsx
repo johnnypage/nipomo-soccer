@@ -2,7 +2,7 @@ import { useState, useEffect, type FormEvent } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 const AGE_OPTIONS = ["Pre-K", "1st-2nd", "3rd-4th", "5th-6th", "7th-8th", "High School"];
-const PROGRAMS = ["Roots", "Rise", "Reign"];
+const ROLES = ["Head Coach", "Assistant Coach", "Either"];
 
 interface ApplyModalProps {
   open: boolean;
@@ -12,7 +12,7 @@ interface ApplyModalProps {
 export default function ApplyModal({ open, onClose }: ApplyModalProps) {
   const { toast } = useToast();
   const [ages, setAges] = useState<string[]>([]);
-  const [programs, setPrograms] = useState<string[]>([]);
+  const [role, setRole] = useState("");
   const [bgCheck, setBgCheck] = useState(true);
   const [showName, setShowName] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -43,8 +43,8 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
       toast({ title: "Background check consent is required", variant: "destructive" });
       return;
     }
-    if (programs.length === 0) {
-      toast({ title: "Please select at least one program", variant: "destructive" });
+    if (!role) {
+      toast({ title: "Please select a coaching role", variant: "destructive" });
       return;
     }
     if (ages.length === 0) {
@@ -66,7 +66,8 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
           phone: data.get("phone"),
           city: data.get("city") || null,
           coachingExperience: data.get("coachingExperience"),
-          programs: programs.join(", "),
+          programs: "ROOTS",
+          coachingRole: role,
           ageGroups: ages.join(", "),
           hasChildren: data.get("hasChildren") || null,
           childrenAges: data.get("childrenAges") || null,
@@ -112,7 +113,7 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
         ) : (
           <>
             <h2 className="font-display text-4xl uppercase tracking-wide text-warmwhite">Sign up to coach</h2>
-            <p className="text-warmwhite/55 mt-1 mb-6">Roots Fall 2026. Fill this out and we'll set up a conversation.</p>
+            <p className="text-warmwhite/55 mt-1 mb-6">ROOTS Fall 2026. Fill this out and we'll set up a conversation.</p>
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -149,20 +150,20 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
               </div>
 
               <div>
-                <label className="block text-warmwhite/70 text-sm mb-1.5">Programs you're interested in</label>
+                <label className="block text-warmwhite/70 text-sm mb-1.5">What role are you interested in?</label>
                 <div className="flex flex-wrap gap-2">
-                  {PROGRAMS.map((p) => (
+                  {ROLES.map((r) => (
                     <button
                       type="button"
-                      key={p}
+                      key={r}
                       className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${
-                        programs.includes(p)
+                        role === r
                           ? "border-gold text-gold bg-gold/10"
                           : "border-warmwhite/20 text-warmwhite/60 hover:border-warmwhite/40"
                       }`}
-                      onClick={() => toggle(p, programs, setPrograms)}
+                      onClick={() => setRole(role === r ? "" : r)}
                     >
-                      {p}
+                      {r}
                     </button>
                   ))}
                 </div>
