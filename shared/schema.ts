@@ -93,7 +93,7 @@ export const coachApplications = pgTable("coach_applications", {
   email: text("email").notNull(),
   phone: text("phone").notNull(),
   city: text("city"),
-  playingExperience: text("playing_experience").notNull(),
+  playingExperience: text("playing_experience"),
   coachingExperience: text("coaching_experience").notNull(),
   certifications: text("certifications"),
   programs: text("programs").notNull(),
@@ -103,13 +103,49 @@ export const coachApplications = pgTable("coach_applications", {
   whyCoach: text("why_coach"),
   additionalNotes: text("additional_notes"),
   backgroundCheckConsent: boolean("background_check_consent").notNull(),
+  status: text("status").notNull().default("pending"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
 export const insertCoachApplicationSchema = createInsertSchema(coachApplications).omit({
   id: true,
   createdAt: true,
+  status: true,
 });
 
 export type InsertCoachApplication = z.infer<typeof insertCoachApplicationSchema>;
 export type CoachApplication = typeof coachApplications.$inferSelect;
+
+export const divisions = pgTable("divisions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  ageGroup: text("age_group").notNull(),
+  gender: text("gender").notNull(),
+  headCoachesNeeded: integer("head_coaches_needed").notNull().default(0),
+  active: boolean("active").notNull().default(true),
+  sortOrder: integer("sort_order").notNull().default(0),
+});
+
+export const insertDivisionSchema = createInsertSchema(divisions).omit({
+  id: true,
+});
+
+export type InsertDivision = z.infer<typeof insertDivisionSchema>;
+export type Division = typeof divisions.$inferSelect;
+
+export const coachAssignments = pgTable("coach_assignments", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  coachApplicationId: text("coach_application_id"),
+  divisionId: text("division_id").notNull(),
+  role: text("role").notNull(),
+  displayName: text("display_name").notNull(),
+  active: boolean("active").notNull().default(true),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertCoachAssignmentSchema = createInsertSchema(coachAssignments).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertCoachAssignment = z.infer<typeof insertCoachAssignmentSchema>;
+export type CoachAssignment = typeof coachAssignments.$inferSelect;

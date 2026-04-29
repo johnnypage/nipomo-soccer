@@ -1,0 +1,164 @@
+import type { Express } from "express";
+import { db } from "./db";
+import { divisions, coachAssignments, coachApplications } from "@shared/schema";
+import { eq, desc } from "drizzle-orm";
+import { requireAuth } from "./auth";
+
+const DIVISION_SEED = [
+  { ageGroup: "prek", gender: "coed", headCoachesNeeded: 8, sortOrder: 0 },
+  { ageGroup: "g12", gender: "girls", headCoachesNeeded: 6, sortOrder: 1 },
+  { ageGroup: "g12", gender: "boys", headCoachesNeeded: 6, sortOrder: 2 },
+  { ageGroup: "g34", gender: "girls", headCoachesNeeded: 12, sortOrder: 3 },
+  { ageGroup: "g34", gender: "boys", headCoachesNeeded: 12, sortOrder: 4 },
+  { ageGroup: "g56", gender: "girls", headCoachesNeeded: 8, sortOrder: 5 },
+  { ageGroup: "g56", gender: "boys", headCoachesNeeded: 8, sortOrder: 6 },
+  { ageGroup: "g78", gender: "girls", headCoachesNeeded: 5, sortOrder: 7 },
+  { ageGroup: "g78", gender: "boys", headCoachesNeeded: 5, sortOrder: 8 },
+  { ageGroup: "hs", gender: "girls", headCoachesNeeded: 3, sortOrder: 9 },
+  { ageGroup: "hs", gender: "boys", headCoachesNeeded: 3, sortOrder: 10 },
+];
+
+async function seedDivisionsIfEmpty() {
+  const existing = await db.select({ id: divisions.id }).from(divisions).limit(1);
+  if (existing.length > 0) return;
+  await db.insert(divisions).values(DIVISION_SEED.map((d) => ({ ...d, active: true })));
+  console.log("Seeded 11 divisions");
+}
+
+export function registerCoachRoutes(app: Express) {
+  seedDivisionsIfEmpty().catch((e) => console.error("Division seed error:", e));
+
+  app.get("/api/coaching-board", async (_req, res) => {
+    try {
+      const allDivisions = await db
+        .select()
+        .from(divisions)
+        .where(eq(divisions.active, true))
+        .orderBy(divisions.sortOrder);
+
+      const assignments = await db
+        .select()
+        .from(coachAssignments)
+        .where(eq(coachAssignments.active, true));
+
+      const grouped = allDivisions.map((div) => ({
+        id: div.id,
+        ageGroup: div.ageGroup,
+        gender: div.gender,
+        headCoachesNeeded: div.headCoachesNeeded,
+        coaches: assignments
+          .filter((a) => a.divisionId === div.id)
+          .map((a) => ({ displayName: a.displayName, role: a.role })),
+      }));
+
+      res.json({ divisions: grouped });
+    } catch (error) {
+      console.error("Coaching board error:", error);
+      res.status(500).json({ error: "Failed to load coaching board" });
+    }
+  });
+
+  app.get("/api/admin/coach-applications", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      const status = req.query.status as string | undefined;
+      const conditions = status ? eq(coachApplications.status, status) : undefined;
+      const results = conditions
+        ? await db.select().from(coachApplications).where(conditions).orderBy(desc(coachApplications.createdAt))
+        : await db.select().from(coachApplications).orderBy(desc(coachApplications.createdAt));
+      res.json(results);
+    } catch (error) {
+      console.error("List applications error:", error);
+      res.status(500).json({ error: "Failed to load applications" });
+    }
+  });
+
+  app.patch("/api/admin/coach-applications/:id", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      const { id } = req.params;
+      const { status } = req.body;
+      if (!["pending", "approved", "rejected"].includes(status)) {
+        return res.status(400).json({ error: "Invalid status" });
+      }
+      await db.update(coachApplications).set({ status }).where(eq(coachApplications.id, id));
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Update application error:", error);
+      res.status(500).json({ error: "Failed to update application" });
+    }
+  });
+
+  app.get("/api/admin/divisions", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      const allDivisions = await db.select().from(divisions).orderBy(divisions.sortOrder);
+      const assignments = await db.select().from(coachAssignments).where(eq(coachAssignments.active, true));
+
+      const result = allDivisions.map((div) => {
+        const divAssignments = assignments.filter((a) => a.divisionId === div.id);
+        return {
+          ...div,
+          headCount: divAssignments.filter((a) => a.role === "head").length,
+          assistantCount: divAssignments.filter((a) => a.role === "assistant").length,
+        };
+      });
+      res.json(result);
+    } catch (error) {
+      console.error("List divisions error:", error);
+      res.status(500).json({ error: "Failed to load divisions" });
+    }
+  });
+
+  app.patch("/api/admin/divisions/:id", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      const { id } = req.params;
+      const { headCoachesNeeded, active } = req.body;
+      const updates: Partial<{ headCoachesNeeded: number; active: boolean }> = {};
+      if (headCoachesNeeded !== undefined) updates.headCoachesNeeded = headCoachesNeeded;
+      if (active !== undefined) updates.active = active;
+      await db.update(divisions).set(updates).where(eq(divisions.id, id));
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Update division error:", error);
+      res.status(500).json({ error: "Failed to update division" });
+    }
+  });
+
+  app.post("/api/admin/coach-assignments", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      const { coachApplicationId, divisionId, role, displayName } = req.body;
+      if (!divisionId || !role || !displayName) {
+        return res.status(400).json({ error: "divisionId, role, and displayName are required" });
+      }
+      if (!["head", "assistant"].includes(role)) {
+        return res.status(400).json({ error: "Role must be head or assistant" });
+      }
+      const [assignment] = await db.insert(coachAssignments).values({
+        coachApplicationId: coachApplicationId || null,
+        divisionId,
+        role,
+        displayName,
+        active: true,
+      }).returning();
+      res.json(assignment);
+    } catch (error) {
+      console.error("Create assignment error:", error);
+      res.status(500).json({ error: "Failed to create assignment" });
+    }
+  });
+
+  app.delete("/api/admin/coach-assignments/:id", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      const { id } = req.params;
+      await db.update(coachAssignments).set({ active: false }).where(eq(coachAssignments.id, id));
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Delete assignment error:", error);
+      res.status(500).json({ error: "Failed to remove assignment" });
+    }
+  });
+}

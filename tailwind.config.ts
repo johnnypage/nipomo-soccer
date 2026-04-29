@@ -87,6 +87,7 @@ export default {
                         night: '#0D0D0D',
                         warmwhite: '#F4EDE1',
                         slate: '#55524D',
+                        paper: '#F2F2EE',
                         gold: '#C6A045',
                         purple: '#4A2B73',
                         navy: '#2A3F5F',
