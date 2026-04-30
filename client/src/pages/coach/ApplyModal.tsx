@@ -14,7 +14,7 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
   const [ages, setAges] = useState<string[]>([]);
   const [role, setRole] = useState("");
   const [bgCheck, setBgCheck] = useState(true);
-  const [showName, setShowName] = useState(false);
+
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -73,7 +73,7 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
           childrenAges: data.get("childrenAges") || null,
           additionalNotes: data.get("additionalNotes") || null,
           backgroundCheckConsent: bgCheck,
-          showOnBoard: showName,
+          showOnBoard: true,
         }),
       });
 
@@ -221,19 +221,6 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
                 />
                 <label htmlFor="bg-check" className="text-warmwhite/80 text-sm leading-relaxed">
                   I'm willing to complete a background check and required training (SafeSport, concussion awareness).
-                </label>
-              </div>
-
-              <div className="flex items-start gap-3 p-3.5 rounded-lg bg-gold/10 border border-gold/20">
-                <input
-                  type="checkbox"
-                  id="show-name"
-                  checked={showName}
-                  onChange={(e) => setShowName(e.target.checked)}
-                  className="mt-0.5"
-                />
-                <label htmlFor="show-name" className="text-warmwhite/80 text-sm leading-relaxed">
-                  Show my name on the coaching board once approved.
                 </label>
               </div>
 
