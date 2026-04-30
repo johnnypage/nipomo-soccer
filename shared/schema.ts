@@ -96,6 +96,7 @@ export const coachApplications = pgTable("coach_applications", {
   playingExperience: text("playing_experience"),
   coachingExperience: text("coaching_experience").notNull(),
   certifications: text("certifications"),
+  coachingRole: text("coaching_role"),
   programs: text("programs").notNull(),
   ageGroups: text("age_groups").notNull(),
   hasChildren: text("has_children"),
@@ -103,6 +104,7 @@ export const coachApplications = pgTable("coach_applications", {
   whyCoach: text("why_coach"),
   additionalNotes: text("additional_notes"),
   backgroundCheckConsent: boolean("background_check_consent").notNull(),
+  showOnBoard: boolean("show_on_board").notNull().default(false),
   status: text("status").notNull().default("pending"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });

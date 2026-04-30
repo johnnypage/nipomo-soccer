@@ -178,9 +178,9 @@ test.describe("Modal", () => {
     // Coaching experience dropdown
     await expect(modal.locator('select[name="coachingExperience"]')).toBeVisible();
 
-    // Program chips (Roots, Rise, Reign)
-    for (const program of ["Roots", "Rise", "Reign"]) {
-      await expect(modal.getByRole("button", { name: program, exact: true })).toBeVisible();
+    // Role chips (Head Coach, Assistant Coach, Either)
+    for (const role of ["Head Coach", "Assistant Coach", "Either"]) {
+      await expect(modal.getByRole("button", { name: role, exact: true })).toBeVisible();
     }
 
     // Age group chips
@@ -195,21 +195,21 @@ test.describe("Modal", () => {
     await expect(modal.locator('textarea[name="additionalNotes"]')).toBeVisible();
   });
 
-  test("13 - Chip toggle: Roots selects (gold border) then deselects", async ({ page }) => {
+  test("13 - Chip toggle: Head Coach selects (gold border) then deselects", async ({ page }) => {
     await page.locator("section.coach-hero").getByRole("button", { name: "Sign Up to Coach" }).click();
     const modal = page.locator(".coach-modal");
-    const rootsChip = modal.getByRole("button", { name: "Roots", exact: true });
+    const chip = modal.getByRole("button", { name: "Head Coach", exact: true });
 
     // Initially not selected
-    await expect(rootsChip).not.toHaveClass(/border-gold/);
+    await expect(chip).not.toHaveClass(/border-gold/);
 
     // Click to select
-    await rootsChip.click();
-    await expect(rootsChip).toHaveClass(/border-gold/);
+    await chip.click();
+    await expect(chip).toHaveClass(/border-gold/);
 
     // Click again to deselect
-    await rootsChip.click();
-    await expect(rootsChip).not.toHaveClass(/border-gold/);
+    await chip.click();
+    await expect(chip).not.toHaveClass(/border-gold/);
   });
 
   test("14 - Escape key closes the modal", async ({ page }) => {
@@ -239,9 +239,9 @@ test.describe("Modal", () => {
     await modal.locator('input[name="phone"]').fill("(805) 555-0100");
     await modal.locator('select[name="coachingExperience"]').selectOption("None, but I'm ready to learn");
 
-    // Submit without selecting any programs -- should show toast error
+    // Submit without selecting a role -- should show toast error
     await modal.getByRole("button", { name: "Submit" }).click();
-    await expect(page.getByText("Please select at least one program")).toBeVisible();
+    await expect(page.getByText("Please select a coaching role")).toBeVisible();
   });
 
   test("17 - Body scroll is locked when modal is open", async ({ page }) => {

@@ -66,13 +66,14 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
           phone: data.get("phone"),
           city: data.get("city") || null,
           coachingExperience: data.get("coachingExperience"),
-          programs: "ROOTS",
           coachingRole: role,
+          programs: "ROOTS",
           ageGroups: ages.join(", "),
           hasChildren: data.get("hasChildren") || null,
           childrenAges: data.get("childrenAges") || null,
           additionalNotes: data.get("additionalNotes") || null,
           backgroundCheckConsent: bgCheck,
+          showOnBoard: showName,
         }),
       });
 

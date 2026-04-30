@@ -7,12 +7,14 @@ interface CoachApplication {
   phone: string;
   city: string | null;
   coachingExperience: string;
+  coachingRole: string | null;
   programs: string;
   ageGroups: string;
   hasChildren: string | null;
   childrenAges: string | null;
   additionalNotes: string | null;
   backgroundCheckConsent: boolean;
+  showOnBoard: boolean;
   status: string;
   createdAt: string;
 }
@@ -76,12 +78,23 @@ function ApplicationsList({ token }: { token: string }) {
   const [filter, setFilter] = useState("all");
   const [expanded, setExpanded] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   async function load() {
     setLoading(true);
+    setError("");
     const url = filter === "all" ? "/api/admin/coach-applications" : `/api/admin/coach-applications?status=${filter}`;
-    const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
-    if (res.ok) setApps(await res.json());
+    try {
+      const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+      if (res.ok) {
+        setApps(await res.json());
+      } else {
+        const err = await res.json().catch(() => ({ error: "Unknown error" }));
+        setError(err.error || `Failed to load (${res.status})`);
+      }
+    } catch {
+      setError("Failed to connect to server");
+    }
     setLoading(false);
   }
 
@@ -114,6 +127,8 @@ function ApplicationsList({ token }: { token: string }) {
 
       {loading ? (
         <p className="text-warmwhite/40 text-sm">Loading...</p>
+      ) : error ? (
+        <p className="text-crimson text-sm">{error}</p>
       ) : apps.length === 0 ? (
         <p className="text-warmwhite/40 text-sm">No applications found.</p>
       ) : (
@@ -154,9 +169,11 @@ function ApplicationsList({ token }: { token: string }) {
                   <div><strong className="text-warmwhite/50">Phone:</strong> {app.phone}</div>
                   <div><strong className="text-warmwhite/50">City:</strong> {app.city || "N/A"}</div>
                   <div><strong className="text-warmwhite/50">Experience:</strong> {app.coachingExperience}</div>
+                  <div><strong className="text-warmwhite/50">Preferred Role:</strong> {app.coachingRole || "N/A"}</div>
                   <div><strong className="text-warmwhite/50">Age Groups:</strong> {app.ageGroups}</div>
                   <div><strong className="text-warmwhite/50">Children:</strong> {app.hasChildren || "N/A"} {app.childrenAges ? `(${app.childrenAges})` : ""}</div>
                   <div><strong className="text-warmwhite/50">BG Check:</strong> {app.backgroundCheckConsent ? "Yes" : "No"}</div>
+                  <div><strong className="text-warmwhite/50">Show on Board:</strong> {app.showOnBoard ? "Yes" : "No"}</div>
                   {app.additionalNotes && (
                     <div className="col-span-2"><strong className="text-warmwhite/50">Notes:</strong> {app.additionalNotes}</div>
                   )}

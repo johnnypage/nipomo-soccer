@@ -175,9 +175,8 @@ Email: ${data.email}
 Phone: ${data.phone}
 City: ${data.city || "Not provided"}
 
-Playing Experience: ${data.playingExperience}
 Coaching Experience: ${data.coachingExperience}
-Certifications: ${data.certifications || "None listed"}
+Preferred Role: ${data.coachingRole || "Not specified"}
 
 Programs Interested: ${data.programs}
 Age Groups: ${data.ageGroups}
@@ -185,13 +184,11 @@ Age Groups: ${data.ageGroups}
 Children in Nipomo SC: ${data.hasChildren || "Not specified"}
 Children Ages: ${data.childrenAges || "N/A"}
 
-Why They Want to Coach:
-${data.whyCoach || "Not provided"}
-
 Additional Notes:
 ${data.additionalNotes || "None"}
 
 Background Check Consent: ${data.backgroundCheckConsent ? "Yes" : "No"}
+Show on Coaching Board: ${data.showOnBoard ? "Yes" : "No"}
         `.trim(),
         html: `
 <h2>New Coaching Application</h2>
@@ -200,17 +197,16 @@ Background Check Consent: ${data.backgroundCheckConsent ? "Yes" : "No"}
 <tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Email</strong></td><td style="padding:8px; border-bottom:1px solid #eee;"><a href="mailto:${data.email}">${data.email}</a></td></tr>
 <tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Phone</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.phone}</td></tr>
 <tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>City</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.city || "Not provided"}</td></tr>
-<tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Playing Experience</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.playingExperience}</td></tr>
 <tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Coaching Experience</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.coachingExperience}</td></tr>
-<tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Certifications</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.certifications || "None listed"}</td></tr>
+<tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Preferred Role</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.coachingRole || "Not specified"}</td></tr>
 <tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Programs</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.programs}</td></tr>
 <tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Age Groups</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.ageGroups}</td></tr>
 <tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Children in NSC</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.hasChildren || "Not specified"}</td></tr>
 <tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Children Ages</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.childrenAges || "N/A"}</td></tr>
 </table>
-${data.whyCoach ? `<h3>Why They Want to Coach:</h3><p>${data.whyCoach.replace(/\n/g, "<br>")}</p>` : ""}
 ${data.additionalNotes ? `<h3>Additional Notes:</h3><p>${data.additionalNotes.replace(/\n/g, "<br>")}</p>` : ""}
 <p><strong>Background Check Consent:</strong> ${data.backgroundCheckConsent ? "Yes" : "No"}</p>
+<p><strong>Show on Coaching Board:</strong> ${data.showOnBoard ? "Yes" : "No"}</p>
         `.trim(),
       };
 
