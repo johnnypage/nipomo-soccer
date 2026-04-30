@@ -227,13 +227,13 @@ export default function Header({ onNavigate }: HeaderProps) {
       )}
     </header>
     <a
-      href="https://club.spond.com/landing/signup/nipomosc/form/A22902569DA04BE2B95994D93EE5C602"
+      href="https://club.spond.com/landing/signup/nipomosc/form/534965DA898B4B7E9CC0A589047F6061"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed top-16 left-0 right-0 z-40 bg-risegreen text-warmwhite text-center py-3 px-4 text-base font-heading font-semibold hover:bg-risegreen/90 transition-colors cursor-pointer block"
-      data-testid="banner-spring-soccer"
+      className="fixed top-16 left-0 right-0 z-40 bg-crimson text-warmwhite text-center py-3 px-4 text-base font-heading font-semibold hover:bg-crimson/90 transition-colors cursor-pointer block"
+      data-testid="banner-roots-registration"
     >
-      Ready for Spring Soccer? <span className="underline underline-offset-2">Registration is now open.</span>
+      ROOTS Fall 2026 registration is open. <span className="underline underline-offset-2">Sign up now.</span>
     </a>
     <CartSheet open={cartOpen} onOpenChange={setCartOpen} />
     </>
