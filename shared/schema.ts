@@ -99,6 +99,7 @@ export const coachApplications = pgTable("coach_applications", {
   coachingRole: text("coaching_role"),
   programs: text("programs").notNull(),
   ageGroups: text("age_groups").notNull(),
+  genderPreference: text("gender_preference"),
   hasChildren: text("has_children"),
   childrenAges: text("children_ages"),
   whyCoach: text("why_coach"),

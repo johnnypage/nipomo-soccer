@@ -10,6 +10,7 @@ interface CoachApplication {
   coachingRole: string | null;
   programs: string;
   ageGroups: string;
+  genderPreference: string | null;
   hasChildren: string | null;
   childrenAges: string | null;
   additionalNotes: string | null;
@@ -171,6 +172,7 @@ function ApplicationsList({ token }: { token: string }) {
                   <div><strong className="text-warmwhite/50">Experience:</strong> {app.coachingExperience}</div>
                   <div><strong className="text-warmwhite/50">Preferred Role:</strong> {app.coachingRole || "N/A"}</div>
                   <div><strong className="text-warmwhite/50">Age Groups:</strong> {app.ageGroups}</div>
+                  <div><strong className="text-warmwhite/50">Gender Pref:</strong> {app.genderPreference || "N/A"}</div>
                   <div><strong className="text-warmwhite/50">Children:</strong> {app.hasChildren || "N/A"} {app.childrenAges ? `(${app.childrenAges})` : ""}</div>
                   <div><strong className="text-warmwhite/50">BG Check:</strong> {app.backgroundCheckConsent ? "Yes" : "No"}</div>
                   <div><strong className="text-warmwhite/50">Show on Board:</strong> {app.showOnBoard ? "Yes" : "No"}</div>

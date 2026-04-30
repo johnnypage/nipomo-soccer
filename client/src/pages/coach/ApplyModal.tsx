@@ -3,6 +3,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const AGE_OPTIONS = ["Pre-K", "1st-2nd", "3rd-4th", "5th-6th", "7th-8th", "High School"];
 const ROLES = ["Head Coach", "Assistant Coach", "Either"];
+const GENDER_OPTIONS = ["Boys", "Girls", "Either"];
 
 interface ApplyModalProps {
   open: boolean;
@@ -13,6 +14,7 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
   const { toast } = useToast();
   const [ages, setAges] = useState<string[]>([]);
   const [role, setRole] = useState("");
+  const [genderPref, setGenderPref] = useState("");
   const [bgCheck, setBgCheck] = useState(true);
 
   const [submitted, setSubmitted] = useState(false);
@@ -69,6 +71,7 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
           coachingRole: role,
           programs: "ROOTS",
           ageGroups: ages.join(", "),
+          genderPreference: genderPref || null,
           hasChildren: data.get("hasChildren") || null,
           childrenAges: data.get("childrenAges") || null,
           additionalNotes: data.get("additionalNotes") || null,
@@ -185,6 +188,26 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
                       onClick={() => toggle(a, ages, setAges)}
                     >
                       {a}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-warmwhite/70 text-sm mb-1.5">Gender preference</label>
+                <div className="flex flex-wrap gap-2">
+                  {GENDER_OPTIONS.map((g) => (
+                    <button
+                      type="button"
+                      key={g}
+                      className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${
+                        genderPref === g
+                          ? "border-gold text-gold bg-gold/10"
+                          : "border-warmwhite/20 text-warmwhite/60 hover:border-warmwhite/40"
+                      }`}
+                      onClick={() => setGenderPref(genderPref === g ? "" : g)}
+                    >
+                      {g}
                     </button>
                   ))}
                 </div>

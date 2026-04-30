@@ -180,6 +180,7 @@ Preferred Role: ${data.coachingRole || "Not specified"}
 
 Programs Interested: ${data.programs}
 Age Groups: ${data.ageGroups}
+Gender Preference: ${data.genderPreference || "Not specified"}
 
 Children in Nipomo SC: ${data.hasChildren || "Not specified"}
 Children Ages: ${data.childrenAges || "N/A"}
@@ -201,6 +202,7 @@ Show on Coaching Board: ${data.showOnBoard ? "Yes" : "No"}
 <tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Preferred Role</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.coachingRole || "Not specified"}</td></tr>
 <tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Programs</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.programs}</td></tr>
 <tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Age Groups</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.ageGroups}</td></tr>
+<tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Gender Preference</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.genderPreference || "Not specified"}</td></tr>
 <tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Children in NSC</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.hasChildren || "Not specified"}</td></tr>
 <tr><td style="padding:8px; border-bottom:1px solid #eee;"><strong>Children Ages</strong></td><td style="padding:8px; border-bottom:1px solid #eee;">${data.childrenAges || "N/A"}</td></tr>
 </table>
