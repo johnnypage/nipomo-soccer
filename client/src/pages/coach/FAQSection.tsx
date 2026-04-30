@@ -55,18 +55,18 @@ const FAQS: { q: string; a: ReactNode }[] = [
 
 export default function FAQSection() {
   return (
-    <section className="bg-paper py-20" id="faq">
+    <section className="bg-night py-20" id="faq">
       <div className="max-w-[880px] mx-auto px-6">
         <div className="text-center mb-8">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-gold/50 bg-gold/10 text-gold/80">
+          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-gold/50 bg-gold/10 text-gold">
             FAQ
           </span>
-          <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-night">
+          <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">
             Questions coaches ask before signing up
           </h2>
-          <p className="text-slate mt-3 text-[17px]">
+          <p className="text-warmwhite/55 mt-3 text-[17px]">
             If something is missing, email{" "}
-            <a href="mailto:admin@nipomosoccer.com" className="text-crimson hover:underline">
+            <a href="mailto:admin@nipomosoccer.com" className="text-gold hover:underline">
               admin@nipomosoccer.com
             </a>.
           </p>
@@ -76,13 +76,13 @@ export default function FAQSection() {
           {FAQS.map((f, i) => (
             <details
               key={i}
-              className="group bg-white rounded-xl border border-black/8"
+              className="group bg-warmwhite/[0.05] rounded-xl border border-warmwhite/10"
               open={i === 0}
             >
-              <summary className="flex items-center justify-between cursor-pointer px-6 py-5 font-medium text-night list-none [&::-webkit-details-marker]:hidden">
+              <summary className="flex items-center justify-between cursor-pointer px-6 py-5 font-medium text-warmwhite list-none [&::-webkit-details-marker]:hidden">
                 <span>{f.q}</span>
                 <svg
-                  className="w-5 h-5 text-slate/50 group-open:text-crimson transition-all group-open:rotate-180 flex-shrink-0 ml-4"
+                  className="w-5 h-5 text-warmwhite/30 group-open:text-gold transition-all group-open:rotate-180 flex-shrink-0 ml-4"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -94,7 +94,7 @@ export default function FAQSection() {
                 </svg>
               </summary>
               <div className="px-6 pb-5">
-                <p className="text-slate text-[15px] leading-relaxed">{f.a}</p>
+                <p className="text-warmwhite/65 text-[15px] leading-relaxed">{f.a}</p>
               </div>
             </details>
           ))}
