@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -23,6 +23,11 @@ const COACH_TILES: { type: RequestType; label: string; description: string; icon
 
 export default function TeamPlacement() {
   const { toast } = useToast();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [role, setRole] = useState<Role>("parent");
   const [requestType, setRequestType] = useState<RequestType | "">("");
   const [submitted, setSubmitted] = useState(false);
@@ -137,7 +142,7 @@ export default function TeamPlacement() {
   return (
     <div className="min-h-screen bg-night">
       <Header />
-      <main className="max-w-2xl mx-auto px-4 py-16">
+      <main className="max-w-2xl mx-auto px-4 pt-32 pb-16">
         {submitted ? (
           <div className="text-center py-16">
             <div className="w-16 h-16 rounded-full bg-risegreen/20 text-risegreen flex items-center justify-center mx-auto mb-6">
