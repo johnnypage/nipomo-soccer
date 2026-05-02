@@ -56,7 +56,7 @@ export async function registerRoutes(
         replyTo: email,
         subject: `New Contact Form Submission - ${programLabel}`,
         text: `
-New contact form submission from Nipomo Soccer Club website:
+New contact form submission from Nipomo Soccer website:
 
 Name: ${name}
 Email: ${email}
@@ -170,7 +170,7 @@ ${notes ? `<h3>Additional Notes:</h3><p>${notes.replace(/\n/g, "<br>")}</p>` : "
         replyTo: data.email,
         subject: `New Coaching Application - ${data.name}`,
         text: `
-New coaching application from Nipomo Soccer Club website:
+New coaching application from Nipomo Soccer website:
 
 Name: ${data.name}
 Email: ${data.email}

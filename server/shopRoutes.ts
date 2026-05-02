@@ -52,7 +52,7 @@ async function sendOrderConfirmationEmail(order: {
       <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;overflow:hidden;max-width:600px;width:100%;">
         <tr>
           <td style="background:#8B1D24;padding:28px 32px;text-align:center;">
-            <p style="margin:0;color:#F4EDE1;font-size:13px;letter-spacing:2px;text-transform:uppercase;">Nipomo Soccer Club</p>
+            <p style="margin:0;color:#F4EDE1;font-size:13px;letter-spacing:2px;text-transform:uppercase;">Nipomo Soccer</p>
             <h1 style="margin:8px 0 0;color:#ffffff;font-size:26px;">Order Confirmed</h1>
           </td>
         </tr>
@@ -79,12 +79,12 @@ async function sendOrderConfirmationEmail(order: {
             </table>
 
             <p style="color:#555;font-size:14px;margin:0 0 8px;">Questions? Reply to this email or reach us at <a href="mailto:shop@nipomosc.org" style="color:#8B1D24;">shop@nipomosc.org</a>.</p>
-            <p style="color:#555;font-size:14px;margin:0;">— Nipomo Soccer Club</p>
+            <p style="color:#555;font-size:14px;margin:0;">— Nipomo Soccer</p>
           </td>
         </tr>
         <tr>
           <td style="background:#f4ede1;padding:20px 32px;text-align:center;">
-            <p style="margin:0;color:#999;font-size:12px;">Nipomo Soccer Club &nbsp;|&nbsp; Nipomo, CA &nbsp;|&nbsp; <a href="https://nipomosc.org" style="color:#8B1D24;">nipomosc.org</a></p>
+            <p style="margin:0;color:#999;font-size:12px;">Nipomo Soccer &nbsp;|&nbsp; Nipomo, CA &nbsp;|&nbsp; <a href="https://nipomosc.org" style="color:#8B1D24;">nipomosc.org</a></p>
           </td>
         </tr>
       </table>
@@ -95,7 +95,7 @@ async function sendOrderConfirmationEmail(order: {
 
   await sgMail.send({
     to: order.customerEmail,
-    from: { email: fromEmail, name: "Nipomo Soccer Club Shop" },
+    from: { email: fromEmail, name: "Nipomo Soccer Shop" },
     subject: "Your Nipomo SC Order is Confirmed!",
     html,
   });

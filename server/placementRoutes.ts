@@ -40,14 +40,14 @@ function buildConfirmationEmail(data: typeof placementRequests.$inferSelect) {
   return {
     to: data.submitterEmail,
     from: "admin@nipomosc.org",
-    subject: "Team Placement Request Received -- Nipomo Soccer Club",
-    text: `Hi ${firstName}, thanks for submitting a team placement request for ${data.playerName}. We've received it and will review it as we build rosters. We'll do our best to accommodate your request, but we can't guarantee all placements. Questions? Reach us at admin@nipomosc.org. -- Nipomo Soccer Club`,
+    subject: "Team Placement Request Received -- Nipomo Soccer",
+    text: `Hi ${firstName}, thanks for submitting a team placement request for ${data.playerName}. We've received it and will review it as we build rosters. We'll do our best to accommodate your request, but we can't guarantee all placements. Questions? Reach us at admin@nipomosc.org. -- Nipomo Soccer`,
     html: `
 <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4ede1; padding:32px 0;">
   <tr><td align="center">
     <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; background:#ffffff; border-radius:8px; overflow:hidden;">
       <tr><td style="background-color:#8B1D24; padding:24px 32px;">
-        <h1 style="color:#F4EDE1; font-size:20px; margin:0;">Nipomo Soccer Club</h1>
+        <h1 style="color:#F4EDE1; font-size:20px; margin:0;">Nipomo Soccer</h1>
         <p style="color:#F4EDE1; opacity:0.8; font-size:14px; margin:4px 0 0;">Team Placement Request Received</p>
       </td></tr>
       <tr><td style="padding:32px;">
@@ -59,7 +59,7 @@ function buildConfirmationEmail(data: typeof placementRequests.$inferSelect) {
         <p style="color:#666; font-size:13px; line-height:1.6; margin:24px 0 0; padding:16px; background:#f9f9f6; border-radius:6px;">We'll do our best to accommodate your request, but we can't guarantee all placements. If you have questions, reply to this email or reach us at <a href="mailto:admin@nipomosc.org" style="color:#8B1D24;">admin@nipomosc.org</a>.</p>
       </td></tr>
       <tr><td style="padding:16px 32px; border-top:1px solid #eee; text-align:center;">
-        <p style="color:#999; font-size:12px; margin:0;">Nipomo Soccer Club &middot; Nipomo, CA &middot; <a href="https://nipomosc.org" style="color:#8B1D24;">nipomosc.org</a></p>
+        <p style="color:#999; font-size:12px; margin:0;">Nipomo Soccer &middot; Nipomo, CA &middot; <a href="https://nipomosc.org" style="color:#8B1D24;">nipomosc.org</a></p>
       </td></tr>
     </table>
   </td></tr>

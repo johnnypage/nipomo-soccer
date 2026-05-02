@@ -240,7 +240,7 @@ function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-[#1a472a]/90 via-[#1a472a]/85 to-[#0D0D0D]/95" />
       <motion.div style={{ opacity, y }} className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }} className="text-[#c8a951] font-heading font-bold text-sm sm:text-base uppercase tracking-[0.2em] mb-6">
-          Nipomo Soccer Club
+          Nipomo Soccer
         </motion.p>
         <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.8 }} className="text-4xl sm:text-5xl md:text-7xl font-heading font-black text-white leading-[1.1] mb-8" data-testid="text-hero-title">
           Nipomo SC vs. AYSO
@@ -267,7 +267,7 @@ function ShortOnTimeSection() {
           <motion.div variants={fadeUp} className="bg-white border border-[#D4D0CB] rounded-2xl px-6 sm:px-10 py-8 sm:py-10 shadow-sm">
             <h2 className="font-heading font-bold text-2xl sm:text-3xl text-[#0D0D0D] mb-6">Short on time? Here's what you need to know.</h2>
             <div className="space-y-4 text-[#555249] text-base sm:text-lg leading-relaxed">
-              <p>Nipomo Soccer Club is a new, independent soccer organization built by a majority of the people who ran AYSO Nipomo for the 2025 season. Despite the name, it's not just a club program.</p>
+              <p>Nipomo Soccer is a new, independent soccer organization built by a majority of the people who ran AYSO Nipomo for the 2025 season. Despite the name, it's not just a club program.</p>
               <p>We offer three programs under one roof, from recreational soccer in the fall through a spring development league to competitive club soccer. If your child played AYSO rec, Roots is the program for them.</p>
               <p>We left AYSO because of structural issues that couldn't be fixed from inside the system, mainly around referees, postseason access, and limited local control. The experience your family had last season? That's what we're building on, with more flexibility to do it better.</p>
             </div>
@@ -374,7 +374,7 @@ function SamePeopleSection() {
                 <div className="bg-white/10 border-l-4 border-[#c8a951] rounded-r-lg px-6 py-5">
                   <p className="text-white italic text-lg leading-relaxed">We started it because we spent years trying to fix the things that weren't working, and we hit a wall.</p>
                 </div>
-                <p>The team that executed the 2025 season is the team that's starting Nipomo Soccer Club. That commitment hasn't gone anywhere. It's operating under a local structure better suited to our community's needs.</p>
+                <p>The team that executed the 2025 season is the team that's starting Nipomo Soccer. That commitment hasn't gone anywhere. It's operating under a local structure better suited to our community's needs.</p>
               </motion.div>
             </div>
           </motion.div>
@@ -711,7 +711,7 @@ function FooterCTA() {
           <span className="text-white/20">|</span>
           <a href="mailto:admin@nipomosc.org" className="text-white/40 hover:text-white text-sm transition-colors" data-testid="link-footer-mail">admin@nipomosc.org</a>
         </div>
-        <p className="text-white/30 text-xs text-center mt-4">Nipomo Soccer Club</p>
+        <p className="text-white/30 text-xs text-center mt-4">Nipomo Soccer</p>
       </div>
     </section>
   );
@@ -721,7 +721,7 @@ export default function Compare() {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    const ogTitle = "Nipomo SC vs. AYSO — What's the Difference? | Nipomo Soccer Club";
+    const ogTitle = "Nipomo SC vs. AYSO -- What's the Difference? | Nipomo Soccer";
     const ogDescription = "The same people who ran AYSO Nipomo built something better. Learn why we made the switch, what's different, and what it means for your family.";
     const ogImage = window.location.origin + "/nsc-logo-og.png";
     const ogUrl = window.location.href;
@@ -756,7 +756,7 @@ export default function Compare() {
     });
 
     return () => {
-      document.title = "Nipomo Soccer Club | Roots. Rise. Reign.";
+      document.title = "Nipomo Soccer | Roots. Rise. Reign.";
       createdTags.forEach((tag) => tag.remove());
     };
   }, []);

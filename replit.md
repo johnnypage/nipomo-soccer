@@ -1,12 +1,18 @@
-# Nipomo Soccer Club Website
+# Nipomo Soccer Website
 
 ## Overview
 
-This is a marketing and informational website for Nipomo Soccer Club, a youth soccer organization in Nipomo, California. The site showcases three progressive soccer programs (Roots, Rise, Reign) designed to create a complete player development pathway from recreational to competitive levels. Built with React, TypeScript, and Express, the application features a modern single-page design with smooth scrolling navigation and custom branding following the club's "Roots. Rise. Reign." identity.
+This is a marketing and informational website for Nipomo Soccer, a youth soccer organization in Nipomo, California. The site showcases three progressive soccer programs (Roots, Rise, Reign) designed to create a complete player development pathway from recreational to competitive levels. Built with React, TypeScript, and Express, the application features a modern single-page design with smooth scrolling navigation and custom branding following the club's "Roots. Rise. Reign." identity.
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+
+## Branding Rules
+
+- Organization name is always **"Nipomo Soccer"** -- never "Nipomo Soccer Club" except in the footer copyright line and explicit legal/non-profit references.
+- No em dashes in copy -- use double hyphens (--) instead.
+- GitHub (`github.com/johnnypage/nipomo-soccer`) is the source of truth. Always push to GitHub before running `git reset --hard github/main` to avoid losing Replit-only changes.
 
 ## System Architecture
 
@@ -111,15 +117,22 @@ Preferred communication style: Simple, everyday language.
 ## Pages
 
 - **Home** (`/`) - Main landing page with hero, program showcase (Roots, Rise, Reign), about section, sponsors, contact form, and newsletter signup
+- **Roots** (`/roots`) - ROOTS recreational program page with hero, division breakdown, what's new, family feedback, pathway, FAQ, and coach CTA. Files in `client/src/pages/roots/`.
 - **Rise** (`/rise`) - RISE Spring Development League page with hero, program details, age divisions, pricing tiers, FAQ accordion, pathway visualization, and sticky mobile CTA. Uses custom green (#2E7D32) and amber (#F9A825) color scheme.
 - **Reign** (`/reign`) - Detailed page for the Reign competitive program with teams organized by birth year ranges
-- **Tournament** (`/tournament`) - Hidden; redirects to home. Reign Winter Classic tournament page with event details, team interest form, and contact information
+- **Tournament** (`/tournament`) - Hidden; redirects to home.
 - **Nipomo SC vs. AYSO** (`/about/compare`) - Apple-style scroll-driven page comparing Nipomo SC to AYSO. 12 full-width sections with parallax backgrounds (Unsplash), framer-motion whileInView animations, count-up numbers, recharts bar chart and donut charts, board member grid, feature card grid with icons, comparison table, FAQ accordion. Linked in About dropdown nav. File: `client/src/pages/Compare.tsx`.
+- **Volunteer** (`/volunteer`) - Volunteer roles page with hero, role cards (open/filled), expandable role detail drawer. File: `client/src/pages/Volunteer.tsx`.
+- **Find My Division** (`/find-my-division`) - Tool for parents to look up which ROOTS division their child belongs to. File: `client/src/pages/FindMyDivision.tsx`.
+- **Team Placement Request** (`/team-placement`) - Form for requesting player/coach pairings or schedule accommodations. File: `client/src/pages/TeamPlacement.tsx`.
+- **Coach With Us** (`/coach`) - Coach application page. Files in `client/src/pages/coach/`.
 
 ## Recent Changes
 
+- Recovered Roots, Volunteer, and FindMyDivision pages that were wiped by a `git reset --hard github/main` deployment pull. Restored all files from git history and pushed to GitHub.
+- Complete "Nipomo Soccer Club" -- "Nipomo Soccer" sweep across all source files: Header, Hero, About, Reign, Compare (5 spots), index.html, server/static.ts, server/vite.ts, server/routes.ts, server/placementRoutes.ts, server/shopRoutes.ts. Footer copyright kept as legal name.
+- Footer Resources column updated: added "Find My Division" (/find-my-division) and "Team Placement Request" (/team-placement).
+- App.tsx routes restored: /roots, /volunteer, /find-my-division all registered.
 - Rebuilt /about/compare as Apple-style scroll-driven page: full-screen hero with parallax, 12 distinct sections, count-up stat cards, animated charts, board member grid, feature card grid, comparison table, FAQ; linked in About nav dropdown
-- Fixed shop order recording: orders were silently failing because STRIPE_WEBHOOK_SECRET was not configured. Added `/api/shop/order-from-session` endpoint that records an order directly from a Stripe session ID. OrderConfirmation page now calls this on load, ensuring every paid order is recorded regardless of webhook status. Added "Recover Order" panel in admin Orders tab to manually recover past orders using session IDs from Stripe dashboard.
-- Admin panel imageData fix: upload response now stores base64 in form state and sends it with product save, ensuring images persist across deploys
+- Fixed shop order recording: orders were silently failing because STRIPE_WEBHOOK_SECRET was not configured. Added `/api/shop/order-from-session` endpoint. Added "Recover Order" panel in admin Orders tab.
 - Shop product images stored in PostgreSQL (base64 in `image_data` column) so they persist across deployments
-- Rebuilt /about/compare route and About dropdown added to navigation

@@ -54,17 +54,17 @@ export async function setupVite(server: Server, app: Express) {
 
       const pageOg: Record<string, { title: string; description: string; type?: string }> = {
         "/about/compare": {
-          title: "Nipomo SC vs. AYSO — What's the Difference? | Nipomo Soccer Club",
+          title: "Nipomo SC vs. AYSO -- What's the Difference? | Nipomo Soccer",
           description: "The same people who ran AYSO Nipomo built something better. Learn why we made the switch, what's different, and what it means for your family.",
           type: "article",
         },
         "/rise": {
-          title: "RISE Spring Development League | Nipomo Soccer Club",
+          title: "RISE Spring Development League | Nipomo Soccer",
           description: "A 6-week spring program for grades 1-8. Build confidence, sharpen technical skills, and get meaningful touches on the ball. Tuesdays and Thursdays starting April 13.",
         },
         "/reign": {
-          title: "REIGN Competitive Program | Nipomo Soccer Club",
-          description: "The competitive program of Nipomo Soccer Club. A complete pathway for skilled and committed young athletes to pursue advanced soccer without leaving town.",
+          title: "REIGN Competitive Program | Nipomo Soccer",
+          description: "The competitive program of Nipomo Soccer. A complete pathway for skilled and committed young athletes to pursue advanced soccer without leaving town.",
         },
       };
 
