@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CheckCircle } from "lucide-react";
 
-type Role = "parent" | "coach";
+type Role = "parent" | "coach" | "";
 type RequestType = "pair_players" | "request_coach" | "schedule_needs" | "coach_request_player" | "other" | "";
 
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -29,7 +29,7 @@ export default function TeamPlacement() {
     window.scrollTo(0, 0);
   }, []);
 
-  const [role, setRole] = useState<Role>("parent");
+  const [role, setRole] = useState<Role>("");
   const [requestType, setRequestType] = useState<RequestType>("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -53,7 +53,7 @@ export default function TeamPlacement() {
   }
 
   function resetForm() {
-    setRole("parent");
+    setRole("");
     setRequestType("");
     setName(""); setEmail(""); setPhone(""); setPlayerName("");
     setOtherPlayerName(""); setRelationship(""); setCoachName("");
@@ -65,6 +65,10 @@ export default function TeamPlacement() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
+    if (!role) {
+      toast({ title: "Please select your role (Parent or Coach)", variant: "destructive" });
+      return;
+    }
     if (!requestType) {
       toast({ title: "Please select a request type", variant: "destructive" });
       return;
@@ -170,6 +174,7 @@ export default function TeamPlacement() {
                   className={sc}
                   data-testid="select-role"
                 >
+                  <option value="">-- Select --</option>
                   <option value="parent">Parent / Guardian</option>
                   <option value="coach">Coach</option>
                 </select>
