@@ -126,10 +126,25 @@ export function registerCoachRoutes(app: Express) {
     }
   });
 
+  app.get("/api/admin/coach-assignments", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      const results = await db
+        .select()
+        .from(coachAssignments)
+        .where(eq(coachAssignments.active, true))
+        .orderBy(coachAssignments.divisionId, coachAssignments.role);
+      res.json(results);
+    } catch (error) {
+      console.error("List assignments error:", error);
+      res.status(500).json({ error: "Failed to load assignments" });
+    }
+  });
+
   app.post("/api/admin/coach-assignments", async (req, res) => {
     if (!requireAuth(req, res)) return;
     try {
-      const { coachApplicationId, divisionId, role, displayName } = req.body;
+      const { coachApplicationId, divisionId, role, displayName, headAssignmentId } = req.body;
       if (!divisionId || !role || !displayName) {
         return res.status(400).json({ error: "divisionId, role, and displayName are required" });
       }
@@ -141,12 +156,29 @@ export function registerCoachRoutes(app: Express) {
         divisionId,
         role,
         displayName,
+        headAssignmentId: role === "assistant" ? (headAssignmentId || null) : null,
         active: true,
       }).returning();
       res.json(assignment);
     } catch (error) {
       console.error("Create assignment error:", error);
       res.status(500).json({ error: "Failed to create assignment" });
+    }
+  });
+
+  app.patch("/api/admin/coach-assignments/:id", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      const { id } = req.params;
+      const { headAssignmentId } = req.body;
+      await db
+        .update(coachAssignments)
+        .set({ headAssignmentId: headAssignmentId ?? null })
+        .where(eq(coachAssignments.id, id));
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Update assignment error:", error);
+      res.status(500).json({ error: "Failed to update assignment" });
     }
   });
 

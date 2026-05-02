@@ -141,6 +141,7 @@ export const coachAssignments = pgTable("coach_assignments", {
   divisionId: text("division_id").notNull(),
   role: text("role").notNull(),
   displayName: text("display_name").notNull(),
+  headAssignmentId: text("head_assignment_id"),
   active: boolean("active").notNull().default(true),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });

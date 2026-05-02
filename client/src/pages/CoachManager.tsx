@@ -36,6 +36,7 @@ interface Assignment {
   divisionId: string;
   role: string;
   displayName: string;
+  headAssignmentId: string | null;
   active: boolean;
 }
 
@@ -47,6 +48,10 @@ const AGE_LABELS: Record<string, string> = {
   g78: "7th-8th",
   hs: "High School",
 };
+
+function divisionLabel(d: Division) {
+  return `${AGE_LABELS[d.ageGroup] || d.ageGroup} ${d.gender !== "coed" ? `(${d.gender})` : "(co-ed)"}`;
+}
 
 export default function CoachManager({ token }: { token: string }) {
   const [subTab, setSubTab] = useState<"applications" | "divisions" | "assignments">("applications");
@@ -236,9 +241,7 @@ function DivisionsGrid({ token }: { token: string }) {
       </div>
       {divisions.map((d) => (
         <div key={d.id} className="grid grid-cols-[1fr_80px_60px_60px_60px] gap-2 items-center bg-warmwhite/5 rounded-lg px-4 py-3 border border-warmwhite/10">
-          <span className="text-warmwhite text-sm font-medium">
-            {AGE_LABELS[d.ageGroup] || d.ageGroup} {d.gender !== "coed" ? `(${d.gender})` : "(co-ed)"}
-          </span>
+          <span className="text-warmwhite text-sm font-medium">{divisionLabel(d)}</span>
           <input
             type="number"
             value={d.headCoachesNeeded}
@@ -262,20 +265,33 @@ function DivisionsGrid({ token }: { token: string }) {
 function AssignmentsView({ token }: { token: string }) {
   const [divisions, setDivisions] = useState<Division[]>([]);
   const [apps, setApps] = useState<CoachApplication[]>([]);
+  const [assignments, setAssignments] = useState<Assignment[]>([]);
+
   const [divisionId, setDivisionId] = useState("");
   const [role, setRole] = useState<"head" | "assistant">("head");
   const [displayName, setDisplayName] = useState("");
   const [appId, setAppId] = useState("");
+  const [headAssignmentId, setHeadAssignmentId] = useState("");
   const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    fetch("/api/admin/divisions", { headers: { Authorization: `Bearer ${token}` } })
-      .then((r) => r.json())
-      .then(setDivisions);
-    fetch("/api/admin/coach-applications?status=approved", { headers: { Authorization: `Bearer ${token}` } })
-      .then((r) => r.json())
-      .then(setApps);
-  }, []);
+  const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
+
+  async function loadAll() {
+    const [divRes, appRes, assignRes] = await Promise.all([
+      fetch("/api/admin/divisions", { headers }),
+      fetch("/api/admin/coach-applications?status=approved", { headers }),
+      fetch("/api/admin/coach-assignments", { headers }),
+    ]);
+    if (divRes.ok) setDivisions(await divRes.json());
+    if (appRes.ok) setApps(await appRes.json());
+    if (assignRes.ok) setAssignments(await assignRes.json());
+  }
+
+  useEffect(() => { loadAll(); }, []);
+
+  const headCoachesInDivision = assignments.filter(
+    (a) => a.divisionId === divisionId && a.role === "head"
+  );
 
   async function create() {
     if (!divisionId || !displayName) {
@@ -284,95 +300,257 @@ function AssignmentsView({ token }: { token: string }) {
     }
     const res = await fetch("/api/admin/coach-assignments", {
       method: "POST",
-      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      headers,
       body: JSON.stringify({
         divisionId,
         role,
         displayName,
         coachApplicationId: appId || null,
+        headAssignmentId: role === "assistant" ? (headAssignmentId || null) : null,
       }),
     });
     if (res.ok) {
       setMessage(`Assigned "${displayName}" as ${role}.`);
       setDisplayName("");
       setAppId("");
+      setHeadAssignmentId("");
+      loadAll();
     } else {
       const err = await res.json();
       setMessage(err.error || "Failed to create assignment.");
     }
   }
 
+  async function remove(id: string) {
+    await fetch(`/api/admin/coach-assignments/${id}`, { method: "DELETE", headers });
+    loadAll();
+  }
+
+  async function updatePairing(id: string, headId: string) {
+    await fetch(`/api/admin/coach-assignments/${id}`, {
+      method: "PATCH",
+      headers,
+      body: JSON.stringify({ headAssignmentId: headId || null }),
+    });
+    loadAll();
+  }
+
+  const divisionMap = Object.fromEntries(divisions.map((d) => [d.id, d]));
+
+  const groupedByDivision = divisions
+    .map((div) => {
+      const divAssignments = assignments.filter((a) => a.divisionId === div.id);
+      if (divAssignments.length === 0) return null;
+      const heads = divAssignments.filter((a) => a.role === "head");
+      const assistants = divAssignments.filter((a) => a.role === "assistant");
+      return { div, heads, assistants };
+    })
+    .filter(Boolean) as { div: Division; heads: Assignment[]; assistants: Assignment[] }[];
+
   return (
-    <div className="max-w-[500px]">
-      <h3 className="text-warmwhite font-medium mb-4">Create Assignment</h3>
-
-      <div className="space-y-4">
-        <div>
-          <label className="block text-warmwhite/50 text-xs mb-1">Approved Coach (optional)</label>
-          <select
-            value={appId}
-            onChange={(e) => {
-              setAppId(e.target.value);
-              const app = apps.find((a) => a.id === e.target.value);
-              if (app) setDisplayName(`Coach ${app.name.split(" ")[0]} ${app.name.split(" ").pop()?.[0] || ""}.`);
-            }}
-            className="w-full bg-transparent border border-warmwhite/20 rounded px-3 py-2 text-warmwhite text-sm"
-          >
-            <option value="">Manual entry</option>
-            {apps.map((a) => (
-              <option key={a.id} value={a.id}>{a.name} ({a.email})</option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label className="block text-warmwhite/50 text-xs mb-1">Division</label>
-          <select
-            value={divisionId}
-            onChange={(e) => setDivisionId(e.target.value)}
-            className="w-full bg-transparent border border-warmwhite/20 rounded px-3 py-2 text-warmwhite text-sm"
-          >
-            <option value="">Select division</option>
-            {divisions.map((d) => (
-              <option key={d.id} value={d.id}>
-                {AGE_LABELS[d.ageGroup] || d.ageGroup} {d.gender !== "coed" ? `(${d.gender})` : "(co-ed)"}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
+    <div className="space-y-8">
+      {/* Create form */}
+      <div className="max-w-[520px]">
+        <h3 className="text-warmwhite font-medium mb-4">Create Assignment</h3>
+        <div className="space-y-4">
           <div>
-            <label className="block text-warmwhite/50 text-xs mb-1">Role</label>
+            <label className="block text-warmwhite/50 text-xs mb-1">Approved Coach (optional)</label>
             <select
-              value={role}
-              onChange={(e) => setRole(e.target.value as "head" | "assistant")}
+              value={appId}
+              onChange={(e) => {
+                setAppId(e.target.value);
+                const app = apps.find((a) => a.id === e.target.value);
+                if (app) setDisplayName(`Coach ${app.name.split(" ")[0]} ${app.name.split(" ").pop()?.[0] || ""}.`);
+              }}
               className="w-full bg-transparent border border-warmwhite/20 rounded px-3 py-2 text-warmwhite text-sm"
             >
-              <option value="head">Head Coach</option>
-              <option value="assistant">Assistant</option>
+              <option value="">Manual entry</option>
+              {apps.map((a) => (
+                <option key={a.id} value={a.id}>{a.name} ({a.email})</option>
+              ))}
             </select>
           </div>
+
           <div>
-            <label className="block text-warmwhite/50 text-xs mb-1">Display Name</label>
-            <input
-              value={displayName}
-              onChange={(e) => setDisplayName(e.target.value)}
-              placeholder="Coach FirstName L."
-              className="w-full bg-transparent border border-warmwhite/20 rounded px-3 py-2 text-warmwhite text-sm placeholder:text-warmwhite/30"
-            />
+            <label className="block text-warmwhite/50 text-xs mb-1">Division</label>
+            <select
+              value={divisionId}
+              onChange={(e) => { setDivisionId(e.target.value); setHeadAssignmentId(""); }}
+              className="w-full bg-transparent border border-warmwhite/20 rounded px-3 py-2 text-warmwhite text-sm"
+            >
+              <option value="">Select division</option>
+              {divisions.map((d) => (
+                <option key={d.id} value={d.id}>{divisionLabel(d)}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-warmwhite/50 text-xs mb-1">Role</label>
+              <select
+                value={role}
+                onChange={(e) => { setRole(e.target.value as "head" | "assistant"); setHeadAssignmentId(""); }}
+                className="w-full bg-transparent border border-warmwhite/20 rounded px-3 py-2 text-warmwhite text-sm"
+              >
+                <option value="head">Head Coach</option>
+                <option value="assistant">Assistant</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-warmwhite/50 text-xs mb-1">Display Name</label>
+              <input
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                placeholder="Coach FirstName L."
+                className="w-full bg-transparent border border-warmwhite/20 rounded px-3 py-2 text-warmwhite text-sm placeholder:text-warmwhite/30"
+              />
+            </div>
+          </div>
+
+          {role === "assistant" && divisionId && (
+            <div>
+              <label className="block text-warmwhite/50 text-xs mb-1">Paired Head Coach (optional)</label>
+              <select
+                value={headAssignmentId}
+                onChange={(e) => setHeadAssignmentId(e.target.value)}
+                className="w-full bg-transparent border border-warmwhite/20 rounded px-3 py-2 text-warmwhite text-sm"
+              >
+                <option value="">-- Unassigned --</option>
+                {headCoachesInDivision.map((h) => (
+                  <option key={h.id} value={h.id}>{h.displayName}</option>
+                ))}
+              </select>
+              {headCoachesInDivision.length === 0 && (
+                <p className="text-warmwhite/30 text-xs mt-1">No head coaches assigned to this division yet.</p>
+              )}
+            </div>
+          )}
+
+          <button
+            onClick={create}
+            className="px-4 py-2 bg-crimson text-warmwhite text-sm font-medium rounded-lg hover:bg-crimson-dark transition-colors"
+          >
+            Create Assignment
+          </button>
+          {message && <p className="text-warmwhite/60 text-sm">{message}</p>}
+        </div>
+      </div>
+
+      {/* Current assignments grouped by division */}
+      {groupedByDivision.length > 0 && (
+        <div>
+          <h3 className="text-warmwhite font-medium mb-3">Current Assignments</h3>
+          <div className="space-y-4">
+            {groupedByDivision.map(({ div, heads, assistants }) => (
+              <div key={div.id} className="bg-warmwhite/3 border border-warmwhite/10 rounded-lg overflow-hidden">
+                <div className="px-4 py-2 bg-warmwhite/5 border-b border-warmwhite/10">
+                  <span className="text-warmwhite/70 text-xs font-medium uppercase tracking-wider">
+                    {divisionLabel(div)}
+                  </span>
+                </div>
+                <div className="p-3 space-y-2">
+                  {heads.map((head) => {
+                    const paired = assistants.filter((a) => a.headAssignmentId === head.id);
+                    const unpaired = assistants.filter((a) => !a.headAssignmentId);
+                    return (
+                      <div key={head.id}>
+                        {/* Head coach row */}
+                        <div className="flex items-center justify-between px-3 py-2 rounded-md bg-gold/8 border border-gold/20">
+                          <div className="flex items-center gap-2">
+                            <span className="text-gold text-xs font-semibold uppercase tracking-wider w-14">Head</span>
+                            <span className="text-warmwhite text-sm">{head.displayName}</span>
+                          </div>
+                          <button
+                            onClick={() => remove(head.id)}
+                            className="text-warmwhite/25 hover:text-crimson text-xs transition-colors"
+                          >
+                            remove
+                          </button>
+                        </div>
+                        {/* Paired assistants */}
+                        {paired.map((asst) => (
+                          <div key={asst.id} className="flex items-center justify-between px-3 py-2 ml-6 mt-1 rounded-md bg-warmwhite/4 border border-warmwhite/8">
+                            <div className="flex items-center gap-2">
+                              <span className="text-warmwhite/35 text-xs w-14">Asst</span>
+                              <span className="text-warmwhite/80 text-sm">{asst.displayName}</span>
+                            </div>
+                            <div className="flex items-center gap-3">
+                              <select
+                                value={asst.headAssignmentId || ""}
+                                onChange={(e) => updatePairing(asst.id, e.target.value)}
+                                onClick={(e) => e.stopPropagation()}
+                                className="bg-transparent border border-warmwhite/15 rounded text-xs text-warmwhite/60 px-2 py-1"
+                              >
+                                <option value="">-- Unpair --</option>
+                                {heads.map((h) => (
+                                  <option key={h.id} value={h.id}>{h.displayName}</option>
+                                ))}
+                              </select>
+                              <button
+                                onClick={() => remove(asst.id)}
+                                className="text-warmwhite/25 hover:text-crimson text-xs transition-colors"
+                              >
+                                remove
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                        {/* Show unpairable assistants under last head only once */}
+                        {head.id === heads[heads.length - 1]?.id && unpaired.map((asst) => (
+                          <div key={asst.id} className="flex items-center justify-between px-3 py-2 ml-6 mt-1 rounded-md bg-warmwhite/4 border border-warmwhite/8 border-dashed">
+                            <div className="flex items-center gap-2">
+                              <span className="text-warmwhite/25 text-xs w-14">Asst</span>
+                              <span className="text-warmwhite/50 text-sm">{asst.displayName}</span>
+                              <span className="text-warmwhite/25 text-xs italic">unassigned</span>
+                            </div>
+                            <div className="flex items-center gap-3">
+                              <select
+                                value=""
+                                onChange={(e) => updatePairing(asst.id, e.target.value)}
+                                onClick={(e) => e.stopPropagation()}
+                                className="bg-transparent border border-warmwhite/15 rounded text-xs text-warmwhite/60 px-2 py-1"
+                              >
+                                <option value="">-- Pair with --</option>
+                                {heads.map((h) => (
+                                  <option key={h.id} value={h.id}>{h.displayName}</option>
+                                ))}
+                              </select>
+                              <button
+                                onClick={() => remove(asst.id)}
+                                className="text-warmwhite/25 hover:text-crimson text-xs transition-colors"
+                              >
+                                remove
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  })}
+
+                  {/* Head coaches with no assistants yet */}
+                  {heads.length === 0 && assistants.map((asst) => (
+                    <div key={asst.id} className="flex items-center justify-between px-3 py-2 rounded-md bg-warmwhite/4 border border-warmwhite/8 border-dashed">
+                      <div className="flex items-center gap-2">
+                        <span className="text-warmwhite/25 text-xs w-14">Asst</span>
+                        <span className="text-warmwhite/50 text-sm">{asst.displayName}</span>
+                        <span className="text-warmwhite/25 text-xs italic">no head coach yet</span>
+                      </div>
+                      <button
+                        onClick={() => remove(asst.id)}
+                        className="text-warmwhite/25 hover:text-crimson text-xs transition-colors"
+                      >
+                        remove
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-
-        <button
-          onClick={create}
-          className="px-4 py-2 bg-crimson text-warmwhite text-sm font-medium rounded-lg hover:bg-crimson-dark transition-colors"
-        >
-          Create Assignment
-        </button>
-
-        {message && <p className="text-warmwhite/60 text-sm mt-2">{message}</p>}
-      </div>
+      )}
     </div>
   );
 }
