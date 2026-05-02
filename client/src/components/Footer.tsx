@@ -52,7 +52,7 @@ export default function Footer({ onNavigate }: FooterProps) {
     resources: [
       { label: "Training Schedule", section: "programs" },
       { label: "Registration", section: "contact" },
-      { label: "FAQ", section: "contact" },
+      { label: "Team Placement Request", href: "/team-placement" },
     ],
   };
 
@@ -187,13 +187,23 @@ export default function Footer({ onNavigate }: FooterProps) {
             <ul className="space-y-2">
               {footerLinks.resources.map((link, idx) => (
                 <li key={idx}>
-                  <button
-                    onClick={() => onNavigate?.(link.section)}
-                    className="text-warmwhite/60 hover:text-warmwhite text-sm transition-colors"
-                    data-testid={`footer-link-${link.label.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
-                  >
-                    {link.label}
-                  </button>
+                  {"href" in link && link.href ? (
+                    <Link
+                      href={link.href}
+                      className="text-warmwhite/60 hover:text-warmwhite text-sm transition-colors"
+                      data-testid={`footer-link-${link.label.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => onNavigate?.((link as any).section)}
+                      className="text-warmwhite/60 hover:text-warmwhite text-sm transition-colors"
+                      data-testid={`footer-link-${link.label.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
+                    >
+                      {link.label}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>
