@@ -62,11 +62,11 @@ export default function ProgramCard({
   return (
     <Card className={`${styles.bg} border-0 overflow-hidden h-full flex flex-col`}>
       <div className="relative h-48 overflow-hidden flex-shrink-0">
-        {type === "rise" && (
+        {type === "roots" && (
           <Link
-            href="/rise"
-            className="absolute top-0 left-0 right-0 z-10 bg-risegreen text-warmwhite text-center py-1.5 px-3 text-xs font-heading font-bold uppercase tracking-wider hover:bg-risegreen/90 transition-colors cursor-pointer"
-            data-testid="banner-rise-registration"
+            href="/roots"
+            className="absolute top-0 left-0 right-0 z-10 bg-crimson text-warmwhite text-center py-1.5 px-3 text-xs font-heading font-bold uppercase tracking-wider hover:bg-crimson/90 transition-colors cursor-pointer"
+            data-testid="banner-roots-registration"
           >
             Registration Now Open
           </Link>
@@ -91,8 +91,8 @@ export default function ProgramCard({
           <h3 className={`font-integral text-2xl uppercase tracking-wide ${styles.text}`}>
             {title}
           </h3>
-          {type === "rise" && (
-            <Link href="/rise" className="px-2 py-0.5 bg-risegreen text-warmwhite text-[10px] font-heading font-bold uppercase tracking-wider rounded-full whitespace-nowrap hover:bg-risegreen/90 transition-colors" data-testid="tag-rise-registration-open">
+          {type === "roots" && (
+            <Link href="/roots" className="px-2 py-0.5 bg-crimson text-warmwhite text-[10px] font-heading font-bold uppercase tracking-wider rounded-full whitespace-nowrap hover:bg-crimson/90 transition-colors" data-testid="tag-roots-registration-open">
               Register Today
             </Link>
           )}
