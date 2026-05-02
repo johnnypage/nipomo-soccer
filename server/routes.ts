@@ -3,7 +3,9 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import sgMail from "@sendgrid/mail";
 import { db } from "./db";
-import { contactSubmissions, tournamentInterests, coachApplications, insertTournamentInterestSchema, insertCoachApplicationSchema } from "@shared/schema";
+import { contactSubmissions, tournamentInterests, coachApplications, volunteerApplications, insertTournamentInterestSchema, insertCoachApplicationSchema, insertVolunteerApplicationSchema } from "@shared/schema";
+import { requireAuth } from "./auth";
+import { desc } from "drizzle-orm";
 import { registerShopRoutes } from "./shopRoutes";
 import { registerCoachRoutes } from "./coachRoutes";
 import { registerPlacementRoutes } from "./placementRoutes";
@@ -224,6 +226,66 @@ ${data.additionalNotes ? `<h3>Additional Notes:</h3><p>${data.additionalNotes.re
     } catch (error: any) {
       console.error("Coach application error:", error);
       res.status(500).json({ error: "Failed to submit application. Please try again." });
+    }
+  });
+
+  app.post("/api/volunteer-application", async (req, res) => {
+    try {
+      const parseResult = insertVolunteerApplicationSchema.safeParse(req.body);
+
+      if (!parseResult.success) {
+        return res.status(400).json({ error: "Please fill in all required fields" });
+      }
+
+      const { roleId, roleTitle, name, email, phone, whyGoodFit } = parseResult.data;
+
+      await db.insert(volunteerApplications).values({ roleId, roleTitle, name, email, phone, whyGoodFit: whyGoodFit || null });
+
+      const msg = {
+        to: "admin@nipomosc.org",
+        from: "admin@nipomosc.org",
+        replyTo: email,
+        subject: `Volunteer Interest -- ${roleTitle} -- ${name}`,
+        text: `
+New volunteer interest from the Nipomo Soccer website:
+
+Role: ${roleTitle} (${roleId})
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+${whyGoodFit ? `\nWhy a good fit:\n${whyGoodFit}` : ""}
+        `.trim(),
+        html: `
+<h2>New Volunteer Interest</h2>
+<p><strong>Role:</strong> ${roleTitle}</p>
+<p><strong>Name:</strong> ${name}</p>
+<p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+<p><strong>Phone:</strong> ${phone}</p>
+${whyGoodFit ? `<h3>Why a good fit:</h3><p>${whyGoodFit.replace(/\n/g, "<br>")}</p>` : ""}
+        `.trim(),
+      };
+
+      try {
+        await sgMail.send(msg);
+      } catch (emailError: any) {
+        console.error("SendGrid error (submission saved to database):", emailError?.response?.body || emailError);
+      }
+
+      res.json({ success: true, message: "Application submitted successfully" });
+    } catch (error: any) {
+      console.error("Volunteer application error:", error);
+      res.status(500).json({ error: "Failed to submit application. Please try again." });
+    }
+  });
+
+  app.get("/api/admin/volunteer-applications", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      const apps = await db.select().from(volunteerApplications).orderBy(desc(volunteerApplications.createdAt));
+      res.json(apps);
+    } catch (error) {
+      console.error("Error fetching volunteer applications:", error);
+      res.status(500).json({ error: "Failed to fetch applications" });
     }
   });
 

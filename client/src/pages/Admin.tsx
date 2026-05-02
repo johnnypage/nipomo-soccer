@@ -903,6 +903,81 @@ function OrderDashboard({ token }: { token: string }) {
   );
 }
 
+// ─── Volunteer Applications ───────────────────────────────────────────────────
+
+interface VolunteerApp {
+  id: string;
+  roleId: string;
+  roleTitle: string;
+  name: string;
+  email: string;
+  phone: string;
+  whyGoodFit: string | null;
+  createdAt: string;
+}
+
+function VolunteersList({ token }: { token: string }) {
+  const [apps, setApps] = useState<VolunteerApp[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [expanded, setExpanded] = useState<string | null>(null);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch("/api/admin/volunteer-applications", { headers: { Authorization: `Bearer ${token}` } })
+      .then((r) => r.json())
+      .then((data) => { setApps(data); setLoading(false); })
+      .catch(() => { setError("Failed to load"); setLoading(false); });
+  }, [token]);
+
+  if (loading) return <p className="text-warmwhite/40 text-sm">Loading...</p>;
+  if (error) return <p className="text-crimson text-sm">{error}</p>;
+  if (apps.length === 0) return <p className="text-warmwhite/40 text-sm py-8 text-center">No volunteer applications yet.</p>;
+
+  return (
+    <div className="space-y-2">
+      <p className="text-warmwhite/40 text-xs mb-4">{apps.length} submission{apps.length !== 1 ? "s" : ""}</p>
+      {apps.map((app) => (
+        <div key={app.id} className="bg-warmwhite/5 rounded-lg border border-warmwhite/10">
+          <div
+            className="flex items-center justify-between px-4 py-3 cursor-pointer"
+            onClick={() => setExpanded(expanded === app.id ? null : app.id)}
+          >
+            <div className="flex items-center gap-4 min-w-0">
+              <span className="text-warmwhite font-medium text-sm truncate">{app.name}</span>
+              <span className="text-warmwhite/40 text-xs truncate hidden sm:block">{app.email}</span>
+            </div>
+            <div className="flex items-center gap-3 shrink-0">
+              <span className="text-[#4ade80] text-xs px-2 py-0.5 rounded bg-[#1a4d2e]/40 border border-[#2d7a4f]/60 font-medium hidden sm:block">
+                {app.roleTitle}
+              </span>
+              <span className="text-warmwhite/30 text-xs">
+                {new Date(app.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+              </span>
+            </div>
+          </div>
+          {expanded === app.id && (
+            <div className="px-4 pb-4 border-t border-warmwhite/10 pt-3 text-sm text-warmwhite/70">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
+                <div><span className="text-warmwhite/40">Role:</span> {app.roleTitle}</div>
+                <div><span className="text-warmwhite/40">Email:</span> <a href={`mailto:${app.email}`} className="text-gold hover:underline">{app.email}</a></div>
+                <div><span className="text-warmwhite/40">Phone:</span> {app.phone}</div>
+                <div><span className="text-warmwhite/40">Submitted:</span> {new Date(app.createdAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</div>
+              </div>
+              {app.whyGoodFit && (
+                <div>
+                  <span className="text-warmwhite/40">Why a good fit:</span>
+                  <p className="mt-1 text-warmwhite/70">{app.whyGoodFit}</p>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 // ─── Main Admin Page with Tabs ───
 
 export default function Admin() {
@@ -910,7 +985,7 @@ export default function Admin() {
     const stored = sessionStorage.getItem("admin-token");
     return stored || null;
   });
-  const [tab, setTab] = useState<"products" | "orders" | "coaches" | "placements">("products");
+  const [tab, setTab] = useState<"products" | "orders" | "coaches" | "volunteers" | "placements">("products");
 
   function handleLogin(t: string) {
     sessionStorage.setItem("admin-token", t);
@@ -977,6 +1052,17 @@ export default function Admin() {
             Coaches
           </button>
           <button
+            onClick={() => setTab("volunteers")}
+            className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              tab === "volunteers"
+                ? "bg-crimson text-warmwhite"
+                : "text-warmwhite/50 hover:text-warmwhite hover:bg-slate/20"
+            }`}
+          >
+            <Users className="h-4 w-4" />
+            Volunteers
+          </button>
+          <button
             onClick={() => setTab("placements")}
             className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               tab === "placements"
@@ -995,6 +1081,8 @@ export default function Admin() {
           <OrderDashboard token={token} />
         ) : tab === "coaches" ? (
           <CoachManager token={token} />
+        ) : tab === "volunteers" ? (
+          <VolunteersList token={token} />
         ) : (
           <PlacementManager token={token} />
         )}

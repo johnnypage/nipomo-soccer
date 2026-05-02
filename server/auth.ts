@@ -2,7 +2,7 @@ import type { Request, Response } from "express";
 import { createHmac, createHash, timingSafeEqual } from "crypto";
 
 const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH || "";
-const HMAC_SECRET = process.env.STRIPE_SECRET_KEY || "dev-hmac-secret";
+const HMAC_SECRET = process.env.SESSION_SECRET || process.env.STRIPE_SECRET_KEY || "dev-hmac-secret";
 
 export function generateToken(password: string): string | null {
   const hash = createHash("sha256").update(password).digest("hex");

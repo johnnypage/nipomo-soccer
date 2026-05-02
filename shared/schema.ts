@@ -153,6 +153,25 @@ export const insertCoachAssignmentSchema = createInsertSchema(coachAssignments).
 export type InsertCoachAssignment = z.infer<typeof insertCoachAssignmentSchema>;
 export type CoachAssignment = typeof coachAssignments.$inferSelect;
 
+export const volunteerApplications = pgTable("volunteer_applications", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  roleId: text("role_id").notNull(),
+  roleTitle: text("role_title").notNull(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  whyGoodFit: text("why_good_fit"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertVolunteerApplicationSchema = createInsertSchema(volunteerApplications).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type InsertVolunteerApplication = z.infer<typeof insertVolunteerApplicationSchema>;
+export type VolunteerApplication = typeof volunteerApplications.$inferSelect;
+
 export const placementRequests = pgTable("placement_requests", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   submitterRole: text("submitter_role").notNull(),

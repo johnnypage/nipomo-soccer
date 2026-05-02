@@ -181,7 +181,7 @@ export default function Rise() {
     },
     {
       q: "Are there refunds?",
-      a: "No refunds. If your child is injured, credit toward a future Nipomo SC program may be offered at the director's discretion.",
+      a: "No refunds. If your child is injured, credit toward a future Nipomo Soccer program may be offered at the director's discretion.",
     },
     {
       q: "Is there a sibling discount?",

@@ -15,7 +15,9 @@ export default function Programs({ onProgramSelect }: ProgramsProps) {
   const [, setLocation] = useLocation();
   
   const handleLearnMore = (programType: string) => {
-    if (programType === "rise") {
+    if (programType === "roots") {
+      setLocation("/roots");
+    } else if (programType === "rise") {
       setLocation("/rise");
     } else if (programType === "reign") {
       setLocation("/reign");

@@ -23,14 +23,15 @@ export default function Header({ onNavigate }: HeaderProps) {
   const { totalItems } = useCart();
 
   const programLinks = [
-    { label: "Roots", href: "/#programs", description: "Community Recreational Soccer" },
+    { label: "Roots", href: "/roots", description: "Community Recreational Soccer" },
     { label: "Rise", href: "/rise", description: "Spring Development League" },
     { label: "Reign", href: "/reign", description: "Competitive Club Soccer" },
   ];
 
   const aboutLinks = [
     { label: "About Us", href: "/#about" },
-    { label: "Nipomo SC vs. AYSO", href: "/about/compare" },
+    { label: "Nipomo Soccer vs. AYSO", href: "/about/compare" },
+    { label: "Volunteer With Us", href: "/volunteer" },
     { label: "Coach With Us", href: "/coach" },
   ];
 
@@ -55,7 +56,7 @@ export default function Header({ onNavigate }: HeaderProps) {
           <Link href="/" className="flex items-center gap-3 cursor-pointer" data-testid="link-home-logo">
             <img 
               src={clubLogo} 
-              alt="Nipomo SC" 
+              alt="Nipomo Soccer" 
               className="h-12 w-auto object-contain"
             />
             <div className="hidden sm:block">
@@ -138,13 +139,15 @@ export default function Header({ onNavigate }: HeaderProps) {
                 </span>
               )}
             </button>
-            <Button
-              onClick={() => handleNavigate("contact")}
-              className="hidden sm:flex bg-crimson hover:bg-crimson-dark text-warmwhite border-crimson"
+            <a
+              href="https://club.spond.com/landing/signup/nipomosc/form/534965DA898B4B7E9CC0A589047F6061"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:flex items-center px-4 py-2 bg-crimson hover:bg-crimson-dark text-warmwhite border-crimson rounded-md text-sm font-medium transition-colors"
               data-testid="button-join-now"
             >
-              Join Now
-            </Button>
+              Sign Up to Play
+            </a>
             <Button
               variant="ghost"
               size="icon"
@@ -215,13 +218,15 @@ export default function Header({ onNavigate }: HeaderProps) {
                 </button>
               ))}
             </div>
-            <Button
-              onClick={() => handleNavigate("contact")}
-              className="w-full bg-crimson hover:bg-crimson-dark text-warmwhite border-crimson mt-2"
+            <a
+              href="https://club.spond.com/landing/signup/nipomosc/form/534965DA898B4B7E9CC0A589047F6061"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-full px-4 py-2 bg-crimson hover:bg-crimson-dark text-warmwhite rounded-md text-sm font-medium transition-colors mt-2"
               data-testid="button-mobile-join"
             >
-              Join Now
-            </Button>
+              Sign Up to Play
+            </a>
           </div>
         </div>
       )}
@@ -233,7 +238,7 @@ export default function Header({ onNavigate }: HeaderProps) {
       className="fixed top-16 left-0 right-0 z-40 bg-crimson text-warmwhite text-center py-3 px-4 text-base font-heading font-semibold hover:bg-crimson/90 transition-colors cursor-pointer block"
       data-testid="banner-roots-registration"
     >
-      ROOTS Fall 2026 registration is open. <span className="underline underline-offset-2">Sign up now.</span>
+      ROOTS Fall 2026 registration is open -- first 100 players save $20. <span className="underline underline-offset-2">Register now.</span>
     </a>
     <CartSheet open={cartOpen} onOpenChange={setCartOpen} />
     </>

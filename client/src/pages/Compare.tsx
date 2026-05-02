@@ -87,10 +87,10 @@ const boardMembers = [
 ];
 
 const faqItems = [
-  { q: "Is Nipomo SC a non-profit?", a: "Yes. Nipomo Soccer Club is a registered non-profit organization." },
-  { q: 'Does "soccer club" mean it\'s only for competitive players?', a: 'Not at all. The word "club" refers to the organization, not the level of play. Nipomo SC is the umbrella for all soccer in Nipomo. Roots is recreational soccer: Saturday games, weekday practices, team assignments, ages 4 to 14. Rise is a developmental bridge for players who want more training without the full commitment of a competitive team. Reign is competitive, year-round training and tournament play. Your child can play Roots every season and have a great experience, or they can grow into Rise or Reign over time. No pressure, no wrong path.' },
-  { q: "Will Roots cost more than AYSO?", a: "We expect registration to be around $155, the same as last year's AYSO season. That's despite Nipomo SC having to purchase all new equipment from scratch, including goals, balls, and jerseys, and now paying referees. We've worked hard to keep costs the same for families." },
-  { q: "Do I have to volunteer?", a: "Volunteering isn't mandatory per parent, but Nipomo SC still depends heavily on community support. Our entire board is volunteer. All coaches are volunteer. As we grow revenue through fundraisers, sponsorships, and hosting club tournaments, we expect to add paid positions over time to reduce the volunteer burden. Right now, every helping hand makes a real difference." },
+  { q: "Is Nipomo Soccer a non-profit?", a: "Yes. Nipomo Soccer is a registered non-profit organization." },
+  { q: 'Does "soccer club" mean it\'s only for competitive players?', a: 'Not at all. The word "club" refers to the organization, not the level of play. Nipomo Soccer is the umbrella for all soccer in Nipomo. Roots is recreational soccer: Saturday games, weekday practices, team assignments, ages 4 to 14. Rise is a developmental bridge for players who want more training without the full commitment of a competitive team. Reign is competitive, year-round training and tournament play. Your child can play Roots every season and have a great experience, or they can grow into Rise or Reign over time. No pressure, no wrong path.' },
+  { q: "Will Roots cost more than AYSO?", a: "We expect registration to be around $155, the same as last year's AYSO season. That's despite Nipomo Soccer having to purchase all new equipment from scratch, including goals, balls, and jerseys, and now paying referees. We've worked hard to keep costs the same for families." },
+  { q: "Do I have to volunteer?", a: "Volunteering isn't mandatory per parent, but Nipomo Soccer still depends heavily on community support. Our entire board is volunteer. All coaches are volunteer. As we grow revenue through fundraisers, sponsorships, and hosting club tournaments, we expect to add paid positions over time to reduce the volunteer burden. Right now, every helping hand makes a real difference." },
   { q: "How will teams be balanced?", a: "Two ways. First, players on competitive teams, whether Reign or any outside club, are not eligible to play in Roots. Recreational soccer should feel recreational. Second, we'll be collecting detailed coach assessment data on all players and using that data to balance teams fairly across every division. All teams will be formed by someone who has no ties to a player in that division, removing any conflict of interest from the process. No more lopsided matchups." },
   { q: "Can local businesses sponsor jerseys?", a: "Yes, this is new. Under AYSO, jersey sponsorship funds didn't benefit local teams. Under Nipomo SC, local businesses can sponsor jerseys and support the program directly. If you're a business owner interested in sponsoring, email admin@nipomosc.org." },
   { q: "What ages does Nipomo SC cover?", a: "Roots (recreational) serves ages 4 to 14. Visit nipomosc.org for details on Rise and Reign age ranges." },
@@ -488,7 +488,7 @@ function WhyWeLeftSection() {
                 <h3 className="font-heading font-bold text-xl text-[#c8a951] mb-3 mt-8">1. Referees</h3>
                 <p className="mb-4">AYSO requires all referees to be unpaid volunteers while imposing demanding certification standards. A basic Regional certification takes a full day. Intermediate requires a 10-11 hour course plus 25 games of experience.</p>
                 <p className="mb-4">And that's just the referee coursework. Before an adult volunteer can even step on the field, they also need to complete annual registration, a background check, state-mandated fingerprinting under California AB 506, Safe Haven training, SafeSport certification, CDC concussion awareness training, and sudden cardiac arrest training.</p>
-                <p className="mb-4">These are all good standards, and Nipomo SC upholds them. But asking someone to meet all of those requirements and then officiate every Saturday without compensation is a lot.</p>
+                <p className="mb-4">These are all good standards, and Nipomo Soccer upholds them. But asking someone to meet all of those requirements and then officiate every Saturday without compensation is a lot.</p>
                 <p className="mb-4">On top of that, the AYSO referee pathway creates a direct pipeline out. Volunteers invest heavily in training through AYSO, then cross-certify with USSF so they can work paid matches in other leagues. We lost many of our best referees to organizations that actually compensate their officials.</p>
                 <p>Running the Nipomo AYSO region required over 200 volunteers. There are real benefits to a volunteer-driven model. But the demands on referees in particular led to burnout. Referee shortages were our biggest challenge last season.</p>
               </motion.div>
@@ -526,10 +526,10 @@ function WhatChangesSection() {
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={stagger}>
           <motion.p variants={fadeUp} className="text-[#c8a951] font-heading font-bold text-sm uppercase tracking-[0.2em] text-center mb-4">The Difference</motion.p>
           <motion.h2 variants={fadeUp} className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-[#0D0D0D] text-center mb-6" data-testid="heading-different">
-            What Changes Under Nipomo SC
+            What Changes Under Nipomo Soccer
           </motion.h2>
           <motion.p variants={fadeUp} className="text-[#555249] text-lg text-center max-w-2xl mx-auto mb-16">
-            Nipomo SC meets all standards set forth by California and the U.S. Soccer Federation. The difference is that we now have the flexibility to do what's best for this community.
+            Nipomo Soccer meets all standards set forth by California and the U.S. Soccer Federation. The difference is that we now have the flexibility to do what's best for this community.
           </motion.p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
@@ -633,7 +633,7 @@ function AYSOThisYearSection() {
             data-testid="callout-key-point-roots-season"
           >
             <p className="text-[#1a472a] text-2xl sm:text-3xl md:text-4xl font-heading font-black leading-snug">
-              There is 100% going to be a Nipomo SC Roots season.
+              There is 100% going to be a Nipomo Soccer Roots season.
             </p>
           </motion.div>
 
@@ -642,7 +642,7 @@ function AYSOThisYearSection() {
           </motion.p>
 
           <motion.p variants={fadeUp} className="text-white text-xl leading-relaxed text-center font-bold">
-            You don't need to wait and wonder. Nipomo SC is here.
+            You don't need to wait and wonder. Nipomo Soccer is here.
           </motion.p>
         </motion.div>
       </div>
