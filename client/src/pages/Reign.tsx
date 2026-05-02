@@ -92,7 +92,7 @@ export default function Reign() {
             </div>
             
             <p className="text-warmwhite/80 text-lg sm:text-xl mb-8 leading-relaxed">
-              The competitive program of Nipomo Soccer Club. A complete pathway for skilled 
+              The competitive program of Nipomo Soccer. A complete pathway for skilled 
               and committed young athletes to pursue advanced soccer without leaving town 
               or taking on high financial burdens.
             </p>

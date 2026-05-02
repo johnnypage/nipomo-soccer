@@ -43,7 +43,7 @@ export default function About() {
             <p className="text-slate dark:text-warmwhite/70 mb-6">
               Nipomo is filled with talented and passionate young athletes who love soccer. For years, 
               many local families struggled to find a program that is high quality, affordable, and close 
-              to home. Nipomo Soccer Club was created to solve that. We believe that great soccer can be 
+              to home. Nipomo Soccer was created to solve that. We believe that great soccer can be 
               both accessible and development focused.
             </p>
             

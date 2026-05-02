@@ -25,7 +25,7 @@ export default function Hero({ onGetStarted, onLearnMore }: HeroProps) {
         </h1>
         
         <p className="font-heading text-xl sm:text-2xl text-warmwhite/90 font-medium mb-2">
-          Nipomo Soccer Club
+          Nipomo Soccer
         </p>
         
         <p className="text-warmwhite/70 text-lg max-w-2xl mx-auto mb-8">High quality, affordable youth soccer development close to home. 

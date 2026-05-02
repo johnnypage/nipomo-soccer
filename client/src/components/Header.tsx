@@ -60,7 +60,7 @@ export default function Header({ onNavigate }: HeaderProps) {
             />
             <div className="hidden sm:block">
               <h1 className="font-integral font-bold text-warmwhite text-lg leading-tight uppercase tracking-wide">
-                Nipomo Soccer Club
+                Nipomo Soccer
               </h1>
             </div>
           </Link>
