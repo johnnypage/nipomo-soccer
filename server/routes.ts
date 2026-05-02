@@ -6,6 +6,7 @@ import { db } from "./db";
 import { contactSubmissions, tournamentInterests, coachApplications, insertTournamentInterestSchema, insertCoachApplicationSchema } from "@shared/schema";
 import { registerShopRoutes } from "./shopRoutes";
 import { registerCoachRoutes } from "./coachRoutes";
+import { registerPlacementRoutes } from "./placementRoutes";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
 
@@ -19,6 +20,7 @@ export async function registerRoutes(
 ): Promise<Server> {
   registerShopRoutes(app);
   registerCoachRoutes(app);
+  registerPlacementRoutes(app);
 
   app.post("/api/contact", async (req, res) => {
     try {

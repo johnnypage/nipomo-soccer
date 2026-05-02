@@ -152,3 +152,35 @@ export const insertCoachAssignmentSchema = createInsertSchema(coachAssignments).
 
 export type InsertCoachAssignment = z.infer<typeof insertCoachAssignmentSchema>;
 export type CoachAssignment = typeof coachAssignments.$inferSelect;
+
+export const placementRequests = pgTable("placement_requests", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  submitterRole: text("submitter_role").notNull(),
+  submitterName: text("submitter_name").notNull(),
+  submitterEmail: text("submitter_email").notNull(),
+  submitterPhone: text("submitter_phone").notNull(),
+  playerName: text("player_name").notNull(),
+  requestType: text("request_type").notNull(),
+  otherPlayerName: text("other_player_name"),
+  relationship: text("relationship"),
+  coachName: text("coach_name"),
+  connectionReason: text("connection_reason"),
+  availableDays: text("available_days"),
+  unavailableDays: text("unavailable_days"),
+  scheduleReason: text("schedule_reason"),
+  additionalPlayerNames: text("additional_player_names"),
+  notes: text("notes"),
+  status: text("status").notNull().default("pending"),
+  adminNotes: text("admin_notes"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertPlacementRequestSchema = createInsertSchema(placementRequests).omit({
+  id: true,
+  createdAt: true,
+  status: true,
+  adminNotes: true,
+});
+
+export type InsertPlacementRequest = z.infer<typeof insertPlacementRequestSchema>;
+export type PlacementRequest = typeof placementRequests.$inferSelect;
