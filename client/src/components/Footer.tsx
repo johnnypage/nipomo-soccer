@@ -52,6 +52,7 @@ export default function Footer({ onNavigate }: FooterProps) {
     resources: [
       { label: "Training Schedule", section: "programs" },
       { label: "Registration", section: "contact" },
+      { label: "Find My Division", href: "/find-my-division" },
       { label: "Team Placement Request", href: "/team-placement" },
     ],
   };
