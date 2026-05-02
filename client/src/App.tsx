@@ -8,6 +8,9 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Reign from "@/pages/Reign";
 import Rise from "@/pages/Rise";
+import RootsPage from "@/pages/roots";
+import FindMyDivision from "@/pages/FindMyDivision";
+import Volunteer from "@/pages/Volunteer";
 import Compare from "@/pages/Compare";
 import Shop from "@/pages/Shop";
 import OrderConfirmation from "@/pages/OrderConfirmation";
@@ -21,6 +24,9 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/reign" component={Reign} />
       <Route path="/rise" component={Rise} />
+      <Route path="/roots" component={RootsPage} />
+      <Route path="/find-my-division" component={FindMyDivision} />
+      <Route path="/volunteer" component={Volunteer} />
       <Route path="/about/compare" component={Compare} />
       <Route path="/coach" component={CoachWithUs} />
       <Route path="/shop" component={Shop} />
