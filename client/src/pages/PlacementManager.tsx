@@ -212,6 +212,9 @@ export default function PlacementManager({ token }: { token: string }) {
                   <span className={`text-xs px-2 py-0.5 rounded ${TYPE_COLORS[req.requestType] || "bg-warmwhite/10 text-warmwhite/50"}`}>
                     {TYPE_LABELS[req.requestType] || req.requestType}
                   </span>
+                  <span className="text-warmwhite/35 text-xs">
+                    {new Date(req.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                  </span>
                 </div>
                 <div className="flex items-center gap-3 flex-shrink-0">
                   <span className={`text-xs px-2 py-0.5 rounded ${STATUS_COLORS[req.status] || "bg-warmwhite/10"}`}>
