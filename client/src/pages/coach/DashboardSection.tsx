@@ -71,6 +71,15 @@ function GenderColumn({
   const openSlots = Math.max(0, needed - headCoaches.length);
   const visibleHead = headCoaches.slice(0, 8);
   const moreHead = Math.max(0, headCoaches.length - 8);
+  const visibleHeadIds = new Set(visibleHead.map((c) => c.assignmentId));
+
+  const unpairedAssistants = assistants.filter(
+    (a) => !a.headAssignmentId || !visibleHeadIds.has(a.headAssignmentId)
+  );
+
+  function pairedAssistantsFor(assignmentId: string) {
+    return assistants.filter((a) => a.headAssignmentId === assignmentId);
+  }
 
   return (
     <div
@@ -108,6 +117,7 @@ function GenderColumn({
             Be the first to coach {fallbackName} this season. We'll pair you with experienced coaches and cover your training.
           </p>
           <button
+            data-testid="button-be-first"
             className="mt-4 px-4 py-2 bg-crimson text-warmwhite text-sm font-medium rounded-lg hover:bg-crimson-dark transition-colors"
             onClick={onApply}
           >
@@ -119,21 +129,23 @@ function GenderColumn({
           <div className="text-warmwhite/40 text-xs uppercase tracking-wider mt-4 mb-2">Coaches</div>
           <div className="space-y-1.5">
             {visibleHead.map((head) => {
-              const pairedAssistant = assistants.find(
-                (a) => a.headAssignmentId === head.assignmentId
-              );
+              const pairedAssistants = pairedAssistantsFor(head.assignmentId);
               return (
-                <div key={head.assignmentId} className="rounded-md bg-warmwhite/5 border border-warmwhite/10 overflow-hidden">
+                <div key={head.assignmentId} data-testid={`coach-head-${head.assignmentId}`} className="rounded-md bg-warmwhite/5 border border-warmwhite/10 overflow-hidden">
                   <div className="px-2.5 py-1.5 flex items-center justify-between">
                     <span className="text-xs text-warmwhite/80">{head.displayName}</span>
                     <span className="text-[10px] text-gold/60 uppercase tracking-wider font-medium">Head</span>
                   </div>
-                  {pairedAssistant && (
-                    <div className="px-2.5 py-1 flex items-center gap-1.5 bg-warmwhite/3 border-t border-warmwhite/8">
+                  {pairedAssistants.map((asst) => (
+                    <div
+                      key={asst.assignmentId}
+                      data-testid={`coach-assistant-paired-${asst.assignmentId}`}
+                      className="px-2.5 py-1 flex items-center gap-1.5 bg-warmwhite/3 border-t border-warmwhite/8"
+                    >
                       <span className="text-[10px] text-warmwhite/30 uppercase tracking-wider w-8">Asst</span>
-                      <span className="text-xs text-warmwhite/55">{pairedAssistant.displayName}</span>
+                      <span className="text-xs text-warmwhite/55">{asst.displayName}</span>
                     </div>
-                  )}
+                  ))}
                 </div>
               );
             })}
@@ -144,22 +156,32 @@ function GenderColumn({
             )}
           </div>
 
-          {/* Unassigned assistants */}
-          {assistants.filter((a) => !a.headAssignmentId).length > 0 && (
+          {/* Unassigned assistants and assistants whose head is beyond the visible slice */}
+          {unpairedAssistants.length > 0 && (
             <>
               <div className="text-warmwhite/40 text-xs uppercase tracking-wider mt-4 mb-2">Additional assistants</div>
               <div className="flex flex-wrap gap-1.5">
-                {assistants.filter((a) => !a.headAssignmentId).slice(0, 6).map((c) => (
-                  <span key={c.assignmentId} className="px-2.5 py-1 text-xs rounded-md bg-warmwhite/5 border border-warmwhite/10 text-warmwhite/60">
+                {unpairedAssistants.slice(0, 6).map((c) => (
+                  <span
+                    key={c.assignmentId}
+                    data-testid={`coach-assistant-unpaired-${c.assignmentId}`}
+                    className="px-2.5 py-1 text-xs rounded-md bg-warmwhite/5 border border-warmwhite/10 text-warmwhite/60"
+                  >
                     {c.displayName}
                   </span>
                 ))}
+                {unpairedAssistants.length > 6 && (
+                  <span className="px-2.5 py-1 text-xs rounded-md border border-dashed border-warmwhite/20 text-warmwhite/40">
+                    +{unpairedAssistants.length - 6} more
+                  </span>
+                )}
               </div>
             </>
           )}
 
           {!isFull ? (
             <button
+              data-testid="button-sign-up"
               className="mt-4 text-gold text-sm font-medium hover:text-gold/80 transition-colors"
               onClick={onApply}
             >
@@ -167,6 +189,7 @@ function GenderColumn({
             </button>
           ) : (
             <button
+              data-testid="button-join-assistant"
               className="mt-4 text-warmwhite/50 text-sm hover:text-warmwhite/70 transition-colors"
               onClick={onApply}
             >
