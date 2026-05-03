@@ -11,8 +11,10 @@ const TABS = [
 ];
 
 interface Coach {
+  assignmentId: string;
   displayName: string;
   role: "head" | "assistant";
+  headAssignmentId: string | null;
 }
 
 interface Division {
@@ -114,34 +116,44 @@ function GenderColumn({
         </div>
       ) : (
         <>
-          <div className="text-warmwhite/40 text-xs uppercase tracking-wider mt-4 mb-2">Head coaches</div>
-          <div className="flex flex-wrap gap-1.5">
-            {visibleHead.map((c) => (
-              <span key={c.displayName} className="px-2.5 py-1 text-xs rounded-md bg-warmwhite/5 border border-warmwhite/10 text-warmwhite/80">
-                {c.displayName}
-              </span>
-            ))}
+          <div className="text-warmwhite/40 text-xs uppercase tracking-wider mt-4 mb-2">Coaches</div>
+          <div className="space-y-1.5">
+            {visibleHead.map((head) => {
+              const pairedAssistant = assistants.find(
+                (a) => a.headAssignmentId === head.assignmentId
+              );
+              return (
+                <div key={head.assignmentId} className="rounded-md bg-warmwhite/5 border border-warmwhite/10 overflow-hidden">
+                  <div className="px-2.5 py-1.5 flex items-center justify-between">
+                    <span className="text-xs text-warmwhite/80">{head.displayName}</span>
+                    <span className="text-[10px] text-gold/60 uppercase tracking-wider font-medium">Head</span>
+                  </div>
+                  {pairedAssistant && (
+                    <div className="px-2.5 py-1 flex items-center gap-1.5 bg-warmwhite/3 border-t border-warmwhite/8">
+                      <span className="text-[10px] text-warmwhite/30 uppercase tracking-wider w-8">Asst</span>
+                      <span className="text-xs text-warmwhite/55">{pairedAssistant.displayName}</span>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
             {moreHead > 0 && (
-              <span className="px-2.5 py-1 text-xs rounded-md border border-dashed border-warmwhite/20 text-warmwhite/40">
+              <span className="inline-block px-2.5 py-1 text-xs rounded-md border border-dashed border-warmwhite/20 text-warmwhite/40">
                 +{moreHead} more
               </span>
             )}
           </div>
 
-          {assistants.length > 0 && (
+          {/* Unassigned assistants */}
+          {assistants.filter((a) => !a.headAssignmentId).length > 0 && (
             <>
-              <div className="text-warmwhite/40 text-xs uppercase tracking-wider mt-4 mb-2">Assistants</div>
+              <div className="text-warmwhite/40 text-xs uppercase tracking-wider mt-4 mb-2">Additional assistants</div>
               <div className="flex flex-wrap gap-1.5">
-                {assistants.slice(0, 6).map((c) => (
-                  <span key={c.displayName} className="px-2.5 py-1 text-xs rounded-md bg-warmwhite/5 border border-warmwhite/10 text-warmwhite/80">
+                {assistants.filter((a) => !a.headAssignmentId).slice(0, 6).map((c) => (
+                  <span key={c.assignmentId} className="px-2.5 py-1 text-xs rounded-md bg-warmwhite/5 border border-warmwhite/10 text-warmwhite/60">
                     {c.displayName}
                   </span>
                 ))}
-                {assistants.length > 6 && (
-                  <span className="px-2.5 py-1 text-xs rounded-md border border-dashed border-warmwhite/20 text-warmwhite/40">
-                    +{assistants.length - 6} more
-                  </span>
-                )}
               </div>
             </>
           )}

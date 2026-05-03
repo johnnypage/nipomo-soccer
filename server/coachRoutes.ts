@@ -48,7 +48,12 @@ export function registerCoachRoutes(app: Express) {
         headCoachesNeeded: div.headCoachesNeeded,
         coaches: assignments
           .filter((a) => a.divisionId === div.id)
-          .map((a) => ({ displayName: a.displayName, role: a.role })),
+          .map((a) => ({
+            assignmentId: a.id,
+            displayName: a.displayName,
+            role: a.role,
+            headAssignmentId: a.headAssignmentId ?? null,
+          })),
       }));
 
       res.json({ divisions: grouped });
@@ -170,11 +175,15 @@ export function registerCoachRoutes(app: Express) {
     if (!requireAuth(req, res)) return;
     try {
       const { id } = req.params;
-      const { headAssignmentId } = req.body;
-      await db
-        .update(coachAssignments)
-        .set({ headAssignmentId: headAssignmentId ?? null })
-        .where(eq(coachAssignments.id, id));
+      const { headAssignmentId, displayName, coachApplicationId } = req.body;
+      const updates: Record<string, any> = {};
+      if ("headAssignmentId" in req.body) updates.headAssignmentId = headAssignmentId ?? null;
+      if (displayName !== undefined) updates.displayName = displayName;
+      if ("coachApplicationId" in req.body) updates.coachApplicationId = coachApplicationId ?? null;
+      if (Object.keys(updates).length === 0) {
+        return res.status(400).json({ error: "No fields to update" });
+      }
+      await db.update(coachAssignments).set(updates).where(eq(coachAssignments.id, id));
       res.json({ success: true });
     } catch (error) {
       console.error("Update assignment error:", error);

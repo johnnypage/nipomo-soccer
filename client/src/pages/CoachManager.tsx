@@ -273,6 +273,8 @@ function AssignmentsView({ token }: { token: string }) {
   const [appId, setAppId] = useState("");
   const [headAssignmentId, setHeadAssignmentId] = useState("");
   const [message, setMessage] = useState("");
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editName, setEditName] = useState("");
 
   const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
 
@@ -332,6 +334,22 @@ function AssignmentsView({ token }: { token: string }) {
       headers,
       body: JSON.stringify({ headAssignmentId: headId || null }),
     });
+    loadAll();
+  }
+
+  function startEdit(id: string, current: string) {
+    setEditingId(id);
+    setEditName(current);
+  }
+
+  async function saveEdit(id: string) {
+    if (!editName.trim()) return;
+    await fetch(`/api/admin/coach-assignments/${id}`, {
+      method: "PATCH",
+      headers,
+      body: JSON.stringify({ displayName: editName.trim() }),
+    });
+    setEditingId(null);
     loadAll();
   }
 
@@ -457,25 +475,58 @@ function AssignmentsView({ token }: { token: string }) {
                       <div key={head.id}>
                         {/* Head coach row */}
                         <div className="flex items-center justify-between px-3 py-2 rounded-md bg-gold/8 border border-gold/20">
-                          <div className="flex items-center gap-2">
-                            <span className="text-gold text-xs font-semibold uppercase tracking-wider w-14">Head</span>
-                            <span className="text-warmwhite text-sm">{head.displayName}</span>
+                          <div className="flex items-center gap-2 flex-1 min-w-0">
+                            <span className="text-gold text-xs font-semibold uppercase tracking-wider w-14 flex-shrink-0">Head</span>
+                            {editingId === head.id ? (
+                              <input
+                                autoFocus
+                                value={editName}
+                                onChange={(e) => setEditName(e.target.value)}
+                                onKeyDown={(e) => { if (e.key === "Enter") saveEdit(head.id); if (e.key === "Escape") setEditingId(null); }}
+                                className="bg-transparent border border-gold/40 rounded px-2 py-0.5 text-sm text-warmwhite w-full max-w-[200px]"
+                              />
+                            ) : (
+                              <span className="text-warmwhite text-sm truncate">{head.displayName}</span>
+                            )}
                           </div>
-                          <button
-                            onClick={() => remove(head.id)}
-                            className="text-warmwhite/25 hover:text-crimson text-xs transition-colors"
-                          >
-                            remove
-                          </button>
+                          <div className="flex items-center gap-3 flex-shrink-0">
+                            {editingId === head.id ? (
+                              <>
+                                <button onClick={() => saveEdit(head.id)} className="text-risegreen text-xs">save</button>
+                                <button onClick={() => setEditingId(null)} className="text-warmwhite/30 text-xs">cancel</button>
+                              </>
+                            ) : (
+                              <button onClick={() => startEdit(head.id, head.displayName)} className="text-warmwhite/25 hover:text-gold text-xs transition-colors">edit</button>
+                            )}
+                            <button onClick={() => remove(head.id)} className="text-warmwhite/25 hover:text-crimson text-xs transition-colors">remove</button>
+                          </div>
                         </div>
                         {/* Paired assistants */}
                         {paired.map((asst) => (
                           <div key={asst.id} className="flex items-center justify-between px-3 py-2 ml-6 mt-1 rounded-md bg-warmwhite/4 border border-warmwhite/8">
-                            <div className="flex items-center gap-2">
-                              <span className="text-warmwhite/35 text-xs w-14">Asst</span>
-                              <span className="text-warmwhite/80 text-sm">{asst.displayName}</span>
+                            <div className="flex items-center gap-2 flex-1 min-w-0">
+                              <span className="text-warmwhite/35 text-xs w-14 flex-shrink-0">Asst</span>
+                              {editingId === asst.id ? (
+                                <input
+                                  autoFocus
+                                  value={editName}
+                                  onChange={(e) => setEditName(e.target.value)}
+                                  onKeyDown={(e) => { if (e.key === "Enter") saveEdit(asst.id); if (e.key === "Escape") setEditingId(null); }}
+                                  className="bg-transparent border border-warmwhite/30 rounded px-2 py-0.5 text-sm text-warmwhite w-full max-w-[180px]"
+                                />
+                              ) : (
+                                <span className="text-warmwhite/80 text-sm truncate">{asst.displayName}</span>
+                              )}
                             </div>
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-center gap-3 flex-shrink-0">
+                              {editingId === asst.id ? (
+                                <>
+                                  <button onClick={() => saveEdit(asst.id)} className="text-risegreen text-xs">save</button>
+                                  <button onClick={() => setEditingId(null)} className="text-warmwhite/30 text-xs">cancel</button>
+                                </>
+                              ) : (
+                                <button onClick={() => startEdit(asst.id, asst.displayName)} className="text-warmwhite/25 hover:text-gold text-xs transition-colors">edit</button>
+                              )}
                               <select
                                 value={asst.headAssignmentId || ""}
                                 onChange={(e) => updatePairing(asst.id, e.target.value)}
@@ -487,24 +538,39 @@ function AssignmentsView({ token }: { token: string }) {
                                   <option key={h.id} value={h.id}>{h.displayName}</option>
                                 ))}
                               </select>
-                              <button
-                                onClick={() => remove(asst.id)}
-                                className="text-warmwhite/25 hover:text-crimson text-xs transition-colors"
-                              >
-                                remove
-                              </button>
+                              <button onClick={() => remove(asst.id)} className="text-warmwhite/25 hover:text-crimson text-xs transition-colors">remove</button>
                             </div>
                           </div>
                         ))}
-                        {/* Show unpairable assistants under last head only once */}
+                        {/* Unassigned assistants under last head */}
                         {head.id === heads[heads.length - 1]?.id && unpaired.map((asst) => (
                           <div key={asst.id} className="flex items-center justify-between px-3 py-2 ml-6 mt-1 rounded-md bg-warmwhite/4 border border-warmwhite/8 border-dashed">
-                            <div className="flex items-center gap-2">
-                              <span className="text-warmwhite/25 text-xs w-14">Asst</span>
-                              <span className="text-warmwhite/50 text-sm">{asst.displayName}</span>
-                              <span className="text-warmwhite/25 text-xs italic">unassigned</span>
+                            <div className="flex items-center gap-2 flex-1 min-w-0">
+                              <span className="text-warmwhite/25 text-xs w-14 flex-shrink-0">Asst</span>
+                              {editingId === asst.id ? (
+                                <input
+                                  autoFocus
+                                  value={editName}
+                                  onChange={(e) => setEditName(e.target.value)}
+                                  onKeyDown={(e) => { if (e.key === "Enter") saveEdit(asst.id); if (e.key === "Escape") setEditingId(null); }}
+                                  className="bg-transparent border border-warmwhite/30 rounded px-2 py-0.5 text-sm text-warmwhite w-full max-w-[180px]"
+                                />
+                              ) : (
+                                <>
+                                  <span className="text-warmwhite/50 text-sm truncate">{asst.displayName}</span>
+                                  <span className="text-warmwhite/25 text-xs italic">unassigned</span>
+                                </>
+                              )}
                             </div>
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-center gap-3 flex-shrink-0">
+                              {editingId === asst.id ? (
+                                <>
+                                  <button onClick={() => saveEdit(asst.id)} className="text-risegreen text-xs">save</button>
+                                  <button onClick={() => setEditingId(null)} className="text-warmwhite/30 text-xs">cancel</button>
+                                </>
+                              ) : (
+                                <button onClick={() => startEdit(asst.id, asst.displayName)} className="text-warmwhite/25 hover:text-gold text-xs transition-colors">edit</button>
+                              )}
                               <select
                                 value=""
                                 onChange={(e) => updatePairing(asst.id, e.target.value)}
@@ -516,12 +582,7 @@ function AssignmentsView({ token }: { token: string }) {
                                   <option key={h.id} value={h.id}>{h.displayName}</option>
                                 ))}
                               </select>
-                              <button
-                                onClick={() => remove(asst.id)}
-                                className="text-warmwhite/25 hover:text-crimson text-xs transition-colors"
-                              >
-                                remove
-                              </button>
+                              <button onClick={() => remove(asst.id)} className="text-warmwhite/25 hover:text-crimson text-xs transition-colors">remove</button>
                             </div>
                           </div>
                         ))}
