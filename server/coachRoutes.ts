@@ -175,11 +175,16 @@ export function registerCoachRoutes(app: Express) {
     if (!requireAuth(req, res)) return;
     try {
       const { id } = req.params;
-      const { headAssignmentId } = req.body;
-      await db
-        .update(coachAssignments)
-        .set({ headAssignmentId: headAssignmentId ?? null })
-        .where(eq(coachAssignments.id, id));
+      const { headAssignmentId, displayName, coachApplicationId } = req.body;
+      const updates: Partial<{
+        headAssignmentId: string | null;
+        displayName: string;
+        coachApplicationId: string | null;
+      }> = {};
+      if (headAssignmentId !== undefined) updates.headAssignmentId = headAssignmentId ?? null;
+      if (displayName !== undefined && displayName.trim()) updates.displayName = displayName.trim();
+      if (coachApplicationId !== undefined) updates.coachApplicationId = coachApplicationId || null;
+      await db.update(coachAssignments).set(updates).where(eq(coachAssignments.id, id));
       res.json({ success: true });
     } catch (error) {
       console.error("Update assignment error:", error);
