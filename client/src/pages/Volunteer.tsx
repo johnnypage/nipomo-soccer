@@ -654,17 +654,22 @@ function RoleModal({ role, onClose }: { role: Role; onClose: () => void }) {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-5 bg-[rgba(5,5,5,0.82)] backdrop-blur-md animate-in fade-in duration-[220ms]"
+      className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center sm:p-5 bg-[rgba(5,5,5,0.82)] backdrop-blur-md animate-in fade-in duration-[220ms]"
       onClick={onClose}
       role="presentation"
     >
       <div
-        className="relative w-full max-w-[880px] max-h-[88vh] overflow-y-auto bg-[#161616] border border-warmwhite/[0.08] rounded-lg shadow-[0_24px_40px_-12px_rgba(0,0,0,0.55)] animate-in fade-in zoom-in-95 duration-[320ms]"
+        className="relative w-full sm:max-w-[880px] max-h-[92dvh] sm:max-h-[88vh] overflow-y-auto bg-[#161616] border border-warmwhite/[0.08] rounded-t-2xl sm:rounded-lg shadow-[0_24px_40px_-12px_rgba(0,0,0,0.55)] animate-in fade-in slide-in-from-bottom-4 sm:zoom-in-95 duration-[320ms] pb-[env(safe-area-inset-bottom,12px)]"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
       >
+        {/* Drag handle — mobile only */}
+        <div className="sm:hidden flex justify-center pt-3 pb-1">
+          <div className="w-10 h-1 rounded-full bg-warmwhite/20" />
+        </div>
+
         <button
           ref={closeBtnRef}
           onClick={onClose}
