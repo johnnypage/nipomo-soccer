@@ -87,7 +87,7 @@ const ROLE_GROUPS: RoleGroup[] = [
         time: "5-8 hrs/wk pre-season, 2-3 hrs/wk in-season",
         timeShort: "5-8 hrs/wk pre-season",
         status: "filled",
-        filledBy: { name: "Johnny Page", since: "2024", initials: "JP", email: "johnny@nipomosc.org" },
+        filledBy: { name: "Johnny Page", since: "2024", initials: "JP", email: "johnny@nipomosc.org", photo: "/johnny-page.jpg", photoPosition: "center top" },
         summary: "Recruits, trains, and supports every coach in the program.",
         responsibilities: [
           "Lead coach recruiting before registration opens",
