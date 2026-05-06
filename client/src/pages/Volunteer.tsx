@@ -3,7 +3,7 @@ import { ArrowUpRight, X, Check, ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { apiRequest } from "@/lib/queryClient";
-import heroImg from "@assets/coach_huddle.png";
+const heroImg = "/volunteer-hero.jpg";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -940,7 +940,7 @@ export default function Volunteer() {
       >
         <div
           className="absolute inset-0 bg-no-repeat"
-          style={{ backgroundImage: `url(${heroImg})`, backgroundSize: "200% auto", backgroundPosition: "5% 50%" }}
+          style={{ backgroundImage: `url(${heroImg})`, backgroundSize: "cover", backgroundPosition: "60% center" }}
           aria-hidden="true"
         />
         <div
