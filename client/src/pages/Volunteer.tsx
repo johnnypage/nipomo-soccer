@@ -295,7 +295,8 @@ const ROLE_GROUPS: RoleGroup[] = [
         desc: "Recruits and schedules food vendors for game days, organizes photo day, and coordinates event logistics.",
         time: "1-2 hrs/wk",
         timeShort: "1-2 hrs/wk",
-        status: "open",
+        status: "filled",
+        filledBy: { name: "AJ Rhea", since: "2026", photo: "/aj-rhea.jpg" },
         summary: "Manages food vendors, photo day, and seasonal event logistics.",
         responsibilities: [
           "Recruit and schedule food vendors for Saturday game days",
