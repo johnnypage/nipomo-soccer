@@ -116,9 +116,6 @@ export default function Programs({ onProgramSelect }: ProgramsProps) {
               <span>Reign</span>
             </div>
           </div>
-          <p className="text-warmwhite/50 text-sm mt-2">
-            Your pathway to soccer excellence
-          </p>
         </div>
       </div>
     </section>
