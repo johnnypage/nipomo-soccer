@@ -32,13 +32,13 @@
   align-items: center;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 80px 24px;
+  padding: 112px 24px 80px;
 }
 @media (max-width: 960px) {
   .coach-hero__inner {
     grid-template-columns: 1fr;
     gap: 40px;
-    padding: 60px 20px;
+    padding: 140px 20px 60px;
   }
   .coach-video-embed {
     margin: 0 auto;

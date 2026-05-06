@@ -936,7 +936,7 @@ export default function Volunteer() {
       {/* ── Hero ── */}
       <section
         className="relative min-h-screen flex items-end pb-16 sm:pb-20"
-        style={{ paddingTop: "112px" }}
+        style={{ paddingTop: "140px" }}
         data-testid="section-hero"
       >
         <div

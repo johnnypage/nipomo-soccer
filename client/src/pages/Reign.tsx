@@ -67,7 +67,7 @@ export default function Reign() {
     <div className="min-h-screen bg-night">
       <Header onNavigate={scrollToSection} />
       
-      <section className="relative pt-16 min-h-[80vh] flex items-center">
+      <section className="relative pt-[140px] md:pt-28 min-h-[80vh] flex items-center">
         <div className="absolute inset-0">
           <img 
             src={reignHero} 

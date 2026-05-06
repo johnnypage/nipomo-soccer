@@ -128,7 +128,7 @@ export default function TeamPlacement() {
   return (
     <div className="min-h-screen bg-night">
       <Header />
-      <main className="max-w-xl mx-auto px-4 pt-32 pb-16">
+      <main className="max-w-xl mx-auto px-4 pt-[140px] md:pt-32 pb-16">
         {submitted ? (
           <div className="text-center py-16">
             <div className="w-16 h-16 rounded-full bg-risegreen/20 text-risegreen flex items-center justify-center mx-auto mb-6">

@@ -206,7 +206,7 @@ export default function Rise() {
   return (
     <div className="min-h-screen bg-warmwhite">
       <Header onNavigate={scrollToSection} />
-      <section className="relative pt-16 min-h-[80vh] flex items-center" data-testid="section-hero">
+      <section className="relative pt-[140px] md:pt-28 min-h-[80vh] flex items-center" data-testid="section-hero">
         <div className="absolute inset-0">
           <img
             src={riseHero}
