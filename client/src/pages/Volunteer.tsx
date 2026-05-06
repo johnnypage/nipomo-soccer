@@ -214,7 +214,7 @@ const ROLE_GROUPS: RoleGroup[] = [
         time: "3-5 hrs/wk",
         timeShort: "3-5 hrs/wk",
         status: "filled",
-        filledBy: { name: "Ashley Page", since: "2024", initials: "AP", email: "ashley@nipomosc.org" },
+        filledBy: { name: "Ashley Page", since: "2024", initials: "AP", email: "ashley@nipomosc.org", photo: "/ashley-page.png", photoPosition: "center top" },
         summary: "The voice of the program to every registered family.",
         responsibilities: [
           "Send a weekly email to all registered families (schedule updates, reminders, highlights)",
