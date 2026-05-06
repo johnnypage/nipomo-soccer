@@ -274,7 +274,8 @@ const ROLE_GROUPS: RoleGroup[] = [
         desc: "Primary point of contact for all sponsors. Sells, delivers on, and shows appreciation for every sponsorship.",
         time: "5-10 hrs pre-season, 1 hr/wk in-season",
         timeShort: "5-10 hrs pre-season + 1 hr/wk",
-        status: "open",
+        status: "filled",
+        filledBy: { name: "Taylor Rhea", since: "2026", initials: "TR", photo: "/taylor-rhea.jpeg", photoPosition: "center top" },
         summary: "The primary liaison for all club sponsors. Sells sponsorships, delivers on them, and shows appreciation.",
         responsibilities: [
           "Serve as the main point of contact for all interested and active sponsors",
