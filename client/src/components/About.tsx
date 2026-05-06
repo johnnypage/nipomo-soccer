@@ -41,9 +41,8 @@ export default function About() {
               generation of proud Nipomo athletes.
             </p>
             <p className="text-slate dark:text-warmwhite/70 mb-6">
-              Nipomo is filled with talented and passionate young athletes who love soccer. For years, 
-              many local families struggled to find a program that is high quality, affordable, and close 
-              to home. Nipomo Soccer was created to solve that. We believe that great soccer can be 
+              Nipomo is filled with talented and passionate young athletes who love soccer. Nipomo Soccer Club was created by the coaches, parents, and volunteers
+              who'd been running youth soccer in this town and knew it could be better. We believe that great soccer can be 
               both accessible and development focused.
             </p>
             

@@ -28,8 +28,8 @@ export default function Hero({ onGetStarted, onLearnMore }: HeroProps) {
           Nipomo Soccer
         </p>
         
-        <p className="text-warmwhite/70 text-lg max-w-2xl mx-auto mb-8">High quality, affordable youth soccer development close to home. 
-        From first touches to elite competition.</p>
+        <p className="text-warmwhite/70 text-lg max-w-2xl mx-auto mb-8">Nipomo's youth soccer program. Built and run by the coaches and families
+        who've been on these fields for years.</p>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button
