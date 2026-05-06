@@ -100,23 +100,6 @@ export default function Programs({ onProgramSelect }: ProgramsProps) {
             />
           ))}
         </div>
-
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-8 text-warmwhite/60 text-sm">
-            <div className="flex items-center gap-2">
-              <span className="w-8 h-0.5 bg-crimson" />
-              <span>Roots</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-8 h-0.5 bg-crimson" />
-              <span>Rise</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-8 h-0.5 bg-gold" />
-              <span>Reign</span>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
