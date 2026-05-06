@@ -254,7 +254,7 @@ const ROLE_GROUPS: RoleGroup[] = [
         time: "2-4 hrs/wk",
         timeShort: "2-4 hrs/wk",
         status: "filled",
-        filledBy: { name: "Andres Lopez", since: "2025", initials: "AL", email: "Andres@nipomosc.org" },
+        filledBy: { name: "Andres Lopez", since: "2025", initials: "AL", email: "Andres@nipomosc.org", photo: "/andres-lopez.jpg", photoPosition: "center top" },
         summary: "Manages all money in and out of the program.",
         responsibilities: [
           "Track all registration revenue",
