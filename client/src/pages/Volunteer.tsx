@@ -234,7 +234,8 @@ const ROLE_GROUPS: RoleGroup[] = [
         desc: "Monitors the inbox, triages parent questions, and routes issues to the right person.",
         time: "3-5 hrs/wk",
         timeShort: "3-5 hrs/wk",
-        status: "open",
+        status: "filled",
+        filledBy: { name: "Kacie Lopez", since: "2026", initials: "KL", photo: "/kacie-lopez.jpeg", photoPosition: "center top" },
         summary: "First point of contact for every inbound question and issue.",
         responsibilities: [
           "Monitor and respond to the admin inbox daily",
