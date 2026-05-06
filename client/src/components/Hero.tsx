@@ -24,10 +24,6 @@ export default function Hero({ onGetStarted, onLearnMore }: HeroProps) {
           ROOTS. RISE. REIGN.
         </h1>
         
-        <p className="font-heading text-xl sm:text-2xl text-warmwhite/90 font-medium mb-2">
-          Nipomo Soccer
-        </p>
-        
         <p className="text-warmwhite/70 text-lg max-w-2xl mx-auto mb-8">Nipomo's youth soccer program. Built and run by the coaches and families
         who've been on these fields for years.</p>
         
