@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
-import heroImage from "@assets/generated_images/youth_soccer_hero_image.png";
+import heroImage from "@assets/generated_images/nipomo_hero.jpg";
 
 interface HeroProps {
   onGetStarted?: () => void;
