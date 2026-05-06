@@ -133,7 +133,7 @@ const ROLE_GROUPS: RoleGroup[] = [
         time: "~15 hrs pre-season",
         timeShort: "~15 hrs pre-season",
         status: "filled",
-        filledBy: { name: "Arturo Ruiz", since: "2025", initials: "AR", email: "Andres@nipomosc.org" },
+        filledBy: { name: "Arturo Ruiz", since: "2025", initials: "AR", email: "Andres@nipomosc.org", photo: "/arturo-ruiz.jpeg", photoPosition: "center top" },
         summary: "Ensures every adult around our kids has been screened and cleared.",
         responsibilities: [
           "Manage the background check and fingerprinting process for all volunteers",
