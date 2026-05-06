@@ -940,7 +940,7 @@ export default function Volunteer() {
       >
         <div
           className="absolute inset-0 bg-no-repeat"
-          style={{ backgroundImage: `url(${heroImg})`, backgroundSize: "cover", backgroundPosition: "60% center" }}
+          style={{ backgroundImage: `url(${heroImg})`, backgroundSize: "cover", backgroundPosition: "center 30%" }}
           aria-hidden="true"
         />
         <div
