@@ -55,6 +55,16 @@ export function registerCoachRoutes(app: Express) {
         .from(coachApplications)
         .where(and(eq(coachApplications.status, "approved"), eq(coachApplications.showOnBoard, true)));
 
+      // Coaches with any formal assignment are fully controlled by assignments -- never auto-placed
+      const assignedAppIds = new Set(
+        assignments.map((a) => a.coachApplicationId).filter(Boolean)
+      );
+      const assignedNames = new Set(assignments.map((a) => a.displayName.toLowerCase().trim()));
+
+      const unassignedApps = approvedApps.filter(
+        (app) => !assignedAppIds.has(app.id) && !assignedNames.has(app.name.toLowerCase().trim())
+      );
+
       const grouped = allDivisions.map((div) => {
         const assignmentCoaches = assignments
           .filter((a) => a.divisionId === div.id)
@@ -66,20 +76,17 @@ export function registerCoachRoutes(app: Express) {
           }));
 
         const appCoaches: { assignmentId: string; displayName: string; role: "head" | "assistant"; headAssignmentId: null }[] = [];
-        for (const app of approvedApps) {
+        for (const app of unassignedApps) {
           const ageGroupsRaw = app.ageGroups || "";
           const appAgeGroups = ageGroupsRaw.split(",").map((s: string) => s.trim()).map((s: string) => AGE_GROUP_MAP[s]).filter(Boolean);
           if (!appAgeGroups.includes(div.ageGroup)) continue;
 
           const genderPref = (app.genderPreference || "").toLowerCase();
           const divGender = div.gender;
-          if (divGender === "coed") {
-            // only include if no strong preference or either
-          } else if (genderPref === "boys" && divGender !== "boys") continue;
-          else if (genderPref === "girls" && divGender !== "girls") continue;
-
-          const alreadyAdded = assignmentCoaches.some((c) => c.displayName === app.name);
-          if (alreadyAdded) continue;
+          if (divGender !== "coed") {
+            if (genderPref === "boys" && divGender !== "boys") continue;
+            if (genderPref === "girls" && divGender !== "girls") continue;
+          }
 
           const roleRaw = (app.coachingRole || "").toLowerCase();
           const role: "head" | "assistant" = roleRaw.includes("assistant") ? "assistant" : "head";
