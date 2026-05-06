@@ -84,7 +84,7 @@ export default function Programs({ onProgramSelect }: ProgramsProps) {
           <span className="inline-block px-3 py-1 border border-purple/40 rounded-full text-sm font-medium mb-4 text-[#B21F24] bg-[#b21f2454]">
             Three Connected Programs
           </span>
-          <h2 className="font-display text-4xl sm:text-5xl text-warmwhite tracking-wide mb-4">From Rec to Club. You've got options.</h2>
+          <h2 className="font-display text-4xl sm:text-5xl text-warmwhite tracking-wide mb-4">From Rec to Club. we've got options.</h2>
           <p className="text-warmwhite/70 max-w-2xl mx-auto">
             We offer a full pathway designed to support every level of play. Each stage 
             builds on the one before it so players can learn, grow, and advance at their own pace.
