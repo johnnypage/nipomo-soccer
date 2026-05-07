@@ -22,7 +22,7 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
   const [genderPref, setGenderPref] = useState("");
   const [bgCheck, setBgCheck] = useState(true);
   const [multipleTeams, setMultipleTeams] = useState<boolean | null>(null);
-  const [kids, setKids] = useState<Kid[]>([]);
+  const [kids, setKids] = useState<Kid[]>([{ name: "", age: "" }]);
 
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -93,6 +93,7 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
           programs: "ROOTS",
           ageGroups: ages.join(", "),
           genderPreference: genderPref || null,
+          shirtSize: (data.get("shirtSize") as string) || null,
           hasChildren: validKids.length > 0 ? "Yes" : null,
           childrenAges: validKids.length > 0 ? JSON.stringify(validKids) : null,
           willingToCoachMultiple: multipleTeams,
@@ -220,6 +221,21 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
                     </button>
                   ))}
                 </div>
+              </div>
+
+              <div>
+                <label className="block text-warmwhite/70 text-sm mb-1.5">T-shirt size</label>
+                <select name="shirtSize" defaultValue="" className={inputClass}>
+                  <option value="" disabled>Pick one</option>
+                  <option value="YS">Youth S</option>
+                  <option value="YM">Youth M</option>
+                  <option value="YL">Youth L</option>
+                  <option value="AS">Adult S</option>
+                  <option value="AM">Adult M</option>
+                  <option value="AL">Adult L</option>
+                  <option value="AXL">Adult XL</option>
+                  <option value="A2XL">Adult 2XL</option>
+                </select>
               </div>
 
               <div>

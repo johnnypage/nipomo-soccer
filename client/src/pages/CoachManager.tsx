@@ -11,6 +11,7 @@ interface CoachApplication {
   programs: string;
   ageGroups: string;
   genderPreference: string | null;
+  shirtSize: string | null;
   hasChildren: string | null;
   childrenAges: string | null;
   willingToCoachMultiple: boolean | null;
@@ -179,6 +180,7 @@ function ApplicationsList({ token }: { token: string }) {
                   <div><strong className="text-warmwhite/50">Preferred Role:</strong> {app.coachingRole || "N/A"}</div>
                   <div><strong className="text-warmwhite/50">Age Groups:</strong> {app.ageGroups}</div>
                   <div><strong className="text-warmwhite/50">Gender Pref:</strong> {app.genderPreference || "N/A"}</div>
+                  <div><strong className="text-warmwhite/50">Shirt Size:</strong> {app.shirtSize || "N/A"}</div>
                   <div>
                     <strong className="text-warmwhite/50">Multiple teams:</strong>{" "}
                     {app.willingToCoachMultiple === true ? "Yes" : app.willingToCoachMultiple === false ? "No" : "N/A"}
