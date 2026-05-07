@@ -102,6 +102,7 @@ export const coachApplications = pgTable("coach_applications", {
   genderPreference: text("gender_preference"),
   hasChildren: text("has_children"),
   childrenAges: text("children_ages"),
+  willingToCoachMultiple: boolean("willing_to_coach_multiple"),
   whyCoach: text("why_coach"),
   additionalNotes: text("additional_notes"),
   backgroundCheckConsent: boolean("background_check_consent").notNull(),

@@ -5,6 +5,11 @@ const AGE_OPTIONS = ["Pre-K", "1st-2nd", "3rd-4th", "5th-6th", "7th-8th", "High 
 const ROLES = ["Head Coach", "Assistant Coach", "Either"];
 const GENDER_OPTIONS = ["Boys", "Girls", "Either"];
 
+interface Kid {
+  name: string;
+  age: string;
+}
+
 interface ApplyModalProps {
   open: boolean;
   onClose: () => void;
@@ -16,6 +21,8 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
   const [role, setRole] = useState("");
   const [genderPref, setGenderPref] = useState("");
   const [bgCheck, setBgCheck] = useState(true);
+  const [multipleTeams, setMultipleTeams] = useState<boolean | null>(null);
+  const [kids, setKids] = useState<Kid[]>([]);
 
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -39,6 +46,18 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
     setter(list.includes(val) ? list.filter((a) => a !== val) : [...list, val]);
   }
 
+  function addKid() {
+    setKids((prev) => [...prev, { name: "", age: "" }]);
+  }
+
+  function updateKid(index: number, field: keyof Kid, value: string) {
+    setKids((prev) => prev.map((k, i) => i === index ? { ...k, [field]: value } : k));
+  }
+
+  function removeKid(index: number) {
+    setKids((prev) => prev.filter((_, i) => i !== index));
+  }
+
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!bgCheck) {
@@ -57,6 +76,8 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
     const form = e.currentTarget;
     const data = new FormData(form);
 
+    const validKids = kids.filter((k) => k.name.trim());
+
     setSubmitting(true);
     try {
       const res = await fetch("/api/coach-application", {
@@ -72,8 +93,9 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
           programs: "ROOTS",
           ageGroups: ages.join(", "),
           genderPreference: genderPref || null,
-          hasChildren: data.get("hasChildren") || null,
-          childrenAges: data.get("childrenAges") || null,
+          hasChildren: validKids.length > 0 ? "Yes" : null,
+          childrenAges: validKids.length > 0 ? JSON.stringify(validKids) : null,
+          willingToCoachMultiple: multipleTeams,
           additionalNotes: data.get("additionalNotes") || null,
           backgroundCheckConsent: bgCheck,
           showOnBoard: true,
@@ -92,6 +114,11 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
       setSubmitting(false);
     }
   }
+
+  const inputClass = "w-full px-3.5 py-3 bg-warmwhite/5 border border-warmwhite/12 rounded-lg text-warmwhite placeholder:text-warmwhite/30 focus:outline-none focus:border-gold";
+  const chipBase = "px-4 py-2 rounded-lg text-sm font-medium border transition-colors";
+  const chipOn = "border-gold text-gold bg-gold/10";
+  const chipOff = "border-warmwhite/20 text-warmwhite/60 hover:border-warmwhite/40";
 
   return (
     <div className="coach-modal-overlay" onClick={onClose}>
@@ -123,28 +150,28 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-warmwhite/70 text-sm mb-1.5">Full name</label>
-                  <input name="name" type="text" required placeholder="Your name" className="w-full px-3.5 py-3 bg-warmwhite/5 border border-warmwhite/12 rounded-lg text-warmwhite placeholder:text-warmwhite/30 focus:outline-none focus:border-gold" />
+                  <input name="name" type="text" required placeholder="Your name" className={inputClass} />
                 </div>
                 <div>
                   <label className="block text-warmwhite/70 text-sm mb-1.5">Email</label>
-                  <input name="email" type="email" required placeholder="you@example.com" className="w-full px-3.5 py-3 bg-warmwhite/5 border border-warmwhite/12 rounded-lg text-warmwhite placeholder:text-warmwhite/30 focus:outline-none focus:border-gold" />
+                  <input name="email" type="email" required placeholder="you@example.com" className={inputClass} />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-warmwhite/70 text-sm mb-1.5">Phone</label>
-                  <input name="phone" type="tel" required placeholder="(805) 555-0100" className="w-full px-3.5 py-3 bg-warmwhite/5 border border-warmwhite/12 rounded-lg text-warmwhite placeholder:text-warmwhite/30 focus:outline-none focus:border-gold" />
+                  <input name="phone" type="tel" required placeholder="(805) 555-0100" className={inputClass} />
                 </div>
                 <div>
                   <label className="block text-warmwhite/70 text-sm mb-1.5">City / Town</label>
-                  <input name="city" type="text" placeholder="Nipomo, AG, etc." className="w-full px-3.5 py-3 bg-warmwhite/5 border border-warmwhite/12 rounded-lg text-warmwhite placeholder:text-warmwhite/30 focus:outline-none focus:border-gold" />
+                  <input name="city" type="text" placeholder="Nipomo, AG, etc." className={inputClass} />
                 </div>
               </div>
 
               <div>
                 <label className="block text-warmwhite/70 text-sm mb-1.5">Coaching experience</label>
-                <select name="coachingExperience" required defaultValue="" className="w-full px-3.5 py-3 bg-warmwhite/5 border border-warmwhite/12 rounded-lg text-warmwhite focus:outline-none focus:border-gold">
+                <select name="coachingExperience" required defaultValue="" className={inputClass}>
                   <option value="" disabled>Pick one</option>
                   <option>None, but I'm ready to learn</option>
                   <option>Parent volunteer (1-2 seasons)</option>
@@ -157,16 +184,8 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
                 <label className="block text-warmwhite/70 text-sm mb-1.5">What role are you interested in?</label>
                 <div className="flex flex-wrap gap-2">
                   {ROLES.map((r) => (
-                    <button
-                      type="button"
-                      key={r}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${
-                        role === r
-                          ? "border-gold text-gold bg-gold/10"
-                          : "border-warmwhite/20 text-warmwhite/60 hover:border-warmwhite/40"
-                      }`}
-                      onClick={() => setRole(role === r ? "" : r)}
-                    >
+                    <button type="button" key={r} className={`${chipBase} ${role === r ? chipOn : chipOff}`}
+                      onClick={() => setRole(role === r ? "" : r)}>
                       {r}
                     </button>
                   ))}
@@ -177,17 +196,27 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
                 <label className="block text-warmwhite/70 text-sm mb-1.5">Age groups you'd like to coach</label>
                 <div className="flex flex-wrap gap-2">
                   {AGE_OPTIONS.map((a) => (
+                    <button type="button" key={a} className={`${chipBase} ${ages.includes(a) ? chipOn : chipOff}`}
+                      onClick={() => toggle(a, ages, setAges)}>
+                      {a}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-warmwhite/70 text-sm mb-1.5">
+                  Willing to coach more than one team?
+                </label>
+                <div className="flex gap-2">
+                  {([true, false] as const).map((val) => (
                     <button
                       type="button"
-                      key={a}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${
-                        ages.includes(a)
-                          ? "border-gold text-gold bg-gold/10"
-                          : "border-warmwhite/20 text-warmwhite/60 hover:border-warmwhite/40"
-                      }`}
-                      onClick={() => toggle(a, ages, setAges)}
+                      key={String(val)}
+                      className={`${chipBase} ${multipleTeams === val ? chipOn : chipOff}`}
+                      onClick={() => setMultipleTeams(multipleTeams === val ? null : val)}
                     >
-                      {a}
+                      {val ? "Yes" : "No"}
                     </button>
                   ))}
                 </div>
@@ -197,41 +226,70 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
                 <label className="block text-warmwhite/70 text-sm mb-1.5">Gender preference</label>
                 <div className="flex flex-wrap gap-2">
                   {GENDER_OPTIONS.map((g) => (
-                    <button
-                      type="button"
-                      key={g}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${
-                        genderPref === g
-                          ? "border-gold text-gold bg-gold/10"
-                          : "border-warmwhite/20 text-warmwhite/60 hover:border-warmwhite/40"
-                      }`}
-                      onClick={() => setGenderPref(genderPref === g ? "" : g)}
-                    >
+                    <button type="button" key={g} className={`${chipBase} ${genderPref === g ? chipOn : chipOff}`}
+                      onClick={() => setGenderPref(genderPref === g ? "" : g)}>
                       {g}
                     </button>
                   ))}
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-warmwhite/70 text-sm mb-1.5">Children playing in Nipomo SC?</label>
-                  <select name="hasChildren" defaultValue="" className="w-full px-3.5 py-3 bg-warmwhite/5 border border-warmwhite/12 rounded-lg text-warmwhite focus:outline-none focus:border-gold">
-                    <option value="" disabled>Pick one</option>
-                    <option>Yes</option>
-                    <option>No</option>
-                    <option>Not yet, planning to</option>
-                  </select>
+              {/* Kids section */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="text-warmwhite/70 text-sm">Kids playing in ROOTS this season?</label>
+                  <button
+                    type="button"
+                    onClick={addKid}
+                    className="text-xs text-gold hover:text-gold/80 font-medium flex items-center gap-1 transition-colors"
+                    data-testid="button-add-kid"
+                  >
+                    + Add a kid
+                  </button>
                 </div>
-                <div>
-                  <label className="block text-warmwhite/70 text-sm mb-1.5">Their age(s)</label>
-                  <input name="childrenAges" type="text" placeholder="e.g. 7 and 9" className="w-full px-3.5 py-3 bg-warmwhite/5 border border-warmwhite/12 rounded-lg text-warmwhite placeholder:text-warmwhite/30 focus:outline-none focus:border-gold" />
-                </div>
+
+                {kids.length === 0 ? (
+                  <p className="text-warmwhite/30 text-sm italic">
+                    No kids added -- tap "Add a kid" if you have players in the league.
+                  </p>
+                ) : (
+                  <div className="space-y-2">
+                    {kids.map((kid, i) => (
+                      <div key={i} className="flex gap-2 items-center" data-testid={`kid-row-${i}`}>
+                        <input
+                          type="text"
+                          placeholder="Child's name"
+                          value={kid.name}
+                          onChange={(e) => updateKid(i, "name", e.target.value)}
+                          className="flex-1 px-3 py-2.5 bg-warmwhite/5 border border-warmwhite/12 rounded-lg text-warmwhite placeholder:text-warmwhite/30 focus:outline-none focus:border-gold text-sm"
+                          data-testid={`input-kid-name-${i}`}
+                        />
+                        <input
+                          type="text"
+                          placeholder="Age"
+                          value={kid.age}
+                          onChange={(e) => updateKid(i, "age", e.target.value)}
+                          className="w-20 px-3 py-2.5 bg-warmwhite/5 border border-warmwhite/12 rounded-lg text-warmwhite placeholder:text-warmwhite/30 focus:outline-none focus:border-gold text-sm"
+                          data-testid={`input-kid-age-${i}`}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeKid(i)}
+                          className="w-8 h-8 flex items-center justify-center text-warmwhite/30 hover:text-warmwhite/70 transition-colors flex-shrink-0"
+                          aria-label="Remove"
+                          data-testid={`button-remove-kid-${i}`}
+                        >
+                          ×
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div>
                 <label className="block text-warmwhite/70 text-sm mb-1.5">Anything else?</label>
-                <textarea name="additionalNotes" placeholder="Questions, scheduling constraints, why you want to coach..." className="w-full px-3.5 py-3 bg-warmwhite/5 border border-warmwhite/12 rounded-lg text-warmwhite placeholder:text-warmwhite/30 focus:outline-none focus:border-gold min-h-[90px] resize-y" />
+                <textarea name="additionalNotes" placeholder="Questions, scheduling constraints, why you want to coach..." className={`${inputClass} min-h-[90px] resize-y`} />
               </div>
 
               <div className="flex items-start gap-3 p-3.5 rounded-lg bg-crimson/10 border border-crimson/20">
@@ -251,6 +309,7 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
                 type="submit"
                 disabled={submitting}
                 className="w-full py-3.5 bg-crimson text-warmwhite font-semibold rounded-lg hover:bg-crimson-dark transition-colors disabled:opacity-50"
+                data-testid="button-submit-coach"
               >
                 {submitting ? "Submitting..." : "Submit"} <span aria-hidden="true">→</span>
               </button>

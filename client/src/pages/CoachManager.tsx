@@ -13,6 +13,7 @@ interface CoachApplication {
   genderPreference: string | null;
   hasChildren: string | null;
   childrenAges: string | null;
+  willingToCoachMultiple: boolean | null;
   additionalNotes: string | null;
   backgroundCheckConsent: boolean;
   showOnBoard: boolean;
@@ -178,8 +179,22 @@ function ApplicationsList({ token }: { token: string }) {
                   <div><strong className="text-warmwhite/50">Preferred Role:</strong> {app.coachingRole || "N/A"}</div>
                   <div><strong className="text-warmwhite/50">Age Groups:</strong> {app.ageGroups}</div>
                   <div><strong className="text-warmwhite/50">Gender Pref:</strong> {app.genderPreference || "N/A"}</div>
-                  <div><strong className="text-warmwhite/50">Children:</strong> {app.hasChildren || "N/A"} {app.childrenAges ? `(${app.childrenAges})` : ""}</div>
+                  <div>
+                    <strong className="text-warmwhite/50">Multiple teams:</strong>{" "}
+                    {app.willingToCoachMultiple === true ? "Yes" : app.willingToCoachMultiple === false ? "No" : "N/A"}
+                  </div>
                   <div><strong className="text-warmwhite/50">BG Check:</strong> {app.backgroundCheckConsent ? "Yes" : "No"}</div>
+                  <div className="col-span-2">
+                    <strong className="text-warmwhite/50">Kids in league:</strong>{" "}
+                    {(() => {
+                      if (!app.childrenAges) return "None listed";
+                      try {
+                        const kids = JSON.parse(app.childrenAges);
+                        if (Array.isArray(kids)) return kids.map((k: {name: string; age: string}) => `${k.name}${k.age ? ` (age ${k.age})` : ""}`).join(", ");
+                        return app.childrenAges;
+                      } catch { return app.childrenAges; }
+                    })()}
+                  </div>
                   <div><strong className="text-warmwhite/50">Show on Board:</strong> {app.showOnBoard ? "Yes" : "No"}</div>
                   {app.additionalNotes && (
                     <div className="col-span-2"><strong className="text-warmwhite/50">Notes:</strong> {app.additionalNotes}</div>
