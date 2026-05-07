@@ -24,6 +24,15 @@ app.use(
 
 app.use(express.urlencoded({ extended: false }));
 
+// Redirect nipomosoccer.com to nipomosc.org
+app.use((req, res, next) => {
+  const host = req.headers.host || "";
+  if (host === "nipomosoccer.com" || host === "www.nipomosoccer.com") {
+    return res.redirect(301, `https://nipomosc.org${req.originalUrl}`);
+  }
+  next();
+});
+
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
     hour: "numeric",
