@@ -237,7 +237,15 @@ export default function ApplyModal({ open, onClose }: ApplyModalProps) {
               {/* Kids section */}
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <label className="text-warmwhite/70 text-sm">Kids playing in ROOTS this season?</label>
+                  <label className="text-warmwhite/70 text-sm flex items-center gap-1.5">
+                    Kids playing in ROOTS this season?
+                    <span className="relative group">
+                      <span className="inline-flex items-center justify-center w-4 h-4 rounded-full border border-warmwhite/30 text-warmwhite/40 text-[10px] leading-none cursor-default select-none">?</span>
+                      <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 rounded-lg bg-[#1c1c1c] border border-warmwhite/10 px-3 py-2 text-xs text-warmwhite/75 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity z-50 shadow-lg text-center">
+                        We use this to make sure your kid is assigned to your team.
+                      </span>
+                    </span>
+                  </label>
                   <button
                     type="button"
                     onClick={addKid}
