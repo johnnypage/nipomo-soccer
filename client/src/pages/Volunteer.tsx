@@ -193,7 +193,8 @@ const ROLE_GROUPS: RoleGroup[] = [
         desc: "Procures, builds team kits, distributes, and collects all equipment for the season.",
         time: "8-12 hrs pre-season, 1-2 hrs/wk in-season",
         timeShort: "8-12 hrs pre-season",
-        status: "open",
+        status: "filled",
+        filledBy: { name: "Carly Evans", since: "2026", initials: "CE", photoPosition: "center top", photo: "/carly-evans.jpg" },
         summary: "Procures, distributes, and collects all team equipment for the season.",
         responsibilities: [
           "Audit pre-season inventory: balls, bags, pumps, cones, pinnies, first aid kits",
