@@ -20,7 +20,9 @@ export function serveStatic(app: Express) {
   );
 
   // Everything else (favicon, og image, fonts in /public root, etc.) -- moderate cache
-  app.use(express.static(distPath, { maxAge: "1h" }));
+  // index: false prevents express.static from auto-serving index.html for "/"
+  // so our catch-all below can set proper no-store headers on it
+  app.use(express.static(distPath, { maxAge: "1h", index: false }));
 
   app.use("*", (req, res) => {
     const indexPath = path.resolve(distPath, "index.html");
