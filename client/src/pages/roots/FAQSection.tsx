@@ -2,6 +2,36 @@ import type { ReactNode } from "react";
 
 const FAQS: { q: string; a: ReactNode }[] = [
   {
+    q: "When does the ROOTS season run?",
+    a: (
+      <>
+        <p className="mb-3">The ROOTS Fall 2026 season runs from <strong>August 1 through November 7</strong>. Here's how it breaks down:</p>
+        <ul className="space-y-3">
+          <li>
+            <strong>Kickoff Days (August 1 &amp; 8)</strong><br />
+            Two Saturday events where players play small-sided pickup games for team balancing and get measured for custom jerseys. Players only need to attend one.
+          </li>
+          <li>
+            <strong>Pre-Season (August 10 -- September 7)</strong><br />
+            Weekday practices begin the week of August 10. Two Saturday scrimmages (August 22 and 29) give players a full game-day experience before the regular season starts.
+          </li>
+          <li>
+            <strong>Regular Season (September 12 -- October 31)</strong><br />
+            Eight Saturday games plus four midweek games. All matches 8U and up are refereed and scored with live standings on nipomosc.org.
+          </li>
+          <li>
+            <strong>End-of-Season Tournament (November 7)</strong><br />
+            A weekend tournament seeded by regular season standings. For 8U and up. 6U plays the full regular season but does not participate in the tournament.
+          </li>
+          <li>
+            <strong>Parent &amp; Me and Special Needs</strong><br />
+            These programs run a 10-week season from August 22 through October 31. No Kickoff Day required, no tournament.
+          </li>
+        </ul>
+      </>
+    ),
+  },
+  {
     q: "Does my kid need soccer experience?",
     a: "No. ROOTS is open to all skill levels with no tryouts. Whether your child has been playing for years or has never kicked a ball, there is a division for them.",
   },
@@ -131,8 +161,8 @@ export default function FAQSection() {
                   <polyline points="6 9 12 15 18 9" />
                 </svg>
               </summary>
-              <div className="px-6 pb-5">
-                <p className="text-slate text-[15px] leading-relaxed">{f.a}</p>
+              <div className="px-6 pb-5 text-slate text-[15px] leading-relaxed">
+                {f.a}
               </div>
             </details>
           ))}
