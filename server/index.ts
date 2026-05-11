@@ -25,9 +25,12 @@ app.use(
 app.use(express.urlencoded({ extended: false }));
 
 // Redirect nipomosoccer.com to nipomosc.org
+// Use only the Host header (what the client actually requested), NOT x-forwarded-host
+// which Replit's proxy may set to the original domain regardless of which custom domain
+// the user typed, causing redirect loops for nipomosc.org visitors.
 app.use((req, res, next) => {
-  const host = (req.headers["x-forwarded-host"] as string) || req.headers.host || "";
-  const bareHost = host.split(":")[0];
+  const host = req.headers.host || "";
+  const bareHost = host.split(":")[0].toLowerCase();
   if (bareHost === "nipomosoccer.com" || bareHost === "www.nipomosoccer.com") {
     return res.redirect(301, `https://nipomosc.org${req.originalUrl}`);
   }
@@ -58,14 +61,13 @@ app.use((req, res, next) => {
 
   res.on("finish", () => {
     const duration = Date.now() - start;
-    if (path.startsWith("/api")) {
-      let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
-      if (capturedJsonResponse) {
-        logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
-      }
-
-      log(logLine);
+    const host = (req.headers["x-forwarded-host"] as string) || req.headers.host || "";
+    const ua = (req.headers["user-agent"] || "").substring(0, 60);
+    let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms [host:${host}] [ua:${ua}]`;
+    if (path.startsWith("/api") && capturedJsonResponse) {
+      logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
     }
+    log(logLine);
   });
 
   next();
