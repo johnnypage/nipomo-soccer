@@ -26,8 +26,9 @@ app.use(express.urlencoded({ extended: false }));
 
 // Redirect nipomosoccer.com to nipomosc.org
 app.use((req, res, next) => {
-  const host = req.headers.host || "";
-  if (host === "nipomosoccer.com" || host === "www.nipomosoccer.com") {
+  const host = (req.headers["x-forwarded-host"] as string) || req.headers.host || "";
+  const bareHost = host.split(":")[0];
+  if (bareHost === "nipomosoccer.com" || bareHost === "www.nipomosoccer.com") {
     return res.redirect(301, `https://nipomosc.org${req.originalUrl}`);
   }
   next();
