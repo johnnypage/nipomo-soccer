@@ -10,7 +10,17 @@ export function serveStatic(app: Express) {
     );
   }
 
-  app.use(express.static(distPath));
+  // Hashed assets (/assets/*) are content-addressed -- safe to cache for 1 year
+  app.use(
+    "/assets",
+    express.static(path.join(distPath, "assets"), {
+      maxAge: "1y",
+      immutable: true,
+    }),
+  );
+
+  // Everything else (favicon, og image, fonts in /public root, etc.) -- moderate cache
+  app.use(express.static(distPath, { maxAge: "1h" }));
 
   app.use("*", (req, res) => {
     const indexPath = path.resolve(distPath, "index.html");
@@ -58,6 +68,14 @@ export function serveStatic(app: Express) {
       html = html.replace("</head>", `    <meta property="og:url" content="${origin}${url}" />\n  </head>`);
     }
 
-    res.status(200).set({ "Content-Type": "text/html" }).end(html);
+    res
+      .status(200)
+      .set({
+        "Content-Type": "text/html",
+        "Cache-Control": "no-store, no-cache, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0",
+      })
+      .end(html);
   });
 }

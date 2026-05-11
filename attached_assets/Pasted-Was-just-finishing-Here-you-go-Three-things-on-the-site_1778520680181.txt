@@ -1,0 +1,43 @@
+Was just finishing.  Here you go.
+Three things on the site, the third one needs the most attention:
+
+1. www.nipomosc.org isn't provisioned in Replit. TLS handshake fails (no cert). Add it as a custom domain so it gets a Let's Encrypt cert.
+
+2. nipomosoccer.com and www.nipomosoccer.com need to be explicitly added as custom domains in the same Replit project. They're DNS-pointed at the Replit IP (34.111.179.208) but I'm seeing intermittent behavior where requests sometimes serve the site and sometimes redirect to nipomosc.org. My read is Replit's router is inconsistent for hostnames pointing at its IP without being registered to the project.
+
+3. After deploys, returning visitors get a 403 until they clear site data and hard reload. Confirmed on my end this morning, regular browser threw 403, incognito worked, then clearing storage fixed regular browser. Curl returned 200 the whole time, so it's purely client-side stale state.
+
+Here's what I think is happening on #3:
+
+The Vite build produces hashed asset filenames (index-BnL3msP2.js today, different next deploy). When you deploy, the old HTML referencing the old hashes is gone from the server. If a returning visitor has a service worker that cached either the old HTML or the old asset references, the browser requests asset paths that no longer exist on the server, and Replit's edge returns 403 instead of 404 for missing static assets (this is a known Replit behavior). The user sees a broken site or a 403 page until they clear storage.
+
+My take: we should remove the service worker entirely. A SW is the right tool for offline functionality, background sync, push notifications, or installable PWA behavior. None of those apply here. This is a marketing site plus signup forms, both are one-time network flows. The SW is giving us deploy-cache-invalidation pain with zero offsetting benefit.
+
+Worse, for the coach signup specifically: if we change form fields, validation, or the submit endpoint in a future deploy, returning users with a cached SW will hit the old form code and submit stale/wrong data. Silent failures we wouldn't catch until we compared submissions and saw schema mismatches. Not worth the risk for a signup flow.
+
+What I'd actually want for the long coach signup form is local form state persistence, which is a different thing entirely:
+- Save form state to localStorage as the user types
+- If they refresh, close the tab, or lose connection, their progress is preserved
+- Clear it on successful submit
+- No service worker needed, about 20 lines of code, or a hook like useLocalStorage from usehooks-ts, or react-hook-form with a localStorage adapter
+
+So the plan:
+
+A) Remove the service worker:
+- Find the registration in the codebase. Usually navigator.serviceWorker.register('/sw.js') in main.tsx/main.jsx or App.tsx, or a vite-plugin-pwa entry in vite.config.ts.
+- Delete the registration AND ship an unregister script that runs on page load for existing users, otherwise their old SW keeps serving stale content forever even after we remove the registration from the codebase. Something like:
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(regs => {
+      regs.forEach(reg => reg.unregister());
+    });
+    if (window.caches) {
+      caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
+    }
+  }
+
+- Leave that unregister script in for at least a few weeks so returning users get cleaned up, then remove it.
+
+B) Add localStorage persistence to the coach signup form so partial progress doesn't get lost. Happy to spec this in more detail if useful.
+
+C) Verify the Express server sets cache-control: no-cache (or max-age=0) on index.html, while the hashed assets in /assets/ can be cached aggressively (immutable, 1 year). Curl shows cache-control: private, max-age=0 right now which looks correct, but worth confirming it's set explicitly in the Express config and not just a default.
