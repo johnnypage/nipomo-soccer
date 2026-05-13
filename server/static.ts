@@ -28,7 +28,7 @@ export function serveStatic(app: Express) {
     const indexPath = path.resolve(distPath, "index.html");
     const url = req.originalUrl;
     const origin = `${req.protocol}://${req.get("host")}`;
-    const ogImage = `https://nipomosc.org/og-hero.jpg`;
+    const ogImage = `https://nipomosc.org/og-share.jpg`;
 
     const pageOg: Record<string, { title: string; description: string; type?: string }> = {
       "/about/compare": {
@@ -66,7 +66,7 @@ export function serveStatic(app: Express) {
       html = html.replace("</head>", `${ogTags}\n  </head>`);
       html = html.replace(/<title>.*?<\/title>/, `<title>${meta.title}</title>`);
     } else {
-      html = html.replace(/content="\/og-hero\.jpg"/g, `content="${ogImage}"`);
+      html = html.replace(/content="https:\/\/nipomosc\.org\/og-(?:hero|share)\.jpg"/g, `content="${ogImage}"`);
       html = html.replace("</head>", `    <meta property="og:url" content="${origin}${url}" />\n  </head>`);
     }
 
