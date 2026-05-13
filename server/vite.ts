@@ -50,7 +50,7 @@ export async function setupVite(server: Server, app: Express) {
       );
 
       const origin = `${req.protocol}://${req.get("host")}`;
-      const ogImage = `${origin}/og-hero.jpg`;
+      const ogImage = `https://nipomosc.org/og-hero.jpg`;
 
       const pageOg: Record<string, { title: string; description: string; type?: string }> = {
         "/about/compare": {
