@@ -28,7 +28,7 @@ export function serveStatic(app: Express) {
     const indexPath = path.resolve(distPath, "index.html");
     const url = req.originalUrl;
     const origin = `${req.protocol}://${req.get("host")}`;
-    const ogImage = `${origin}/nsc-logo-og.png`;
+    const ogImage = `${origin}/og-hero.jpg`;
 
     const pageOg: Record<string, { title: string; description: string; type?: string }> = {
       "/about/compare": {
@@ -59,14 +59,14 @@ export function serveStatic(app: Express) {
     <meta property="og:image" content="${ogImage}" />
     <meta property="og:url" content="${origin}${url}" />
     <meta property="og:type" content="${meta.type || "website"}" />
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${meta.title}" />
     <meta name="twitter:description" content="${meta.description}" />
     <meta name="twitter:image" content="${ogImage}" />`;
       html = html.replace("</head>", `${ogTags}\n  </head>`);
       html = html.replace(/<title>.*?<\/title>/, `<title>${meta.title}</title>`);
     } else {
-      html = html.replace(/content="\/nsc-logo-og\.png"/g, `content="${ogImage}"`);
+      html = html.replace(/content="\/og-hero\.jpg"/g, `content="${ogImage}"`);
       html = html.replace("</head>", `    <meta property="og:url" content="${origin}${url}" />\n  </head>`);
     }
 

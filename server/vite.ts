@@ -50,7 +50,7 @@ export async function setupVite(server: Server, app: Express) {
       );
 
       const origin = `${req.protocol}://${req.get("host")}`;
-      const ogImage = `${origin}/nsc-logo-og.png`;
+      const ogImage = `${origin}/og-hero.jpg`;
 
       const pageOg: Record<string, { title: string; description: string; type?: string }> = {
         "/about/compare": {
@@ -79,7 +79,7 @@ export async function setupVite(server: Server, app: Express) {
     <meta property="og:image" content="${ogImage}" />
     <meta property="og:url" content="${origin}${url}" />
     <meta property="og:type" content="${meta.type || "website"}" />
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${meta.title}" />
     <meta name="twitter:description" content="${meta.description}" />
     <meta name="twitter:image" content="${ogImage}" />`;
@@ -87,7 +87,7 @@ export async function setupVite(server: Server, app: Express) {
         template = template.replace(/<title>.*?<\/title>/, `<title>${meta.title}</title>`);
       } else {
         template = template.replace(
-          /content="\/nsc-logo-og\.png"/g,
+          /content="\/og-hero\.jpg"/g,
           `content="${ogImage}"`
         );
         template = template.replace("</head>", `    <meta property="og:url" content="${origin}${url}" />\n  </head>`);
