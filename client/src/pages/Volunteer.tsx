@@ -108,9 +108,10 @@ const ROLE_GROUPS: RoleGroup[] = [
         desc: "Recruits, trains, and manages the referee workforce. Owns scheduling and game-day coverage for every match.",
         time: "~5 hrs/wk",
         timeShort: "~5 hrs/wk",
-        status: "open",
+        status: "filled",
         paid: true,
         compensation: "Depends on experience",
+        filledBy: { name: "Ashley Marsh", since: "2025", initials: "AM", photo: "/ashley-marsh.jpg", photoPosition: "center top" },
         summary: "Recruits, trains, and manages every referee in the program. No referees means no games. This role keeps the season running.",
         responsibilities: [
           "Recruit referees from within the community (parents, high school students) and externally",
