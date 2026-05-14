@@ -968,7 +968,7 @@ export default function Volunteer() {
             >
               Let's Do This
               <br />
-              <span className="text-crimson italic">Together</span>
+              <span className="text-crimson">Together</span>
             </h1>
             <p className="text-[17px] sm:text-[19px] leading-[1.55] text-warmwhite/80 max-w-[52ch] mb-8">
               Nipomo Soccer exists because families decided to build something together. Every season, every game, every kid on that field is there because someone stepped up. This page is how you find your spot.
