@@ -81,7 +81,6 @@ const boardMembers = [
   { name: "Justin Marsh", role: "Operations Director", bg: "Former AYSO Assistant Regional Commissioner." },
   { name: "Ashley Marsh", role: "Referee Administrator", bg: "Served as AYSO Referee Administrator; continues in that role for NSC." },
   { name: "Andres Lopez", role: "Treasurer", bg: "" },
-  { name: "Giovanni Garcia", role: "Club Director, Reign", bg: "Head JV coach, Pioneer Valley High School soccer." },
   { name: "Carla Alonso", role: "Registrar", bg: "" },
   { name: "Kacie Lopez", role: "Secretary", bg: "Serving since 2026." },
   { name: "Che Coho", role: "Board Member", bg: "" },
