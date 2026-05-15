@@ -61,9 +61,10 @@ const ROLE_GROUPS: RoleGroup[] = [
         desc: "Owns the player and volunteer experience for the entire program, from the first practice to the last game of the season.",
         time: "8 hrs/wk in-season",
         timeShort: "8 hrs/wk",
-        status: "open",
+        status: "filled",
         paid: true,
         compensation: "Depends on experience",
+        filledBy: { name: "Adrian Dalton", since: "2023", initials: "AD", photo: "/adrian-dalton.jpg", photoPosition: "center top" },
         summary: "Owns the player and volunteer experience for the entire program. The operational leader every family and volunteer reports through.",
         responsibilities: [
           "Own the player experience: every kid on the field should feel seen, developed, and part of something",

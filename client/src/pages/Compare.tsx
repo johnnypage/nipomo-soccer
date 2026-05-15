@@ -74,7 +74,7 @@ const comparisonRows = [
 ];
 
 const boardMembers = [
-  { name: "Adrian Dalton", role: "President", bg: "Former AYSO Region 716 Regional Commissioner. Current Nipomo High School men's soccer head coach." },
+  { name: "Adrian Dalton", role: "President", bg: "Former AYSO Region 716 Regional Commissioner. Current Nipomo High School men's soccer head coach.", photo: "/adrian-dalton.jpg" },
   { name: "Autumn Dalton", role: "Board Member", bg: "Former AYSO board member." },
   { name: "Johnny Page", role: "Head of Marketing & Recruiting", bg: "Former AYSO Coach Administrator." },
   { name: "Ashley Page", role: "Operations & Social Media", bg: "Ran social media and operations for AYSO; continues in that role for NSC." },
@@ -440,8 +440,10 @@ function BoardSection() {
                 className="bg-white border border-[#D4D0CB] rounded-xl p-5 flex items-start gap-4"
                 data-testid={`card-board-${member.name.toLowerCase().replace(/\s+/g, "-")}`}
               >
-                <div className="w-11 h-11 rounded-full bg-[#1a472a] flex items-center justify-center text-white font-heading font-bold text-sm flex-shrink-0">
-                  {member.name.charAt(0)}
+                <div className="w-11 h-11 rounded-full bg-[#1a472a] flex items-center justify-center text-white font-heading font-bold text-sm flex-shrink-0 overflow-hidden">
+                  {member.photo
+                    ? <img src={member.photo} alt={member.name} className="w-full h-full object-cover object-top" />
+                    : member.name.charAt(0)}
                 </div>
                 <div>
                   <span className="font-heading font-bold text-[#0D0D0D]">{member.name}</span>
