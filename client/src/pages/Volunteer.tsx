@@ -152,7 +152,8 @@ const ROLE_GROUPS: RoleGroup[] = [
         desc: "Owns the fields, weekly painting, game-day setup logistics, and physical infrastructure.",
         time: "4-6 hrs/wk",
         timeShort: "4-6 hrs/wk",
-        status: "open",
+        status: "filled",
+        filledBy: { name: "Justin Marsh", since: "2025", initials: "JM", photo: "/justin-marsh.jpg", photoPosition: "center top" },
         summary: "Owns the fields, physical infrastructure, and oversees the facilities team.",
         responsibilities: [
           "Oversee weekly field painting (lines and markings across all active fields, midweek)",
