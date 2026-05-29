@@ -112,7 +112,7 @@ export default function Leaderboard() {
         totalPlayers={stats.totalPlayers}
       />
 
-      <main className="max-w-2xl mx-auto px-4 py-8">
+      <main className="max-w-2xl mx-auto px-4 pt-28 pb-8">
         {/* Age track filter tabs (D-10) */}
         <Tabs.Root value={activeTrack} onValueChange={setActiveTrack}>
           <Tabs.List className="flex gap-2 mb-6 overflow-x-auto">
