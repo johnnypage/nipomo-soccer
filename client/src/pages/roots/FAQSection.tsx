@@ -156,7 +156,7 @@ export default function FAQSection() {
             <details
               key={i}
               className="group bg-white rounded-xl border border-black/8"
-              open={i === 0}
+              open={false}
             >
               <summary className="flex items-center justify-between cursor-pointer px-6 py-5 font-medium text-night list-none [&::-webkit-details-marker]:hidden">
                 <span>{f.q}</span>

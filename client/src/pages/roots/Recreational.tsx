@@ -43,7 +43,7 @@ const DIVISIONS = [
     birthYear: "Born 2016-2017",
     format: "7v7 with goalkeepers",
     expect:
-      "Practices and games every week. Games move to 7v7 with goalkeepers. The pre-season Kickoff Day starts at this division, and teams are balanced using player data. End-of-season tournament for all teams.",
+      "Practices and games every week. Games move to 7v7 with goalkeepers. Starting at this division, teams are balanced using player data from the pre-season Kickoff Day. End-of-season tournament for all teams.",
     schedule: "2 practices per week + 14-16 games per season",
     price: "$150 / $175 / $200",
     priceNote: "Early Bird (first 100) / Regular / Late",
@@ -79,9 +79,6 @@ export default function Recreational() {
       {/* Hero */}
       <section className="roots-hero bg-night" id="top">
         <div className="roots-hero__inner text-center flex flex-col items-center">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/40 bg-crimson/10 text-crimson mb-6">
-            ROOTS Recreational
-          </span>
           <h1 className="font-display text-warmwhite text-[clamp(44px,8vw,96px)] leading-[0.92] uppercase tracking-tight max-w-[900px]">
             Practices, games, and a team to call their own.
           </h1>
@@ -89,15 +86,7 @@ export default function Recreational() {
             The core ROOTS experience for Pre-K through 6th graders. Weekly practices, Saturday games, midweek matches, and an end-of-season tournament for older divisions. Up to 16 games per team this season.
           </p>
 
-          <div className="flex flex-wrap gap-2.5 mt-8 mb-10 justify-center">
-            {["Pre-K to 6th Grade", "Up to 16 games", "Paid referees", "Balanced teams", "No tryouts"].map((stat) => (
-              <span key={stat} className="px-4 py-1.5 bg-warmwhite/[0.06] border border-warmwhite/10 rounded-full text-warmwhite/65 text-sm font-medium">
-                {stat}
-              </span>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap gap-3 justify-center">
+          <div className="flex flex-wrap gap-3 justify-center mt-10">
             <a
               href={REGISTER_URL}
               target="_blank"
@@ -123,7 +112,7 @@ export default function Recreational() {
             How it works
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-3 text-night">
-            The core ROOTS experience
+            Teams, practices, and game day
           </h2>
 
           <div className="mt-6 space-y-5 text-slate text-[17px] leading-relaxed">
@@ -251,23 +240,23 @@ export default function Recreational() {
             </div>
 
             <div>
-              <h3 className="font-heading font-bold text-night text-lg">Pre-Season (August)</h3>
+              <h3 className="font-heading font-bold text-night text-lg">Pre-Season (August 10 through September 7)</h3>
               <p className="text-slate text-[15px] leading-relaxed mt-2">
                 Two full weeks of weekday practices before the first game. Then two scrimmage Saturdays where teams play in pennies (jerseys are still in production). Scrimmages are just like real games, but referees are more instructive and accommodating while players and coaches get settled in.
               </p>
             </div>
 
             <div>
-              <h3 className="font-heading font-bold text-night text-lg">Regular Season (September through October)</h3>
+              <h3 className="font-heading font-bold text-night text-lg">Regular Season (September 12 through October 31)</h3>
               <p className="text-slate text-[15px] leading-relaxed mt-2">
-                Eight weeks of Saturday games plus 2 to 4 midweek games. For 8U and up, all games are scored with live standings on nipomosc.org. Standings are used to seed the end-of-season tournament.
+                Eight weeks of Saturday games plus 2 to 4 midweek games. For 1st grade and up, all games are scored with live standings on nipomosc.org. Standings are used to seed the end-of-season tournament.
               </p>
             </div>
 
             <div>
-              <h3 className="font-heading font-bold text-night text-lg">Tournament (November)</h3>
+              <h3 className="font-heading font-bold text-night text-lg">Tournament (November 7)</h3>
               <p className="text-slate text-[15px] leading-relaxed mt-2">
-                End-of-season tournament for 8U through 12U. Minimum two games per team. Seeded by regular season standings.
+                End-of-season tournament for 3rd through 6th grade. Minimum two games per team. Seeded by regular season standings.
               </p>
             </div>
           </div>

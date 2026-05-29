@@ -31,9 +31,6 @@ export default function ParentAndMe() {
       {/* Hero */}
       <section className="roots-hero bg-night" id="top">
         <div className="roots-hero__inner text-center flex flex-col items-center">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-[#B99EE8]/40 bg-[#B99EE8]/10 text-[#B99EE8] mb-6">
-            ROOTS Parent & Me
-          </span>
           <h1 className="font-display text-warmwhite text-[clamp(44px,8vw,96px)] leading-[0.92] uppercase tracking-tight max-w-[900px]">
             Their first season, your first sideline.
           </h1>
@@ -41,19 +38,11 @@ export default function ParentAndMe() {
             A Saturday morning program for 2 and 3 year olds where you get on the field with your child for soccer-related games, drills, and play. No practices during the week. No competitive games. Just an introduction to the sport with mom or dad right there.
           </p>
 
-          <div className="flex flex-wrap gap-2.5 mt-8 mb-10 justify-center">
-            {["Ages 2-3", "Saturday only", "No practices", "Parent on field", "$120 flat"].map((stat) => (
-              <span key={stat} className="px-4 py-1.5 bg-warmwhite/[0.06] border border-warmwhite/10 rounded-full text-warmwhite/65 text-sm font-medium">
-                {stat}
-              </span>
-            ))}
-          </div>
-
           <a
             href={REGISTER_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 bg-crimson text-warmwhite font-semibold rounded-lg hover:bg-crimson-dark transition-colors"
+            className="mt-10 px-6 py-3 bg-crimson text-warmwhite font-semibold rounded-lg hover:bg-crimson-dark transition-colors"
           >
             Register Now <span aria-hidden="true">&#8594;</span>
           </a>
@@ -94,13 +83,14 @@ export default function ParentAndMe() {
             What the season looks like
           </h2>
 
-          <div className="grid sm:grid-cols-2 gap-6 mt-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8">
             {[
               { label: "Schedule", value: "Saturday sessions only, 10 sessions per season" },
-              { label: "Location", value: "Nipomo High School fields" },
-              { label: "Season window", value: "August through November" },
+              { label: "Location", value: "Nipomo community fields" },
+              { label: "Season window", value: "August 22 through October 31 (10 Saturdays)" },
               { label: "Gender", value: "Co-ed. Parent & Me will not be separated by gender." },
               { label: "What to bring", value: "Comfortable clothes, closed-toe shoes (cleats optional at this age), water bottle, and sunscreen" },
+              { label: "Age range", value: "2 and 3 year olds. If your child turns 4 during the season, they may be ready for Pre-K." },
             ].map((item) => (
               <div key={item.label} className="bg-warmwhite/[0.04] border border-warmwhite/10 rounded-xl p-6">
                 <div className="text-xs font-semibold tracking-wider uppercase text-gold mb-2 font-mono">
@@ -175,7 +165,7 @@ export default function ParentAndMe() {
               <details
                 key={i}
                 className="group bg-warmwhite/[0.04] border border-warmwhite/10 rounded-xl"
-                open={i === 0}
+                open={false}
               >
                 <summary className="flex items-center justify-between cursor-pointer px-6 py-5 font-medium text-warmwhite list-none [&::-webkit-details-marker]:hidden">
                   <span>{f.q}</span>

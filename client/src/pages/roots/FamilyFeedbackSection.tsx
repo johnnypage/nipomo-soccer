@@ -96,10 +96,10 @@ export default function FamilyFeedbackSection() {
       <div className="max-w-[1200px] mx-auto px-6">
         <div>
           <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-gold/50 bg-gold/10 text-gold">
-            Built from family feedback
+            What 142 families told us
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">
-            What 142 families told us
+            Built from family feedback
           </h2>
           <p className="text-warmwhite/55 mt-2 text-[17px]">
             At the end of the 2025 season, we surveyed every family in the program to understand
@@ -141,7 +141,7 @@ export default function FamilyFeedbackSection() {
             <p className="text-slate text-[15px] leading-relaxed mb-5">{tab.overview}</p>
             <div className="space-y-4">
               {tab.feedback.map((q, i) => (
-                <p key={i} className="text-slate italic text-[17px] pl-4 border-l-[3px] border-crimson/40 leading-relaxed">
+                <p key={i} className="text-slate italic text-[17px] pl-4 leading-relaxed">
                   "{q}"
                 </p>
               ))}

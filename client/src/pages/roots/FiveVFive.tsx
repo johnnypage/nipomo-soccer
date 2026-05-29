@@ -7,39 +7,54 @@ const REGISTER_URL = "https://club.spond.com/landing/signup/nipomosc/form/534965
 const TIMELINE = [
   { time: "5:00", label: "All four teams warm up together. A lead coach runs 30 minutes of passing sequences, dribbling work, small-sided possession games, and shooting. This is the coaching. There are no separate practices during the week." },
   { time: "5:30", label: "First match kicks off. Two teams play while the other two rest, do skills work on a spare goal, or watch." },
-  { time: "5:35 to 7:10", label: "Three matches rotate through. Each team plays twice and sits once. Every match is two 12-minute halves with a 1-minute break at half." },
+  { time: "5:35", label: "Three matches rotate through. Each team plays twice and sits once. Every match is two 12-minute halves with a 1-minute break at half." },
   { time: "7:10", label: "Scores posted, cooldown, done." },
 ];
 
-const WHY_CARDS = [
+const WHY_ITEMS = [
   {
+    num: "01",
     title: "Every player touches the ball",
     body: "In 5v5, players average roughly 4 touches per minute. In traditional 11v11, that number drops below half a touch per minute. On a smaller field with fewer players, there is nowhere to hide. Every player is making decisions, receiving the ball, and contributing on every play.",
   },
   {
+    num: "02",
     title: "It fits real life",
-    body: "No separate weekday practices. No long Saturday commitments. One weeknight session and one Saturday session per week. Players juggling football, volleyball, cross-country, after-school jobs, or homework can still play a full season of competitive soccer without it taking over their schedule.",
+    body: "No separate weekday practices. No long Saturday commitments. Two sessions per week. Players juggling football, volleyball, cross-country, after-school jobs, or homework can still play a full season of competitive soccer without it taking over their schedule.",
   },
   {
+    num: "03",
     title: "More games, not fewer",
     body: "Traditional rec at this age typically delivers 8 to 12 games per season. The 5v5 format delivers over 20. Two games per session, two sessions per week, across a full ROOTS season. Your player will see more competitive minutes in this format than in any traditional rec league.",
   },
   {
+    num: "04",
     title: "It stays local",
-    body: "Every game is played at Nipomo High School. No travel, no cross-play with other towns. Your player's opponents are kids from the same community, and you can watch every game from the same sideline all season.",
+    body: "Every game is played right here in Nipomo. No travel, no cross-play with other towns. Your player's opponents are kids from the same community, and you can watch every game from the same sideline all season.",
   },
 ];
 
-const SPECS = [
-  { label: "Format", value: "5v5 with a goalkeeper on a 40 x 30 yard field" },
-  { label: "Teams", value: "4 teams of 7 to 8 players each" },
-  { label: "Schedule", value: "One weeknight + one Saturday per week" },
-  { label: "Session", value: "30 minutes coached warmup, then two competitive matches" },
-  { label: "Match length", value: "Two 12-minute halves, 1-minute halftime" },
-  { label: "Referees", value: "Paid and scheduled for every match" },
-  { label: "Standings", value: "Live on nipomosc.org, used for end-of-season tournament seeding" },
-  { label: "Season", value: "Same ROOTS window (August through November), 20+ games total" },
-  { label: "Co-ed", value: "By default. If enrollment reaches 15 or more per gender, we will separate." },
+const SEASON = [
+  {
+    phase: "Kickoff Days",
+    dates: "Aug 1 & 8",
+    detail: "All 5v5 players attend at least one Kickoff Day. Players play pickup-style games so we can see where everyone is at, then teams are balanced by ability, age, and size. Jersey fitting also happens here.",
+  },
+  {
+    phase: "Pre-Season",
+    dates: "Aug 10 through Sep 7",
+    detail: "Sessions begin the week of August 10. Scrimmage days on August 22 and 29 give players a full game-day experience before the regular season. Players wear ROOTS pennies until jerseys arrive. Labor Day weekend off.",
+  },
+  {
+    phase: "Regular Season",
+    dates: "Sep 12 through Oct 31",
+    detail: "Twice-weekly sessions with refereed, scored matches. Live standings on nipomosc.org. Jerseys distributed the week of September 7. Over 20 games total across the regular season window.",
+  },
+  {
+    phase: "Tournament",
+    dates: "Nov 7",
+    detail: "End-of-season tournament seeded by regular season standings. Minimum two games per team. Saturday morning through afternoon.",
+  },
 ];
 
 const FAQS = [
@@ -53,7 +68,7 @@ const FAQS = [
   },
   {
     q: "Does my kid need to come to both sessions every week?",
-    a: "No. The format is built to handle absences. With 7 to 8 players per team, one or two missing players on a given night does not create a problem. If a team is short, players borrow from the team sitting out that round. Just play when you can.",
+    a: "No. The format is built to handle absences. With 7 to 8 players per team, one or two missing players on a given day does not create a problem. If a team is short, players borrow from the team sitting out that round. Just play when you can.",
   },
   {
     q: "What if my kid plays other sports too?",
@@ -73,29 +88,18 @@ export default function FiveVFive() {
       {/* Hero */}
       <section className="roots-hero bg-night" id="top">
         <div className="roots-hero__inner text-center flex flex-col items-center">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/40 bg-crimson/10 text-crimson mb-6">
-            ROOTS 5v5
-          </span>
           <h1 className="font-display text-warmwhite text-[clamp(44px,8vw,96px)] leading-[0.92] uppercase tracking-tight max-w-[900px]">
             No practices. Just games.
           </h1>
           <p className="text-warmwhite/80 text-xl mt-6 leading-relaxed max-w-[640px]">
-            Fast-paced 5v5 soccer for 7th through 12th graders. Two nights a week, your player shows up, warms up, plays two competitive matches, and goes home. That is the whole commitment.
+            Fast-paced 5v5 soccer for 7th through 12th graders. Twice a week, your player shows up, warms up, plays two competitive matches, and goes home. That is the whole commitment.
           </p>
-
-          <div className="flex flex-wrap gap-2.5 mt-8 mb-10 justify-center">
-            {["7th-12th Grade", "20+ games", "No practices", "Twice a week", "Paid referees"].map((stat) => (
-              <span key={stat} className="px-4 py-1.5 bg-warmwhite/[0.06] border border-warmwhite/10 rounded-full text-warmwhite/65 text-sm font-medium">
-                {stat}
-              </span>
-            ))}
-          </div>
 
           <a
             href={REGISTER_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 bg-crimson text-warmwhite font-semibold rounded-lg hover:bg-crimson-dark transition-colors"
+            className="mt-10 px-6 py-3 bg-crimson text-warmwhite font-semibold rounded-lg hover:bg-crimson-dark transition-colors"
           >
             Register Now <span aria-hidden="true">&#8594;</span>
           </a>
@@ -103,7 +107,7 @@ export default function FiveVFive() {
       </section>
 
       {/* What is 5v5? */}
-      <section className="bg-paper py-20">
+      <section className="bg-paper py-16 md:py-24">
         <div className="max-w-[880px] mx-auto px-6">
           <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/30 bg-crimson/10 text-crimson">
             The format
@@ -114,7 +118,7 @@ export default function FiveVFive() {
 
           <div className="mt-6 space-y-5 text-slate text-[17px] leading-relaxed">
             <p>
-              Five players on each side, plus a goalkeeper, on a smaller field. The ball moves faster, every player is involved on every play, and the pace is closer to futsal than traditional rec soccer. It is the same format used in over 200 tournaments nationally through 5v5 Soccer, a Cal South partner with a National Championship pathway.
+              Five players on each side, including a goalkeeper, on a smaller field. The ball moves faster, every player is involved on every play, and the pace is closer to futsal than traditional rec soccer. It is the same format used in over 200 tournaments nationally through 5v5 Soccer, a Cal South partner with a National Championship pathway.
             </p>
             <p>
               We brought this format to ROOTS because it solves two real problems at this age. First, Nipomo has never had enough 14U and up players to fill out traditional 11v11 divisions without traveling to other towns. 5v5 runs with fewer players and keeps everything local. Second, this is the age when kids stop playing. The combination of other sports, homework, jobs, and general teenage life makes it hard to commit to multiple practices plus a weekend game. 5v5 removes that barrier entirely.
@@ -123,23 +127,23 @@ export default function FiveVFive() {
         </div>
       </section>
 
-      {/* A Typical Game Night */}
+      {/* A Typical Game Day */}
       <section className="bg-night py-20">
         <div className="max-w-[880px] mx-auto px-6">
           <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-gold/50 bg-gold/10 text-gold">
-            Game night
+            Game day
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">
-            A typical game night
+            A typical session
           </h2>
           <p className="text-warmwhite/55 mt-2 text-[17px]">
-            Your player shows up to Nipomo High School for a one-stop session. Here is how the night goes.
+            Your player shows up to the field for a one-stop session. Here is how it goes.
           </p>
 
           <div className="mt-8 space-y-0">
             {TIMELINE.map((item, i) => (
-              <div key={i} className="flex gap-6 py-5 border-b border-warmwhite/10 last:border-0">
-                <div className="font-display text-crimson text-lg md:text-xl tracking-wide whitespace-nowrap min-w-[100px]">
+              <div key={i} className="flex gap-5 py-5 border-b border-warmwhite/10 last:border-0">
+                <div className="font-display text-crimson text-lg tracking-wide whitespace-nowrap w-[72px] shrink-0">
                   {item.time}
                 </div>
                 <p className="text-warmwhite/80 text-[15px] leading-relaxed">{item.label}</p>
@@ -154,114 +158,69 @@ export default function FiveVFive() {
       </section>
 
       {/* Why 5v5 */}
-      <section className="bg-paper py-20">
-        <div className="max-w-[1200px] mx-auto px-6">
-          <div className="max-w-[680px]">
-            <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/30 bg-crimson/10 text-crimson">
-              Why 5v5
-            </span>
-            <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-night">
-              Four reasons this format works
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-5 mt-8">
-            {WHY_CARDS.map((card) => (
-              <div key={card.title} className="bg-white rounded-xl border border-black/8 p-7">
-                <h3 className="font-heading font-bold text-night text-lg">{card.title}</h3>
-                <p className="text-slate text-[15px] leading-relaxed mt-3">{card.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section className="bg-night py-20">
+      <section className="bg-night py-16 md:py-24">
         <div className="max-w-[880px] mx-auto px-6">
           <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-gold/50 bg-gold/10 text-gold">
-            Details
+            Why 5v5
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">
-            How it works
+            Four reasons this format works
           </h2>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
-            {SPECS.map((spec) => (
-              <div key={spec.label} className="bg-warmwhite/[0.04] border border-warmwhite/10 rounded-xl p-5">
-                <div className="text-xs font-semibold tracking-wider uppercase text-gold mb-2 font-mono">
-                  {spec.label}
+          <div className="mt-10 space-y-0">
+            {WHY_ITEMS.map((item) => (
+              <div key={item.num} className="flex gap-6 md:gap-8 py-8 border-b border-warmwhite/10 last:border-0 first:pt-0">
+                <div className="font-display text-crimson text-4xl md:text-5xl leading-none tracking-tight shrink-0 w-[56px] md:w-[72px]">
+                  {item.num}
                 </div>
-                <p className="text-warmwhite/80 text-[15px] leading-relaxed">{spec.value}</p>
+                <div>
+                  <h3 className="font-heading font-bold text-warmwhite text-lg">{item.title}</h3>
+                  <p className="text-warmwhite/65 text-[15px] leading-relaxed mt-2">{item.body}</p>
+                </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Teams and Balancing */}
-      <section className="bg-paper py-20">
-        <div className="max-w-[880px] mx-auto px-6">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/30 bg-crimson/10 text-crimson">
-            Teams
-          </span>
-          <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-night">
-            Teams and balancing
-          </h2>
-
-          <div className="mt-6 space-y-5 text-slate text-[17px] leading-relaxed">
-            <p>
-              All 5v5 players attend Kickoff Day at the start of the season. Players play pickup-style games so we can see where everyone is at, then teams are balanced by ability, age, and size. The goal is competitive games every single night.
-            </p>
-            <p>
-              Teams pick their own names. No assigned names, no "Team 1." Players get ownership of their team identity from the start.
-            </p>
           </div>
         </div>
       </section>
 
       {/* The Season */}
-      <section className="bg-night py-20">
+      <section className="bg-paper py-16 md:py-24">
         <div className="max-w-[880px] mx-auto px-6">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-gold/50 bg-gold/10 text-gold">
+          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/30 bg-crimson/10 text-crimson">
             Season overview
           </span>
-          <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">
+          <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-night">
             The season
           </h2>
-          <p className="text-warmwhite/55 mt-2 text-[17px]">
-            The 5v5 division follows the same ROOTS season window as every other division.
+          <p className="text-slate mt-2 text-[17px]">
+            The 5v5 division follows the same ROOTS season window. August through November, over 20 games total.
           </p>
 
-          <div className="mt-8 space-y-0">
-            {[
-              { month: "August", detail: "Kickoff Days (attend one), jersey fitting, season begins" },
-              { month: "September", detail: "Regular season, Labor Day week off, jerseys distributed" },
-              { month: "October", detail: "Regular season continues" },
-              { month: "November", detail: "End-of-season tournament" },
-            ].map((item) => (
-              <div key={item.month} className="flex gap-6 py-5 border-b border-warmwhite/10 last:border-0">
-                <div className="font-display text-crimson text-lg tracking-wide min-w-[120px]">
-                  {item.month}
+          <div className="mt-8 space-y-6">
+            {SEASON.map((item) => (
+              <div key={item.phase} className="bg-white rounded-xl border border-black/8 p-6">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
+                  <h3 className="font-heading font-bold text-night text-lg">{item.phase}</h3>
+                  <span className="text-xs font-mono font-semibold uppercase tracking-wider text-crimson">{item.dates}</span>
                 </div>
-                <p className="text-warmwhite/80 text-[15px] leading-relaxed">{item.detail}</p>
+                <p className="text-slate text-[15px] leading-relaxed">{item.detail}</p>
               </div>
             ))}
           </div>
 
-          <p className="text-warmwhite/55 text-sm mt-6">
-            All games are refereed and scored. Standings are live on the website. The season ends with a tournament seeded by regular season results.
+          <p className="text-slate/70 text-sm mt-6">
+            All games are refereed and scored. Standings are live on nipomosc.org. The season ends with a tournament seeded by regular season results.
           </p>
         </div>
       </section>
 
       {/* Registration and Pricing */}
-      <section className="bg-paper py-20">
+      <section className="bg-night py-20">
         <div className="max-w-[880px] mx-auto px-6">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/30 bg-crimson/10 text-crimson">
+          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-gold/50 bg-gold/10 text-gold">
             Registration
           </span>
-          <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-night">
+          <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">
             Registration and pricing
           </h2>
 
@@ -325,12 +284,12 @@ export default function FiveVFive() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-night py-20">
+      <section className="bg-paper py-20">
         <div className="max-w-[880px] mx-auto px-6">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-gold/50 bg-gold/10 text-gold">
+          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/30 bg-crimson/10 text-crimson">
             Questions
           </span>
-          <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">
+          <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-night">
             Common questions about 5v5
           </h2>
 
@@ -338,13 +297,13 @@ export default function FiveVFive() {
             {FAQS.map((f, i) => (
               <details
                 key={i}
-                className="group bg-warmwhite/[0.04] border border-warmwhite/10 rounded-xl"
-                open={i === 0}
+                className="group bg-white rounded-xl border border-black/8"
+                open={false}
               >
-                <summary className="flex items-center justify-between cursor-pointer px-6 py-5 font-medium text-warmwhite list-none [&::-webkit-details-marker]:hidden">
+                <summary className="flex items-center justify-between cursor-pointer px-6 py-5 font-medium text-night list-none [&::-webkit-details-marker]:hidden">
                   <span>{f.q}</span>
                   <svg
-                    className="w-5 h-5 text-warmwhite/40 group-open:text-gold transition-all group-open:rotate-180 flex-shrink-0 ml-4"
+                    className="w-5 h-5 text-slate/40 group-open:text-crimson transition-all group-open:rotate-180 flex-shrink-0 ml-4"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -355,7 +314,7 @@ export default function FiveVFive() {
                     <polyline points="6 9 12 15 18 9" />
                   </svg>
                 </summary>
-                <div className="px-6 pb-5 text-warmwhite/70 text-[15px] leading-relaxed">
+                <div className="px-6 pb-5 text-slate text-[15px] leading-relaxed">
                   {f.a}
                 </div>
               </details>
