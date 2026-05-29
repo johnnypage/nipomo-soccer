@@ -20,6 +20,7 @@ import CoachWithUs from "@/pages/CoachWithUs";
 import TeamPlacement from "@/pages/TeamPlacement";
 import ChallengeHub from "@/pages/challenge/index";
 import ChallengeSignup from "@/pages/challenge/signup";
+import Leaderboard from "@/pages/challenge/leaderboard";
 
 function Router() {
   return (
@@ -43,6 +44,9 @@ function Router() {
           </Route>
           <Route path="/signup">
             <ChallengeSignup />
+          </Route>
+          <Route path="/leaderboard">
+            <Leaderboard />
           </Route>
         </Switch>
       </Route>
