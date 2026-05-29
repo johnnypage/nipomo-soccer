@@ -263,3 +263,22 @@ export const insertChallengeSchema = createInsertSchema(challenges).omit({
 });
 
 export type Challenge = typeof challenges.$inferSelect;
+
+export const submissions = pgTable("submissions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  kidId: varchar("kid_id").notNull().references(() => kids.id),
+  challengeId: varchar("challenge_id").notNull().references(() => challenges.id),
+  familyId: varchar("family_id").notNull().references(() => families.id),
+  weekNumber: integer("week_number").notNull(),
+  type: text("type").notNull(),
+  points: integer("points").notNull().default(1),
+  cloudinaryId: text("cloudinary_id"),
+  cloudinaryUrl: text("cloudinary_url"),
+  thumbnailUrl: text("thumbnail_url"),
+  submittedAt: timestamp("submitted_at").defaultNow().notNull(),
+});
+
+export const insertSubmissionSchema = createInsertSchema(submissions).omit({ id: true, submittedAt: true, points: true });
+
+export type InsertSubmission = z.infer<typeof insertSubmissionSchema>;
+export type Submission = typeof submissions.$inferSelect;
