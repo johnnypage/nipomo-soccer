@@ -15,7 +15,7 @@ export default function LeaderboardHero({
 }: LeaderboardHeroProps) {
   return (
     <div className="bg-crimson w-full">
-      <div className="max-w-2xl mx-auto px-4 py-8 text-center">
+      <div className="max-w-2xl mx-auto px-4 pt-[140px] md:pt-28 pb-8 text-center">
         <div className="flex items-center justify-center gap-2 mb-2">
           <Trophy className="w-4 h-4 text-gold" />
           <span className="text-gold text-xs font-bold uppercase tracking-wider">

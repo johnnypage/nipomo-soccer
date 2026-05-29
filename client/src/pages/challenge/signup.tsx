@@ -26,7 +26,7 @@ export default function ChallengeSignup() {
   return (
     <div className="min-h-screen bg-night">
       <Header />
-      <main className="max-w-2xl mx-auto px-4 py-16">
+      <main className="max-w-2xl mx-auto px-4 pt-[140px] md:pt-28 pb-16">
         <div className="text-center mb-10">
           <h1 className="font-display text-4xl sm:text-5xl uppercase tracking-wide text-warmwhite mb-3">
             Summer Skills Challenge
