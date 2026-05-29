@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, timestamp, integer, jsonb, boolean } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, timestamp, integer, jsonb, boolean, date } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -206,3 +206,60 @@ export const insertPlacementRequestSchema = createInsertSchema(placementRequests
 
 export type InsertPlacementRequest = z.infer<typeof insertPlacementRequestSchema>;
 export type PlacementRequest = typeof placementRequests.$inferSelect;
+
+export const families = pgTable("families", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  email: text("email").notNull().unique(),
+  name: text("name"),
+  magicToken: text("magic_token"),
+  tokenExpiresAt: timestamp("token_expires_at"),
+  consentGivenAt: timestamp("consent_given_at"),
+  isRegistered: boolean("is_registered").notNull().default(false),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertFamilySchema = createInsertSchema(families).omit({
+  id: true, createdAt: true, magicToken: true, tokenExpiresAt: true,
+});
+
+export type InsertFamily = z.infer<typeof insertFamilySchema>;
+export type Family = typeof families.$inferSelect;
+
+export const kids = pgTable("kids", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  familyId: varchar("family_id").notNull().references(() => families.id),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  birthdate: date("birthdate", { mode: "date" }).notNull(),
+  ageTrack: text("age_track").notNull(),
+  displayName: text("display_name").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertKidSchema = createInsertSchema(kids).omit({
+  id: true, createdAt: true, ageTrack: true, displayName: true,
+});
+
+export type InsertKid = z.infer<typeof insertKidSchema>;
+export type Kid = typeof kids.$inferSelect;
+
+export const challenges = pgTable("challenges", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  weekNumber: integer("week_number").notNull(),
+  ageTrack: text("age_track").notNull(),
+  type: text("type").notNull(),
+  title: text("title").notNull(),
+  theme: text("theme"),
+  description: text("description").notNull(),
+  videoUrl: text("video_url"),
+  weekStart: date("week_start"),
+  weekEnd: date("week_end"),
+  active: boolean("active").notNull().default(true),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertChallengeSchema = createInsertSchema(challenges).omit({
+  id: true, createdAt: true,
+});
+
+export type Challenge = typeof challenges.$inferSelect;
