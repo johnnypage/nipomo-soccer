@@ -529,4 +529,99 @@ export function registerChallengeRoutes(app: Express) {
       res.status(500).json({ error: "Failed to record video bonus" });
     }
   });
+
+  // GET /api/submissions/status -- Per-kid submission state for client display (LDR-04)
+  app.get("/api/submissions/status", requireFamily, async (req, res) => {
+    try {
+      const kidId = req.query.kidId as string;
+      if (!kidId) return res.status(400).json({ error: "kidId query parameter required" });
+
+      // Verify kid belongs to this family (T-02-07)
+      const [kid] = await db.select().from(kids).where(
+        and(eq(kids.id, kidId), eq(kids.familyId, req.session.familyId!))
+      );
+      if (!kid) return res.status(404).json({ error: "Kid not found" });
+
+      const today = new Date();
+      const dayStart = startOfDay(today);
+      const dayEnd = endOfDay(today);
+
+      // Today's submissions by type (for daily cap display)
+      const todaySubmissions = await db.select({
+        type: submissions.type,
+        weekNumber: submissions.weekNumber,
+      }).from(submissions).where(and(
+        eq(submissions.kidId, kidId),
+        gte(submissions.submittedAt, dayStart),
+        lt(submissions.submittedAt, dayEnd),
+      ));
+
+      // All submissions for this kid (for past week status indicators)
+      const allSubmissions = await db.select({
+        weekNumber: submissions.weekNumber,
+        type: submissions.type,
+      }).from(submissions).where(eq(submissions.kidId, kidId));
+
+      // Total points
+      const [total] = await db
+        .select({ totalPoints: sql<number>`cast(coalesce(sum(${submissions.points}), 0) as int)` })
+        .from(submissions)
+        .where(eq(submissions.kidId, kidId));
+
+      res.json({
+        todaySubmissions,
+        allSubmissions,
+        totalPoints: total.totalPoints,
+      });
+    } catch (error) {
+      console.error("Submission status error:", error);
+      res.status(500).json({ error: "Failed to load submission status" });
+    }
+  });
+
+  // GET /api/leaderboard -- Public ranked leaderboard (LDR-01, LDR-04, LDR-05, LDR-06, PRIV-02, PRIV-03)
+  // NOTE: No requireFamily -- this is a public endpoint per D-08
+  // NOTE: No cloudinaryUrl or cloudinaryId in response -- privacy boundary (PRIV-03)
+  app.get("/api/leaderboard", async (_req, res) => {
+    try {
+      const leaderboard = await db
+        .select({
+          kidId: kids.id,
+          displayName: kids.displayName,
+          ageTrack: kids.ageTrack,
+          totalPoints: sql<number>`cast(coalesce(sum(${submissions.points}), 0) as int)`,
+          isRegistered: families.isRegistered,
+        })
+        .from(submissions)
+        .innerJoin(kids, eq(submissions.kidId, kids.id))
+        .innerJoin(families, eq(kids.familyId, families.id))
+        .groupBy(kids.id, kids.displayName, kids.ageTrack, families.isRegistered)
+        .orderBy(desc(sql`sum(${submissions.points})`));
+
+      // Add rank numbers
+      const ranked = leaderboard.map((entry, index) => ({
+        rank: index + 1,
+        ...entry,
+      }));
+
+      // Get aggregate stats for hero section
+      const [stats] = await db
+        .select({
+          totalSubmissions: count(),
+          totalPlayers: sql<number>`cast(count(distinct ${submissions.kidId}) as int)`,
+        })
+        .from(submissions);
+
+      res.json({
+        leaderboard: ranked,
+        stats: {
+          totalSubmissions: stats?.totalSubmissions ?? 0,
+          totalPlayers: stats?.totalPlayers ?? 0,
+        },
+      });
+    } catch (error) {
+      console.error("Leaderboard error:", error);
+      res.status(500).json({ error: "Failed to load leaderboard" });
+    }
+  });
 }
