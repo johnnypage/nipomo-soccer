@@ -73,7 +73,7 @@ export default function ChallengeHub() {
   return (
     <div className="min-h-screen bg-night">
       <Header />
-      <main className="max-w-3xl mx-auto px-4 pt-28 pb-8">
+      <main className="max-w-3xl mx-auto px-4 pt-[140px] md:pt-28 pb-8">
         <KidSelector />
 
         {kids.length === 0 ? (
