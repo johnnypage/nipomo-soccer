@@ -24,6 +24,7 @@ import TeamPlacement from "@/pages/TeamPlacement";
 import ChallengeHub from "@/pages/challenge/index";
 import ChallengeSignup from "@/pages/challenge/signup";
 import Leaderboard from "@/pages/challenge/leaderboard";
+import PlayerProfile from "@/pages/challenge/player";
 
 function Router() {
   return (
@@ -65,6 +66,9 @@ function Router() {
           </Route>
           <Route path="/leaderboard">
             <Leaderboard />
+          </Route>
+          <Route path="/player/:id">
+            <PlayerProfile />
           </Route>
         </Switch>
       </Route>
