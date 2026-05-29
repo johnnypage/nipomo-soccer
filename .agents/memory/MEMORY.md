@@ -1,0 +1,2 @@
+- [connect-pg-simple in bundled prod](connect-pg-simple-prod.md) — createTableIfMissing crashes in bundled deploy (missing table.sql); define `sessions` in Drizzle schema instead.
+- [Prod schema sync on Replit](prod-schema-sync.md) — never run DDL/migration scripts on prod; dev db:push then re-publish applies schema diff to production.
