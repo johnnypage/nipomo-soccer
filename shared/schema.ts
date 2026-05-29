@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, timestamp, integer, jsonb, boolean, date } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, timestamp, integer, jsonb, boolean, date, index } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -206,6 +206,12 @@ export const insertPlacementRequestSchema = createInsertSchema(placementRequests
 
 export type InsertPlacementRequest = z.infer<typeof insertPlacementRequestSchema>;
 export type PlacementRequest = typeof placementRequests.$inferSelect;
+
+export const sessions = pgTable("sessions", {
+  sid: varchar("sid").primaryKey(),
+  sess: jsonb("sess").notNull(),
+  expire: timestamp("expire").notNull(),
+}, (table) => [index("IDX_session_expire").on(table.expire)]);
 
 export const families = pgTable("families", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
