@@ -1,77 +1,126 @@
 # Context Handoff
 
 **Date:** 2026-05-29
-**Branch:** main (both repos)
-**Previous session goal:** Execute Phase 2 (Core Loop) of the Summer Skills Challenge -- all 5 plans across 4 waves
+**Branch:** `roots-page-redesign` (in website repo at ~/Projects/nipomo-soccer-website)
+**Previous session goal:** Apply Johnny's design feedback to ROOTS hub page + impeccable polish pass on sub-pages
 
 ## Status
 
-### Completed
-- All 5 Phase 2 plans executed via GSD wave-based execution (4 waves, 10 code commits)
-- Code pushed to GitHub and pulled to Replit (`47c71e7`)
-- Cloudinary account created (cloud name: `dlujqtoz8`)
-- Cloudinary upload preset `nsc_challenge` configured (unsigned, video, mp4/mov/webm)
-- Replit env vars set: VITE_CLOUDINARY_CLOUD_NAME, CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET
-- `npx drizzle-kit push` ran (no changes -- tables already exist)
-- Verification report created: `.planning/phases/02-core-loop/02-VERIFICATION.md` (status: human_needed, 9/10 automated checks pass)
+### Completed (This Session)
 
-### In Progress
-- **Debugging the deployed app** -- user reported "several things to debug" after republishing on Replit
-- `/challenge` was returning 404 before the push fix; should now load with latest code (`47c71e7`)
-- Human verification of challenge hub and leaderboard pages not yet done
+**Hub page (index.tsx):**
+- Removed "ROOTS Fall 2026" hero pill (low contrast, redundant with announcement banner)
+- Removed What's New section entirely (too heavy, especially on mobile, content covered elsewhere)
+- Removed Registration section (duplicative of division card pricing)
+- Restructured division cards: 2x2 grid, program name as heading with ages underneath
+- Renamed "Recreational" to "League Play" (can't call it recreational when everything is recreational)
+- Special Needs is now equal 4th card, not an afterthought below the other three
+- Flipped Family Feedback: "Built from family feedback" is now the header, "What 142 families told us" is the pill
+- FAQ: all questions collapsed by default (no auto-expand)
+- Removed border-left accent stripes from hero quote and family feedback quotes (impeccable BAN 1)
+- Added hover effects to division cards (shadow + translate-y)
 
-### Not Started
-- Phase 2 completion (marking roadmap/state as complete -- blocked on verification passing)
-- Phase 3 planning (Engagement & Profiles)
+**5v5 page (FiveVFive.tsx):**
+- Removed hero pill
+- Removed stat pills from hero (7th-12th Grade, 20+ games, etc.)
+- Fixed copy: "Two nights a week" → "Twice a week" everywhere
+- Fixed copy: removed "Nipomo High School" references → "the field" (can't guarantee location)
+- Fixed copy: "plus a goalkeeper" → "including a goalkeeper" (5v5 = 5 per side INCLUDING keeper)
+- Fixed copy: "on a given night" → "on a given day"
+- Fixed timeline overrun: "5:35 to 7:10" → just "5:35" with fixed-width time column
+- Redesigned "Four reasons" section: editorial numbered layout (01-04) on dark background instead of identical white cards
+- Removed "How it works" specs grid section (redundant, already explained above)
+- Removed "Teams and balancing" section (team name picking was unnecessary content)
+- Expanded season overview with real dates from programs/roots/season-schedule.md (Kickoff Aug 1 & 8, Pre-Season through Sep 7, Regular Season Sep 12-Oct 31, Tournament Nov 7)
+- FAQ moved to light background for section rhythm variety
+- Added hover effects to "Why" cards
+
+**Parent & Me page (ParentAndMe.tsx):**
+- Removed hero pill
+- FAQ collapsed by default
+- Fixed season details grid: added 6th item (Age range), switched to 3-col on large screens
+
+**Recreational page (Recreational.tsx):**
+- Removed hero pill
+
+**Cross-cutting (roots.css):**
+- Added staggered hero entrance animation (roots-fade-up) with prefers-reduced-motion support
+- Increased hero top padding from 112px → 148px (164px mobile) across all ROOTS pages
+
+### Not Done (Next Session)
+
+**Parent & Me page:**
+- Full copy/design review (same level of scrutiny as 5v5 got this session)
+- May need similar content trimming
+
+**Recreational page:**
+- Full copy/design review
+- Hero still says "ROOTS Recreational" in concept (pill is gone but page identity needs check)
+- Division explorer tabs may need refinement
+
+**Hub page remaining:**
+- Hero background image/video needed (currently dark with gradient only -- too plain)
+- Johnny needs to provide a game day photo or we wire up a placeholder
+- `FindMyDivision.tsx` needs update for 5v5/7th-12th (still shows old "7th-8th")
+- `coach/DashboardSection.tsx` and `coach/ApplyModal.tsx` reference old "7th-8th"
+
+**Open questions:**
+- Should `/roots/5v5` appear in header Programs dropdown?
+- Does 5v5 need its own Spond registration form?
+- Hero background image -- does Johnny have a game day photo?
 
 ## Key Decisions
-- Replit had ~80 auto-commits on remote that required rebasing local Phase 1+2 work on top
-- One rebase conflict resolved in `server/index.ts` -- kept both domain redirect AND session middleware
-- db:push showed "no changes" -- submissions table already existed from prior push
-- Cloudinary type declarations moved to `declare global` block (02-03 deviation)
+
+- "League Play" is the name for Pre-K through 6th Grade division (not "Recreational")
+- 5v5 format: 5 per side INCLUDING goalkeeper (not plus)
+- Don't reference specific locations (Nipomo High School) that can't be guaranteed
+- Use "days" not "nights" for 5v5 sessions (could be weekday or Saturday)
+- Hero pills are out -- announcement banner covers season context
+- Stat pills removed from 5v5 hero -- keep hero clean (headline + lede + CTA)
+- All FAQ sections start fully collapsed
+- Border-left accent stripes are banned per impeccable design rules
 
 ## Git State
-- **Planning repo** (`/Users/johnnypage/Projects/Nipomo Soccer`): branch `main`, clean (untracked files only)
-- **Website repo** (`/Users/johnnypage/Projects/nipomo-soccer-website`): branch `main`, clean, pushed to GitHub
-- **Replit**: pulled to `47c71e7` (feat(02-04): rewrite challenge hub)
-- **Recent website commits:** `47c71e7` (02-04 hub rewrite), `6a481d5` (02-04 components), `011d85d` (02-03 UI components)
 
-## Files to Read
+- **Branch:** `roots-page-redesign` in ~/Projects/nipomo-soccer-website
+- **Uncommitted changes:** All edits from this session (not committed, user hasn't asked)
+- **Build:** Passes clean (pre-existing TS errors only)
+- **Dev server:** Was running on port 3333
 
-### Read First (establishes context)
-1. `.planning/phases/02-core-loop/02-VERIFICATION.md` -- verification report with human testing items
-2. `.planning/ROADMAP.md` -- phase progress (Phase 2: 5/5 plans executed, not yet marked complete)
-3. `.planning/STATE.md` -- current position
+## Files Changed This Session
 
-### Working Files (actively being modified -- in website repo)
-1. `server/challengeRoutes.ts` -- all 4 API endpoints (submissions, video-bonus, status, leaderboard)
-2. `client/src/pages/challenge/index.tsx` -- challenge hub page (rewritten in 02-04)
-3. `client/src/pages/challenge/leaderboard.tsx` -- public leaderboard page
-4. `client/src/pages/challenge/signup.tsx` -- signup/login page (from Phase 1)
-5. `client/src/App.tsx` -- route wiring (nested /challenge routes)
-6. `server/index.ts` -- session middleware + domain redirect (rebase conflict resolved here)
+### Hub page
+- `client/src/pages/roots/index.tsx` -- removed WhatsNew + Registration imports/components
+- `client/src/pages/roots/HeroSection.tsx` -- removed pill, removed border-left on quote
+- `client/src/pages/roots/DivisionSection.tsx` -- 2x2 grid, name-first, "League Play", hover effects
+- `client/src/pages/roots/FamilyFeedbackSection.tsx` -- flipped pill/header, removed border-left on quotes
+- `client/src/pages/roots/FAQSection.tsx` -- collapsed by default
 
-### Reference Files (needed for context)
-1. `client/src/hooks/use-cloudinary.tsx` -- Cloudinary upload widget hook
-2. `client/src/hooks/use-submissions.tsx` -- submission state hook
-3. `client/src/components/challenge/` -- all challenge components (13 files)
-4. `shared/schema.ts` -- database schema including submissions table
-5. `shared/challengeValidation.ts` -- Zod validation schemas
+### Sub-pages
+- `client/src/pages/roots/FiveVFive.tsx` -- major rewrite (copy, sections removed, design changes)
+- `client/src/pages/roots/ParentAndMe.tsx` -- pill removed, FAQ collapsed, grid fixed
+- `client/src/pages/roots/Recreational.tsx` -- pill removed
+
+### CSS
+- `client/src/pages/roots/roots.css` -- hero entrance animation, increased hero padding
 
 ## Next Window Instructions
 
-**Focus:** Debug the deployed Summer Skills Challenge app on Replit -- user says "several things to debug"
+**Focus:** Design review of Parent & Me and Recreational sub-pages, then hub hero background image
 
 **Steps:**
-1. Read this handoff and the verification report at `.planning/phases/02-core-loop/02-VERIFICATION.md`
-2. Ask the user what specific issues they're seeing (errors, broken UI, missing functionality)
-3. Debug each issue -- code is in `/Users/johnnypage/Projects/nipomo-soccer-website/`
-4. After fixes: push to GitHub, have user pull in Replit (`git fetch && git reset --hard origin/main` then Republish)
-5. Once issues are resolved, run `/gsd-verify-work 2` for human testing, then mark Phase 2 complete
+1. `cd ~/Projects/nipomo-soccer-website && git checkout roots-page-redesign`
+2. Start dev server: `npx vite --port 3333`
+3. Review Parent & Me (`/roots/parent-and-me`) -- apply same copy/design scrutiny as 5v5
+4. Review Recreational (`/roots/recreational`) -- same treatment
+5. Address hero background image on hub page
+6. Commit all changes to `roots-page-redesign` branch
 
 **Watch out for:**
-- The website repo is at `/Users/johnnypage/Projects/nipomo-soccer-website/`, NOT the working directory (`/Users/johnnypage/Projects/Nipomo Soccer/` which is the planning repo)
-- Replit deploy workflow: push to GitHub -> `git fetch && git reset --hard origin/main` in Replit Shell -> Republish
-- Replit has auto-commit behavior that can dirty the remote -- always fetch before pushing
-- Session middleware requires DATABASE_URL (Replit-only env var) -- won't work locally
-- Cloudinary upload requires VITE_CLOUDINARY_CLOUD_NAME to be set (it is on Replit now)
+- Website repo: `~/Projects/nipomo-soccer-website/` (NOT the planning repo)
+- Don't touch `client/src/pages/challenge/` -- Johnny is working on that in Replit
+- No gradients, no em dashes, no border-left accents (brand + impeccable rules)
+- Pre-existing TS errors in ProgramCard, Volunteer, shopRoutes -- ignore
+- 5v5 is 5 per side INCLUDING the goalkeeper
+- Use "days" not "nights" for 5v5 sessions
+- Don't guarantee specific field locations
