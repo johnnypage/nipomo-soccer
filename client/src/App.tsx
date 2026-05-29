@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CartProvider } from "@/hooks/use-cart";
+import { ActiveKidProvider } from "@/hooks/use-active-kid";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Reign from "@/pages/Reign";
@@ -17,6 +18,8 @@ import OrderConfirmation from "@/pages/OrderConfirmation";
 import Admin from "@/pages/Admin";
 import CoachWithUs from "@/pages/CoachWithUs";
 import TeamPlacement from "@/pages/TeamPlacement";
+import ChallengeHub from "@/pages/challenge/index";
+import ChallengeSignup from "@/pages/challenge/signup";
 
 function Router() {
   return (
@@ -33,6 +36,16 @@ function Router() {
       <Route path="/order-confirmation" component={OrderConfirmation} />
       <Route path="/team-placement" component={TeamPlacement} />
       <Route path="/admin" component={Admin} />
+      <Route path="/challenge" nest>
+        <Switch>
+          <Route path="/">
+            <ChallengeHub />
+          </Route>
+          <Route path="/signup">
+            <ChallengeSignup />
+          </Route>
+        </Switch>
+      </Route>
       <Route path="/tournament">{() => <Redirect to="/" />}</Route>
       <Route component={NotFound} />
     </Switch>
@@ -43,10 +56,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <CartProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
+        <ActiveKidProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+          </TooltipProvider>
+        </ActiveKidProvider>
       </CartProvider>
     </QueryClientProvider>
   );
