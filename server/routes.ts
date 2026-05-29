@@ -9,6 +9,7 @@ import { desc } from "drizzle-orm";
 import { registerShopRoutes } from "./shopRoutes";
 import { registerCoachRoutes } from "./coachRoutes";
 import { registerPlacementRoutes } from "./placementRoutes";
+import { registerChallengeRoutes } from "./challengeRoutes";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
 
@@ -23,6 +24,7 @@ export async function registerRoutes(
   registerShopRoutes(app);
   registerCoachRoutes(app);
   registerPlacementRoutes(app);
+  registerChallengeRoutes(app);
 
   app.post("/api/contact", async (req, res) => {
     try {
