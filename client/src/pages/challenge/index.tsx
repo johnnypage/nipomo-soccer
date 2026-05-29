@@ -64,7 +64,7 @@ export default function ChallengeHub() {
   }
 
   if (!isAuthenticated) {
-    return <Redirect to="/challenge/signup" />;
+    return <Redirect to="/signup" />;
   }
 
   const allChallenges = challengesData?.challenges ?? [];

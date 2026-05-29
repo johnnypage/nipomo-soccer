@@ -17,7 +17,7 @@ export default function ChallengeSignup() {
   }
 
   if (isAuthenticated) {
-    return <Redirect to="/challenge" />;
+    return <Redirect to="/" />;
   }
 
   const params = new URLSearchParams(window.location.search);
