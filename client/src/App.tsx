@@ -10,6 +10,9 @@ import Home from "@/pages/Home";
 import Reign from "@/pages/Reign";
 import Rise from "@/pages/Rise";
 import RootsPage from "@/pages/roots";
+import RootsParentAndMe from "@/pages/roots/ParentAndMe";
+import RootsRecreational from "@/pages/roots/Recreational";
+import RootsFiveVFive from "@/pages/roots/FiveVFive";
 import FindMyDivision from "@/pages/FindMyDivision";
 import Volunteer from "@/pages/Volunteer";
 import Compare from "@/pages/Compare";
@@ -28,7 +31,22 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/reign" component={Reign} />
       <Route path="/rise" component={Rise} />
-      <Route path="/roots" component={RootsPage} />
+      <Route path="/roots" nest>
+        <Switch>
+          <Route path="/">
+            <RootsPage />
+          </Route>
+          <Route path="/parent-and-me">
+            <RootsParentAndMe />
+          </Route>
+          <Route path="/recreational">
+            <RootsRecreational />
+          </Route>
+          <Route path="/5v5">
+            <RootsFiveVFive />
+          </Route>
+        </Switch>
+      </Route>
       <Route path="/find-my-division" component={FindMyDivision} />
       <Route path="/volunteer" component={Volunteer} />
       <Route path="/about/compare" component={Compare} />

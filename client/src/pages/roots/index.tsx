@@ -4,6 +4,7 @@ import HeroSection from "./HeroSection";
 import WhatIsSection from "./WhatIsSection";
 import WhatsNewSection from "./WhatsNewSection";
 import DivisionSection from "./DivisionSection";
+import RegistrationSection from "./RegistrationSection";
 import FamilyFeedbackSection from "./FamilyFeedbackSection";
 import PathwaySection from "./PathwaySection";
 import FAQSection from "./FAQSection";
@@ -17,8 +18,9 @@ export default function Roots() {
       <Header />
       <HeroSection />
       <WhatIsSection />
-      <DivisionSection />
       <WhatsNewSection />
+      <DivisionSection />
+      <RegistrationSection />
       <FamilyFeedbackSection />
       <CoachCTASection />
       <FAQSection />

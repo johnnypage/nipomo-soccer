@@ -19,8 +19,8 @@ export default function WhatIsSection() {
             </p>
             <p className="text-slate mt-4 text-[17px] leading-relaxed">
               ROOTS is recreational soccer built for the Nipomo community. We have divisions for
-              kids as young as 2 years old through our Parent &amp; Me program, all the way up
-              through 14U. Whether your kid has been playing for years or is stepping on the
+              kids as young as 2 years old through our Parent &amp; Me program, all the way
+              through high school. Whether your kid has been playing for years or is stepping on the
               field for the first time, there is a place for them in ROOTS.
             </p>
           </div>
@@ -35,7 +35,7 @@ export default function WhatIsSection() {
                 This was our first season and we loved our experience. I love the family feel out on these fields.
               </p>
               <footer className="mt-5 pt-4 border-t border-white/10">
-                <span className="text-warmwhite/40 text-xs font-mono uppercase tracking-wider">Parent — 2025 Survey</span>
+                <span className="text-warmwhite/40 text-xs font-mono uppercase tracking-wider">Parent / 2025 Survey</span>
               </footer>
             </blockquote>
           </div>
