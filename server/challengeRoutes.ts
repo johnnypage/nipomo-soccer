@@ -5,7 +5,7 @@ import { signupSchema, addKidSchema, submitSchema, videoBonusSchema } from "@sha
 import { eq, and, gt, desc, gte, lt, count, sql } from "drizzle-orm";
 import { requireFamily } from "./challengeAuth";
 import { randomBytes } from "crypto";
-import { differenceInYears, startOfDay, endOfDay } from "date-fns";
+import { differenceInYears, startOfDay, endOfDay, differenceInCalendarDays, subDays } from "date-fns";
 import sgMail from "@sendgrid/mail";
 import { z } from "zod";
 
@@ -51,6 +51,95 @@ async function sendMagicLink(email: string, token: string) {
         </td></tr>
       </table>`,
   });
+}
+
+// -- Streak and badge computation (Phase 3: PTS-04, PTS-05, PTS-06, PTS-07) --
+
+function computeStreak(submissionDates: Date[]): { current: number; max: number } {
+  if (submissionDates.length === 0) return { current: 0, max: 0 };
+
+  // Get unique dates (multiple submissions per day counted once)
+  const uniqueDays = Array.from(new Set(
+    submissionDates.map(d => startOfDay(d).toISOString())
+  )).map(iso => new Date(iso)).sort((a, b) => b.getTime() - a.getTime()); // newest first
+
+  // Current streak: consecutive days starting from most recent submission
+  // Allow "yesterday" as valid streak start (streak doesn't break until 2 days pass)
+  const today = startOfDay(new Date());
+  let current = 0;
+
+  if (differenceInCalendarDays(today, uniqueDays[0]) > 1) {
+    current = 0; // streak already broken (most recent submission was 2+ days ago)
+  } else {
+    let checkDate = uniqueDays[0];
+    for (const day of uniqueDays) {
+      if (differenceInCalendarDays(checkDate, day) === 0) {
+        current++;
+        checkDate = subDays(checkDate, 1);
+      } else {
+        break;
+      }
+    }
+  }
+
+  // Max streak: scan all days for longest consecutive run
+  let max = 1;
+  let run = 1;
+  for (let i = 1; i < uniqueDays.length; i++) {
+    if (differenceInCalendarDays(uniqueDays[i - 1], uniqueDays[i]) === 1) {
+      run++;
+      max = Math.max(max, run);
+    } else {
+      run = 1;
+    }
+  }
+
+  return { current, max: Math.max(max, current) };
+}
+
+interface BadgeResult {
+  id: string;
+  earned: boolean;
+}
+
+function computeBadges(
+  submissionData: { type: string; weekNumber: number; points: number }[],
+  maxStreak: number
+): BadgeResult[] {
+  const badges: BadgeResult[] = [];
+
+  // Streak badges (PTS-05): awarded based on max streak ever achieved
+  const streakThresholds = [
+    { id: "streak-3", threshold: 3 },
+    { id: "streak-7", threshold: 7 },
+    { id: "streak-14", threshold: 14 },
+    { id: "streak-21", threshold: 21 },
+  ];
+  for (const sb of streakThresholds) {
+    badges.push({ id: sb.id, earned: maxStreak >= sb.threshold });
+  }
+
+  // Perfect Week (PTS-06): 15+ points in any single week
+  const pointsByWeek = new Map<number, number>();
+  for (const s of submissionData) {
+    pointsByWeek.set(s.weekNumber, (pointsByWeek.get(s.weekNumber) ?? 0) + s.points);
+  }
+  const maxWeekPoints = pointsByWeek.size > 0 ? Math.max(...Array.from(pointsByWeek.values())) : 0;
+  badges.push({ id: "perfect-week", earned: maxWeekPoints >= 15 });
+
+  // Fitness All-Star (PTS-06): fitness bonus in all 8 weeks
+  const fitnessWeeks = new Set(
+    submissionData.filter(s => s.type === "fitness").map(s => s.weekNumber)
+  );
+  badges.push({ id: "fitness-allstar", earned: fitnessWeeks.size >= 8 });
+
+  // Summer Champion (PTS-07): at least 1 submission (skill or fitness) in all 8 weeks
+  const activeWeeks = new Set(
+    submissionData.filter(s => s.type === "skill" || s.type === "fitness").map(s => s.weekNumber)
+  );
+  badges.push({ id: "summer-champion", earned: activeWeeks.size >= 8 });
+
+  return badges;
 }
 
 // -- Challenge seed data (8 weeks x 3 tracks x 2 types = 48 rows) --
@@ -598,11 +687,37 @@ export function registerChallengeRoutes(app: Express) {
         .groupBy(kids.id, kids.displayName, kids.ageTrack, families.isRegistered)
         .orderBy(desc(sql`sum(${submissions.points})`));
 
-      // Add rank numbers
-      const ranked = leaderboard.map((entry, index) => ({
-        rank: index + 1,
-        ...entry,
-      }));
+      // Fetch all submissions for streak/badge computation (single query, <1200 rows at scale)
+      const allSubmissions = await db.select({
+        kidId: submissions.kidId,
+        type: submissions.type,
+        weekNumber: submissions.weekNumber,
+        points: submissions.points,
+        submittedAt: submissions.submittedAt,
+      }).from(submissions);
+
+      // Group submissions by kid
+      const submissionsByKid = new Map<string, typeof allSubmissions>();
+      for (const s of allSubmissions) {
+        const existing = submissionsByKid.get(s.kidId) ?? [];
+        existing.push(s);
+        submissionsByKid.set(s.kidId, existing);
+      }
+
+      // Add rank, streak, badge count to each entry
+      const ranked = leaderboard.map((entry, index) => {
+        const kidSubs = submissionsByKid.get(entry.kidId) ?? [];
+        const dates = kidSubs.map(s => new Date(s.submittedAt));
+        const streak = computeStreak(dates);
+        const badges = computeBadges(kidSubs, streak.max);
+        const badgeCount = badges.filter(b => b.earned).length;
+        return {
+          rank: index + 1,
+          ...entry,
+          currentStreak: streak.current,
+          badgeCount,
+        };
+      });
 
       // Get aggregate stats for hero section
       const [stats] = await db
@@ -622,6 +737,75 @@ export function registerChallengeRoutes(app: Express) {
     } catch (error) {
       console.error("Leaderboard error:", error);
       res.status(500).json({ error: "Failed to load leaderboard" });
+    }
+  });
+
+  // GET /api/player/:id -- Public player profile (PROF-01, PROF-02, PROF-03)
+  // NOTE: No requireFamily -- public endpoint like leaderboard
+  app.get("/api/player/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      // Get kid info (public fields only -- no familyId, no lastName per T-03-01)
+      const [kid] = await db.select({
+        id: kids.id,
+        displayName: kids.displayName,
+        ageTrack: kids.ageTrack,
+      }).from(kids).where(eq(kids.id, id));
+
+      if (!kid) return res.status(404).json({ error: "Player not found" });
+
+      // Get all submissions for this kid (with challenge title for history)
+      const kidSubmissions = await db.select({
+        type: submissions.type,
+        weekNumber: submissions.weekNumber,
+        points: submissions.points,
+        submittedAt: submissions.submittedAt,
+        challengeTitle: challenges.title,
+      })
+      .from(submissions)
+      .innerJoin(challenges, eq(submissions.challengeId, challenges.id))
+      .where(eq(submissions.kidId, id))
+      .orderBy(desc(submissions.submittedAt));
+
+      // Compute total points
+      const totalPoints = kidSubmissions.reduce((sum, s) => sum + s.points, 0);
+
+      // Compute streak (PTS-04)
+      const dates = kidSubmissions.map(s => new Date(s.submittedAt));
+      const streak = computeStreak(dates);
+
+      // Compute badges (PTS-05, PTS-06, PTS-07)
+      const badges = computeBadges(kidSubmissions, streak.max);
+
+      // Check NSC registration status
+      const [family] = await db.select({ isRegistered: families.isRegistered })
+        .from(families)
+        .innerJoin(kids, eq(kids.familyId, families.id))
+        .where(eq(kids.id, id));
+
+      // Submission history (PROF-03: dates and challenge names, not videos per T-03-04)
+      const history = kidSubmissions
+        .filter(s => s.type !== "video_bonus")
+        .map(s => ({
+          date: s.submittedAt,
+          challengeTitle: s.challengeTitle,
+          type: s.type,
+          weekNumber: s.weekNumber,
+        }));
+
+      res.json({
+        kid: { ...kid, isRegistered: family?.isRegistered ?? false },
+        totalPoints,
+        currentStreak: streak.current,
+        maxStreak: streak.max,
+        badges: badges.filter(b => b.earned).map(b => b.id),
+        allBadges: badges,
+        history,
+      });
+    } catch (error) {
+      console.error("Player profile error:", error);
+      res.status(500).json({ error: "Failed to load player profile" });
     }
   });
 }
