@@ -1,11 +1,11 @@
 import type { Express } from "express";
 import { db } from "./db";
-import { families, kids, challenges } from "@shared/schema";
-import { signupSchema, addKidSchema } from "@shared/challengeValidation";
-import { eq, and, gt, desc } from "drizzle-orm";
+import { families, kids, challenges, submissions } from "@shared/schema";
+import { signupSchema, addKidSchema, submitSchema, videoBonusSchema } from "@shared/challengeValidation";
+import { eq, and, gt, desc, gte, lt, count, sql } from "drizzle-orm";
 import { requireFamily } from "./challengeAuth";
 import { randomBytes } from "crypto";
-import { differenceInYears } from "date-fns";
+import { differenceInYears, startOfDay, endOfDay } from "date-fns";
 import sgMail from "@sendgrid/mail";
 import { z } from "zod";
 
@@ -415,6 +415,118 @@ export function registerChallengeRoutes(app: Express) {
     } catch (error) {
       console.error("Challenges error:", error);
       res.status(500).json({ error: "Failed to load challenges" });
+    }
+  });
+
+  // POST /api/submissions -- Record a video submission (SUB-03, SUB-04, SUB-05, PTS-01)
+  app.post("/api/submissions", requireFamily, async (req, res) => {
+    try {
+      const parseResult = submitSchema.safeParse(req.body);
+      if (!parseResult.success) {
+        return res.status(400).json({ error: "Invalid submission data" });
+      }
+
+      const { kidId, challengeId, weekNumber, type, cloudinaryId, cloudinaryUrl, thumbnailUrl } = parseResult.data;
+
+      // Verify kid belongs to this family (T-02-04)
+      const [kid] = await db.select().from(kids).where(
+        and(eq(kids.id, kidId), eq(kids.familyId, req.session.familyId!))
+      );
+      if (!kid) return res.status(404).json({ error: "Kid not found" });
+
+      // Verify challenge exists
+      const [challenge] = await db.select().from(challenges).where(eq(challenges.id, challengeId));
+      if (!challenge) return res.status(404).json({ error: "Challenge not found" });
+
+      // Daily cap check per D-04, D-15: max 1 skill + 1 fitness per child per day, globally
+      const today = new Date();
+      const dayStart = startOfDay(today);
+      const dayEnd = endOfDay(today);
+
+      const [existing] = await db
+        .select({ count: count() })
+        .from(submissions)
+        .where(and(
+          eq(submissions.kidId, kidId),
+          eq(submissions.type, type),
+          gte(submissions.submittedAt, dayStart),
+          lt(submissions.submittedAt, dayEnd)
+        ));
+
+      if (existing.count >= 1) {
+        return res.status(409).json({ error: "Already submitted today. Come back tomorrow!" });
+      }
+
+      // Insert submission -- points defaults to 1 per PTS-01
+      const [submission] = await db.insert(submissions).values({
+        kidId, challengeId, familyId: req.session.familyId!,
+        weekNumber, type, cloudinaryId, cloudinaryUrl, thumbnailUrl,
+      }).returning();
+
+      // Get updated total points for this kid (PTS-03 cumulative)
+      const [total] = await db
+        .select({ totalPoints: sql<number>`cast(coalesce(sum(${submissions.points}), 0) as int)` })
+        .from(submissions)
+        .where(eq(submissions.kidId, kidId));
+
+      res.json({ success: true, points: 1, totalPoints: total.totalPoints });
+    } catch (error) {
+      console.error("Submission error:", error);
+      res.status(500).json({ error: "Failed to record submission" });
+    }
+  });
+
+  // POST /api/video-bonus -- Record a video bonus point (PTS-02, D-05, D-06, D-07)
+  app.post("/api/video-bonus", requireFamily, async (req, res) => {
+    try {
+      const parseResult = videoBonusSchema.safeParse(req.body);
+      if (!parseResult.success) {
+        return res.status(400).json({ error: "Invalid video bonus data" });
+      }
+
+      const { kidId, challengeId, weekNumber } = parseResult.data;
+
+      // Verify kid belongs to this family
+      const [kid] = await db.select().from(kids).where(
+        and(eq(kids.id, kidId), eq(kids.familyId, req.session.familyId!))
+      );
+      if (!kid) return res.status(404).json({ error: "Kid not found" });
+
+      // Verify challenge exists and has a video (D-07)
+      const [challenge] = await db.select().from(challenges).where(eq(challenges.id, challengeId));
+      if (!challenge) return res.status(404).json({ error: "Challenge not found" });
+      if (!challenge.videoUrl) return res.status(400).json({ error: "No video available for this challenge" });
+
+      // Check if video bonus already claimed this week (D-06: 1 per kid per week)
+      const [existingBonus] = await db
+        .select({ count: count() })
+        .from(submissions)
+        .where(and(
+          eq(submissions.kidId, kidId),
+          eq(submissions.weekNumber, weekNumber),
+          eq(submissions.type, "video_bonus")
+        ));
+
+      if (existingBonus.count >= 1) {
+        return res.status(409).json({ error: "Video bonus already claimed this week" });
+      }
+
+      // Insert video bonus as submission row (type="video_bonus", no cloudinary fields)
+      const [bonus] = await db.insert(submissions).values({
+        kidId, challengeId, familyId: req.session.familyId!,
+        weekNumber, type: "video_bonus",
+      }).returning();
+
+      // Get updated total points
+      const [total] = await db
+        .select({ totalPoints: sql<number>`cast(coalesce(sum(${submissions.points}), 0) as int)` })
+        .from(submissions)
+        .where(eq(submissions.kidId, kidId));
+
+      res.json({ success: true, points: 1, totalPoints: total.totalPoints });
+    } catch (error) {
+      console.error("Video bonus error:", error);
+      res.status(500).json({ error: "Failed to record video bonus" });
     }
   });
 }
