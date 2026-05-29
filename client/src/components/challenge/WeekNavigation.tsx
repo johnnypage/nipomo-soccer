@@ -30,9 +30,9 @@ export default function WeekNavigation({
   onSubmitSuccess,
 }: WeekNavigationProps) {
   // Get unique week numbers, sorted ascending
-  const weekNumbers = [...new Set(allChallenges.map((c) => c.weekNumber))].sort(
-    (a, b) => a - b
-  );
+  const weekNumbers = Array.from(
+    new Set(allChallenges.map((c) => c.weekNumber))
+  ).sort((a, b) => a - b);
 
   // Only show weeks whose start date has passed (current + past)
   const startedWeeks = weekNumbers.filter((wn) => {

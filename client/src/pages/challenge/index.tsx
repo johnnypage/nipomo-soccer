@@ -2,14 +2,17 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useAuth } from "@/hooks/use-auth";
 import { useActiveKid } from "@/hooks/use-active-kid";
+import { useSubmissions } from "@/hooks/use-submissions";
 import KidSelector from "@/components/challenge/KidSelector";
 import AddKidForm from "@/components/challenge/AddKidForm";
+import WeekNavigation from "@/components/challenge/WeekNavigation";
+import PointsDisplay from "@/components/challenge/PointsDisplay";
 import { Redirect } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { getQueryFn } from "@/lib/queryClient";
 import type { Challenge } from "@shared/schema";
 import { useState } from "react";
-import { Plus, Trophy, Calendar } from "lucide-react";
+import { Plus, Calendar } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -44,6 +47,14 @@ export default function ChallengeHub() {
     enabled: isAuthenticated,
   });
 
+  const {
+    totalPoints,
+    hasSubmittedToday,
+    hasVideoBonusForWeek,
+    getWeekSubmissions,
+    invalidate,
+  } = useSubmissions(activeKid?.id ?? null);
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-night flex items-center justify-center">
@@ -58,15 +69,6 @@ export default function ChallengeHub() {
 
   const allChallenges = challengesData?.challenges ?? [];
   const currentWeek = getCurrentWeekNumber(allChallenges);
-
-  const currentWeekChallenges = activeKid && currentWeek
-    ? allChallenges.filter(
-        (c) => c.weekNumber === currentWeek && c.ageTrack === activeKid.ageTrack && c.active
-      )
-    : [];
-
-  const skillChallenge = currentWeekChallenges.find((c) => c.type === "skill");
-  const fitnessChallenge = currentWeekChallenges.find((c) => c.type === "fitness");
 
   return (
     <div className="min-h-screen bg-night">
@@ -87,9 +89,19 @@ export default function ChallengeHub() {
         ) : (
           <div className="mt-6">
             <div className="flex items-center justify-between mb-6">
-              <h1 className="font-display text-2xl uppercase tracking-wide text-warmwhite">
-                Summer Skills Challenge
-              </h1>
+              <div>
+                <h1 className="font-display text-2xl uppercase tracking-wide text-warmwhite">
+                  Summer Skills Challenge
+                </h1>
+                {activeKid && (
+                  <div className="mt-1">
+                    <PointsDisplay
+                      totalPoints={totalPoints}
+                      label={`${activeKid.displayName.split(" ")[0]} has`}
+                    />
+                  </div>
+                )}
+              </div>
               <Dialog open={addKidOpen} onOpenChange={setAddKidOpen}>
                 <DialogTrigger asChild>
                   <button className="flex items-center gap-2 text-gold hover:text-gold/80 text-sm font-semibold transition-colors">
@@ -105,42 +117,17 @@ export default function ChallengeHub() {
               </Dialog>
             </div>
 
-            {activeKid && currentWeekChallenges.length > 0 ? (
-              <div className="space-y-4">
-                <div className="bg-warmwhite/5 border border-warmwhite/12 rounded-lg p-6">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Calendar className="w-4 h-4 text-gold" />
-                    <span className="text-gold text-sm font-semibold uppercase tracking-wider">
-                      Week {currentWeekChallenges[0].weekNumber}
-                    </span>
-                  </div>
-
-                  {skillChallenge && (
-                    <div className="mb-4">
-                      <h2 className="text-warmwhite text-xl font-bold mb-1">
-                        {skillChallenge.title}
-                      </h2>
-                      {skillChallenge.theme && (
-                        <p className="text-warmwhite/40 text-sm mb-3">{skillChallenge.theme}</p>
-                      )}
-                      <p className="text-warmwhite/70">{skillChallenge.description}</p>
-                    </div>
-                  )}
-
-                  {fitnessChallenge && (
-                    <div className="border-t border-warmwhite/10 pt-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Trophy className="w-4 h-4 text-green-400" />
-                        <span className="text-green-400 text-sm font-semibold">Fitness Bonus</span>
-                      </div>
-                      <h3 className="text-warmwhite font-semibold mb-1">
-                        {fitnessChallenge.title}
-                      </h3>
-                      <p className="text-warmwhite/70 text-sm">{fitnessChallenge.description}</p>
-                    </div>
-                  )}
-                </div>
-              </div>
+            {activeKid && allChallenges.length > 0 && currentWeek ? (
+              <WeekNavigation
+                allChallenges={allChallenges}
+                currentWeek={currentWeek}
+                activeKid={activeKid}
+                hasSubmittedToday={hasSubmittedToday}
+                hasVideoBonusForWeek={hasVideoBonusForWeek}
+                getWeekSubmissions={getWeekSubmissions}
+                totalPoints={totalPoints}
+                onSubmitSuccess={invalidate}
+              />
             ) : (
               <div className="bg-warmwhite/5 border border-warmwhite/12 rounded-lg p-6 text-center">
                 <Calendar className="w-8 h-8 text-gold/40 mx-auto mb-3" />
