@@ -17,6 +17,8 @@ interface LeaderboardEntry {
   ageTrack: string;
   totalPoints: number;
   isRegistered: boolean;
+  currentStreak: number;
+  badgeCount: number;
 }
 
 interface LeaderboardResponse {
@@ -157,10 +159,13 @@ export default function Leaderboard() {
                   <PodiumCard
                     key={entry.kidId}
                     rank={entry.rank}
+                    kidId={entry.kidId}
                     displayName={entry.displayName}
                     ageTrack={entry.ageTrack}
                     totalPoints={entry.totalPoints}
                     isRegistered={entry.isRegistered}
+                    currentStreak={entry.currentStreak}
+                    badgeCount={entry.badgeCount}
                   />
                 ))}
               </div>
@@ -179,6 +184,8 @@ export default function Leaderboard() {
                     totalPoints={entry.totalPoints}
                     isRegistered={entry.isRegistered}
                     index={index}
+                    currentStreak={entry.currentStreak}
+                    badgeCount={entry.badgeCount}
                   />
                 ))}
               </div>
