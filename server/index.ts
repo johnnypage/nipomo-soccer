@@ -1,5 +1,8 @@
 import express, { type Request, Response, NextFunction } from "express";
 import path from "path";
+import session from "express-session";
+import connectPgSimple from "connect-pg-simple";
+import pg from "pg";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
@@ -14,6 +17,12 @@ declare module "http" {
   }
 }
 
+declare module "express-session" {
+  interface SessionData {
+    familyId: string;
+  }
+}
+
 app.use(
   express.json({
     verify: (req, _res, buf) => {
@@ -25,9 +34,6 @@ app.use(
 app.use(express.urlencoded({ extended: false }));
 
 // Redirect nipomosoccer.com to nipomosc.org
-// Use only the Host header (what the client actually requested), NOT x-forwarded-host
-// which Replit's proxy may set to the original domain regardless of which custom domain
-// the user typed, causing redirect loops for nipomosc.org visitors.
 app.use((req, res, next) => {
   const host = req.headers.host || "";
   const bareHost = host.split(":")[0].toLowerCase();
@@ -36,6 +42,32 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+// Trust proxy for secure cookies behind Replit's HTTPS proxy
+app.set("trust proxy", 1);
+
+// Session middleware -- PostgreSQL-backed sessions for family auth
+const PGStore = connectPgSimple(session);
+const sessionPool = new pg.Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
+app.use(session({
+  store: new PGStore({
+    pool: sessionPool,
+    tableName: "sessions",
+    createTableIfMissing: true,
+  }),
+  secret: process.env.SESSION_SECRET || "dev-session-secret-change-in-production",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+  },
+}));
 
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
