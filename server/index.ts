@@ -56,7 +56,7 @@ app.use(session({
   store: new PGStore({
     pool: sessionPool,
     tableName: "sessions",
-    createTableIfMissing: true,
+    createTableIfMissing: false,
   }),
   secret: process.env.SESSION_SECRET || "dev-session-secret-change-in-production",
   resave: false,
