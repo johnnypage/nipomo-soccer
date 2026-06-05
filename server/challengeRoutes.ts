@@ -1,10 +1,11 @@
 import type { Express } from "express";
 import { db } from "./db";
-import { families, kids, challenges, submissions } from "@shared/schema";
-import { signupSchema, addKidSchema, submitSchema, videoBonusSchema } from "@shared/challengeValidation";
+import { families, kids, challenges, submissions, drawings } from "@shared/schema";
+import { signupSchema, addKidSchema, submitSchema, videoBonusSchema, challengeEditSchema, drawingRequestSchema } from "@shared/challengeValidation";
 import { eq, and, gt, desc, gte, lt, count, sql } from "drizzle-orm";
 import { requireFamily } from "./challengeAuth";
-import { randomBytes } from "crypto";
+import { requireAuth } from "./auth";
+import { randomBytes, randomInt } from "crypto";
 import { differenceInYears, startOfDay, endOfDay, differenceInCalendarDays, subDays } from "date-fns";
 import sgMail from "@sendgrid/mail";
 import { z } from "zod";
@@ -806,6 +807,136 @@ export function registerChallengeRoutes(app: Express) {
     } catch (error) {
       console.error("Player profile error:", error);
       res.status(500).json({ error: "Failed to load player profile" });
+    }
+  });
+
+  // -- Admin Challenge Endpoints (Phase 4: ADM-01, ADM-02, ADM-04) --
+
+  // ADM-01: View all submissions with Cloudinary video URLs
+  app.get("/api/admin/challenge/submissions", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      const allSubmissions = await db.select({
+        id: submissions.id,
+        kidName: kids.displayName,
+        ageTrack: kids.ageTrack,
+        familyEmail: families.email,
+        challengeTitle: challenges.title,
+        weekNumber: submissions.weekNumber,
+        type: submissions.type,
+        points: submissions.points,
+        cloudinaryUrl: submissions.cloudinaryUrl,
+        thumbnailUrl: submissions.thumbnailUrl,
+        submittedAt: submissions.submittedAt,
+      })
+      .from(submissions)
+      .innerJoin(kids, eq(submissions.kidId, kids.id))
+      .innerJoin(families, eq(kids.familyId, families.id))
+      .innerJoin(challenges, eq(submissions.challengeId, challenges.id))
+      .orderBy(desc(submissions.submittedAt));
+
+      res.json({ submissions: allSubmissions });
+    } catch (error) {
+      console.error("Admin submissions error:", error);
+      res.status(500).json({ error: "Failed to fetch submissions" });
+    }
+  });
+
+  // ADM-02: Get all challenges for admin editing
+  app.get("/api/admin/challenge/challenges", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      const allChallenges = await db.select().from(challenges)
+        .orderBy(challenges.weekNumber, challenges.ageTrack, challenges.type);
+      res.json({ challenges: allChallenges });
+    } catch (error) {
+      console.error("Admin challenges error:", error);
+      res.status(500).json({ error: "Failed to fetch challenges" });
+    }
+  });
+
+  // ADM-02: Edit challenge content (PATCH -- only update provided fields)
+  app.patch("/api/admin/challenge/challenges/:id", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      const { id } = req.params;
+      const parseResult = challengeEditSchema.safeParse(req.body);
+      if (!parseResult.success) {
+        return res.status(400).json({ error: "Invalid challenge data", details: parseResult.error.flatten() });
+      }
+
+      const data = parseResult.data;
+      const updates: Record<string, any> = {};
+      if (data.title !== undefined) updates.title = data.title;
+      if (data.description !== undefined) updates.description = data.description;
+      if (data.videoUrl !== undefined) updates.videoUrl = data.videoUrl;
+      if (data.active !== undefined) updates.active = data.active;
+
+      if (Object.keys(updates).length === 0) {
+        return res.status(400).json({ error: "No fields to update" });
+      }
+
+      const [challenge] = await db.update(challenges).set(updates).where(eq(challenges.id, id)).returning();
+      if (!challenge) {
+        return res.status(404).json({ error: "Challenge not found" });
+      }
+
+      res.json({ challenge });
+    } catch (error) {
+      console.error("Admin challenge update error:", error);
+      res.status(500).json({ error: "Failed to update challenge" });
+    }
+  });
+
+  // ADM-04: Toggle NSC Player (isRegistered on families table)
+  // Note per RESEARCH Pitfall 4: isRegistered is on families, not kids.
+  // Toggling affects ALL kids in that family.
+  app.get("/api/admin/challenge/kids", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      const allKids = await db.select({
+        kidId: kids.id,
+        kidName: kids.displayName,
+        ageTrack: kids.ageTrack,
+        familyId: families.id,
+        familyEmail: families.email,
+        familyName: families.name,
+        isRegistered: families.isRegistered,
+      })
+      .from(kids)
+      .innerJoin(families, eq(kids.familyId, families.id))
+      .orderBy(families.email, kids.displayName);
+
+      res.json({ kids: allKids });
+    } catch (error) {
+      console.error("Admin kids error:", error);
+      res.status(500).json({ error: "Failed to fetch kids" });
+    }
+  });
+
+  app.patch("/api/admin/challenge/families/:id/registered", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      const { id } = req.params;
+      const { isRegistered } = req.body;
+
+      if (typeof isRegistered !== "boolean") {
+        return res.status(400).json({ error: "isRegistered must be a boolean" });
+      }
+
+      const [family] = await db.update(families)
+        .set({ isRegistered })
+        .where(eq(families.id, id))
+        .returning();
+
+      if (!family) {
+        return res.status(404).json({ error: "Family not found" });
+      }
+
+      res.json({ family: { id: family.id, email: family.email, name: family.name, isRegistered: family.isRegistered } });
+    } catch (error) {
+      console.error("Admin toggle registered error:", error);
+      res.status(500).json({ error: "Failed to update registration status" });
     }
   });
 }
