@@ -1075,4 +1075,47 @@ export function registerChallengeRoutes(app: Express) {
       res.status(500).json({ error: "Failed to export email list" });
     }
   });
+
+  // Pre-launch only: wipe all challenge participant data and reset the
+  // program to its empty state. Preserves the challenges seed table and
+  // everything outside the challenge program (shop, contact forms, etc).
+  // Guarded by both admin auth and an explicit confirm string in the body
+  // so a misfire from a bookmarked URL or test script can't trash data.
+  app.post("/api/admin/challenge/wipe-test-data", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    const confirm = (req.body as { confirm?: string } | undefined)?.confirm;
+    if (confirm !== "I_UNDERSTAND_THIS_WIPES_DATA") {
+      return res.status(400).json({
+        error: "Missing or incorrect confirm string",
+        hint: 'POST { "confirm": "I_UNDERSTAND_THIS_WIPES_DATA" }',
+      });
+    }
+    try {
+      // Order matters: drop children before parents to satisfy FKs.
+      const dropped = {
+        submissions: 0,
+        drawings: 0,
+        kids: 0,
+        families: 0,
+      };
+      await db.transaction(async (tx) => {
+        const s = await tx.delete(submissions).returning({ id: submissions.id });
+        dropped.submissions = s.length;
+        const d = await tx.delete(drawings).returning({ id: drawings.id });
+        dropped.drawings = d.length;
+        const k = await tx.delete(kids).returning({ id: kids.id });
+        dropped.kids = k.length;
+        const f = await tx.delete(families).returning({ id: families.id });
+        dropped.families = f.length;
+        // Invalidate every active session so no one stays logged in to a
+        // family that no longer exists.
+        await tx.execute(sql`DELETE FROM sessions`);
+      });
+      console.log(`[wipe-test-data] cleared ${JSON.stringify(dropped)}`);
+      res.json({ ok: true, dropped });
+    } catch (error) {
+      console.error("Wipe test data error:", error);
+      res.status(500).json({ error: "Failed to wipe test data" });
+    }
+  });
 }
