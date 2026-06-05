@@ -10,6 +10,7 @@ import { registerShopRoutes } from "./shopRoutes";
 import { registerCoachRoutes } from "./coachRoutes";
 import { registerPlacementRoutes } from "./placementRoutes";
 import { registerChallengeRoutes } from "./challengeRoutes";
+import { registerOAuthRoutes } from "./oauthRoutes";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
 
@@ -25,6 +26,7 @@ export async function registerRoutes(
   registerCoachRoutes(app);
   registerPlacementRoutes(app);
   registerChallengeRoutes(app);
+  registerOAuthRoutes(app);
 
   app.post("/api/contact", async (req, res) => {
     try {
