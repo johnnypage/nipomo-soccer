@@ -41,3 +41,24 @@ export const videoBonusSchema = z.object({
   weekNumber: z.number().int().min(1).max(8),
 });
 export type VideoBonusRequest = z.infer<typeof videoBonusSchema>;
+
+// -- Admin validation schemas (Phase 4: ADM-02, ADM-03) --
+
+export const challengeEditSchema = z.object({
+  title: z.string().min(1, "Title is required").max(200).optional(),
+  description: z.string().min(1, "Description is required").max(2000).optional(),
+  videoUrl: z.string().url("Must be a valid URL").optional().nullable(),
+  active: z.boolean().optional(),
+});
+
+export type ChallengeEditRequest = z.infer<typeof challengeEditSchema>;
+
+export const drawingRequestSchema = z.object({
+  type: z.enum(["weekly", "grand"]),
+  weekNumber: z.number().int().min(1).max(8).optional(),
+}).refine(
+  (data) => data.type === "grand" || (data.type === "weekly" && data.weekNumber !== undefined),
+  { message: "weekNumber is required for weekly drawings" }
+);
+
+export type DrawingRequest = z.infer<typeof drawingRequestSchema>;
