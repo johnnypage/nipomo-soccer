@@ -1,4 +1,5 @@
 import type { Express, Request, Response, NextFunction } from "express";
+import crypto from "crypto";
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { Strategy as AppleStrategy } from "passport-apple";
@@ -68,7 +69,28 @@ function normalizeApplePrivateKey(raw: string): string {
   let key = raw.includes("\\n") ? raw.replace(/\\n/g, "\n") : raw;
   // Strip surrounding quotes if the secret was pasted with them.
   key = key.replace(/^["']|["']$/g, "");
+  // Strip a UTF-8 BOM if one snuck in.
+  if (key.charCodeAt(0) === 0xfeff) key = key.slice(1);
   return key.trim();
+}
+
+// Round-trip the key through Node's crypto layer. This canonicalizes any
+// minor formatting issues (extra whitespace, missing newline before END,
+// non-standard line wrapping) and surfaces a clear error at startup if the
+// key really is broken -- rather than letting jsonwebtoken fail silently
+// inside the OAuth handshake with "secretOrPrivateKey must be an asymmetric
+// key when using ES256".
+function canonicalizeApplePrivateKey(pem: string): string {
+  const keyObject = crypto.createPrivateKey({
+    key: pem,
+    format: "pem",
+  });
+  if (keyObject.asymmetricKeyType !== "ec") {
+    throw new Error(
+      `Expected an EC private key for ES256, got ${keyObject.asymmetricKeyType ?? "unknown"}`,
+    );
+  }
+  return keyObject.export({ format: "pem", type: "pkcs8" }).toString();
 }
 
 function configureApple() {
@@ -77,9 +99,20 @@ function configureApple() {
     return false;
   }
 
-  const privateKey = normalizeApplePrivateKey(process.env.APPLE_PRIVATE_KEY!);
-  if (!privateKey.includes("BEGIN PRIVATE KEY")) {
+  const rawKey = normalizeApplePrivateKey(process.env.APPLE_PRIVATE_KEY!);
+  if (!rawKey.includes("BEGIN PRIVATE KEY")) {
     console.error("[oauth] APPLE_PRIVATE_KEY does not look like a PEM block. Did the .p8 contents get truncated?");
+    return false;
+  }
+
+  let privateKey: string;
+  try {
+    privateKey = canonicalizeApplePrivateKey(rawKey);
+    console.log(`[oauth] Apple private key parsed OK (length ${privateKey.length} bytes, type EC)`);
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error(`[oauth] Apple private key REJECTED by crypto.createPrivateKey: ${msg}`);
+    console.error(`[oauth]   raw length=${rawKey.length}, starts="${rawKey.slice(0, 32)}", ends="${rawKey.slice(-32)}"`);
     return false;
   }
 
