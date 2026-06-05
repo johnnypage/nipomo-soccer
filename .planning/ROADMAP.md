@@ -14,8 +14,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [ ] **Phase 1: Family Auth & Data Foundation** - Magic link auth, multi-kid profiles, database schema, Cloudinary config, challenge data seeded
 - [ ] **Phase 2: Core Loop** - Challenge display, video submission, points, leaderboard -- the complete participation cycle
-- [ ] **Phase 3: Engagement & Profiles** - Streaks, badges, player profiles -- the retention layer
+- [x] **Phase 3: Engagement & Profiles** - Streaks, badges, player profiles -- the retention layer
 - [ ] **Phase 4: Admin Tooling** - Challenge management, submission review, prize drawing, email export
+- [ ] **Phase 5: Pre-Launch Testing & Data Setup** - End-to-end testing with sample content, then wipe clean for go-live
 
 ## Phase Details
 
@@ -71,7 +72,14 @@ Plans:
   2. Achievement badges are awarded for "Perfect Week" (max points in a week), "Fitness All-Star" (all 8 fitness bonuses), and "Summer Champion" (at least 1 submission every week)
   3. Each child has a profile page at /challenge/player/:id showing name, age track, total points, streak, earned badges, and submission history (dates and challenge names)
   4. Leaderboard rows link to player profiles, and profiles display streak badges and achievement badges
-**Plans**: TBD
+**Plans:** 3 plans in 3 waves
+Plans:
+**Wave 1**
+- [x] 03-01-PLAN.md -- Badge definitions, streak/badge computation, player profile API endpoint, enhanced leaderboard API
+**Wave 2** *(blocked on Wave 1 completion)*
+- [x] 03-02-PLAN.md -- BadgeIcon/StreakBadge components, PlayerRow/PodiumCard links + streak indicators, leaderboard page updates
+**Wave 3** *(blocked on Wave 2 completion)*
+- [x] 03-03-PLAN.md -- Player profile page at /challenge/player/:id with route registration
 **UI hint**: yes
 
 ### Phase 4: Admin Tooling
@@ -86,15 +94,40 @@ Plans:
 **Plans**: TBD
 **UI hint**: yes
 
+### Phase 5: Pre-Launch Testing & Data Setup
+**Goal**: Complete end-to-end testing of every user flow with real sample content before launch, then wipe all test data clean for go-live
+**Depends on**: Phase 3 and Phase 4 (both must be complete)
+**Requirements**:
+- Shift challenge week dates so current week is "active" for testing
+- Seed sample challenge content (titles, descriptions, instructional video URLs) for at least 2 weeks
+- Test full submission flow: Cloudinary upload, points awarded, daily cap enforced
+- Test leaderboard with multiple kids across all 3 age tracks
+- Test streak and badge logic with multi-day submissions
+- Test player profile pages
+- Test all admin functions: submission review, challenge editing, prize drawing, email export
+- Test magic link flow on mobile devices
+- Verify Cloudinary free tier usage tracking within limits
+- Create a "wipe test data" admin action or script that resets families/kids/submissions but preserves challenge content
+- Verify production readiness: error handling, edge cases, mobile responsiveness
+**Success Criteria** (what must be TRUE):
+  1. All user flows tested end-to-end on live Replit deployment with real Cloudinary uploads
+  2. Admin can manage challenges, review submissions, run prize drawing, and export emails
+  3. Leaderboard displays correctly with kids across all age tracks, with badges and streaks visible
+  4. A clean "reset for launch" script exists that wipes test families/kids/submissions while preserving challenge content
+  5. Mobile testing confirms signup, upload, and leaderboard work on phone browsers
+**Plans**: TBD
+**UI hint**: no
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 -> 2 -> 3 -> 4
-Note: Phase 3 and Phase 4 both depend on Phase 2 and could theoretically run in parallel.
+Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
+Note: Phase 3 and Phase 4 both depend on Phase 2 and could theoretically run in parallel. Phase 5 requires both 3 and 4.
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Family Auth & Data Foundation | 3/3 | Complete | 2026-05-29 |
 | 2. Core Loop | 5/5 | In Progress | - |
-| 3. Engagement & Profiles | 0/? | Not started | - |
+| 3. Engagement & Profiles | 3/3 | Complete | 2026-05-29 |
 | 4. Admin Tooling | 0/? | Not started | - |
+| 5. Pre-Launch Testing & Data Setup | 0/? | Not started | - |

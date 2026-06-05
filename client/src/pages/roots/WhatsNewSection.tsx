@@ -10,8 +10,8 @@ const CHANGES = [
       "You and your child get out on the field together for soccer-related games, drills, and scrimmages in a fun weekend environment.",
     body: "This year we are introducing a Parent & Me program for our youngest players. You and your child get out on the field together for soccer-related games, drills, and scrimmages in a fun weekend environment. No practices, no pressure, just an introduction to the sport with mom or dad right there.",
     bullets: [
-      "For 2 and 3 year olds — no experience needed",
-      "Saturday sessions only — no weekday practices",
+      "For 2 and 3 year olds, no experience needed",
+      "Saturday sessions only, no weekday practices",
       "Parent on the field with their child the whole time",
       "Soccer-oriented games and activities, not competitive play",
     ],
@@ -29,6 +29,22 @@ const CHANGES = [
       "Coaches are not responsible for recruiting officials",
       "Higher standard of officiating and accountability",
     ],
+  },
+  {
+    id: "5v5",
+    icon: "⬡",
+    short: "A 5v5 league for middle school and high school",
+    ageBadge: "7th-12th Grade",
+    summary:
+      "No practices. Just games. Twice a week, 7th through 12th graders show up for fast-paced 5v5 on a smaller field with a goalkeeper.",
+    body: "No practices. Just games. Twice a week, 7th through 12th graders show up for fast-paced 5v5 on a smaller field with a goalkeeper. Thirty minutes of coached warmup, two competitive matches, done. Players touch the ball roughly 4 times per minute compared to less than once in traditional 11v11. It fits packed schedules and keeps older players on the field.",
+    bullets: [
+      "Two game nights per week, no separate practices",
+      "Over 20 games per season",
+      "Players touch the ball roughly 4x per minute",
+      "Fits alongside other sports, jobs, and homework",
+    ],
+    link: "/roots/5v5",
   },
   {
     id: "playtime",
@@ -86,10 +102,10 @@ export default function WhatsNewSection() {
             What's new this year
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-night">
-            Five big upgrades to this year's season
+            Six big upgrades to this year's season
           </h2>
           <p className="text-slate mt-2 text-[17px] leading-relaxed">
-            We make small improvements every season. But this year, there are five big shifts
+            We make small improvements every season. But this year, there are six big shifts
             coming to soccer in Nipomo that change how things work for players, coaches, and families.
           </p>
         </div>
@@ -157,6 +173,15 @@ export default function WhatsNewSection() {
                 ))}
               </ul>
             </div>
+
+            {"link" in current && current.link && (
+              <a
+                href={current.link as string}
+                className="inline-block mt-5 text-sm font-medium text-crimson hover:underline"
+              >
+                Learn more &#8594;
+              </a>
+            )}
           </div>
         </div>
       </div>

@@ -1,15 +1,15 @@
 const QUOTES = [
   {
     text: "I had never coached before and was terrified. The support from the club was incredible. By week three I actually felt like I knew what I was doing.",
-    attr: "First-year coach — 2025 Season",
+    attr: "First-year coach /2025 Season",
   },
   {
     text: "Watching my players grow over the season is the most rewarding thing I've done outside of my own family. I'm coaching again next year for sure.",
-    attr: "Parent-coach — 2025 Season",
+    attr: "Parent-coach /2025 Season",
   },
   {
     text: "They gave me a full practice plan, a gear bag, and a group chat with experienced coaches I could text any time. I never felt alone.",
-    attr: "Parent — 2025 Survey",
+    attr: "Parent /2025 Survey",
   },
 ];
 

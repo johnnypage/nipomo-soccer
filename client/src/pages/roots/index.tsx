@@ -2,7 +2,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "./HeroSection";
 import WhatIsSection from "./WhatIsSection";
-import WhatsNewSection from "./WhatsNewSection";
 import DivisionSection from "./DivisionSection";
 import FamilyFeedbackSection from "./FamilyFeedbackSection";
 import PathwaySection from "./PathwaySection";
@@ -18,7 +17,6 @@ export default function Roots() {
       <HeroSection />
       <WhatIsSection />
       <DivisionSection />
-      <WhatsNewSection />
       <FamilyFeedbackSection />
       <CoachCTASection />
       <FAQSection />

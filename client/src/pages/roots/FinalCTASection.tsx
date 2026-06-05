@@ -6,7 +6,7 @@ export default function FinalCTASection() {
           <p className="text-warmwhite/80 italic text-xl leading-relaxed">
             "Our kids had an amazing experience and they can't wait for next year."
           </p>
-          <footer className="mt-2 text-xs font-mono text-warmwhite/40 uppercase tracking-wider">Parent — 2025 Survey</footer>
+          <footer className="mt-2 text-xs font-mono text-warmwhite/40 uppercase tracking-wider">Parent / 2025 Survey</footer>
         </blockquote>
         <h2 className="font-display text-warmwhite text-[clamp(48px,7vw,88px)] uppercase leading-[0.95]">
           Ready to play?

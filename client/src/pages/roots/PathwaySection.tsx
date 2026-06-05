@@ -4,7 +4,7 @@ const PROGRAMS = [
     tag: "Recreational",
     season: "Fall season",
     description:
-      "Saturday games, weekday practices. Where every player belongs. No tryouts, no experience required — just show up and play.",
+      "Saturday games, weekday practices. Where every player belongs. No tryouts, no experience required. Just show up and play.",
     color: "border-crimson",
     tagColor: "bg-crimson/10 text-crimson border-crimson/30",
     active: true,

@@ -1,3 +1,20 @@
+/* Hero entrance */
+@keyframes roots-fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.roots-hero__inner > * {
+  animation: roots-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.roots-hero__inner > *:nth-child(1) { animation-delay: 0.05s; }
+.roots-hero__inner > *:nth-child(2) { animation-delay: 0.15s; }
+.roots-hero__inner > *:nth-child(3) { animation-delay: 0.25s; }
+.roots-hero__inner > *:nth-child(4) { animation-delay: 0.35s; }
+.roots-hero__inner > *:nth-child(5) { animation-delay: 0.45s; }
+@media (prefers-reduced-motion: reduce) {
+  .roots-hero__inner > * { animation: none; }
+}
+
 /* Hero */
 .roots-hero {
   position: relative;
@@ -28,11 +45,11 @@
   z-index: 1;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 112px 24px 64px;
+  padding: 148px 24px 64px;
 }
 @media (max-width: 640px) {
   .roots-hero__inner {
-    padding-top: 140px;
+    padding-top: 164px;
   }
 }
 
@@ -78,7 +95,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
-  margin-top: 28px;
 }
 @media (max-width: 680px) {
   .roots-division-detail {

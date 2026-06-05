@@ -52,6 +52,17 @@ const FAQS: { q: string; a: ReactNode }[] = [
     a: "Yes. ROOTS is open to all players regardless of what other programs or sports they are in. Playtime is tied to practice attendance, and that applies to everyone equally.",
   },
   {
+    q: "What is the 5v5 division?",
+    a: (
+      <>
+        Our 5v5 division is for 7th through 12th graders. Instead of traditional 11v11 with separate practices, players show up twice a week (one weeknight, one Saturday) for fast-paced 5v5 games on a smaller field with a goalkeeper. Each session includes a coached warmup and two competitive matches. Players get over 20 games per season.{" "}
+        <a href="/roots/5v5" className="text-crimson hover:underline">
+          Learn more about 5v5.
+        </a>
+      </>
+    ),
+  },
+  {
     q: "What is the playtime policy?",
     a: "For 1st grade and up, playing time is tied to practice attendance tracked in Spond. Kids who come to practice consistently earn more game time. Players with full participation follow the three-quarter rule, meaning every player must play three quarters before any player plays the full game. This rewards effort while making sure every committed player gets meaningful time on the field.",
   },
@@ -93,7 +104,7 @@ const FAQS: { q: string; a: ReactNode }[] = [
   },
   {
     q: "Are there scholarships available?",
-    a: "Yes. We have scholarship opportunities through donors in the community. We do not want cost to keep any kid off the field. Email admin@nipomosc.org if your family needs assistance.",
+    a: "Yes. We have scholarship opportunities through donors in the community. We do not want cost to keep any kid off the field. Email admin@nipomosoccer.com if your family needs assistance.",
   },
   {
     q: "What should my kid bring to games and practices?",
@@ -134,8 +145,8 @@ export default function FAQSection() {
           </h2>
           <p className="text-slate mt-3 text-[17px]">
             If something is missing, email{" "}
-            <a href="mailto:admin@nipomosc.org" className="text-crimson hover:underline">
-              admin@nipomosc.org
+            <a href="mailto:admin@nipomosoccer.com" className="text-crimson hover:underline">
+              admin@nipomosoccer.com
             </a>.
           </p>
         </div>
@@ -145,7 +156,7 @@ export default function FAQSection() {
             <details
               key={i}
               className="group bg-white rounded-xl border border-black/8"
-              open={i === 0}
+              open={false}
             >
               <summary className="flex items-center justify-between cursor-pointer px-6 py-5 font-medium text-night list-none [&::-webkit-details-marker]:hidden">
                 <span>{f.q}</span>

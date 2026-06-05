@@ -1,0 +1,65 @@
+# Nipomo SC Instagram Analytics MCP Server
+
+## What This Is
+
+A local MCP (Model Context Protocol) server that connects to the Meta Graph API, giving Claude Code on-demand access to @nipomo.soccer's Instagram analytics. It pulls post-level performance data, follower growth, audience demographics, and content comparisons -- then surfaces actionable recommendations for what to post next, tied to the club's content pillars and social media plan.
+
+## Core Value
+
+Claude can pull real Instagram performance data during any conversation and recommend what content to create next based on what's actually working.
+
+## Requirements
+
+### Validated
+
+(None yet -- ship to validate)
+
+### Active
+
+- [ ] MCP server connects to Meta Graph API with Instagram Business account credentials
+- [ ] Pull post-level metrics: reach, impressions, engagement rate, saves, shares per post/reel
+- [ ] Pull follower growth data over configurable time windows
+- [ ] Pull audience demographics: age ranges, geographic locations
+- [ ] Compare performance across content pillars (identity, program info, community, social proof)
+- [ ] Identify top-performing content by engagement metrics
+- [ ] Surface optimal posting times based on audience activity data
+- [ ] Benchmark against competitor accounts (local SLO County/Central Coast clubs + similar-sized youth sports accounts)
+- [ ] Generate "what to post next" recommendations based on performance gaps and content calendar
+- [ ] Run locally on Mac as an MCP server accessible to Claude Code
+
+### Out of Scope
+
+- Comment reading/replying -- focus on analytics only for v1
+- DM management -- requires separate Meta app review with messaging permissions
+- Content publishing/scheduling -- use existing tools (Ashley's workflow)
+- Cloud hosting -- local-only for now, though architecture should not preclude future migration
+- Cross-platform analytics (Facebook, TikTok) -- Instagram only for v1
+
+## Context
+
+- @nipomo.soccer is the club's Instagram account, run by Johnny (strategy, captions) and Ashley (graphics, scheduling)
+- The account follows a 5-week social media plan with defined content pillars and posting ratios
+- Current registration push for RISE Spring Development League (55/200 target as of March 15)
+- The club needs data-driven content decisions, not just gut feel
+- Meta Graph API requires a Meta Developer App and Instagram Business/Creator account token
+- MCP servers integrate natively with Claude Code via configuration
+
+## Constraints
+
+- **API**: Meta Graph API rate limits (200 calls/user/hour for most endpoints)
+- **Auth**: Requires Meta Developer App approval and long-lived access token management
+- **Competitor data**: Meta API only exposes public metrics for business accounts via Instagram Basic Display API / scraping is against TOS -- competitor benchmarking limited to publicly available data
+- **Local runtime**: Must run as a local process on macOS, started alongside Claude Code sessions
+- **Token refresh**: Meta tokens expire; server must handle token refresh or alert when expired
+
+## Key Decisions
+
+| Decision | Rationale | Outcome |
+|----------|-----------|---------|
+| Local MCP server (not cloud) | Simplest setup, no hosting cost, sufficient for on-demand use | -- Pending |
+| No comment/DM features in v1 | Keeps scope tight, avoids Meta messaging permissions review | -- Pending |
+| Node.js runtime | MCP SDK has first-class TypeScript/Node support | -- Pending |
+| Competitor benchmarking via public data only | Meta TOS prohibits scraping; API access to others' accounts is limited | -- Pending |
+
+---
+*Last updated: 2026-03-17 after initialization*
