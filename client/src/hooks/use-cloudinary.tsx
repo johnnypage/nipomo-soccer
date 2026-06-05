@@ -15,10 +15,20 @@ export function useCloudinaryUpload({ onSuccess, onError }: UseCloudinaryOptions
       return;
     }
 
+    const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+    if (!cloudName) {
+      onError?.(
+        new Error(
+          "Cloudinary cloud name is missing. The deployment was built without VITE_CLOUDINARY_CLOUD_NAME.",
+        ),
+      );
+      return;
+    }
+
     if (!widgetRef.current) {
       widgetRef.current = window.cloudinary.createUploadWidget(
         {
-          cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
+          cloudName,
           uploadPreset: "nsc_challenge",
           sources: ["local", "camera"],
           resourceType: "video",
