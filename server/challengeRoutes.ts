@@ -939,4 +939,140 @@ export function registerChallengeRoutes(app: Express) {
       res.status(500).json({ error: "Failed to update registration status" });
     }
   });
+
+  // -- Prize Drawing & Email Export (Phase 4: ADM-03, ADM-05) --
+
+  // ADM-03: Trigger weighted prize drawing
+  app.post("/api/admin/challenge/drawing", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      const parseResult = drawingRequestSchema.safeParse(req.body);
+      if (!parseResult.success) {
+        return res.status(400).json({ error: "Invalid drawing request", details: parseResult.error.flatten() });
+      }
+
+      const { type, weekNumber } = parseResult.data;
+
+      // Build points-per-kid query, filtered by weekNumber for weekly drawings
+      const conditions = weekNumber ? eq(submissions.weekNumber, weekNumber) : undefined;
+
+      const entries = await db.select({
+        kidId: submissions.kidId,
+        totalPoints: sql<number>`cast(sum(${submissions.points}) as int)`,
+      })
+      .from(submissions)
+      .where(conditions)
+      .groupBy(submissions.kidId);
+
+      if (entries.length === 0) {
+        return res.status(400).json({ error: "No entries found for this drawing" });
+      }
+
+      // Build weighted pool: each point = 1 entry
+      const totalEntries = entries.reduce((sum, e) => sum + e.totalPoints, 0);
+
+      // Pick random entry using crypto.randomInt (CSPRNG)
+      const pick = randomInt(0, totalEntries);
+      let running = 0;
+      let winnerId = entries[entries.length - 1].kidId; // fallback
+      for (const entry of entries) {
+        running += entry.totalPoints;
+        if (pick < running) {
+          winnerId = entry.kidId;
+          break;
+        }
+      }
+
+      // Get winner name for denormalized storage
+      const [winner] = await db.select({ displayName: kids.displayName }).from(kids).where(eq(kids.id, winnerId));
+
+      // Store drawing result
+      const [drawing] = await db.insert(drawings).values({
+        weekNumber: weekNumber ?? null,
+        type,
+        winnerKidId: winnerId,
+        winnerName: winner?.displayName ?? "Unknown",
+        totalEntries,
+      }).returning();
+
+      res.json({
+        drawing,
+        message: `${winner?.displayName ?? "Unknown"} wins the ${type} drawing with ${totalEntries} total entries!`,
+      });
+    } catch (error) {
+      console.error("Admin drawing error:", error);
+      res.status(500).json({ error: "Failed to run prize drawing" });
+    }
+  });
+
+  // ADM-03: Get drawing history
+  app.get("/api/admin/challenge/drawings", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      const allDrawings = await db.select().from(drawings).orderBy(desc(drawings.drawnAt));
+      res.json({ drawings: allDrawings });
+    } catch (error) {
+      console.error("Admin drawings history error:", error);
+      res.status(500).json({ error: "Failed to fetch drawing history" });
+    }
+  });
+
+  // ADM-05: View email list
+  app.get("/api/admin/challenge/emails", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      const emailList = await db.select({
+        id: families.id,
+        email: families.email,
+        name: families.name,
+        isRegistered: families.isRegistered,
+        kidCount: sql<number>`cast(count(${kids.id}) as int)`,
+        createdAt: families.createdAt,
+      })
+      .from(families)
+      .leftJoin(kids, eq(kids.familyId, families.id))
+      .groupBy(families.id, families.email, families.name, families.isRegistered, families.createdAt)
+      .orderBy(desc(families.createdAt));
+
+      res.json({ emails: emailList, total: emailList.length });
+    } catch (error) {
+      console.error("Admin emails error:", error);
+      res.status(500).json({ error: "Failed to fetch email list" });
+    }
+  });
+
+  // ADM-05: Export email list as CSV
+  app.get("/api/admin/challenge/emails/export", async (req, res) => {
+    if (!requireAuth(req, res)) return;
+    try {
+      const emailList = await db.select({
+        email: families.email,
+        name: families.name,
+        isRegistered: families.isRegistered,
+        kidCount: sql<number>`cast(count(${kids.id}) as int)`,
+        createdAt: families.createdAt,
+      })
+      .from(families)
+      .leftJoin(kids, eq(kids.familyId, families.id))
+      .groupBy(families.id, families.email, families.name, families.isRegistered, families.createdAt)
+      .orderBy(desc(families.createdAt));
+
+      const headers = ["Email", "Name", "NSC Player", "Kids", "Signed Up"];
+      const rows = emailList.map((f) => [
+        f.email,
+        `"${(f.name || "").replace(/"/g, '""')}"`,
+        f.isRegistered ? "Yes" : "No",
+        f.kidCount,
+        new Date(f.createdAt).toISOString(),
+      ].join(","));
+
+      const csv = [headers.join(","), ...rows].join("\n");
+      res.setHeader("Content-Type", "text/csv");
+      res.setHeader("Content-Disposition", "attachment; filename=challenge-emails.csv");
+      res.send(csv);
+    } catch (error) {
+      console.error("Admin email export error:", error);
+      res.status(500).json({ error: "Failed to export email list" });
+    }
+  });
 }
