@@ -61,9 +61,25 @@ function configureGoogle() {
   return true;
 }
 
+function normalizeApplePrivateKey(raw: string): string {
+  // Replit's Secrets UI sometimes stores newlines as the two-character
+  // sequence \n. jsonwebtoken needs real newlines or it throws
+  // "PEM_read_bio_PrivateKey".
+  let key = raw.includes("\\n") ? raw.replace(/\\n/g, "\n") : raw;
+  // Strip surrounding quotes if the secret was pasted with them.
+  key = key.replace(/^["']|["']$/g, "");
+  return key.trim();
+}
+
 function configureApple() {
   if (!isConfigured("APPLE_CLIENT_ID", "APPLE_TEAM_ID", "APPLE_KEY_ID", "APPLE_PRIVATE_KEY")) {
     console.warn("[oauth] Apple strategy not configured (missing one of APPLE_CLIENT_ID/TEAM_ID/KEY_ID/PRIVATE_KEY)");
+    return false;
+  }
+
+  const privateKey = normalizeApplePrivateKey(process.env.APPLE_PRIVATE_KEY!);
+  if (!privateKey.includes("BEGIN PRIVATE KEY")) {
+    console.error("[oauth] APPLE_PRIVATE_KEY does not look like a PEM block. Did the .p8 contents get truncated?");
     return false;
   }
 
@@ -73,7 +89,7 @@ function configureApple() {
         clientID: process.env.APPLE_CLIENT_ID!,
         teamID: process.env.APPLE_TEAM_ID!,
         keyID: process.env.APPLE_KEY_ID!,
-        privateKeyString: process.env.APPLE_PRIVATE_KEY!,
+        privateKeyString: privateKey,
         callbackURL: `${APP_URL}/api/auth/apple/callback`,
         passReqToCallback: true,
       },
@@ -215,16 +231,18 @@ export function registerOAuthRoutes(app: Express) {
     );
 
     const appleCallback = (req: Request, res: Response, next: NextFunction) => {
-      passport.authenticate("apple", { session: false }, async (err: unknown, user: OAuthUser | false) => {
+      passport.authenticate("apple", { session: false }, async (err: unknown, user: OAuthUser | false, info: unknown) => {
         if (err || !user) {
-          console.error("[oauth] apple callback failed", err);
+          const errMsg = err instanceof Error ? `${err.name}: ${err.message}` : String(err);
+          console.error(`[oauth] apple callback failed: err=${errMsg} info=${JSON.stringify(info)} body-keys=${Object.keys(req.body || {}).join(",")}`);
           return res.redirect(`${SIGNUP_PATH}?error=oauth`);
         }
         try {
           const familyId = await findOrLinkOrCreate(user);
           completeLogin(familyId, req, res);
         } catch (e) {
-          console.error("[oauth] apple find-or-create failed", e);
+          const errMsg = e instanceof Error ? `${e.name}: ${e.message}` : String(e);
+          console.error(`[oauth] apple find-or-create failed: ${errMsg}`);
           res.redirect(`${SIGNUP_PATH}?error=server`);
         }
       })(req, res, next);
