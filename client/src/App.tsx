@@ -21,6 +21,9 @@ import TeamPlacement from "@/pages/TeamPlacement";
 import ChallengeHub from "@/pages/challenge/index";
 import ChallengeSignup from "@/pages/challenge/signup";
 import Leaderboard from "@/pages/challenge/leaderboard";
+import Privacy from "@/pages/legal/privacy";
+import Terms from "@/pages/legal/terms";
+import ParticipationAgreement from "@/pages/legal/participation-agreement";
 
 function Router() {
   return (
@@ -37,6 +40,9 @@ function Router() {
       <Route path="/order-confirmation" component={OrderConfirmation} />
       <Route path="/team-placement" component={TeamPlacement} />
       <Route path="/admin" component={Admin} />
+      <Route path="/privacy" component={Privacy} />
+      <Route path="/terms" component={Terms} />
+      <Route path="/participation-agreement" component={ParticipationAgreement} />
       <Route path="/challenge" nest>
         <Switch>
           <Route path="/">

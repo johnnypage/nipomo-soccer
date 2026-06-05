@@ -231,6 +231,31 @@ export default function Footer({ onNavigate }: FooterProps) {
           <p className="text-warmwhite/40 text-sm">
             © {currentYear} Nipomo Soccer Club. All rights reserved.
           </p>
+          <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm text-warmwhite/40">
+            <Link
+              href="/privacy"
+              className="hover:text-warmwhite transition-colors"
+              data-testid="footer-link-privacy"
+            >
+              Privacy
+            </Link>
+            <span className="text-warmwhite/20">·</span>
+            <Link
+              href="/terms"
+              className="hover:text-warmwhite transition-colors"
+              data-testid="footer-link-terms"
+            >
+              Terms
+            </Link>
+            <span className="text-warmwhite/20">·</span>
+            <Link
+              href="/participation-agreement"
+              className="hover:text-warmwhite transition-colors"
+              data-testid="footer-link-participation-agreement"
+            >
+              Participation Agreement
+            </Link>
+          </nav>
           <p className="text-warmwhite/40 text-sm">
             <span className="font-display text-warmwhite/60">ROOTS. RISE. REIGN.</span>
           </p>
