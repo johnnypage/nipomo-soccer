@@ -71,7 +71,21 @@ function normalizeApplePrivateKey(raw: string): string {
   key = key.replace(/^["']|["']$/g, "");
   // Strip a UTF-8 BOM if one snuck in.
   if (key.charCodeAt(0) === 0xfeff) key = key.slice(1);
-  return key.trim();
+  key = key.trim();
+
+  // Some secret stores (Replit's UI among them) collapse the PEM's newlines
+  // into spaces, leaving everything on a single line. Rebuild the PEM by
+  // extracting the base64 body between the BEGIN/END markers, stripping all
+  // whitespace, and re-wrapping at 64 chars per line.
+  const match = key.match(/-----BEGIN ([A-Z0-9 ]+?)-----([\s\S]*?)-----END \1-----/);
+  if (match) {
+    const label = match[1].trim();
+    const body = match[2].replace(/\s+/g, "");
+    const wrapped = body.match(/.{1,64}/g)?.join("\n") ?? body;
+    key = `-----BEGIN ${label}-----\n${wrapped}\n-----END ${label}-----\n`;
+  }
+
+  return key;
 }
 
 // Round-trip the key through Node's crypto layer. This canonicalizes any
