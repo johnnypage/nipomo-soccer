@@ -1,0 +1,238 @@
+import type { Express, Request, Response, NextFunction } from "express";
+import passport from "passport";
+import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import { Strategy as AppleStrategy } from "passport-apple";
+import jwt from "jsonwebtoken";
+import { db } from "./db";
+import { families } from "@shared/schema";
+import { eq } from "drizzle-orm";
+
+type OAuthUser = {
+  provider: "google" | "apple";
+  sub: string;
+  email: string;
+  name?: string;
+};
+
+declare global {
+  namespace Express {
+    interface User extends OAuthUser {}
+  }
+}
+
+const APP_URL = process.env.APP_URL || "https://nipomosc.org";
+const SIGNUP_PATH = "/challenge/signup";
+const SUCCESS_PATH = "/challenge";
+
+function isConfigured(...envVars: string[]) {
+  return envVars.every((v) => typeof process.env[v] === "string" && process.env[v]!.length > 0);
+}
+
+function configureGoogle() {
+  if (!isConfigured("GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET")) {
+    console.warn("[oauth] Google strategy not configured (missing GOOGLE_CLIENT_ID or GOOGLE_CLIENT_SECRET)");
+    return false;
+  }
+
+  passport.use(
+    new GoogleStrategy(
+      {
+        clientID: process.env.GOOGLE_CLIENT_ID!,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+        callbackURL: `${APP_URL}/api/auth/google/callback`,
+        scope: ["openid", "email", "profile"],
+      },
+      (_accessToken, _refreshToken, profile, done) => {
+        const email = profile.emails?.[0]?.value?.toLowerCase();
+        if (!email) {
+          return done(new Error("Google profile missing email"));
+        }
+        const user: OAuthUser = {
+          provider: "google",
+          sub: profile.id,
+          email,
+          name: profile.displayName || undefined,
+        };
+        done(null, user);
+      },
+    ),
+  );
+
+  return true;
+}
+
+function configureApple() {
+  if (!isConfigured("APPLE_CLIENT_ID", "APPLE_TEAM_ID", "APPLE_KEY_ID", "APPLE_PRIVATE_KEY")) {
+    console.warn("[oauth] Apple strategy not configured (missing one of APPLE_CLIENT_ID/TEAM_ID/KEY_ID/PRIVATE_KEY)");
+    return false;
+  }
+
+  passport.use(
+    new AppleStrategy(
+      {
+        clientID: process.env.APPLE_CLIENT_ID!,
+        teamID: process.env.APPLE_TEAM_ID!,
+        keyID: process.env.APPLE_KEY_ID!,
+        privateKeyString: process.env.APPLE_PRIVATE_KEY!,
+        callbackURL: `${APP_URL}/api/auth/apple/callback`,
+        passReqToCallback: true,
+      },
+      (req, _accessToken, _refreshToken, idToken, _profile, done) => {
+        try {
+          const decoded = jwt.decode(idToken) as
+            | { sub?: string; email?: string }
+            | null;
+          if (!decoded?.sub || !decoded.email) {
+            return done(new Error("Apple idToken missing sub or email"));
+          }
+
+          // Apple posts a `user` form field with first/last name only on the
+          // first authentication. Subsequent sign-ins omit it.
+          let name: string | undefined;
+          const userField = (req.body as { user?: string } | undefined)?.user;
+          if (typeof userField === "string" && userField.length > 0) {
+            try {
+              const parsed = JSON.parse(userField) as {
+                name?: { firstName?: string; lastName?: string };
+              };
+              const first = parsed.name?.firstName?.trim();
+              const last = parsed.name?.lastName?.trim();
+              name = [first, last].filter(Boolean).join(" ") || undefined;
+            } catch {
+              // Malformed -- ignore; not fatal.
+            }
+          }
+
+          const user: OAuthUser = {
+            provider: "apple",
+            sub: decoded.sub,
+            email: decoded.email.toLowerCase(),
+            name,
+          };
+          done(null, user);
+        } catch (e) {
+          done(e instanceof Error ? e : new Error("Apple verify failed"));
+        }
+      },
+    ),
+  );
+
+  return true;
+}
+
+async function findOrLinkOrCreate(user: OAuthUser): Promise<string> {
+  const providerColumn = user.provider === "google" ? families.googleId : families.appleId;
+
+  // 1. Provider ID match -- existing linked account
+  const [byProvider] = await db.select().from(families).where(eq(providerColumn, user.sub));
+  if (byProvider) return byProvider.id;
+
+  // 2. Email match -- link this provider to the existing family
+  const [byEmail] = await db.select().from(families).where(eq(families.email, user.email));
+  if (byEmail) {
+    const patch: Record<string, string> = {};
+    patch[user.provider === "google" ? "googleId" : "appleId"] = user.sub;
+    if (!byEmail.name && user.name) patch.name = user.name;
+    await db.update(families).set(patch).where(eq(families.id, byEmail.id));
+    return byEmail.id;
+  }
+
+  // 3. New family -- record consent at signup (PRIV-01)
+  const [created] = await db
+    .insert(families)
+    .values({
+      email: user.email,
+      name: user.name ?? null,
+      consentGivenAt: new Date(),
+      googleId: user.provider === "google" ? user.sub : null,
+      appleId: user.provider === "apple" ? user.sub : null,
+    })
+    .returning({ id: families.id });
+
+  return created.id;
+}
+
+function completeLogin(familyId: string, req: Request, res: Response) {
+  req.session.regenerate((err) => {
+    if (err) {
+      console.error("[oauth] session regenerate failed", err);
+      return res.redirect(`${SIGNUP_PATH}?error=session`);
+    }
+    req.session.familyId = familyId;
+    req.session.save((saveErr) => {
+      if (saveErr) {
+        console.error("[oauth] session save failed", saveErr);
+        return res.redirect(`${SIGNUP_PATH}?error=session`);
+      }
+      res.redirect(SUCCESS_PATH);
+    });
+  });
+}
+
+export function registerOAuthRoutes(app: Express) {
+  const googleReady = configureGoogle();
+  const appleReady = configureApple();
+
+  app.use(passport.initialize());
+
+  app.get("/api/auth/oauth-status", (_req, res) => {
+    res.json({ google: googleReady, apple: appleReady });
+  });
+
+  if (googleReady) {
+    app.get(
+      "/api/auth/google",
+      passport.authenticate("google", {
+        scope: ["openid", "email", "profile"],
+        session: false,
+      }),
+    );
+
+    app.get(
+      "/api/auth/google/callback",
+      (req, res, next) => {
+        passport.authenticate("google", { session: false }, async (err: unknown, user: OAuthUser | false) => {
+          if (err || !user) {
+            console.error("[oauth] google callback failed", err);
+            return res.redirect(`${SIGNUP_PATH}?error=oauth`);
+          }
+          try {
+            const familyId = await findOrLinkOrCreate(user);
+            completeLogin(familyId, req, res);
+          } catch (e) {
+            console.error("[oauth] google find-or-create failed", e);
+            res.redirect(`${SIGNUP_PATH}?error=server`);
+          }
+        })(req, res, next);
+      },
+    );
+  }
+
+  if (appleReady) {
+    app.get(
+      "/api/auth/apple",
+      passport.authenticate("apple", { session: false }),
+    );
+
+    const appleCallback = (req: Request, res: Response, next: NextFunction) => {
+      passport.authenticate("apple", { session: false }, async (err: unknown, user: OAuthUser | false) => {
+        if (err || !user) {
+          console.error("[oauth] apple callback failed", err);
+          return res.redirect(`${SIGNUP_PATH}?error=oauth`);
+        }
+        try {
+          const familyId = await findOrLinkOrCreate(user);
+          completeLogin(familyId, req, res);
+        } catch (e) {
+          console.error("[oauth] apple find-or-create failed", e);
+          res.redirect(`${SIGNUP_PATH}?error=server`);
+        }
+      })(req, res, next);
+    };
+
+    // Apple uses form_post response mode -- callback arrives as POST.
+    app.post("/api/auth/apple/callback", appleCallback);
+    // Some Apple flows / older configs fall back to GET; tolerate both.
+    app.get("/api/auth/apple/callback", appleCallback);
+  }
+}

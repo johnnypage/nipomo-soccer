@@ -221,6 +221,8 @@ export const families = pgTable("families", {
   tokenExpiresAt: timestamp("token_expires_at"),
   consentGivenAt: timestamp("consent_given_at"),
   isRegistered: boolean("is_registered").notNull().default(false),
+  googleId: text("google_id").unique(),
+  appleId: text("apple_id").unique(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
