@@ -288,3 +288,18 @@ export const insertSubmissionSchema = createInsertSchema(submissions).omit({ id:
 
 export type InsertSubmission = z.infer<typeof insertSubmissionSchema>;
 export type Submission = typeof submissions.$inferSelect;
+
+export const drawings = pgTable("drawings", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  weekNumber: integer("week_number"),
+  type: text("type").notNull(),
+  winnerKidId: varchar("winner_kid_id").notNull().references(() => kids.id),
+  winnerName: text("winner_name").notNull(),
+  totalEntries: integer("total_entries").notNull(),
+  drawnAt: timestamp("drawn_at").defaultNow().notNull(),
+});
+
+export const insertDrawingSchema = createInsertSchema(drawings).omit({ id: true, drawnAt: true });
+
+export type InsertDrawing = z.infer<typeof insertDrawingSchema>;
+export type Drawing = typeof drawings.$inferSelect;
