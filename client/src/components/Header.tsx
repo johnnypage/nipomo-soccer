@@ -26,6 +26,7 @@ export default function Header({ onNavigate }: HeaderProps) {
     { label: "Roots", href: "/roots", description: "Community Recreational Soccer" },
     { label: "Rise", href: "/rise", description: "Spring Development League" },
     { label: "Reign", href: "/reign", description: "Competitive Club Soccer" },
+    { label: "Copa De Costa", href: "/copa-de-costa", description: "July 25–26 Tournament" },
   ];
 
   const aboutLinks = [
@@ -33,10 +34,6 @@ export default function Header({ onNavigate }: HeaderProps) {
     { label: "Nipomo Soccer vs. AYSO", href: "/about/compare" },
     { label: "Volunteer With Us", href: "/volunteer" },
     { label: "Coach With Us", href: "/coach" },
-  ];
-
-  const tournamentLinks = [
-    { label: "Copa De Costa", href: "/copa-de-costa" },
   ];
 
   const navItems = [
@@ -128,21 +125,6 @@ export default function Header({ onNavigate }: HeaderProps) {
                 {item.label}
               </button>
             ))}
-            <DropdownMenu>
-              <DropdownMenuTrigger className="font-integral text-warmwhite/80 hover:text-warmwhite font-bold uppercase tracking-wide transition-colors flex items-center gap-1" data-testid="nav-tournaments">
-                Tournaments
-                <ChevronDown className="h-4 w-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-night border-slate/30">
-                {tournamentLinks.map((link) => (
-                  <DropdownMenuItem key={link.label} asChild className="cursor-pointer">
-                    <Link href={link.href} data-testid={`nav-tournament-${link.label.toLowerCase().replace(/\s+/g, '-')}`}>
-                      <span className="font-heading font-semibold text-warmwhite">{link.label}</span>
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
           </nav>
 
           <div className="flex items-center gap-3">
@@ -235,20 +217,6 @@ export default function Header({ onNavigate }: HeaderProps) {
                 >
                   {item.label}
                 </button>
-              ))}
-            </div>
-            <div className="border-t border-slate/20 pt-3">
-              <div className="text-warmwhite/60 text-sm font-medium uppercase tracking-wide pb-1">Tournaments</div>
-              {tournamentLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full text-left text-warmwhite/80 hover:text-warmwhite font-medium py-2 pl-3"
-                  data-testid={`mobile-nav-tournament-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
-                >
-                  {link.label}
-                </Link>
               ))}
             </div>
             <a
