@@ -35,6 +35,10 @@ export default function Header({ onNavigate }: HeaderProps) {
     { label: "Coach With Us", href: "/coach" },
   ];
 
+  const tournamentLinks = [
+    { label: "Copa De Costa", href: "/copa-de-costa" },
+  ];
+
   const navItems = [
     { label: "Contact", section: "contact" },
   ];
@@ -101,6 +105,21 @@ export default function Header({ onNavigate }: HeaderProps) {
                 {aboutLinks.map((link) => (
                   <DropdownMenuItem key={link.label} asChild className="cursor-pointer">
                     <Link href={link.href} data-testid={`nav-about-${link.label.toLowerCase().replace(/\s+/g, '-')}`}>
+                      <span className="font-heading font-semibold text-warmwhite">{link.label}</span>
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="font-integral text-warmwhite/80 hover:text-warmwhite font-bold uppercase tracking-wide transition-colors flex items-center gap-1" data-testid="nav-tournaments">
+                Tournaments
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-night border-slate/30">
+                {tournamentLinks.map((link) => (
+                  <DropdownMenuItem key={link.label} asChild className="cursor-pointer">
+                    <Link href={link.href} data-testid={`nav-tournament-${link.label.toLowerCase().replace(/\s+/g, '-')}`}>
                       <span className="font-heading font-semibold text-warmwhite">{link.label}</span>
                     </Link>
                   </DropdownMenuItem>
@@ -184,6 +203,18 @@ export default function Header({ onNavigate }: HeaderProps) {
                 onClick={() => setMobileMenuOpen(false)}
                 className="block w-full text-left text-warmwhite/80 hover:text-warmwhite font-medium py-2 pl-3"
                 data-testid={`mobile-nav-about-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <div className="text-warmwhite/60 text-sm font-medium uppercase tracking-wide pt-2">Tournaments</div>
+            {tournamentLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="block w-full text-left text-warmwhite/80 hover:text-warmwhite font-medium py-2 pl-3"
+                data-testid={`mobile-nav-tournament-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
               >
                 {link.label}
               </Link>
