@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
-import copaLogo from "@assets/Copa_Final_1780441392161.png";
+import copaLogo from "@assets/Copa_Final_1780769803507.png";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
