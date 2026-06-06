@@ -3,8 +3,8 @@ import Footer from "@/components/Footer";
 import HeroSection from "./HeroSection";
 import WhatIsSection from "./WhatIsSection";
 import DivisionSection from "./DivisionSection";
+import PhotoBand from "./PhotoBand";
 import FamilyFeedbackSection from "./FamilyFeedbackSection";
-import PathwaySection from "./PathwaySection";
 import FAQSection from "./FAQSection";
 import CoachCTASection from "./CoachCTASection";
 import FinalCTASection from "./FinalCTASection";
@@ -17,10 +17,10 @@ export default function Roots() {
       <HeroSection />
       <WhatIsSection />
       <DivisionSection />
+      <PhotoBand />
       <FamilyFeedbackSection />
       <CoachCTASection />
       <FAQSection />
-      <PathwaySection />
       <FinalCTASection />
       <Footer />
     </>

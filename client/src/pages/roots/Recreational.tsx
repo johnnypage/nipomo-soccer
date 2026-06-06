@@ -80,7 +80,7 @@ export default function Recreational() {
       <section className="roots-hero bg-night" id="top">
         <div className="roots-hero__inner text-center flex flex-col items-center">
           <h1 className="font-display text-warmwhite text-[clamp(44px,8vw,96px)] leading-[0.92] uppercase tracking-tight max-w-[900px]">
-            Practices, games, and a team to call their own.
+            Soccer Starts Here.
           </h1>
           <p className="text-warmwhite/80 text-xl mt-6 leading-relaxed max-w-[640px]">
             The core ROOTS experience for Pre-K through 6th graders. Weekly practices, Saturday games, midweek matches, and an end-of-season tournament for older divisions. Up to 16 games per team this season.
@@ -327,7 +327,7 @@ export default function Recreational() {
                 What's included
               </div>
               <ul className="space-y-1.5">
-                {["Custom ROOTS jersey (shirt and shorts)", "League participation and referee fees", "Insurance", "End-of-season tournament entry (8U and up)"].map((item) => (
+                {["Custom ROOTS jersey (shirt and shorts)", "League participation and referee fees", "Insurance", "End-of-season tournament entry (1st grade and up)"].map((item) => (
                   <li key={item} className="text-[15px] text-night/85 pl-5 relative before:content-['&#10003;'] before:absolute before:left-0 before:text-gold before:font-bold">
                     {item}
                   </li>
