@@ -36,22 +36,10 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/reign" component={Reign} />
       <Route path="/rise" component={Rise} />
-      <Route path="/roots" nest>
-        <Switch>
-          <Route path="/">
-            <RootsPage />
-          </Route>
-          <Route path="/parent-and-me">
-            <RootsParentAndMe />
-          </Route>
-          <Route path="/recreational">
-            <RootsRecreational />
-          </Route>
-          <Route path="/5v5">
-            <RootsFiveVFive />
-          </Route>
-        </Switch>
-      </Route>
+      <Route path="/roots" component={RootsPage} />
+      <Route path="/roots/parent-and-me" component={RootsParentAndMe} />
+      <Route path="/roots/recreational" component={RootsRecreational} />
+      <Route path="/roots/5v5" component={RootsFiveVFive} />
       <Route path="/find-my-division" component={FindMyDivision} />
       <Route path="/volunteer" component={Volunteer} />
       <Route path="/about/compare" component={Compare} />
@@ -63,22 +51,10 @@ function Router() {
       <Route path="/privacy" component={Privacy} />
       <Route path="/terms" component={Terms} />
       <Route path="/participation-agreement" component={ParticipationAgreement} />
-      <Route path="/challenge" nest>
-        <Switch>
-          <Route path="/">
-            <ChallengeHub />
-          </Route>
-          <Route path="/signup">
-            <ChallengeSignup />
-          </Route>
-          <Route path="/leaderboard">
-            <Leaderboard />
-          </Route>
-          <Route path="/player/:id">
-            <PlayerProfile />
-          </Route>
-        </Switch>
-      </Route>
+      <Route path="/challenge" component={ChallengeHub} />
+      <Route path="/challenge/signup" component={ChallengeSignup} />
+      <Route path="/challenge/leaderboard" component={Leaderboard} />
+      <Route path="/challenge/player/:id" component={PlayerProfile} />
       <Route path="/copa-de-costa" component={CopaDeCostaComingSoon} />
       <Route path="/tournament">{() => <Redirect to="/" />}</Route>
       <Route component={NotFound} />

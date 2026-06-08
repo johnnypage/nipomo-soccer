@@ -38,9 +38,9 @@ export default function Footer({ onNavigate }: FooterProps) {
 
   const footerLinks = {
     programs: [
-      { label: "Roots (U4 and up)", section: "programs" },
-      { label: "Rise (U8 and up)", section: "programs" },
-      { label: "Reign (U8 and up)", section: "programs" },
+      { label: "Roots (U4 and up)", href: "/roots" },
+      { label: "Rise (U8 and up)", href: "/rise" },
+      { label: "Reign (U8 and up)", href: "/reign" },
     ],
     club: [
       { label: "About Us", section: "about" },
@@ -140,13 +140,13 @@ export default function Footer({ onNavigate }: FooterProps) {
             <ul className="space-y-2">
               {footerLinks.programs.map((link, idx) => (
                 <li key={idx}>
-                  <button
-                    onClick={() => onNavigate?.(link.section)}
+                  <Link
+                    href={link.href}
                     className="text-warmwhite/60 hover:text-warmwhite text-sm transition-colors"
                     data-testid={`footer-link-${link.label.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
                   >
                     {link.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
