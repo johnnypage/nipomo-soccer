@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { apiRequest } from "@/lib/queryClient";
 import { Link } from "wouter";
-import clubLogo from "@assets/NSC_1764979848772.png";
+import clubLogo from "@assets/NipomoSoccer_1780982227404.png";
 
 interface FooterProps {
   onNavigate?: (section: string) => void;

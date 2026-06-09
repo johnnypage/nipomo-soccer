@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Link, useLocation } from "wouter";
-import clubLogo from "@assets/NSC_1764979848772.png";
+import clubLogo from "@assets/NipomoSoccer_1780982227404.png";
 import { useCart } from "@/hooks/use-cart";
 import CartSheet from "@/components/CartSheet";
 
