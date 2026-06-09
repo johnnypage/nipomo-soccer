@@ -54,6 +54,7 @@ export default function Footer({ onNavigate }: FooterProps) {
       { label: "Registration", section: "contact" },
       { label: "Find My Division", href: "/find-my-division" },
       { label: "Team Placement Request", href: "/team-placement" },
+      { label: "Copa De Costa", href: "/copa-de-costa" },
     ],
   };
 
