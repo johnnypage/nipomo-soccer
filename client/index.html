@@ -21,6 +21,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/84b9f2ed24a9e820aab37939d/c910658671fe956387fe419a3.js");</script>
     <script src="https://upload-widget.cloudinary.com/latest/global/all.js" type="text/javascript"></script>
+    <!-- Meta Pixel -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1509394684211814');
+      fbq('track', 'PageView');
+      // SPA route changes don't reload the page; re-fire PageView on navigation
+      (function () {
+        var push = history.pushState;
+        history.pushState = function () {
+          push.apply(this, arguments);
+          if (window.fbq) fbq('track', 'PageView');
+        };
+        window.addEventListener('popstate', function () {
+          if (window.fbq) fbq('track', 'PageView');
+        });
+      })();
+      // Outbound Spond clicks = registration intent signal for ad optimization
+      document.addEventListener('click', function (e) {
+        var link = e.target && e.target.closest ? e.target.closest('a[href*="spond.com"]') : null;
+        if (link && window.fbq) {
+          fbq('trackCustom', 'SpondClick', { destination: link.href, page: location.pathname });
+        }
+      }, true);
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1509394684211814&ev=PageView&noscript=1"
+    /></noscript>
   </head>
   <body>
     <div id="root"></div>
