@@ -24,6 +24,7 @@ import superiorFireLogo from "@assets/sponsor-superior-fire.jpg";
 import taylorReaLogo from "@assets/sponsor-taylor-rea.png";
 import shuckupsLogo from "@assets/sponsor-shuckups.png";
 import shakedownLogo from "@assets/sponsor-shakedown.jpg";
+import mayorsPlaceLogo from "@assets/sponsor-mayors-place.png";
 
 // Shared sponsor list (same logos on both /fall and /futbol).
 // Adding a tenth sponsor is a single array entry below.
@@ -40,6 +41,7 @@ export const SPONSORS: { name: string; src: string; url?: string; dark?: boolean
   { name: "Taylor Rea Photography", src: taylorReaLogo },
   { name: "The Shuck Ups Cornhole Club", src: shuckupsLogo, dark: true },
   { name: "Shakedown Seasoning", src: shakedownLogo, dark: true },
+  { name: "The Mayor's Place", src: mayorsPlaceLogo },
 ];
 
 export interface LandingContent {
