@@ -36,23 +36,24 @@ import threeOaksLogo from "@assets/sponsor-color-threeoaks.png";
 // for the dark strip: backgrounds removed, original colors kept, near-black
 // marks lightened so they read on black. Simple dark marks use the white
 // mono versions. Originals live in the club sponsor logos folder.
-export const SPONSORS: { name: string; src: string; url?: string; boost?: boolean }[] = [
-  { name: "Herrera Farming Company", src: herreraLogo },
-  { name: "JG Contracting", src: jgContractingLogo, url: "https://jgcontracting.biz/" },
-  { name: "Head Liners Barber Shop", src: headlinersLogo },
-  { name: "Cafe DeVille", src: cafeDevilleLogo },
-  { name: "Coast Water Solutions", src: coastWaterLogo },
-  { name: "LVL Salon", src: lvlSalonLogo, boost: true },
-  { name: "Superior Fire Sprinkler", src: superiorFireLogo },
-  { name: "Taylor Rea Photography", src: taylorReaLogo },
-  { name: "The Shuck Ups Cornhole Club", src: shuckupsLogo, boost: true },
-  { name: "Shakedown Seasoning", src: shakedownLogo },
-  { name: "The Mayor's Place", src: mayorsPlaceLogo },
-  { name: "805 BBQ & Smoke", src: bbq805Logo },
-  { name: "Fit Höuse Studios", src: fitHouseLogo },
-  { name: "Painting Concepts", src: paintingConceptsLogo },
-  { name: "PC Mechanical", src: pcMechanicalLogo },
-  { name: "Three Oaks BBQ", src: threeOaksLogo, boost: true },
+// h = display height in px, computed so every logo carries equal visual area
+export const SPONSORS: { name: string; src: string; url?: string; h: number }[] = [
+  { name: "Herrera Farming Company", src: herreraLogo, h: 57 },
+  { name: "JG Contracting", src: jgContractingLogo, url: "https://jgcontracting.biz/", h: 71 },
+  { name: "Head Liners Barber Shop", src: headlinersLogo, h: 70 },
+  { name: "Cafe DeVille", src: cafeDevilleLogo, h: 40 },
+  { name: "Coast Water Solutions", src: coastWaterLogo, h: 47 },
+  { name: "LVL Salon", src: lvlSalonLogo, h: 63 },
+  { name: "Superior Fire Sprinkler", src: superiorFireLogo, h: 75 },
+  { name: "Taylor Rea Photography", src: taylorReaLogo, h: 72 },
+  { name: "The Shuck Ups Cornhole Club", src: shuckupsLogo, h: 84 },
+  { name: "Shakedown Seasoning", src: shakedownLogo, h: 69 },
+  { name: "The Mayor's Place", src: mayorsPlaceLogo, h: 56 },
+  { name: "805 BBQ & Smoke", src: bbq805Logo, h: 57 },
+  { name: "Fit Höuse Studios", src: fitHouseLogo, h: 40 },
+  { name: "Painting Concepts", src: paintingConceptsLogo, h: 40 },
+  { name: "PC Mechanical", src: pcMechanicalLogo, h: 40 },
+  { name: "Three Oaks BBQ", src: threeOaksLogo, h: 72 },
 ];
 
 export interface LandingContent {

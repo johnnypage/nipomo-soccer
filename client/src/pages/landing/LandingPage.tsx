@@ -172,16 +172,15 @@ export default function LandingPage({ content }: { content: LandingContent }) {
                   <img
                     src={s.src}
                     alt={copy === 0 ? s.name : ""}
-                    className={`object-contain opacity-85 max-w-[130px] md:max-w-[160px] ${
-                      s.boost ? "h-16 md:h-20" : "h-12 md:h-14"
-                    }`}
+                    className="object-contain opacity-85 w-auto"
+                    style={{ height: `${s.h}px` }}
                   />
                 );
                 return (
                   <div
                     key={`${copy}-${i}`}
                     aria-hidden={copy === 1 ? "true" : undefined}
-                    className="h-16 md:h-20 flex items-center justify-center flex-shrink-0"
+                    className="h-[84px] flex items-center justify-center flex-shrink-0"
                   >
                     {s.url ? (
                       <a
