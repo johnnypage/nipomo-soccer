@@ -186,7 +186,7 @@ export default function LandingPage({ content }: { content: LandingContent }) {
           <p className="text-warmwhite/70 text-center mt-5 text-[15px] leading-relaxed max-w-[600px] mx-auto">
             {content.ages.teenNote}
           </p>
-          <div className="mt-6 flex flex-col sm:flex-row gap-x-8 gap-y-2 justify-center text-[15px]">
+          <div className="mt-6 flex flex-col sm:flex-row items-center gap-x-8 gap-y-2 justify-center text-center text-[15px]">
             <a
               href={SPOND_PARENT_AND_ME}
               target="_blank"

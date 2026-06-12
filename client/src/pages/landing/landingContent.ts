@@ -61,7 +61,7 @@ export const enContent: LandingContent = {
   hero: {
     headline: "Fall soccer is back in Nipomo",
     subhead:
-      "Registration is open for the fall season. Saturday games right here in Nipomo, for Pre-K through 8th grade. The season runs August through November.",
+      "Recreational soccer registration is open for the fall season. Saturday games right here in Nipomo, for Pre-K through 8th grade. The season runs August through November.",
     urgency: "Prices go up August 1.",
   },
   valueProps: [
@@ -85,7 +85,7 @@ export const enContent: LandingContent = {
     sub: "Real teams, real referees, and a sideline full of families every week.",
   },
   band2: {
-    line: "This is a real season",
+    line: "Rec soccer with a real season",
     sub: "From the first whistle in August to medals and trophies in November.",
   },
   pricing: {
@@ -101,7 +101,7 @@ export const enContent: LandingContent = {
   ages: {
     heading: "Find your age group",
     leaguePlay:
-      "League Play: Pre-K through 6th grade. Weekly practices plus Saturday games.",
+      "League Play: recreational soccer for Pre-K through 6th grade. Weekly practices plus Saturday games.",
     teenNote:
       "Players in 7th grade and up have their own fast paced teen league that plays twice a week. Register through the same form.",
   },
@@ -160,7 +160,7 @@ export const esContent: LandingContent = {
   hero: {
     headline: "El fútbol de otoño regresa a Nipomo",
     subhead:
-      "Ya abrió la inscripción para la temporada de otoño de Nipomo Soccer. Partidos los sábados aquí mismo en Nipomo, desde Pre-K hasta 8vo grado. La temporada va de agosto a noviembre.",
+      "Ya abrió la inscripción para el fútbol recreativo de otoño de Nipomo Soccer. Partidos los sábados aquí mismo en Nipomo, desde Pre-K hasta 8vo grado. La temporada va de agosto a noviembre.",
     urgency: "Los precios suben el 1 de agosto.",
   },
   valueProps: [
@@ -184,7 +184,7 @@ export const esContent: LandingContent = {
     sub: "Equipos de verdad, árbitros de verdad y una banda llena de familias cada semana.",
   },
   band2: {
-    line: "Esto es una temporada de verdad",
+    line: "Fútbol recreativo con temporada de verdad",
     sub: "Desde el primer silbatazo en agosto hasta las medallas y trofeos en noviembre.",
   },
   pricing: {
@@ -200,7 +200,7 @@ export const esContent: LandingContent = {
   ages: {
     heading: "Encuentra tu grupo de edad",
     leaguePlay:
-      "League Play: de Pre-K a 6to grado. Práctica semanal y partidos los sábados.",
+      "League Play: fútbol recreativo de Pre-K a 6to grado. Práctica semanal y partidos los sábados.",
     teenNote:
       "Los jugadores de 7mo grado en adelante tienen su propia liga juvenil que juega dos veces por semana. Se inscriben con el mismo formulario.",
   },
