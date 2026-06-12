@@ -26,6 +26,8 @@ import ChallengeSignup from "@/pages/challenge/signup";
 import Leaderboard from "@/pages/challenge/leaderboard";
 import PlayerProfile from "@/pages/challenge/player";
 import CopaDeCostaComingSoon from "@/pages/CopaDeCostaComingSoon";
+import FallLanding from "@/pages/landing/FallLanding";
+import FutbolLanding from "@/pages/landing/FutbolLanding";
 import Privacy from "@/pages/legal/privacy";
 import Terms from "@/pages/legal/terms";
 import ParticipationAgreement from "@/pages/legal/participation-agreement";
@@ -56,6 +58,8 @@ function Router() {
       <Route path="/challenge/leaderboard" component={Leaderboard} />
       <Route path="/challenge/player/:id" component={PlayerProfile} />
       <Route path="/copa-de-costa" component={CopaDeCostaComingSoon} />
+      <Route path="/fall" component={FallLanding} />
+      <Route path="/futbol" component={FutbolLanding} />
       <Route path="/tournament">{() => <Redirect to="/" />}</Route>
       <Route component={NotFound} />
     </Switch>
