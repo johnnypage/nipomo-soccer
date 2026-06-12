@@ -14,33 +14,33 @@ export const SPOND_PARENT_AND_ME =
 export const SPOND_SPECIAL_NEEDS =
   "https://club.spond.com/landing/signup/nipomosc/form/212CA66EC0C84B88AB2BEB08FEE18ECF";
 
-import herreraLogo from "@assets/Herrera_1765222077181.png";
-import jgContractingLogo from "@assets/JG_Contracting_1765222077181.png";
-import headlinersLogo from "@assets/headliners-barbershop.jpg";
-import cafeDevilleLogo from "@assets/sponsor-cafe-deville.jpg";
-import coastWaterLogo from "@assets/sponsor-coast-water.jpg";
-import lvlSalonLogo from "@assets/sponsor-lvl-salon.png";
-import superiorFireLogo from "@assets/sponsor-superior-fire.jpg";
-import taylorReaLogo from "@assets/sponsor-taylor-rea.png";
-import shuckupsLogo from "@assets/sponsor-shuckups.png";
-import shakedownLogo from "@assets/sponsor-shakedown.jpg";
-import mayorsPlaceLogo from "@assets/sponsor-mayors-place.png";
+import herreraLogo from "@assets/sponsor-mono-herrera.png";
+import jgContractingLogo from "@assets/sponsor-mono-jg.png";
+import headlinersLogo from "@assets/sponsor-mono-headliners.png";
+import cafeDevilleLogo from "@assets/sponsor-mono-cafe-deville.png";
+import coastWaterLogo from "@assets/sponsor-mono-coast-water.png";
+import lvlSalonLogo from "@assets/sponsor-mono-lvl-salon.png";
+import superiorFireLogo from "@assets/sponsor-mono-superior-fire.png";
+import taylorReaLogo from "@assets/sponsor-mono-taylor-rea.png";
+import shuckupsLogo from "@assets/sponsor-mono-shuckups.png";
+import shakedownLogo from "@assets/sponsor-mono-shakedown.png";
+import mayorsPlaceLogo from "@assets/sponsor-mono-mayors-place.png";
 
 // Shared sponsor list (same logos on both /fall and /futbol).
-// Adding a tenth sponsor is a single array entry below.
-// dark: true puts the tile on a black background for logos whose artwork
-// has a black background or transparent line art that would vanish on white.
-export const SPONSORS: { name: string; src: string; url?: string; dark?: boolean }[] = [
+// Adding a sponsor is one import + one array entry. All assets are
+// white-on-transparent monochrome PNGs generated from the original logos
+// (ink extraction, see club sponsor folder for originals).
+export const SPONSORS: { name: string; src: string; url?: string }[] = [
   { name: "Herrera Farming Company", src: herreraLogo },
   { name: "JG Contracting", src: jgContractingLogo, url: "https://jgcontracting.biz/" },
   { name: "Head Liners Barber Shop", src: headlinersLogo },
-  { name: "Cafe DeVille", src: cafeDevilleLogo, dark: true },
-  { name: "Coast Water Solutions", src: coastWaterLogo, dark: true },
+  { name: "Cafe DeVille", src: cafeDevilleLogo },
+  { name: "Coast Water Solutions", src: coastWaterLogo },
   { name: "LVL Salon", src: lvlSalonLogo },
   { name: "Superior Fire Sprinkler", src: superiorFireLogo },
   { name: "Taylor Rea Photography", src: taylorReaLogo },
-  { name: "The Shuck Ups Cornhole Club", src: shuckupsLogo, dark: true },
-  { name: "Shakedown Seasoning", src: shakedownLogo, dark: true },
+  { name: "The Shuck Ups Cornhole Club", src: shuckupsLogo },
+  { name: "Shakedown Seasoning", src: shakedownLogo },
   { name: "The Mayor's Place", src: mayorsPlaceLogo },
 ];
 

@@ -156,6 +156,49 @@ export default function LandingPage({ content }: { content: LandingContent }) {
         </div>
       </section>
 
+      {/* 2b. Sponsor ribbon (Monjur-style: dark strip, white monochrome logos, infinite marquee) */}
+      <section data-testid="sponsor-ribbon" className="bg-[#0D0D0D] py-8 md:py-10 overflow-hidden">
+        <p className="text-center text-warmwhite/55 text-xs md:text-sm font-semibold tracking-[0.22em] uppercase px-5">
+          {content.sponsors.heading}
+        </p>
+        <div className="mt-6 w-full overflow-hidden">
+          <div className="sponsor-marquee flex w-max items-center gap-12 md:gap-16 pr-12 md:pr-16">
+            {[0, 1].map((copy) =>
+              SPONSORS.map((s, i) => {
+                const img = (
+                  <img
+                    src={s.src}
+                    alt={copy === 0 ? s.name : ""}
+                    className="w-auto object-contain max-h-12 md:max-h-14 opacity-85"
+                  />
+                );
+                return (
+                  <div
+                    key={`${copy}-${i}`}
+                    aria-hidden={copy === 1 ? "true" : undefined}
+                    className="h-14 md:h-16 flex items-center justify-center flex-shrink-0"
+                  >
+                    {s.url ? (
+                      <a
+                        href={s.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center"
+                        tabIndex={copy === 1 ? -1 : undefined}
+                      >
+                        {img}
+                      </a>
+                    ) : (
+                      img
+                    )}
+                  </div>
+                );
+              })
+            )}
+          </div>
+        </div>
+      </section>
+
       {/* 3. Value props */}
       <section className="bg-[#181818]">
         <div className="max-w-[1100px] mx-auto px-5 py-16">
@@ -183,58 +226,6 @@ export default function LandingPage({ content }: { content: LandingContent }) {
         line={content.band1.line}
         sub={content.band1.sub}
       />
-
-      {/* 4b. Sponsor ribbon (compact infinite marquee) */}
-      <section data-testid="sponsor-ribbon" className="bg-warmwhite py-8 md:py-10 overflow-hidden">
-        <div className="max-w-[1100px] mx-auto px-5 text-center">
-          <h2 className="font-display uppercase text-night text-lg md:text-xl">
-            {content.sponsors.heading}
-          </h2>
-          <p className="text-night/60 text-sm mt-1">
-            {content.sponsors.sub}
-          </p>
-        </div>
-        <div className="mt-6 w-full overflow-hidden">
-          <div className="sponsor-marquee flex w-max items-center gap-4 pr-4">
-            {[0, 1].map((copy) =>
-              SPONSORS.map((s, i) => {
-                const img = (
-                  <img
-                    src={s.src}
-                    alt={copy === 0 ? s.name : ""}
-                    className={`w-auto object-contain ${
-                      s.dark ? "max-h-14 md:max-h-16" : "max-h-11 md:max-h-14"
-                    }`}
-                  />
-                );
-                return (
-                  <div
-                    key={`${copy}-${i}`}
-                    aria-hidden={copy === 1 ? "true" : undefined}
-                    className={`rounded-lg h-16 md:h-20 min-w-[140px] md:min-w-[170px] flex items-center justify-center px-5 flex-shrink-0 ${
-                      s.dark ? "bg-black" : "bg-white border border-black/8"
-                    }`}
-                  >
-                    {s.url ? (
-                      <a
-                        href={s.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center"
-                        tabIndex={copy === 1 ? -1 : undefined}
-                      >
-                        {img}
-                      </a>
-                    ) : (
-                      img
-                    )}
-                  </div>
-                );
-              })
-            )}
-          </div>
-        </div>
-      </section>
 
       {/* 5. Pricing */}
       <section className="bg-night">
