@@ -88,6 +88,12 @@ None yet.
 - Cloudinary free tier must be configured with upload preset limits (30s duration, 720p, 50MB) before Phase 2
 - Magic link email deliverability needs SPF/DKIM/DMARC verification before launch
 
+## Quick Tasks Completed
+
+| ID | Description | Date | Commits |
+|----|-------------|------|---------|
+| 260611-vza | EN/ES Meta ads landing pages (/fall, /futbol) | 2026-06-12 | 40385a5, 05de676, 0d582aa |
+
 ## Deferred Items
 
 Items acknowledged and carried forward from previous milestone close:
