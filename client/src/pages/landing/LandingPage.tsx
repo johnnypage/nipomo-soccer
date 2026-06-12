@@ -32,6 +32,33 @@ function CtaButton({
   );
 }
 
+function PhotoBandSection({
+  image,
+  line,
+  sub,
+}: {
+  image: string;
+  line: string;
+  sub: string;
+}) {
+  return (
+    <section
+      className="relative bg-scroll md:bg-fixed bg-cover bg-center"
+      style={{ backgroundImage: `url(${image})` }}
+    >
+      <div className="absolute inset-0 bg-night/70" />
+      <div className="relative z-10 max-w-[1100px] mx-auto px-5 py-24 md:py-32 min-h-[300px] flex flex-col items-center justify-center text-center">
+        <p className="font-display text-warmwhite uppercase tracking-tight leading-[1.02] text-[clamp(32px,7vw,64px)] max-w-3xl">
+          {line}
+        </p>
+        <p className="text-warmwhite/70 text-lg md:text-xl mt-5 max-w-xl">
+          {sub}
+        </p>
+      </div>
+    </section>
+  );
+}
+
 export default function LandingPage({ content }: { content: LandingContent }) {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -39,27 +66,40 @@ export default function LandingPage({ content }: { content: LandingContent }) {
   }, [content.docTitle]);
 
   return (
-    <div className="min-h-screen bg-warmwhite text-night">
-      {/* 1. Minimal header */}
-      <header className="bg-night">
-        <div className="max-w-[1100px] mx-auto px-5 py-4">
-          <a href="/" className="inline-flex items-center" aria-label="Nipomo Soccer">
+    <div className="min-h-screen bg-night text-warmwhite">
+      {/* 1. Sticky header */}
+      <header className="sticky top-0 z-50 bg-night border-b border-warmwhite/10">
+        <div className="max-w-[1100px] mx-auto px-5 py-3 flex items-center justify-between gap-3">
+          <a
+            href="/"
+            className="inline-flex items-center flex-shrink-0"
+            aria-label="Nipomo Soccer"
+          >
             <img
               src={clubLogo}
               alt="Nipomo Soccer"
-              className="h-11 w-auto object-contain"
+              className="h-10 w-auto object-contain"
             />
+          </a>
+          <a
+            href={SPOND_MAIN}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-testid="cta-nav"
+            className="inline-flex items-center justify-center px-4 py-2 text-sm sm:px-6 sm:py-2.5 sm:text-base bg-crimson text-warmwhite font-semibold rounded-lg hover:bg-crimson-dark transition-colors whitespace-nowrap"
+          >
+            {content.ctaLabel}
           </a>
         </div>
       </header>
 
-      {/* 2. Hero */}
+      {/* 2. Hero (typographic, no photo) */}
       <section className="bg-night">
-        <div className="max-w-[1100px] mx-auto px-5 pt-12 pb-16 text-center flex flex-col items-center">
-          <h1 className="font-display text-warmwhite uppercase tracking-tight leading-[0.95] text-[clamp(40px,8vw,84px)] max-w-[860px]">
+        <div className="max-w-[1100px] mx-auto px-5 py-20 md:py-28 text-center flex flex-col items-center">
+          <h1 className="font-display text-warmwhite uppercase tracking-tight leading-[0.92] text-[clamp(48px,10vw,96px)] max-w-[920px]">
             {content.hero.headline}
           </h1>
-          <p className="text-warmwhite/80 text-lg md:text-xl mt-6 leading-relaxed max-w-[640px]">
+          <p className="text-warmwhite/75 text-lg md:text-xl mt-6 leading-relaxed max-w-[640px]">
             {content.hero.subhead}
           </p>
           <p className="text-gold font-semibold mt-5 text-base md:text-lg">
@@ -76,74 +116,75 @@ export default function LandingPage({ content }: { content: LandingContent }) {
       </section>
 
       {/* 3. Value props */}
-      <section className="bg-paper">
-        <div className="max-w-[1100px] mx-auto px-5 py-14">
+      <section className="bg-[#181818]">
+        <div className="max-w-[1100px] mx-auto px-5 py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {content.valueProps.map((prop, i) => (
               <div
                 key={i}
-                className="bg-white rounded-xl border border-black/8 px-6 py-5 flex items-start gap-3"
+                className="bg-white/5 border border-warmwhite/10 rounded-xl px-6 py-6"
               >
-                <span
-                  aria-hidden="true"
-                  className="text-crimson font-bold text-lg leading-6 flex-shrink-0"
-                >
-                  &bull;
-                </span>
-                <p className="text-night text-[16px] leading-relaxed">{prop}</p>
+                <p className="font-display text-warmwhite uppercase tracking-tight text-xl md:text-2xl leading-tight">
+                  {prop.title}
+                </p>
+                <p className="text-warmwhite/70 text-[16px] leading-relaxed mt-2">
+                  {prop.body}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 4. Pricing */}
-      <section className="bg-warmwhite">
-        <div className="max-w-[760px] mx-auto px-5 py-14 text-center">
-          <h2 className="font-heading text-2xl md:text-3xl font-bold text-night">
+      {/* 4. Photo band 1 */}
+      <PhotoBandSection
+        image="/landing-band-gameday.jpg"
+        line={content.band1.line}
+        sub={content.band1.sub}
+      />
+
+      {/* 5. Pricing */}
+      <section className="bg-night">
+        <div className="max-w-[760px] mx-auto px-5 py-16 text-center">
+          <h2 className="font-display text-warmwhite uppercase tracking-tight text-2xl md:text-3xl">
             {content.pricing.heading}
           </h2>
-          <p className="font-display text-crimson text-[clamp(40px,9vw,64px)] leading-none mt-4">
+          <p className="font-display text-gold text-[clamp(48px,11vw,80px)] leading-none mt-4">
             {content.pricing.fromLine}
           </p>
-          <p className="text-night text-lg mt-3">{content.pricing.tiersLine}</p>
-          <p className="text-crimson font-semibold mt-2">
+          <p className="text-warmwhite text-lg mt-3">
+            {content.pricing.tiersLine}
+          </p>
+          <p className="text-gold font-semibold mt-2">
             {content.pricing.urgency}
           </p>
-          <p className="text-slate mt-5 text-[16px] leading-relaxed max-w-[560px] mx-auto">
+          <p className="text-warmwhite/70 mt-5 text-[16px] leading-relaxed max-w-[560px] mx-auto">
             {content.pricing.scholarshipsLine}
           </p>
-          <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center text-night text-[15px]">
-            <span className="bg-white rounded-lg border border-black/8 px-4 py-2">
+          <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center text-warmwhite text-[15px]">
+            <span className="bg-white/5 border border-warmwhite/10 rounded-lg px-4 py-2">
               {content.pricing.parentAndMe}
             </span>
-            <span className="bg-white rounded-lg border border-black/8 px-4 py-2">
+            <span className="bg-white/5 border border-warmwhite/10 rounded-lg px-4 py-2">
               {content.pricing.specialNeeds}
             </span>
           </div>
         </div>
       </section>
 
-      {/* 5. Ages strip + secondary links */}
-      <section className="bg-paper">
-        <div className="max-w-[1100px] mx-auto px-5 py-14">
-          <h2 className="font-heading text-2xl md:text-3xl font-bold text-night text-center">
+      {/* 6. Ages (teen league demoted to one line) */}
+      <section className="bg-[#181818]">
+        <div className="max-w-[760px] mx-auto px-5 py-16">
+          <h2 className="font-display text-warmwhite uppercase tracking-tight text-2xl md:text-3xl text-center">
             {content.ages.heading}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-            <div className="bg-white rounded-xl border border-black/8 px-6 py-6">
-              <p className="text-night text-[16px] leading-relaxed">
-                {content.ages.leaguePlay}
-              </p>
-            </div>
-            <div className="bg-white rounded-xl border border-black/8 px-6 py-6">
-              <p className="text-night text-[16px] leading-relaxed">
-                {content.ages.fiveVFive}
-              </p>
-            </div>
+          <div className="mt-8 bg-white/5 border border-warmwhite/10 rounded-xl px-6 py-6">
+            <p className="text-warmwhite text-[16px] leading-relaxed">
+              {content.ages.leaguePlay}
+            </p>
           </div>
-          <p className="text-slate text-center mt-5 text-[15px]">
-            {content.ages.note}
+          <p className="text-warmwhite/70 text-center mt-5 text-[15px] leading-relaxed max-w-[600px] mx-auto">
+            {content.ages.teenNote}
           </p>
           <div className="mt-6 flex flex-col sm:flex-row gap-x-8 gap-y-2 justify-center text-[15px]">
             <a
@@ -151,7 +192,7 @@ export default function LandingPage({ content }: { content: LandingContent }) {
               target="_blank"
               rel="noopener noreferrer"
               data-testid="link-parent-and-me"
-              className="text-crimson hover:underline font-medium"
+              className="text-gold hover:underline font-medium"
             >
               {content.secondaryLinks.parentAndMeLabel}
             </a>
@@ -160,7 +201,7 @@ export default function LandingPage({ content }: { content: LandingContent }) {
               target="_blank"
               rel="noopener noreferrer"
               data-testid="link-special-needs"
-              className="text-crimson hover:underline font-medium"
+              className="text-gold hover:underline font-medium"
             >
               {content.secondaryLinks.specialNeedsLabel}
             </a>
@@ -168,22 +209,22 @@ export default function LandingPage({ content }: { content: LandingContent }) {
         </div>
       </section>
 
-      {/* 6. How it works */}
-      <section className="bg-warmwhite">
-        <div className="max-w-[860px] mx-auto px-5 py-14">
-          <h2 className="font-heading text-2xl md:text-3xl font-bold text-night text-center">
+      {/* 7. How it works */}
+      <section className="bg-night">
+        <div className="max-w-[860px] mx-auto px-5 py-16">
+          <h2 className="font-display text-warmwhite uppercase tracking-tight text-2xl md:text-3xl text-center">
             {content.howItWorks.heading}
           </h2>
           <div className="mt-8 flex flex-col gap-4">
             {content.howItWorks.steps.map((s) => (
               <div
                 key={s.step}
-                className="flex items-start gap-4 bg-white rounded-xl border border-black/8 px-6 py-5"
+                className="flex items-start gap-4 bg-white/5 border border-warmwhite/10 rounded-xl px-6 py-5"
               >
                 <span className="flex-shrink-0 w-9 h-9 rounded-full bg-crimson text-warmwhite font-display flex items-center justify-center text-lg">
                   {s.step}
                 </span>
-                <p className="text-night text-[16px] leading-relaxed pt-1">
+                <p className="text-warmwhite text-[16px] leading-relaxed pt-1">
                   {s.text}
                 </p>
               </div>
@@ -192,20 +233,20 @@ export default function LandingPage({ content }: { content: LandingContent }) {
         </div>
       </section>
 
-      {/* 7. FAQ (all collapsed) */}
-      <section className="bg-paper">
-        <div className="max-w-[760px] mx-auto px-5 py-14">
+      {/* 8. FAQ (all collapsed) */}
+      <section className="bg-[#181818]">
+        <div className="max-w-[760px] mx-auto px-5 py-16">
           <div className="flex flex-col gap-3">
             {content.faqs.map((f, i) => (
               <details
                 key={i}
-                className="group bg-white rounded-xl border border-black/8"
+                className="group bg-white/5 border border-warmwhite/10 rounded-xl"
                 open={false}
               >
-                <summary className="flex items-center justify-between cursor-pointer px-6 py-5 font-medium text-night list-none [&::-webkit-details-marker]:hidden">
+                <summary className="flex items-center justify-between cursor-pointer px-6 py-5 font-medium text-warmwhite list-none [&::-webkit-details-marker]:hidden">
                   <span>{f.q}</span>
                   <svg
-                    className="w-5 h-5 text-slate/40 group-open:text-crimson transition-all group-open:rotate-180 flex-shrink-0 ml-4"
+                    className="w-5 h-5 text-warmwhite/40 group-open:text-gold transition-all group-open:rotate-180 flex-shrink-0 ml-4"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -216,7 +257,7 @@ export default function LandingPage({ content }: { content: LandingContent }) {
                     <polyline points="6 9 12 15 18 9" />
                   </svg>
                 </summary>
-                <div className="px-6 pb-5 text-slate text-[15px] leading-relaxed">
+                <div className="px-6 pb-5 text-warmwhite/70 text-[15px] leading-relaxed">
                   {f.a}
                 </div>
               </details>
@@ -225,10 +266,17 @@ export default function LandingPage({ content }: { content: LandingContent }) {
         </div>
       </section>
 
-      {/* 8. Final CTA */}
+      {/* 9. Photo band 2 */}
+      <PhotoBandSection
+        image="/landing-band-lights.jpg"
+        line={content.band2.line}
+        sub={content.band2.sub}
+      />
+
+      {/* 10. Final CTA */}
       <section className="bg-night">
-        <div className="max-w-[760px] mx-auto px-5 py-16 text-center flex flex-col items-center">
-          <h2 className="font-display text-warmwhite uppercase tracking-tight leading-[0.95] text-[clamp(32px,7vw,56px)]">
+        <div className="max-w-[760px] mx-auto px-5 py-20 text-center flex flex-col items-center">
+          <h2 className="font-display text-warmwhite uppercase tracking-tight leading-[0.95] text-[clamp(36px,8vw,64px)]">
             {content.finalCta.heading}
           </h2>
           <p className="text-gold font-semibold mt-4 text-base md:text-lg">
@@ -244,7 +292,7 @@ export default function LandingPage({ content }: { content: LandingContent }) {
         </div>
       </section>
 
-      {/* 9. Light footer */}
+      {/* 11. Footer */}
       <footer className="bg-night border-t border-warmwhite/10">
         <div className="max-w-[1100px] mx-auto px-5 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-warmwhite/70 text-sm">
           <a
@@ -253,10 +301,7 @@ export default function LandingPage({ content }: { content: LandingContent }) {
           >
             {content.footerContact}
           </a>
-          <a
-            href="/privacy"
-            className="hover:text-warmwhite transition-colors"
-          >
+          <a href="/privacy" className="hover:text-warmwhite transition-colors">
             {content.footerPrivacyLabel}
           </a>
         </div>
