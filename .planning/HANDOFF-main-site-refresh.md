@@ -41,7 +41,7 @@ Visit /fall locally to see everything: `npx vite --port 5051` (full dev server c
 - CRITICAL: working tree carries unrelated in-progress challenge edits (client/src/components/challenge/*, hooks, server/challengeRoutes.ts, shared/*). Stage by explicit path only, never `git add -A`.
 - Deploy: push to GitHub, then in Replit Shell `git fetch origin` then `git reset --hard origin/main` (separate lines -- the Shell wraps long pastes), then Republish.
 - Image processing pipeline + EXIF gotchas: see memory file `reference_landing_asset_pipeline.md` (browser-verify every processed photo with headless Chrome; Read tool ignores EXIF, browsers do not).
-- Sponsor logo treatments: originals in `~/Documents/Nipomo Soccer Logos/Sponsors/` (symlinked at club/logos/Sponsors). Missing: Corie Mae's Bouquets. Adding a sponsor = process asset, one import + one array entry with computed h (equal-area: h = sqrt(72*72 / aspect), cap width 175px).
+- Sponsor logo treatments: originals in `~/Documents/Nipomo Soccer Logos/Sponsors/` (symlinked at club/logos/Sponsors). Sponsor list is complete (Corie Mae's Bouquets dropped out, 2026-06-12 -- do not add). Adding a sponsor = process asset, one import + one array entry with computed h (equal-area: h = sqrt(72*72 / aspect), cap width 175px).
 
 ## Suggested phase order for the next session
 
