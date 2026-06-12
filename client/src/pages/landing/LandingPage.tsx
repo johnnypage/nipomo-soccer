@@ -184,48 +184,54 @@ export default function LandingPage({ content }: { content: LandingContent }) {
         sub={content.band1.sub}
       />
 
-      {/* 4b. Sponsor ribbon */}
-      <section data-testid="sponsor-ribbon" className="bg-warmwhite py-12 md:py-14">
+      {/* 4b. Sponsor ribbon (compact infinite marquee) */}
+      <section data-testid="sponsor-ribbon" className="bg-warmwhite py-8 md:py-10 overflow-hidden">
         <div className="max-w-[1100px] mx-auto px-5 text-center">
-          <h2 className="font-display uppercase text-night text-xl md:text-2xl">
+          <h2 className="font-display uppercase text-night text-lg md:text-xl">
             {content.sponsors.heading}
           </h2>
-          <p className="text-night/60 text-sm md:text-base mt-2">
+          <p className="text-night/60 text-sm mt-1">
             {content.sponsors.sub}
           </p>
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 items-center">
-            {SPONSORS.map((s, i) => {
-              const img = (
-                <img
-                  src={s.src}
-                  alt={s.name}
-                  className={`w-auto object-contain ${
-                    s.dark ? "max-h-20 md:max-h-24" : "max-h-16 md:max-h-20"
-                  }`}
-                />
-              );
-              return (
-                <div
-                  key={i}
-                  className={`rounded-lg h-24 md:h-28 flex items-center justify-center px-4 ${
-                    s.dark ? "bg-black" : "bg-white border border-black/8"
-                  }`}
-                >
-                  {s.url ? (
-                    <a
-                      href={s.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center"
-                    >
-                      {img}
-                    </a>
-                  ) : (
-                    img
-                  )}
-                </div>
-              );
-            })}
+        </div>
+        <div className="mt-6 w-full overflow-hidden">
+          <div className="sponsor-marquee flex w-max items-center gap-4 pr-4">
+            {[0, 1].map((copy) =>
+              SPONSORS.map((s, i) => {
+                const img = (
+                  <img
+                    src={s.src}
+                    alt={copy === 0 ? s.name : ""}
+                    className={`w-auto object-contain ${
+                      s.dark ? "max-h-14 md:max-h-16" : "max-h-11 md:max-h-14"
+                    }`}
+                  />
+                );
+                return (
+                  <div
+                    key={`${copy}-${i}`}
+                    aria-hidden={copy === 1 ? "true" : undefined}
+                    className={`rounded-lg h-16 md:h-20 min-w-[140px] md:min-w-[170px] flex items-center justify-center px-5 flex-shrink-0 ${
+                      s.dark ? "bg-black" : "bg-white border border-black/8"
+                    }`}
+                  >
+                    {s.url ? (
+                      <a
+                        href={s.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center"
+                        tabIndex={copy === 1 ? -1 : undefined}
+                      >
+                        {img}
+                      </a>
+                    ) : (
+                      img
+                    )}
+                  </div>
+                );
+              })
+            )}
           </div>
         </div>
       </section>
