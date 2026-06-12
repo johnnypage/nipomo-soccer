@@ -139,17 +139,17 @@ export default function LandingPage({ content }: { content: LandingContent }) {
       {/* 2. Hero (typographic over rotating field photos) */}
       <section className="relative overflow-hidden bg-night">
         <HeroRotation />
-        <div className="relative z-10 max-w-[1100px] mx-auto px-5 py-20 md:py-28 text-center flex flex-col items-center">
-          <h1 className="font-display text-warmwhite uppercase tracking-tight leading-[0.92] text-[clamp(48px,10vw,96px)] max-w-[920px]">
+        <div className="relative z-10 max-w-[1100px] mx-auto px-5 py-10 sm:py-20 md:py-28 text-center flex flex-col items-center">
+          <h1 className="font-display text-warmwhite uppercase tracking-tight leading-[0.92] text-[clamp(44px,9.5vw,96px)] max-w-[920px]">
             {content.hero.headline}
           </h1>
-          <p className="text-warmwhite/75 text-lg md:text-xl mt-6 leading-relaxed max-w-[640px]">
+          <p className="text-warmwhite/75 text-base sm:text-lg md:text-xl mt-4 sm:mt-6 leading-relaxed max-w-[640px]">
             {content.hero.subhead}
           </p>
-          <p className="text-gold font-semibold mt-5 text-base md:text-lg">
+          <p className="text-gold font-semibold mt-3 sm:mt-5 text-base md:text-lg">
             {content.hero.urgency}
           </p>
-          <div className="mt-9 w-full sm:w-auto">
+          <div className="mt-6 sm:mt-9 w-full sm:w-auto">
             <CtaButton
               label={content.ctaLabel}
               testId="cta-hero"

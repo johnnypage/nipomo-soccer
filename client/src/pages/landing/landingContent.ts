@@ -42,7 +42,7 @@ export const SPONSORS: { name: string; src: string; url?: string; boost?: boolea
   { name: "Head Liners Barber Shop", src: headlinersLogo },
   { name: "Cafe DeVille", src: cafeDevilleLogo },
   { name: "Coast Water Solutions", src: coastWaterLogo },
-  { name: "LVL Salon", src: lvlSalonLogo },
+  { name: "LVL Salon", src: lvlSalonLogo, boost: true },
   { name: "Superior Fire Sprinkler", src: superiorFireLogo },
   { name: "Taylor Rea Photography", src: taylorReaLogo },
   { name: "The Shuck Ups Cornhole Club", src: shuckupsLogo, boost: true },
@@ -131,7 +131,7 @@ export const enContent: LandingContent = {
     sub: "From the first whistle in August to medals and trophies in November.",
   },
   sponsors: {
-    heading: "Backed by Nipomo businesses",
+    heading: "Sponsored by Nipomo businesses",
     sub: "Local sponsors help keep the season affordable for every family.",
   },
   pricing: {
@@ -234,7 +234,7 @@ export const esContent: LandingContent = {
     sub: "Desde el primer silbatazo en agosto hasta las medallas y trofeos en noviembre.",
   },
   sponsors: {
-    heading: "Con el respaldo de negocios de Nipomo",
+    heading: "Patrocinado por negocios de Nipomo",
     sub: "Los patrocinadores locales ayudan a que la temporada sea accesible para cada familia.",
   },
   pricing: {
