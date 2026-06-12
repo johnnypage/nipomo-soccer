@@ -109,7 +109,7 @@ export const enContent: LandingContent = {
     subhead:
       "Nipomo Soccer's recreational fall season is open for registration. Ages 2 through high school.",
     noTryouts: "No tryouts. No experience required. Just show up ready to play.",
-    urgency: "Prices go up August 1.",
+    urgency: "Register today and save.",
   },
   valuePropsHeading: "What you get",
   valueProps: [
@@ -249,7 +249,7 @@ export const enContent: LandingContent = {
   ],
   finalCta: {
     heading: "Lock in your spot for fall",
-    urgency: "Prices go up August 1. Register today.",
+    urgency: "Prices go up after July 31. Register today.",
   },
   footerContact: "admin@nipomosoccer.com",
   footerPrivacyLabel: "Privacy",
@@ -264,7 +264,7 @@ export const esContent: LandingContent = {
     subhead:
       "Ya abrió la inscripción para la temporada recreativa de otoño de Nipomo Soccer. De 2 años hasta high school.",
     noTryouts: "Sin pruebas. Sin experiencia previa. Solo llega listo para jugar.",
-    urgency: "Los precios suben el 1 de agosto.",
+    urgency: "Inscríbete hoy y ahorra.",
   },
   valuePropsHeading: "Lo que incluye",
   valueProps: [
@@ -404,7 +404,7 @@ export const esContent: LandingContent = {
   ],
   finalCta: {
     heading: "Aparta tu lugar para el otoño",
-    urgency: "Los precios suben el 1 de agosto. Inscríbete hoy.",
+    urgency: "Los precios suben después del 31 de julio. Inscríbete hoy.",
   },
   footerContact: "admin@nipomosoccer.com",
   footerPrivacyLabel: "Privacidad",
