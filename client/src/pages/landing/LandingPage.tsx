@@ -1,11 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import clubLogo from "@assets/NipomoSoccer_1780982227404.png";
 import {
   type LandingContent,
+  SPONSORS,
   SPOND_MAIN,
   SPOND_PARENT_AND_ME,
   SPOND_SPECIAL_NEEDS,
 } from "./landingContent";
+
+const HERO_IMAGES = [
+  "/landing-hero-1.jpg",
+  "/landing-hero-2.jpg",
+  "/landing-hero-3.jpg",
+];
 
 function CtaButton({
   label,
@@ -59,6 +66,39 @@ function PhotoBandSection({
   );
 }
 
+function HeroRotation() {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const reduced =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+    const id = setInterval(() => {
+      setActive((i) => (i + 1) % HERO_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <div className="absolute inset-0" aria-hidden="true">
+      {HERO_IMAGES.map((src, i) => (
+        <div
+          key={src}
+          className="absolute inset-0 bg-cover bg-center transition-opacity duration-[1500ms]"
+          style={{
+            backgroundImage: `url(${src})`,
+            opacity: i === active ? 1 : 0,
+          }}
+        />
+      ))}
+      {/* Legibility overlay + bottom gradient blend into the value-props section */}
+      <div className="absolute inset-0 bg-night/65" />
+      <div className="absolute inset-0 bg-gradient-to-t from-night via-night/40 to-transparent" />
+    </div>
+  );
+}
+
 export default function LandingPage({ content }: { content: LandingContent }) {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -93,9 +133,10 @@ export default function LandingPage({ content }: { content: LandingContent }) {
         </div>
       </header>
 
-      {/* 2. Hero (typographic, no photo) */}
-      <section className="bg-night">
-        <div className="max-w-[1100px] mx-auto px-5 py-20 md:py-28 text-center flex flex-col items-center">
+      {/* 2. Hero (typographic over rotating field photos) */}
+      <section className="relative overflow-hidden bg-night">
+        <HeroRotation />
+        <div className="relative z-10 max-w-[1100px] mx-auto px-5 py-20 md:py-28 text-center flex flex-col items-center">
           <h1 className="font-display text-warmwhite uppercase tracking-tight leading-[0.92] text-[clamp(48px,10vw,96px)] max-w-[920px]">
             {content.hero.headline}
           </h1>
@@ -142,6 +183,52 @@ export default function LandingPage({ content }: { content: LandingContent }) {
         line={content.band1.line}
         sub={content.band1.sub}
       />
+
+      {/* 4b. Sponsor ribbon */}
+      <section data-testid="sponsor-ribbon" className="bg-warmwhite py-12 md:py-14">
+        <div className="max-w-[1100px] mx-auto px-5 text-center">
+          <h2 className="font-display uppercase text-night text-xl md:text-2xl">
+            {content.sponsors.heading}
+          </h2>
+          <p className="text-night/60 text-sm md:text-base mt-2">
+            {content.sponsors.sub}
+          </p>
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 items-center">
+            {SPONSORS.map((s, i) => {
+              const img = (
+                <img
+                  src={s.src}
+                  alt={s.name}
+                  className={`w-auto object-contain ${
+                    s.dark ? "max-h-20 md:max-h-24" : "max-h-16 md:max-h-20"
+                  }`}
+                />
+              );
+              return (
+                <div
+                  key={i}
+                  className={`rounded-lg h-24 md:h-28 flex items-center justify-center px-4 ${
+                    s.dark ? "bg-black" : "bg-white border border-black/8"
+                  }`}
+                >
+                  {s.url ? (
+                    <a
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center"
+                    >
+                      {img}
+                    </a>
+                  ) : (
+                    img
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       {/* 5. Pricing */}
       <section className="bg-night">
