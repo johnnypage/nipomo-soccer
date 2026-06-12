@@ -4,7 +4,7 @@ export default function WhatIsSection() {
       <div className="max-w-[1200px] mx-auto px-6 py-20">
         <div className="grid md:grid-cols-[1fr_340px] gap-12 items-start">
           <div>
-            <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/30 bg-crimson/10 text-crimson">
+            <span className="text-xs font-semibold tracking-wider uppercase text-crimson">
               What is ROOTS?
             </span>
             <h2 className="font-heading text-2xl md:text-3xl font-bold mt-3 text-night">

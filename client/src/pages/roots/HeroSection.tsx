@@ -14,13 +14,9 @@ export default function HeroSection() {
           No tryouts. No experience required. Just show up ready to play.
         </p>
 
-        <div className="flex flex-wrap gap-2.5 mt-8 mb-10 justify-center">
-          {["Ages 2 to high school", "12-week season", "Up to 20 games", "Paid referees", "No tryouts"].map((stat) => (
-            <span key={stat} className="px-4 py-1.5 bg-warmwhite/[0.06] border border-warmwhite/10 rounded-full text-warmwhite/65 text-sm font-medium">
-              {stat}
-            </span>
-          ))}
-        </div>
+        <p className="text-warmwhite/55 text-sm font-medium mt-8 mb-10 max-w-[600px]">
+          Ages 2 to high school &middot; 12-week season &middot; Up to 20 games &middot; Paid referees &middot; No tryouts
+        </p>
 
         <div className="flex flex-wrap gap-3 justify-center">
           <a

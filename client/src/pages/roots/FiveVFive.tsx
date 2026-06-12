@@ -109,7 +109,7 @@ export default function FiveVFive() {
       {/* What is 5v5? */}
       <section className="bg-paper py-16 md:py-24">
         <div className="max-w-[880px] mx-auto px-6">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/30 bg-crimson/10 text-crimson">
+          <span className="text-xs font-semibold tracking-wider uppercase text-crimson">
             The format
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-3 text-night">
@@ -130,7 +130,7 @@ export default function FiveVFive() {
       {/* A Typical Game Day */}
       <section className="bg-night py-20">
         <div className="max-w-[880px] mx-auto px-6">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-gold/50 bg-gold/10 text-gold">
+          <span className="text-xs font-semibold tracking-wider uppercase text-gold">
             Game day
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">
@@ -160,7 +160,7 @@ export default function FiveVFive() {
       {/* Why 5v5 */}
       <section className="bg-night py-16 md:py-24">
         <div className="max-w-[880px] mx-auto px-6">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-gold/50 bg-gold/10 text-gold">
+          <span className="text-xs font-semibold tracking-wider uppercase text-gold">
             Why 5v5
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">
@@ -186,7 +186,7 @@ export default function FiveVFive() {
       {/* The Season */}
       <section className="bg-paper py-16 md:py-24">
         <div className="max-w-[880px] mx-auto px-6">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/30 bg-crimson/10 text-crimson">
+          <span className="text-xs font-semibold tracking-wider uppercase text-crimson">
             Season overview
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-night">
@@ -217,7 +217,7 @@ export default function FiveVFive() {
       {/* Registration and Pricing */}
       <section className="bg-night py-20">
         <div className="max-w-[880px] mx-auto px-6">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-gold/50 bg-gold/10 text-gold">
+          <span className="text-xs font-semibold tracking-wider uppercase text-gold">
             Registration
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">
@@ -286,7 +286,7 @@ export default function FiveVFive() {
       {/* FAQ */}
       <section className="bg-paper py-20">
         <div className="max-w-[880px] mx-auto px-6">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/30 bg-crimson/10 text-crimson">
+          <span className="text-xs font-semibold tracking-wider uppercase text-crimson">
             Questions
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-night">

@@ -6,7 +6,7 @@ const PROGRAMS = [
     description:
       "Saturday games, weekday practices. Where every player belongs. No tryouts, no experience required. Just show up and play.",
     color: "border-crimson",
-    tagColor: "bg-crimson/10 text-crimson border-crimson/30",
+    tagColor: "text-crimson",
     active: true,
   },
   {
@@ -17,7 +17,7 @@ const PROGRAMS = [
       "Camp-style training focused on individual skills. For players who want more soccer without a year-round commitment.",
     href: "/rise",
     color: "border-risegreen",
-    tagColor: "bg-risegreen/10 text-risegreen border-risegreen/30",
+    tagColor: "text-risegreen",
     active: false,
   },
   {
@@ -28,7 +28,7 @@ const PROGRAMS = [
       "Advanced training, league play, and tournaments. Selection-based entry for players ready to compete at a higher level.",
     href: "/reign",
     color: "border-gold",
-    tagColor: "bg-gold/10 text-gold border-gold/30",
+    tagColor: "text-gold",
     active: false,
   },
 ];
@@ -38,7 +38,7 @@ export default function PathwaySection() {
     <section className="roots-pathway py-20" id="pathway">
       <div className="relative z-10 max-w-[1280px] mx-auto px-6">
         <div className="max-w-[680px] mb-10">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/40 bg-crimson/10 text-crimson">
+          <span className="text-xs font-semibold tracking-wider uppercase text-crimson">
             The Pathway
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">
@@ -59,7 +59,7 @@ export default function PathwaySection() {
               className={`rounded-xl border-t-4 ${p.color} bg-white border border-black/8 border-t-0 p-7 flex flex-col ${p.active ? "ring-2 ring-crimson/20" : ""}`}
             >
               <div className="flex items-center justify-between mb-4">
-                <span className={`inline-block px-2.5 py-0.5 text-xs font-semibold tracking-wide uppercase rounded-full border ${p.tagColor}`}>
+                <span className={`text-xs font-semibold tracking-wide uppercase ${p.tagColor}`}>
                   {p.tag}
                 </span>
                 <span className="text-slate text-xs font-mono">{p.season}</span>

@@ -18,7 +18,7 @@ export default function CoachCTASection() {
     <section className="roots-final-cta bg-crimson py-16 md:py-20" id="coach-cta">
       <div className="max-w-[1280px] mx-auto px-6 relative z-10">
         <div className="max-w-[680px] mb-12">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-gold/50 bg-gold/10 text-gold mb-5">
+          <span className="text-xs font-semibold tracking-wider uppercase text-gold mb-5">
             Coach with us
           </span>
           <h2 className="font-display text-warmwhite text-[clamp(38px,5vw,68px)] uppercase leading-[0.92] tracking-tight">

@@ -98,7 +98,7 @@ export default function WhatsNewSection() {
     <section className="bg-paper py-20" id="whats-new">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="max-w-[720px]">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/30 bg-crimson/10 text-crimson">
+          <span className="text-xs font-semibold tracking-wider uppercase text-crimson">
             What's new this year
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-night">

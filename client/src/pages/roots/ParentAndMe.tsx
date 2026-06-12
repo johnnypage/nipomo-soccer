@@ -52,7 +52,7 @@ export default function ParentAndMe() {
       {/* What to Expect */}
       <section className="bg-paper py-20">
         <div className="max-w-[880px] mx-auto px-6">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/30 bg-crimson/10 text-crimson">
+          <span className="text-xs font-semibold tracking-wider uppercase text-crimson">
             What to expect
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-3 text-night">
@@ -76,7 +76,7 @@ export default function ParentAndMe() {
       {/* Season Details */}
       <section className="bg-night py-20">
         <div className="max-w-[880px] mx-auto px-6">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-gold/50 bg-gold/10 text-gold">
+          <span className="text-xs font-semibold tracking-wider uppercase text-gold">
             Season details
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">
@@ -106,7 +106,7 @@ export default function ParentAndMe() {
       {/* Registration and Pricing */}
       <section className="bg-paper py-20">
         <div className="max-w-[880px] mx-auto px-6">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/30 bg-crimson/10 text-crimson">
+          <span className="text-xs font-semibold tracking-wider uppercase text-crimson">
             Registration
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-night">
@@ -153,7 +153,7 @@ export default function ParentAndMe() {
       {/* FAQ */}
       <section className="bg-night py-20">
         <div className="max-w-[880px] mx-auto px-6">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-gold/50 bg-gold/10 text-gold">
+          <span className="text-xs font-semibold tracking-wider uppercase text-gold">
             Questions
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">

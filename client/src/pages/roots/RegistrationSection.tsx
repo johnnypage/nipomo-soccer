@@ -2,7 +2,7 @@ export default function RegistrationSection() {
   return (
     <section className="bg-paper py-20" id="registration">
       <div className="max-w-[880px] mx-auto px-6">
-        <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/30 bg-crimson/10 text-crimson">
+        <span className="text-xs font-semibold tracking-wider uppercase text-crimson">
           Registration
         </span>
         <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-night">

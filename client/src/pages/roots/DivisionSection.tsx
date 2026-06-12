@@ -59,7 +59,7 @@ export default function DivisionSection() {
     <section className="bg-night py-20" id="divisions">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="mb-8">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-gold/50 bg-gold/10 text-gold">
+          <span className="text-xs font-semibold tracking-wider uppercase text-gold">
             Find your division
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">

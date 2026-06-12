@@ -108,7 +108,7 @@ export default function Recreational() {
       {/* How It Works */}
       <section className="bg-paper py-20">
         <div className="max-w-[880px] mx-auto px-6">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/30 bg-crimson/10 text-crimson">
+          <span className="text-xs font-semibold tracking-wider uppercase text-crimson">
             How it works
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-3 text-night">
@@ -130,7 +130,7 @@ export default function Recreational() {
       <section className="bg-night py-20" id="divisions">
         <div className="max-w-[1200px] mx-auto px-6">
           <div className="mb-5">
-            <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-gold/50 bg-gold/10 text-gold">
+            <span className="text-xs font-semibold tracking-wider uppercase text-gold">
               Division Explorer
             </span>
             <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">
@@ -221,7 +221,7 @@ export default function Recreational() {
       {/* The Season */}
       <section className="bg-paper py-20">
         <div className="max-w-[880px] mx-auto px-6">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/30 bg-crimson/10 text-crimson">
+          <span className="text-xs font-semibold tracking-wider uppercase text-crimson">
             Season overview
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-night">
@@ -266,7 +266,7 @@ export default function Recreational() {
       {/* Playtime Policy */}
       <section className="bg-night py-20">
         <div className="max-w-[880px] mx-auto px-6">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-gold/50 bg-gold/10 text-gold">
+          <span className="text-xs font-semibold tracking-wider uppercase text-gold">
             Playtime policy
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">
@@ -287,7 +287,7 @@ export default function Recreational() {
       {/* Registration and Pricing */}
       <section className="bg-paper py-20">
         <div className="max-w-[880px] mx-auto px-6">
-          <span className="inline-block px-3 py-1 text-xs font-semibold tracking-wider uppercase rounded-full border border-crimson/30 bg-crimson/10 text-crimson">
+          <span className="text-xs font-semibold tracking-wider uppercase text-crimson">
             Registration
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-night">
