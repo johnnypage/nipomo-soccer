@@ -275,37 +275,78 @@ export default function LandingPage({ content }: { content: LandingContent }) {
               {content.season.sub}
             </p>
           </div>
-          <div className="mt-10 flex flex-col gap-4">
+          {/* Timeline: horizontal on desktop, vertical rail on mobile. No boxes. */}
+          <div className="mt-12 hidden md:grid md:grid-cols-4 md:gap-8 relative">
+            <div
+              aria-hidden="true"
+              className="absolute left-0 right-0 top-[5px] h-px bg-warmwhite/15"
+            />
             {content.season.milestones.map((m, i) => (
-              <div
-                key={i}
-                className="bg-white/5 border border-warmwhite/10 rounded-xl px-6 py-5"
-              >
-                <p className="font-semibold text-warmwhite text-[17px]">
-                  {m.title}
+              <div key={i} className="relative">
+                <span
+                  aria-hidden="true"
+                  className="block w-[11px] h-[11px] rounded-full bg-gold mb-5"
+                />
+                <p className="text-gold text-[13px] font-semibold tracking-[0.14em] uppercase">
+                  {m.dates}
                 </p>
-                <p className="text-warmwhite/70 text-[15px] leading-relaxed mt-2">
+                <p className="font-display text-warmwhite uppercase tracking-tight text-lg leading-tight mt-2">
+                  {m.name}
+                </p>
+                <p className="text-warmwhite/65 text-[14px] leading-relaxed mt-2">
                   {m.body}
                 </p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 md:hidden flex flex-col">
+            {content.season.milestones.map((m, i) => (
+              <div key={i} className="relative flex gap-5">
+                <div className="flex flex-col items-center">
+                  <span
+                    aria-hidden="true"
+                    className="block w-[11px] h-[11px] rounded-full bg-gold mt-1.5 flex-shrink-0"
+                  />
+                  {i < content.season.milestones.length - 1 && (
+                    <span
+                      aria-hidden="true"
+                      className="block w-px flex-1 bg-warmwhite/15"
+                    />
+                  )}
+                </div>
+                <div className={i < content.season.milestones.length - 1 ? "pb-8" : ""}>
+                  <p className="text-gold text-[13px] font-semibold tracking-[0.14em] uppercase">
+                    {m.dates}
+                  </p>
+                  <p className="font-display text-warmwhite uppercase tracking-tight text-lg leading-tight mt-1">
+                    {m.name}
+                  </p>
+                  <p className="text-warmwhite/65 text-[14px] leading-relaxed mt-2">
+                    {m.body}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 3. Value props */}
-      <section className="bg-[#181818]">
-        <div className="max-w-[1100px] mx-auto px-5 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* 3. What you get (editorial list, no boxes) */}
+      <section className="bg-night">
+        <div className="max-w-[860px] mx-auto px-5 py-16">
+          <h2 className="font-display text-warmwhite uppercase tracking-tight text-2xl md:text-3xl text-center">
+            {content.valuePropsHeading}
+          </h2>
+          <div className="mt-8 divide-y divide-warmwhite/10 border-t border-b border-warmwhite/10">
             {content.valueProps.map((prop, i) => (
               <div
                 key={i}
-                className="bg-white/5 border border-warmwhite/10 rounded-xl px-6 py-6"
+                className="py-5 md:flex md:items-baseline md:gap-8"
               >
-                <p className="font-display text-warmwhite uppercase tracking-tight text-xl md:text-2xl leading-tight">
+                <p className="font-display text-warmwhite uppercase tracking-tight text-lg md:text-xl leading-tight md:w-[260px] md:flex-shrink-0">
                   {prop.title}
                 </p>
-                <p className="text-warmwhite/70 text-[16px] leading-relaxed mt-2">
+                <p className="text-warmwhite/65 text-[15px] leading-relaxed mt-1.5 md:mt-0">
                   {prop.body}
                 </p>
               </div>

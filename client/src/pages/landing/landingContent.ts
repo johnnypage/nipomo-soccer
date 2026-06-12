@@ -66,6 +66,7 @@ export interface LandingContent {
     noTryouts: string;
     urgency: string;
   };
+  valuePropsHeading: string;
   valueProps: { title: string; body: string }[];
   band1: { line: string; sub: string };
   band2: { line: string; sub: string };
@@ -88,7 +89,7 @@ export interface LandingContent {
   season: {
     heading: string;
     sub: string;
-    milestones: { title: string; body: string }[];
+    milestones: { name: string; dates: string; body: string }[];
   };
   faqs: { q: string; a: string }[];
   finalCta: {
@@ -110,6 +111,7 @@ export const enContent: LandingContent = {
     noTryouts: "No tryouts. No experience required. Just show up ready to play.",
     urgency: "Prices go up August 1.",
   },
+  valuePropsHeading: "What you get",
   valueProps: [
     { title: "UP TO 16 GAMES", body: "Saturday games plus midweek matchups, August through November." },
     {
@@ -186,19 +188,23 @@ export const enContent: LandingContent = {
     sub: "Here is what the fall looks like for League Play.",
     milestones: [
       {
-        title: "Kickoff Days: August 1 and 8",
+        name: "Kickoff Days",
+        dates: "August 1 and 8",
         body: "Every player attends one. Pickup style games so we can build balanced teams, plus jersey fitting. Not a tryout. Every kid plays.",
       },
       {
-        title: "Pre-Season: August 10 to September 7",
+        name: "Pre-Season",
+        dates: "August 10 to September 7",
         body: "Two weeks of weekday practices, then two scrimmage Saturdays while teams get settled and jerseys arrive.",
       },
       {
-        title: "Regular Season: September 12 to October 31",
+        name: "Regular Season",
+        dates: "September 12 to October 31",
         body: "Eight weeks of Saturday games plus midweek matchups, with live standings for 1st grade and up.",
       },
       {
-        title: "Tournament: November 7",
+        name: "Tournament",
+        dates: "November 7",
         body: "End-of-season tournament for 3rd through 6th grade, seeded by standings. At least two games per team.",
       },
     ],
@@ -219,6 +225,18 @@ export const enContent: LandingContent = {
     {
       q: "What if my kid has never played?",
       a: "Beginners are welcome. There are no tryouts. Players are evaluated at Kickoff Day so teams stay balanced and every kid gets a fair chance to grow.",
+    },
+    {
+      q: "When are practices?",
+      a: "League Play teams practice on weekdays. Your coach sets the day and time after teams form at Kickoff Day.",
+    },
+    {
+      q: "What does my player need?",
+      a: "Cleats, shin guards, and water. The custom jersey is included with registration and fitted at Kickoff Day.",
+    },
+    {
+      q: "Can we register late?",
+      a: "Yes. Late registration stays open through August 29. Registering early costs less and helps us build balanced teams at Kickoff Day.",
     },
     {
       q: "What if I can't afford it?",
@@ -244,6 +262,7 @@ export const esContent: LandingContent = {
     noTryouts: "Sin pruebas. Sin experiencia previa. Solo llega listo para jugar.",
     urgency: "Los precios suben el 1 de agosto.",
   },
+  valuePropsHeading: "Lo que incluye",
   valueProps: [
     { title: "HASTA 16 PARTIDOS", body: "Partidos los sábados y entre semana, de agosto a noviembre." },
     {
@@ -320,19 +339,23 @@ export const esContent: LandingContent = {
     sub: "Así se ve el otoño para League Play.",
     milestones: [
       {
-        title: "Kickoff Days: 1 y 8 de agosto",
+        name: "Kickoff Days",
+        dates: "1 y 8 de agosto",
         body: "Cada jugador asiste a uno. Partidos estilo cascarita para formar equipos parejos, más la medición del jersey. No es una prueba. Todos los niños juegan.",
       },
       {
-        title: "Pretemporada: del 10 de agosto al 7 de septiembre",
+        name: "Pretemporada",
+        dates: "Del 10 de agosto al 7 de septiembre",
         body: "Dos semanas de prácticas entre semana y luego dos sábados de partidos amistosos mientras los equipos se acomodan y llegan los jerseys.",
       },
       {
-        title: "Temporada regular: del 12 de septiembre al 31 de octubre",
+        name: "Temporada regular",
+        dates: "Del 12 de septiembre al 31 de octubre",
         body: "Ocho semanas de partidos los sábados más partidos entre semana, con tabla de posiciones en vivo desde 1er grado.",
       },
       {
-        title: "Torneo: 7 de noviembre",
+        name: "Torneo",
+        dates: "7 de noviembre",
         body: "Torneo de fin de temporada de 3ro a 6to grado, sembrado por la tabla. Mínimo dos partidos por equipo.",
       },
     ],
@@ -353,6 +376,18 @@ export const esContent: LandingContent = {
     {
       q: "¿Y si mi hijo nunca ha jugado?",
       a: "Los principiantes son bienvenidos. No hay pruebas. Los jugadores se evalúan en el Kickoff Day para que los equipos estén parejos y cada niño tenga su oportunidad de crecer.",
+    },
+    {
+      q: "¿Cuándo son las prácticas?",
+      a: "Los equipos de League Play practican entre semana. Tu entrenador define el día y la hora cuando se forman los equipos en el Kickoff Day.",
+    },
+    {
+      q: "¿Qué necesita mi jugador?",
+      a: "Tachones, espinilleras y agua. El jersey personalizado va incluido con la inscripción y se mide en el Kickoff Day.",
+    },
+    {
+      q: "¿Podemos inscribirnos tarde?",
+      a: "Sí. La inscripción tardía sigue abierta hasta el 29 de agosto. Inscribirse temprano cuesta menos y nos ayuda a formar equipos parejos en el Kickoff Day.",
     },
     {
       q: "¿Y si no me alcanza?",
