@@ -68,7 +68,6 @@ export interface LandingContent {
   };
   valuePropsHeading: string;
   valueProps: { title: string; body: string }[];
-  band1: { line: string; sub: string };
   band2: { line: string; sub: string };
   sponsors: { heading: string; sub: string };
   divisions: {
@@ -136,10 +135,6 @@ export const enContent: LandingContent = {
     },
     { title: "CLOSE TO HOME", body: "Every game right here in Nipomo." },
   ],
-  band1: {
-    line: "The best part of the week happens on the field",
-    sub: "Families, coaches, and a whole town that shows up every Saturday.",
-  },
   band2: {
     line: "A season your kid will remember",
     sub: "First whistle in August. Medals and trophies in November.",
@@ -295,10 +290,6 @@ export const esContent: LandingContent = {
     },
     { title: "CERCA DE CASA", body: "Cada partido aquí mismo en Nipomo." },
   ],
-  band1: {
-    line: "Lo mejor de la semana pasa en la cancha",
-    sub: "Familias, entrenadores y todo un pueblo que llega cada sábado.",
-  },
   band2: {
     line: "Una temporada que tu hijo va a recordar",
     sub: "Primer silbatazo en agosto. Medallas y trofeos en noviembre.",

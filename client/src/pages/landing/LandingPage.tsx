@@ -362,14 +362,17 @@ export default function LandingPage({ content }: { content: LandingContent }) {
         </div>
       </section>
 
-      {/* 4. Photo band 1 */}
+      {/* 8. FAQ (all collapsed) */}
+      {/* Photo band: rainbow */}
       <PhotoBandSection
-        image="/roots-photo-band.jpg"
-        line={content.band1.line}
-        sub={content.band1.sub}
+        image="/landing-band-rainbow.jpg"
+        line={content.band2.line}
+        sub={content.band2.sub}
+        parallax={false}
+        position="center 40%"
+        overlay="bg-night/55"
       />
 
-      {/* 8. FAQ (all collapsed) */}
       <section className="bg-[#181818]">
         <div className="max-w-[760px] mx-auto px-5 py-16">
           <h2 className="font-display text-warmwhite uppercase tracking-tight text-2xl md:text-3xl text-center">
@@ -405,15 +408,6 @@ export default function LandingPage({ content }: { content: LandingContent }) {
         </div>
       </section>
 
-      {/* 9. Photo band 2 */}
-      <PhotoBandSection
-        image="/landing-band-rainbow.jpg"
-        line={content.band2.line}
-        sub={content.band2.sub}
-        parallax={false}
-        position="center 40%"
-        overlay="bg-night/55"
-      />
 
       {/* 10. Final CTA */}
       <section className="bg-night">
