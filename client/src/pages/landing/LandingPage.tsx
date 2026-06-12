@@ -411,7 +411,7 @@ export default function LandingPage({ content }: { content: LandingContent }) {
         line={content.band2.line}
         sub={content.band2.sub}
         parallax={false}
-        position="center 30%"
+        position="center 40%"
         overlay="bg-night/55"
       />
 
