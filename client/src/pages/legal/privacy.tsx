@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "wouter";
 
-const EFFECTIVE_DATE = "June 5, 2026";
+const EFFECTIVE_DATE = "June 11, 2026";
 
 export default function Privacy() {
   return (
@@ -21,14 +21,14 @@ export default function Privacy() {
           <section>
             <p>
               Nipomo Soccer Club ("Nipomo SC," "we," "us") operates the website at{" "}
-              <a href="https://nipomosc.org" className="text-gold underline underline-offset-2">nipomosc.org</a>{" "}
+              <a href="https://nipomosoccer.com" className="text-gold underline underline-offset-2">nipomosoccer.com</a>{" "}
               and the Summer Skills Challenge program (collectively, the "Service"). This Privacy
               Policy explains what information we collect, how we use it, and the choices you have.
             </p>
             <p>
               We are a community youth soccer organization based in Nipomo, California. Questions
               about this policy can be sent to{" "}
-              <a href="mailto:admin@nipomosc.org" className="text-gold underline underline-offset-2">admin@nipomosc.org</a>.
+              <a href="mailto:admin@nipomosoccer.com" className="text-gold underline underline-offset-2">admin@nipomosoccer.com</a>.
             </p>
           </section>
 
@@ -172,7 +172,7 @@ export default function Privacy() {
             </ul>
             <p>
               You can request deletion of your account and associated data at any time by emailing{" "}
-              <a href="mailto:admin@nipomosc.org" className="text-gold underline underline-offset-2">admin@nipomosc.org</a>.
+              <a href="mailto:admin@nipomosoccer.com" className="text-gold underline underline-offset-2">admin@nipomosoccer.com</a>.
             </p>
           </section>
 
@@ -195,7 +195,7 @@ export default function Privacy() {
               We do not knowingly collect personal information from children under 13 without
               parental consent. If you believe a child under 13 has provided us with information
               without their parent's consent, please contact{" "}
-              <a href="mailto:admin@nipomosc.org" className="text-gold underline underline-offset-2">admin@nipomosc.org</a>{" "}
+              <a href="mailto:admin@nipomosoccer.com" className="text-gold underline underline-offset-2">admin@nipomosoccer.com</a>{" "}
               and we will delete it.
             </p>
           </section>
@@ -211,7 +211,7 @@ export default function Privacy() {
             </ul>
             <p>
               To exercise any of these rights, email{" "}
-              <a href="mailto:admin@nipomosc.org" className="text-gold underline underline-offset-2">admin@nipomosc.org</a>.
+              <a href="mailto:admin@nipomosoccer.com" className="text-gold underline underline-offset-2">admin@nipomosoccer.com</a>.
             </p>
           </section>
 
@@ -228,19 +228,41 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h2 className="font-heading text-2xl text-warmwhite mb-3">11. California residents</h2>
+            <h2 className="font-heading text-2xl text-warmwhite mb-3">11. Advertising and analytics</h2>
+            <p>
+              We use the Meta Pixel on this website to understand how visitors find us and to
+              measure the performance of our registration advertising on Facebook and Instagram.
+              The pixel sets cookies and reports standard event data to Meta Platforms, Inc., such
+              as the pages you visit, clicks through to our registration platform, your IP address,
+              and browser information. We may also share a hashed (one way encrypted) version of a
+              parent's email address with Meta to measure whether our ads led to registrations and
+              to reach families who may be interested in our programs. We do not share children's
+              information for advertising purposes, and we do not sell personal information.
+            </p>
+            <p>
+              You can control how Meta uses this data in your Facebook ad preferences at{" "}
+              <a href="https://www.facebook.com/adpreferences" className="text-gold underline underline-offset-2">facebook.com/adpreferences</a>,
+              opt out of interest based advertising at{" "}
+              <a href="https://optout.aboutads.info" className="text-gold underline underline-offset-2">optout.aboutads.info</a>,
+              or block these cookies in your browser settings. The Service works normally with
+              these cookies blocked.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="font-heading text-2xl text-warmwhite mb-3">12. California residents</h2>
             <p>
               If you are a California resident, the California Consumer Privacy Act gives you
               certain rights regarding personal information, including the right to know what we
               collect, the right to request deletion, and the right not to be discriminated against
               for exercising your rights. We do not sell personal information. To exercise these
               rights, email{" "}
-              <a href="mailto:admin@nipomosc.org" className="text-gold underline underline-offset-2">admin@nipomosc.org</a>.
+              <a href="mailto:admin@nipomosoccer.com" className="text-gold underline underline-offset-2">admin@nipomosoccer.com</a>.
             </p>
           </section>
 
           <section>
-            <h2 className="font-heading text-2xl text-warmwhite mb-3">12. Changes to this policy</h2>
+            <h2 className="font-heading text-2xl text-warmwhite mb-3">13. Changes to this policy</h2>
             <p>
               We may update this policy from time to time. When we do, we will change the effective
               date at the top of this page. For material changes, we will also notify families with
@@ -249,11 +271,11 @@ export default function Privacy() {
           </section>
 
           <section>
-            <h2 className="font-heading text-2xl text-warmwhite mb-3">13. Contact us</h2>
+            <h2 className="font-heading text-2xl text-warmwhite mb-3">14. Contact us</h2>
             <p>
               Nipomo Soccer Club<br />
               Nipomo, California<br />
-              <a href="mailto:admin@nipomosc.org" className="text-gold underline underline-offset-2">admin@nipomosc.org</a>
+              <a href="mailto:admin@nipomosoccer.com" className="text-gold underline underline-offset-2">admin@nipomosoccer.com</a>
             </p>
           </section>
         </div>
