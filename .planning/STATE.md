@@ -93,6 +93,7 @@ None yet.
 | ID | Description | Date | Commits |
 |----|-------------|------|---------|
 | 260611-vza | EN/ES Meta ads landing pages (/fall, /futbol) | 2026-06-12 | 40385a5, 05de676, 0d582aa |
+| 260611-wvd | Dark athletic redesign of /fall and /futbol with photo bands, sticky CTA nav | 2026-06-12 | 65abfef, cd8d895 |
 
 ## Deferred Items
 
