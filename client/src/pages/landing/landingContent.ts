@@ -50,6 +50,7 @@ export interface LandingContent {
     specialNeedsLabel: string;
   };
   footerContact: string;
+  footerPrivacyLabel: string;
 }
 
 export const enContent: LandingContent = {
@@ -111,7 +112,7 @@ export const enContent: LandingContent = {
       a: "Every game is played right here in Nipomo, close to home so families can show up week after week.",
     },
     {
-      q: "What is included in registration?",
+      q: "What's included in registration?",
       a: "A custom jersey, Photo Day, trained and paid referees from 1st grade up, balanced teams, and a medal or trophy run to close out the season.",
     },
     {
@@ -119,8 +120,8 @@ export const enContent: LandingContent = {
       a: "Beginners are welcome. There are no tryouts. Players are evaluated at Kickoff Day so teams stay balanced and every kid gets a fair chance to grow.",
     },
     {
-      q: "What if I cannot afford it?",
-      a: "Scholarships are available because every kid in Nipomo deserves a team. Email admin@nipomosoccer.com and we will help.",
+      q: "What if I can't afford it?",
+      a: "Scholarships are available because every kid in Nipomo deserves a team. Email admin@nipomosoccer.com and we'll help.",
     },
   ],
   finalCta: {
@@ -132,6 +133,7 @@ export const enContent: LandingContent = {
     specialNeedsLabel: "Special Needs, all ages, $50 flat",
   },
   footerContact: "admin@nipomosoccer.com",
+  footerPrivacyLabel: "Privacy",
 };
 
 export const esContent: LandingContent = {
@@ -154,7 +156,7 @@ export const esContent: LandingContent = {
   pricing: {
     heading: "Precios",
     fromLine: "Desde $150",
-    tiersLine: "$150 temprano, $175 regular, $200 tardío",
+    tiersLine: "Inscripción temprana $150, regular $175, tardía $200",
     urgency: "Los precios suben después del 31 de julio",
     scholarshipsLine:
       "Hay becas disponibles porque cada niño de Nipomo merece un equipo",
@@ -214,4 +216,5 @@ export const esContent: LandingContent = {
     specialNeedsLabel: "Special Needs, todas las edades, $50 fijo",
   },
   footerContact: "admin@nipomosoccer.com",
+  footerPrivacyLabel: "Privacidad",
 };

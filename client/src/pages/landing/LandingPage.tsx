@@ -257,7 +257,7 @@ export default function LandingPage({ content }: { content: LandingContent }) {
             href="/privacy"
             className="hover:text-warmwhite transition-colors"
           >
-            Privacy
+            {content.footerPrivacyLabel}
           </a>
         </div>
       </footer>
