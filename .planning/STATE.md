@@ -99,6 +99,7 @@ None yet.
 | 260612-ehr | Landing content revision: divisions section, season timeline, copy rewrite | 2026-06-12 | 0ba0c5d, a0e344c |
 | 260612-g8d | Extract sponsor marquee into shared component and add to home page below hero | 2026-06-12 | 152d491, ba2d6bd, 683c245 |
 | 260612-gem | Logo sweep (already clean) + drop "Real X" copy from ROOTS photo band | 2026-06-12 | 4571e24 |
+| 260612-gi6 | Strip pill badges across ROOTS pages, plain display-font headings | 2026-06-12 | 20179c8 |
 
 ## Deferred Items
 
