@@ -3,15 +3,15 @@ import clubLogo from "@assets/NipomoSoccer_1780982227404.png";
 import { type LandingContent, SPONSORS, SPOND_MAIN } from "./landingContent";
 
 const HERO_IMAGES = [
-  "/landing-hero-1.jpg",
   "/landing-hero-6.jpg",
-  "/landing-hero-4.jpg",
   "/landing-hero-5.jpg",
-  "/landing-hero-2.jpg",
-  "/landing-hero-7.jpg",
-  "/landing-hero-3.jpg",
-  "/landing-hero-8.jpg",
   "/landing-hero-9.jpg",
+  "/landing-hero-7.jpg",
+  "/landing-hero-8.jpg",
+  "/landing-hero-1.jpg",
+  "/landing-hero-4.jpg",
+  "/landing-hero-2.jpg",
+  "/landing-hero-3.jpg",
 ];
 
 function CtaButton({
@@ -82,7 +82,7 @@ function HeroRotation() {
     if (reduced) return;
     const id = setInterval(() => {
       setActive((i) => (i + 1) % HERO_IMAGES.length);
-    }, 5000);
+    }, 2500);
     return () => clearInterval(id);
   }, []);
 
