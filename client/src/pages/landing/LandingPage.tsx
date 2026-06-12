@@ -172,7 +172,9 @@ export default function LandingPage({ content }: { content: LandingContent }) {
                   <img
                     src={s.src}
                     alt={copy === 0 ? s.name : ""}
-                    className="w-auto object-contain max-h-12 md:max-h-14 opacity-85"
+                    className={`w-auto object-contain opacity-85 ${
+                      s.boost ? "max-h-16 md:max-h-20" : "max-h-12 md:max-h-14"
+                    }`}
                   />
                 );
                 return (

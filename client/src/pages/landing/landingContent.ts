@@ -24,14 +24,19 @@ import superiorFireLogo from "@assets/sponsor-color-superior-fire.png";
 import taylorReaLogo from "@assets/sponsor-taylor-rea.png";
 import shuckupsLogo from "@assets/sponsor-mono-shuckups.png";
 import shakedownLogo from "@assets/sponsor-mono-shakedown.png";
-import mayorsPlaceLogo from "@assets/sponsor-color-mayors-place.png";
+import mayorsPlaceLogo from "@assets/sponsor-color-mayors-split.png";
+import bbq805Logo from "@assets/sponsor-color-805bbq.png";
+import fitHouseLogo from "@assets/sponsor-color-fithouse.png";
+import paintingConceptsLogo from "@assets/sponsor-color-painting-concepts.png";
+import pcMechanicalLogo from "@assets/sponsor-color-pcmechanical.png";
+import threeOaksLogo from "@assets/sponsor-color-threeoaks.png";
 
 // Shared sponsor list (same logos on both /fall and /futbol).
 // Adding a sponsor is one import + one array entry. Assets are processed
 // for the dark strip: backgrounds removed, original colors kept, near-black
 // marks lightened so they read on black. Simple dark marks use the white
 // mono versions. Originals live in the club sponsor logos folder.
-export const SPONSORS: { name: string; src: string; url?: string }[] = [
+export const SPONSORS: { name: string; src: string; url?: string; boost?: boolean }[] = [
   { name: "Herrera Farming Company", src: herreraLogo },
   { name: "JG Contracting", src: jgContractingLogo, url: "https://jgcontracting.biz/" },
   { name: "Head Liners Barber Shop", src: headlinersLogo },
@@ -40,9 +45,14 @@ export const SPONSORS: { name: string; src: string; url?: string }[] = [
   { name: "LVL Salon", src: lvlSalonLogo },
   { name: "Superior Fire Sprinkler", src: superiorFireLogo },
   { name: "Taylor Rea Photography", src: taylorReaLogo },
-  { name: "The Shuck Ups Cornhole Club", src: shuckupsLogo },
+  { name: "The Shuck Ups Cornhole Club", src: shuckupsLogo, boost: true },
   { name: "Shakedown Seasoning", src: shakedownLogo },
   { name: "The Mayor's Place", src: mayorsPlaceLogo },
+  { name: "805 BBQ & Smoke", src: bbq805Logo },
+  { name: "Fit Höuse Studios", src: fitHouseLogo },
+  { name: "Painting Concepts", src: paintingConceptsLogo },
+  { name: "PC Mechanical", src: pcMechanicalLogo },
+  { name: "Three Oaks BBQ", src: threeOaksLogo },
 ];
 
 export interface LandingContent {
