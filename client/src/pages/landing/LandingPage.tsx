@@ -11,6 +11,7 @@ const HERO_IMAGES = [
   "/landing-hero-7.jpg",
   "/landing-hero-3.jpg",
   "/landing-hero-8.jpg",
+  "/landing-hero-9.jpg",
 ];
 
 function CtaButton({
