@@ -107,7 +107,7 @@ export const enContent: LandingContent = {
   hero: {
     headline: "Fall soccer is back in Nipomo",
     subhead:
-      "Nipomo Soccer's recreational fall season is open for registration. Players ages 2 through high school, up to 16 games, paid referees, and a community of families and coaches that makes game day the best part of the week.",
+      "Nipomo Soccer's recreational fall season is open for registration. Ages 2 through high school.",
     noTryouts: "No tryouts. No experience required. Just show up ready to play.",
     urgency: "Prices go up August 1.",
   },
@@ -262,7 +262,7 @@ export const esContent: LandingContent = {
   hero: {
     headline: "El fútbol de otoño regresa a Nipomo",
     subhead:
-      "Ya abrió la inscripción para la temporada recreativa de otoño de Nipomo Soccer. Jugadores desde los 2 años hasta high school, hasta 16 partidos, árbitros pagados y una comunidad de familias y entrenadores que hace del día de partido lo mejor de la semana.",
+      "Ya abrió la inscripción para la temporada recreativa de otoño de Nipomo Soccer. De 2 años hasta high school.",
     noTryouts: "Sin pruebas. Sin experiencia previa. Solo llega listo para jugar.",
     urgency: "Los precios suben el 1 de agosto.",
   },
