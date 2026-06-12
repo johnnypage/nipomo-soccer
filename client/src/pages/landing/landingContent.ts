@@ -104,7 +104,7 @@ export const enContent: LandingContent = {
   docTitle: "Nipomo Soccer | Fall 2026 Registration",
   ctaLabel: "Register Now",
   hero: {
-    headline: "Fall soccer is back in Nipomo",
+    headline: "Fall soccer starts here",
     subhead:
       "Nipomo Soccer's recreational fall season is open for registration. Ages 2 through high school. No tryouts. No experience required. Just show up ready to play.",
     urgency: "Register today and save.",
@@ -258,7 +258,7 @@ export const esContent: LandingContent = {
   docTitle: "Nipomo Soccer | Inscripción Otoño 2026",
   ctaLabel: "Inscribe a tu hijo",
   hero: {
-    headline: "El fútbol de otoño regresa a Nipomo",
+    headline: "El fútbol de otoño empieza aquí",
     subhead:
       "Ya abrió la inscripción para la temporada recreativa de otoño de Nipomo Soccer. De 2 años hasta high school. Sin pruebas. Sin experiencia previa. Solo llega listo para jugar.",
     urgency: "Inscríbete hoy y ahorra.",
