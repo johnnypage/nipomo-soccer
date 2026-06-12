@@ -23,7 +23,9 @@ export interface LandingContent {
     subhead: string;
     urgency: string;
   };
-  valueProps: string[];
+  valueProps: { title: string; body: string }[];
+  band1: { line: string; sub: string };
+  band2: { line: string; sub: string };
   pricing: {
     heading: string;
     fromLine: string;
@@ -36,8 +38,7 @@ export interface LandingContent {
   ages: {
     heading: string;
     leaguePlay: string;
-    fiveVFive: string;
-    note: string;
+    teenNote: string;
   };
   howItWorks: { heading: string; steps: { step: number; text: string }[] };
   faqs: { q: string; a: string }[];
@@ -60,16 +61,33 @@ export const enContent: LandingContent = {
   hero: {
     headline: "Fall soccer is back in Nipomo",
     subhead:
-      "Registration is open for the fall season. Saturday games right here in Nipomo, for Pre-K through 12th grade. The season runs August through November.",
+      "Registration is open for the fall season. Saturday games right here in Nipomo, for Pre-K through 8th grade. The season runs August through November.",
     urgency: "Prices go up August 1.",
   },
   valueProps: [
-    "Up to 16 games per season, 20 or more for the 5v5 teen league",
-    "Trained, paid referees at every game from 1st grade up, new this season",
-    "Balanced teams: every player evaluated at Kickoff Day so games stay close",
-    "Custom jersey, Photo Day, and a medal or trophy run to end the season",
-    "Every game close to home in Nipomo",
+    { title: "UP TO 16 GAMES", body: "A real season that runs August through November." },
+    {
+      title: "PAID REFEREES",
+      body: "Trained and paid referees at every game from 1st grade up. New this season.",
+    },
+    {
+      title: "BALANCED TEAMS",
+      body: "Every player evaluated at Kickoff Day so games stay close all season.",
+    },
+    {
+      title: "THE FULL KIT",
+      body: "Custom jersey, Photo Day, and a medal or trophy to close out the season.",
+    },
+    { title: "CLOSE TO HOME", body: "Every game right here in Nipomo." },
   ],
+  band1: {
+    line: "Saturdays belong to the kids",
+    sub: "Real teams, real referees, and a sideline full of families every week.",
+  },
+  band2: {
+    line: "This is a real season",
+    sub: "From the first whistle in August to medals and trophies in November.",
+  },
   pricing: {
     heading: "Pricing",
     fromLine: "From $150",
@@ -84,9 +102,8 @@ export const enContent: LandingContent = {
     heading: "Find your age group",
     leaguePlay:
       "League Play: Pre-K through 6th grade. Weekly practices plus Saturday games.",
-    fiveVFive:
-      "5v5: 7th through 12th grade. No practices, just games twice a week.",
-    note: "Both register through the same form below.",
+    teenNote:
+      "Players in 7th grade and up have their own fast paced teen league that plays twice a week. Register through the same form.",
   },
   howItWorks: {
     heading: "How it works",
@@ -143,16 +160,33 @@ export const esContent: LandingContent = {
   hero: {
     headline: "El fútbol de otoño regresa a Nipomo",
     subhead:
-      "Ya abrió la inscripción para la temporada de otoño de Nipomo Soccer. Partidos los sábados aquí mismo en Nipomo, desde Pre-K hasta 12vo grado. La temporada va de agosto a noviembre.",
+      "Ya abrió la inscripción para la temporada de otoño de Nipomo Soccer. Partidos los sábados aquí mismo en Nipomo, desde Pre-K hasta 8vo grado. La temporada va de agosto a noviembre.",
     urgency: "Los precios suben el 1 de agosto.",
   },
   valueProps: [
-    "Hasta 16 partidos por temporada, 20 o más para la liga 5v5 de jóvenes",
-    "Árbitros capacitados y pagados en cada partido desde 1er grado, nuevo esta temporada",
-    "Equipos parejos: cada jugador se evalúa en el Kickoff Day para que los partidos estén reñidos",
-    "Jersey personalizado, día de fotos y una medalla o trofeo para cerrar la temporada",
-    "Cada partido cerca de casa, aquí en Nipomo",
+    { title: "HASTA 16 PARTIDOS", body: "Una temporada de verdad, de agosto a noviembre." },
+    {
+      title: "ÁRBITROS PAGADOS",
+      body: "Árbitros capacitados y pagados en cada partido desde 1er grado. Nuevo esta temporada.",
+    },
+    {
+      title: "EQUIPOS PAREJOS",
+      body: "Cada jugador se evalúa en el Kickoff Day para que los partidos estén reñidos toda la temporada.",
+    },
+    {
+      title: "EQUIPO COMPLETO",
+      body: "Jersey personalizado, día de fotos y una medalla o trofeo para cerrar la temporada.",
+    },
+    { title: "CERCA DE CASA", body: "Cada partido aquí mismo en Nipomo." },
   ],
+  band1: {
+    line: "Los sábados son de los niños",
+    sub: "Equipos de verdad, árbitros de verdad y una banda llena de familias cada semana.",
+  },
+  band2: {
+    line: "Esto es una temporada de verdad",
+    sub: "Desde el primer silbatazo en agosto hasta las medallas y trofeos en noviembre.",
+  },
   pricing: {
     heading: "Precios",
     fromLine: "Desde $150",
@@ -167,9 +201,8 @@ export const esContent: LandingContent = {
     heading: "Encuentra tu grupo de edad",
     leaguePlay:
       "League Play: de Pre-K a 6to grado. Práctica semanal y partidos los sábados.",
-    fiveVFive:
-      "5v5: de 7mo a 12vo grado. Sin prácticas, solo partidos dos veces por semana.",
-    note: "Ambos se inscriben con el mismo formulario de abajo.",
+    teenNote:
+      "Los jugadores de 7mo grado en adelante tienen su propia liga juvenil que juega dos veces por semana. Se inscriben con el mismo formulario.",
   },
   howItWorks: {
     heading: "Cómo funciona",
