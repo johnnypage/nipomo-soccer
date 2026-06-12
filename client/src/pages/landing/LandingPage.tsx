@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import clubLogo from "@assets/NSC_1764979848772.png";
+import clubLogo from "@assets/NipomoSoccer_1780982227404.png";
 import {
   type LandingContent,
   SPOND_MAIN,
