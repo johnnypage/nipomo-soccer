@@ -61,12 +61,21 @@ export function serveStatic(app: Express) {
 
     if (matched) {
       const [, meta] = matched;
+      // Strip the static OG/twitter/description tags from index.html so
+      // crawlers see exactly one set (duplicates make iMessage stack images
+      // and Facebook pick the wrong title).
+      html = html.replace(
+        /^\s*<meta (?:property="og:|name="twitter:|name="description")[^>]*\/>\r?\n/gm,
+        "",
+      );
       const ogTags = `
     <title>${meta.title}</title>
     <meta name="description" content="${meta.description}" />
     <meta property="og:title" content="${meta.title}" />
     <meta property="og:description" content="${meta.description}" />
     <meta property="og:image" content="${meta.image || ogImage}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:url" content="${origin}${url}" />
     <meta property="og:type" content="${meta.type || "website"}" />
     <meta name="twitter:card" content="summary_large_image" />
