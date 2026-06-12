@@ -166,7 +166,7 @@ export const enContent: LandingContent = {
       {
         title: "LEAGUE PLAY",
         age: "Pre-K through 6th grade",
-        body: "The heart of the fall season. Weekly practices with games on Saturdays and the occasional midweek match. We are emphasizing more games this year so kids get more touches and have more fun. Up to 16 games per team, and the 3rd through 6th grade divisions close the season with a tournament.",
+        body: "The heart of the fall season. Weekly practices with games on Saturdays and the occasional midweek match. We are emphasizing more games this year so kids get more touches and have more fun. The 3rd through 6th grade divisions close the season with a tournament.",
         price: "$150 / $175 / $200",
         priceNote: "Early Bird / Regular / Late",
         cta: "Register for League Play",
@@ -325,7 +325,7 @@ export const esContent: LandingContent = {
       {
         title: "LEAGUE PLAY",
         age: "De Pre-K a 6to grado",
-        body: "El corazón de la temporada de otoño. Práctica semanal con partidos los sábados y de vez en cuando un partido entre semana. Este año apostamos por más partidos para que los niños tengan más toques de balón y más diversión. Hasta 16 partidos por equipo, y las divisiones de 3ro a 6to grado cierran la temporada con un torneo.",
+        body: "El corazón de la temporada de otoño. Práctica semanal con partidos los sábados y de vez en cuando un partido entre semana. Este año apostamos por más partidos para que los niños tengan más toques de balón y más diversión. Las divisiones de 3ro a 6to grado cierran la temporada con un torneo.",
         price: "$150 / $175 / $200",
         priceNote: "Temprana / Regular / Tardía",
         cta: "Inscríbete en League Play",

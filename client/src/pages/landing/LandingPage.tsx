@@ -4,6 +4,7 @@ import { type LandingContent, SPONSORS, SPOND_MAIN } from "./landingContent";
 
 const HERO_IMAGES = [
   "/landing-hero-1.jpg",
+  "/landing-hero-4.jpg",
   "/landing-hero-2.jpg",
   "/landing-hero-3.jpg",
 ];
