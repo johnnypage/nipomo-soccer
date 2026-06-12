@@ -30,7 +30,17 @@ export function serveStatic(app: Express) {
     const origin = `${req.protocol}://${req.get("host")}`;
     const ogImage = `https://nipomosc.org/og-share.jpg`;
 
-    const pageOg: Record<string, { title: string; description: string; type?: string }> = {
+    const pageOg: Record<string, { title: string; description: string; type?: string; image?: string }> = {
+      "/fall": {
+        title: "Fall Soccer Registration Is Open | Nipomo Soccer",
+        description: "Recreational soccer for ages 2 through high school. Saturday games in Nipomo, paid referees, balanced teams, and a season that runs August through November. Register today.",
+        image: "https://nipomosc.org/og-fall.jpg",
+      },
+      "/futbol": {
+        title: "Inscripci\u00f3n Abierta: F\u00fatbol de Oto\u00f1o | Nipomo Soccer",
+        description: "F\u00fatbol recreativo para ni\u00f1os de 2 a\u00f1os hasta high school. Partidos los s\u00e1bados en Nipomo, \u00e1rbitros pagados y una temporada de agosto a noviembre. Inscr\u00edbete hoy.",
+        image: "https://nipomosc.org/og-futbol.jpg",
+      },
       "/about/compare": {
         title: "Nipomo SC vs. AYSO -- What's the Difference? | Nipomo Soccer",
         description: "The same people who ran AYSO Nipomo built something better. Learn why we made the switch, what's different, and what it means for your family.",
@@ -56,13 +66,13 @@ export function serveStatic(app: Express) {
     <meta name="description" content="${meta.description}" />
     <meta property="og:title" content="${meta.title}" />
     <meta property="og:description" content="${meta.description}" />
-    <meta property="og:image" content="${ogImage}" />
+    <meta property="og:image" content="${meta.image || ogImage}" />
     <meta property="og:url" content="${origin}${url}" />
     <meta property="og:type" content="${meta.type || "website"}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${meta.title}" />
     <meta name="twitter:description" content="${meta.description}" />
-    <meta name="twitter:image" content="${ogImage}" />`;
+    <meta name="twitter:image" content="${meta.image || ogImage}" />`;
       html = html.replace("</head>", `${ogTags}\n  </head>`);
       html = html.replace(/<title>.*?<\/title>/, `<title>${meta.title}</title>`);
     } else {
