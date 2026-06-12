@@ -91,6 +91,7 @@ export interface LandingContent {
     sub: string;
     milestones: { name: string; dates: string; body: string }[];
   };
+  faqHeading: string;
   faqs: { q: string; a: string }[];
   finalCta: {
     heading: string;
@@ -113,7 +114,10 @@ export const enContent: LandingContent = {
   },
   valuePropsHeading: "What you get",
   valueProps: [
-    { title: "UP TO 16 GAMES", body: "Saturday games plus midweek matchups, August through November." },
+    {
+      title: "UP TO 16 GAMES",
+      body: "Games on Saturdays and the occasional midweek match, with live standings on nipomosc.org from 1st grade up.",
+    },
     {
       title: "PAID REFEREES",
       body: "Trained and paid referees at every game from 1st grade up. New this season.",
@@ -121,6 +125,10 @@ export const enContent: LandingContent = {
     {
       title: "BALANCED TEAMS",
       body: "Every player evaluated at Kickoff Day so games stay close all season.",
+    },
+    {
+      title: "EVERY KID PLAYS",
+      body: "Playing time rewards practice attendance, and every player gets meaningful minutes in every game.",
     },
     {
       title: "THE FULL KIT",
@@ -158,7 +166,7 @@ export const enContent: LandingContent = {
       {
         title: "LEAGUE PLAY",
         age: "Pre-K through 6th grade",
-        body: "The heart of the fall season. Weekly practices, Saturday games, midweek matches, and an end-of-season tournament for older divisions. Up to 16 games per team.",
+        body: "The heart of the fall season. Weekly practices with games on Saturdays and the occasional midweek match. We are emphasizing more games this year so kids get more touches and have more fun. Up to 16 games per team, and the 3rd through 6th grade divisions close the season with a tournament.",
         price: "$150 / $175 / $200",
         priceNote: "Early Bird / Regular / Late",
         cta: "Register for League Play",
@@ -176,7 +184,7 @@ export const enContent: LandingContent = {
       {
         title: "SPECIAL NEEDS",
         age: "All ages",
-        body: "Drills and scrimmages with accommodations based on player needs. Every session is designed so every player can participate and have fun. Ten Saturday sessions, with kit, insurance, and a participation medal included.",
+        body: "Drills and scrimmages with accommodations based on player needs. Every session is designed so every player can participate and have fun. Ten Saturday sessions, with kit and participation medal included.",
         price: "$50 flat",
         cta: "Register for Special Needs",
         href: SPOND_SPECIAL_NEEDS,
@@ -189,26 +197,27 @@ export const enContent: LandingContent = {
     milestones: [
       {
         name: "Kickoff Days",
-        dates: "August 1 and 8",
+        dates: "Aug 1 and 8",
         body: "Every player attends one. Pickup style games so we can build balanced teams, plus jersey fitting. Not a tryout. Every kid plays.",
       },
       {
         name: "Pre-Season",
-        dates: "August 10 to September 7",
+        dates: "Aug 10 to Sep 7",
         body: "Two weeks of weekday practices, then two scrimmage Saturdays while teams get settled and jerseys arrive.",
       },
       {
         name: "Regular Season",
-        dates: "September 12 to October 31",
+        dates: "Sep 12 to Oct 31",
         body: "Eight weeks of Saturday games plus midweek matchups, with live standings for 1st grade and up.",
       },
       {
         name: "Tournament",
-        dates: "November 7",
+        dates: "Nov 7",
         body: "End-of-season tournament for 3rd through 6th grade, seeded by standings. At least two games per team.",
       },
     ],
   },
+  faqHeading: "Common questions",
   faqs: [
     {
       q: "When is the season?",
@@ -264,7 +273,10 @@ export const esContent: LandingContent = {
   },
   valuePropsHeading: "Lo que incluye",
   valueProps: [
-    { title: "HASTA 16 PARTIDOS", body: "Partidos los sábados y entre semana, de agosto a noviembre." },
+    {
+      title: "HASTA 16 PARTIDOS",
+      body: "Partidos los sábados y de vez en cuando entre semana, con tabla de posiciones en vivo en nipomosc.org desde 1er grado.",
+    },
     {
       title: "ÁRBITROS PAGADOS",
       body: "Árbitros capacitados y pagados en cada partido desde 1er grado. Nuevo esta temporada.",
@@ -272,6 +284,10 @@ export const esContent: LandingContent = {
     {
       title: "EQUIPOS PAREJOS",
       body: "Cada jugador se evalúa en el Kickoff Day para que los partidos estén reñidos toda la temporada.",
+    },
+    {
+      title: "CADA NIÑO JUEGA",
+      body: "El tiempo de juego premia la asistencia a las prácticas, y cada jugador tiene minutos que cuentan en cada partido.",
     },
     {
       title: "EQUIPO COMPLETO",
@@ -309,7 +325,7 @@ export const esContent: LandingContent = {
       {
         title: "LEAGUE PLAY",
         age: "De Pre-K a 6to grado",
-        body: "El corazón de la temporada de otoño. Práctica semanal, partidos los sábados, partidos entre semana y un torneo de fin de temporada para las divisiones mayores. Hasta 16 partidos por equipo.",
+        body: "El corazón de la temporada de otoño. Práctica semanal con partidos los sábados y de vez en cuando un partido entre semana. Este año apostamos por más partidos para que los niños tengan más toques de balón y más diversión. Hasta 16 partidos por equipo, y las divisiones de 3ro a 6to grado cierran la temporada con un torneo.",
         price: "$150 / $175 / $200",
         priceNote: "Temprana / Regular / Tardía",
         cta: "Inscríbete en League Play",
@@ -327,7 +343,7 @@ export const esContent: LandingContent = {
       {
         title: "SPECIAL NEEDS",
         age: "Todas las edades",
-        body: "Ejercicios y partidos amistosos con adaptaciones según las necesidades de cada jugador. Cada sesión está diseñada para que todos participen y se diviertan. Diez sesiones los sábados, con uniforme, seguro y medalla de participación incluidos.",
+        body: "Ejercicios y partidos amistosos con adaptaciones según las necesidades de cada jugador. Cada sesión está diseñada para que todos participen y se diviertan. Diez sesiones los sábados, con uniforme y medalla de participación incluidos.",
         price: "$50 fijo",
         cta: "Inscríbete en Special Needs",
         href: SPOND_SPECIAL_NEEDS,
@@ -340,26 +356,27 @@ export const esContent: LandingContent = {
     milestones: [
       {
         name: "Kickoff Days",
-        dates: "1 y 8 de agosto",
+        dates: "1 y 8 ago",
         body: "Cada jugador asiste a uno. Partidos estilo cascarita para formar equipos parejos, más la medición del jersey. No es una prueba. Todos los niños juegan.",
       },
       {
         name: "Pretemporada",
-        dates: "Del 10 de agosto al 7 de septiembre",
+        dates: "10 ago a 7 sep",
         body: "Dos semanas de prácticas entre semana y luego dos sábados de partidos amistosos mientras los equipos se acomodan y llegan los jerseys.",
       },
       {
         name: "Temporada regular",
-        dates: "Del 12 de septiembre al 31 de octubre",
+        dates: "12 sep a 31 oct",
         body: "Ocho semanas de partidos los sábados más partidos entre semana, con tabla de posiciones en vivo desde 1er grado.",
       },
       {
         name: "Torneo",
-        dates: "7 de noviembre",
+        dates: "7 nov",
         body: "Torneo de fin de temporada de 3ro a 6to grado, sembrado por la tabla. Mínimo dos partidos por equipo.",
       },
     ],
   },
+  faqHeading: "Preguntas frecuentes",
   faqs: [
     {
       q: "¿Cuándo es la temporada?",

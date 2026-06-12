@@ -37,17 +37,23 @@ function PhotoBandSection({
   image,
   line,
   sub,
+  parallax = true,
+  position = "center",
+  overlay = "bg-night/70",
 }: {
   image: string;
   line: string;
   sub: string;
+  parallax?: boolean;
+  position?: string;
+  overlay?: string;
 }) {
   return (
     <section
-      className="relative bg-scroll md:bg-fixed bg-cover bg-center"
-      style={{ backgroundImage: `url(${image})` }}
+      className={`relative bg-cover ${parallax ? "bg-scroll md:bg-fixed" : "bg-scroll"}`}
+      style={{ backgroundImage: `url(${image})`, backgroundPosition: position }}
     >
-      <div className="absolute inset-0 bg-night/70" />
+      <div className={`absolute inset-0 ${overlay}`} />
       <div className="relative z-10 max-w-[1100px] mx-auto px-5 py-24 md:py-32 min-h-[300px] flex flex-col items-center justify-center text-center">
         <p className="font-display text-warmwhite uppercase tracking-tight leading-[1.02] text-[clamp(32px,7vw,64px)] max-w-3xl">
           {line}
@@ -287,10 +293,10 @@ export default function LandingPage({ content }: { content: LandingContent }) {
                   aria-hidden="true"
                   className="block w-[11px] h-[11px] rounded-full bg-gold mb-5"
                 />
-                <p className="text-gold text-[13px] font-semibold tracking-[0.14em] uppercase">
+                <p className="text-gold text-[13px] font-semibold tracking-[0.14em] uppercase whitespace-nowrap">
                   {m.dates}
                 </p>
-                <p className="font-display text-warmwhite uppercase tracking-tight text-lg leading-tight mt-2">
+                <p className="font-display text-warmwhite uppercase tracking-tight text-base lg:text-lg leading-tight mt-2 md:whitespace-nowrap">
                   {m.name}
                 </p>
                 <p className="text-warmwhite/65 text-[14px] leading-relaxed mt-2">
@@ -315,7 +321,7 @@ export default function LandingPage({ content }: { content: LandingContent }) {
                   )}
                 </div>
                 <div className={i < content.season.milestones.length - 1 ? "pb-8" : ""}>
-                  <p className="text-gold text-[13px] font-semibold tracking-[0.14em] uppercase">
+                  <p className="text-gold text-[13px] font-semibold tracking-[0.14em] uppercase whitespace-nowrap">
                     {m.dates}
                   </p>
                   <p className="font-display text-warmwhite uppercase tracking-tight text-lg leading-tight mt-1">
@@ -365,7 +371,10 @@ export default function LandingPage({ content }: { content: LandingContent }) {
       {/* 8. FAQ (all collapsed) */}
       <section className="bg-[#181818]">
         <div className="max-w-[760px] mx-auto px-5 py-16">
-          <div className="flex flex-col gap-3">
+          <h2 className="font-display text-warmwhite uppercase tracking-tight text-2xl md:text-3xl text-center">
+            {content.faqHeading}
+          </h2>
+          <div className="mt-8 flex flex-col gap-3">
             {content.faqs.map((f, i) => (
               <details
                 key={i}
@@ -397,9 +406,12 @@ export default function LandingPage({ content }: { content: LandingContent }) {
 
       {/* 9. Photo band 2 */}
       <PhotoBandSection
-        image="/landing-band-lights.jpg"
+        image="/landing-band-rainbow.jpg"
         line={content.band2.line}
         sub={content.band2.sub}
+        parallax={false}
+        position="center 30%"
+        overlay="bg-night/55"
       />
 
       {/* 10. Final CTA */}
