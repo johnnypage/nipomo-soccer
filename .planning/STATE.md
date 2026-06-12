@@ -97,6 +97,7 @@ None yet.
 | fast | Landing pages: state recreational soccer clearly, center program links | 2026-06-12 | 69a5411 |
 | 260612-cih | Landing hero photo rotation + 9-logo sponsor ribbon | 2026-06-12 | eebf026, 06b1554 |
 | 260612-ehr | Landing content revision: divisions section, season timeline, copy rewrite | 2026-06-12 | 0ba0c5d, a0e344c |
+| 260612-g8d | Extract sponsor marquee into shared component and add to home page below hero | 2026-06-12 | 152d491, ba2d6bd, 683c245 |
 
 ## Deferred Items
 
