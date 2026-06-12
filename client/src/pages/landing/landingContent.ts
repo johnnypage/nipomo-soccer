@@ -63,7 +63,6 @@ export interface LandingContent {
   hero: {
     headline: string;
     subhead: string;
-    noTryouts: string;
     urgency: string;
   };
   valuePropsHeading: string;
@@ -107,8 +106,7 @@ export const enContent: LandingContent = {
   hero: {
     headline: "Fall soccer is back in Nipomo",
     subhead:
-      "Nipomo Soccer's recreational fall season is open for registration. Ages 2 through high school.",
-    noTryouts: "No tryouts. No experience required. Just show up ready to play.",
+      "Nipomo Soccer's recreational fall season is open for registration. Ages 2 through high school. No tryouts. No experience required. Just show up ready to play.",
     urgency: "Register today and save.",
   },
   valuePropsHeading: "What you get",
@@ -262,8 +260,7 @@ export const esContent: LandingContent = {
   hero: {
     headline: "El fútbol de otoño regresa a Nipomo",
     subhead:
-      "Ya abrió la inscripción para la temporada recreativa de otoño de Nipomo Soccer. De 2 años hasta high school.",
-    noTryouts: "Sin pruebas. Sin experiencia previa. Solo llega listo para jugar.",
+      "Ya abrió la inscripción para la temporada recreativa de otoño de Nipomo Soccer. De 2 años hasta high school. Sin pruebas. Sin experiencia previa. Solo llega listo para jugar.",
     urgency: "Inscríbete hoy y ahorra.",
   },
   valuePropsHeading: "Lo que incluye",

@@ -152,9 +152,6 @@ export default function LandingPage({ content }: { content: LandingContent }) {
           <p className="text-warmwhite/75 text-base sm:text-lg md:text-xl mt-4 sm:mt-6 leading-relaxed max-w-[640px]">
             {content.hero.subhead}
           </p>
-          <p className="text-warmwhite/60 text-sm sm:text-base mt-3 sm:mt-4 leading-relaxed max-w-[560px]">
-            {content.hero.noTryouts}
-          </p>
           <p className="text-gold font-semibold mt-3 sm:mt-5 text-base md:text-lg">
             {content.hero.urgency}
           </p>
