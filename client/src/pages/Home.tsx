@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Programs from "@/components/Programs";
 import About from "@/components/About";
-import Sponsors from "@/components/Sponsors";
+import SponsorMarquee from "@/components/SponsorMarquee";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -43,11 +43,13 @@ export default function Home() {
       <Header onNavigate={scrollToSection} />
       
       <main>
-        <Hero 
+        <Hero
           onGetStarted={handleGetStarted}
           onLearnMore={handleLearnMore}
         />
-        
+
+        <SponsorMarquee />
+
         <div ref={programsRef}>
           <Programs onProgramSelect={handleProgramSelect} />
         </div>
@@ -55,9 +57,7 @@ export default function Home() {
         <div ref={aboutRef}>
           <About />
         </div>
-        
-        <Sponsors />
-        
+
         <div ref={contactRef}>
           <Contact />
         </div>
