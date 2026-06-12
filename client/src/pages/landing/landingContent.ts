@@ -14,6 +14,32 @@ export const SPOND_PARENT_AND_ME =
 export const SPOND_SPECIAL_NEEDS =
   "https://club.spond.com/landing/signup/nipomosc/form/212CA66EC0C84B88AB2BEB08FEE18ECF";
 
+import herreraLogo from "@assets/Herrera_1765222077181.png";
+import jgContractingLogo from "@assets/JG_Contracting_1765222077181.png";
+import headlinersLogo from "@assets/headliners-barbershop.jpg";
+import cafeDevilleLogo from "@assets/sponsor-cafe-deville.jpg";
+import coastWaterLogo from "@assets/sponsor-coast-water.jpg";
+import lvlSalonLogo from "@assets/sponsor-lvl-salon.png";
+import superiorFireLogo from "@assets/sponsor-superior-fire.jpg";
+import taylorReaLogo from "@assets/sponsor-taylor-rea.png";
+import shuckupsLogo from "@assets/sponsor-shuckups.png";
+
+// Shared sponsor list (same logos on both /fall and /futbol).
+// Adding a tenth sponsor is a single array entry below.
+// dark: true puts the tile on a black background for logos whose artwork
+// has a black background or transparent line art that would vanish on white.
+export const SPONSORS: { name: string; src: string; url?: string; dark?: boolean }[] = [
+  { name: "Herrera Farming Company", src: herreraLogo },
+  { name: "JG Contracting", src: jgContractingLogo, url: "https://jgcontracting.biz/" },
+  { name: "Head Liners Barber Shop", src: headlinersLogo },
+  { name: "Cafe DeVille", src: cafeDevilleLogo, dark: true },
+  { name: "Coast Water Solutions", src: coastWaterLogo, dark: true },
+  { name: "LVL Salon", src: lvlSalonLogo },
+  { name: "Superior Fire Sprinkler", src: superiorFireLogo },
+  { name: "Taylor Rea Photography", src: taylorReaLogo },
+  { name: "The Shuck Ups Cornhole Club", src: shuckupsLogo, dark: true },
+];
+
 export interface LandingContent {
   lang: "en" | "es";
   docTitle: string;
@@ -26,6 +52,7 @@ export interface LandingContent {
   valueProps: { title: string; body: string }[];
   band1: { line: string; sub: string };
   band2: { line: string; sub: string };
+  sponsors: { heading: string; sub: string };
   pricing: {
     heading: string;
     fromLine: string;
@@ -87,6 +114,10 @@ export const enContent: LandingContent = {
   band2: {
     line: "Rec soccer with a real season",
     sub: "From the first whistle in August to medals and trophies in November.",
+  },
+  sponsors: {
+    heading: "Backed by Nipomo businesses",
+    sub: "Local sponsors help keep the season affordable for every family.",
   },
   pricing: {
     heading: "Pricing",
@@ -186,6 +217,10 @@ export const esContent: LandingContent = {
   band2: {
     line: "Fútbol recreativo con temporada de verdad",
     sub: "Desde el primer silbatazo en agosto hasta las medallas y trofeos en noviembre.",
+  },
+  sponsors: {
+    heading: "Con el respaldo de negocios de Nipomo",
+    sub: "Los patrocinadores locales ayudan a que la temporada sea accesible para cada familia.",
   },
   pricing: {
     heading: "Precios",
