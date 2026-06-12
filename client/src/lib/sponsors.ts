@@ -24,7 +24,7 @@ import threeOaksLogo from "@assets/sponsor-color-threeoaks.png";
 export const SPONSORS: { name: string; src: string; url?: string; h: number }[] = [
   { name: "Herrera Farming Company", src: herreraLogo, h: 57 },
   { name: "JG Contracting", src: jgContractingLogo, url: "https://jgcontracting.biz/", h: 71 },
-  { name: "Head Liners Barber Shop", src: headlinersLogo, h: 70 },
+  { name: "Head Liners Barber Shop", src: headlinersLogo, h: 68 },
   { name: "Cafe DeVille", src: cafeDevilleLogo, h: 40 },
   { name: "Coast Water Solutions", src: coastWaterLogo, h: 47 },
   { name: "LVL Salon", src: lvlSalonLogo, h: 63 },
