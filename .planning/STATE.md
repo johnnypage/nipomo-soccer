@@ -95,6 +95,7 @@ None yet.
 | 260611-vza | EN/ES Meta ads landing pages (/fall, /futbol) | 2026-06-12 | 40385a5, 05de676, 0d582aa |
 | 260611-wvd | Dark athletic redesign of /fall and /futbol with photo bands, sticky CTA nav | 2026-06-12 | 65abfef, cd8d895 |
 | fast | Landing pages: state recreational soccer clearly, center program links | 2026-06-12 | 69a5411 |
+| 260612-cih | Landing hero photo rotation + 9-logo sponsor ribbon | 2026-06-12 | eebf026, 06b1554 |
 
 ## Deferred Items
 
