@@ -14,22 +14,23 @@ export const SPOND_PARENT_AND_ME =
 export const SPOND_SPECIAL_NEEDS =
   "https://club.spond.com/landing/signup/nipomosc/form/212CA66EC0C84B88AB2BEB08FEE18ECF";
 
-import herreraLogo from "@assets/sponsor-mono-herrera.png";
+import herreraLogo from "@assets/Herrera_1765222077181.png";
 import jgContractingLogo from "@assets/sponsor-mono-jg.png";
-import headlinersLogo from "@assets/sponsor-mono-headliners.png";
+import headlinersLogo from "@assets/sponsor-color-headliners.png";
 import cafeDevilleLogo from "@assets/sponsor-mono-cafe-deville.png";
-import coastWaterLogo from "@assets/sponsor-mono-coast-water.png";
+import coastWaterLogo from "@assets/sponsor-color-coast-water.png";
 import lvlSalonLogo from "@assets/sponsor-mono-lvl-salon.png";
-import superiorFireLogo from "@assets/sponsor-mono-superior-fire.png";
-import taylorReaLogo from "@assets/sponsor-mono-taylor-rea.png";
+import superiorFireLogo from "@assets/sponsor-color-superior-fire.png";
+import taylorReaLogo from "@assets/sponsor-taylor-rea.png";
 import shuckupsLogo from "@assets/sponsor-mono-shuckups.png";
 import shakedownLogo from "@assets/sponsor-mono-shakedown.png";
-import mayorsPlaceLogo from "@assets/sponsor-mono-mayors-place.png";
+import mayorsPlaceLogo from "@assets/sponsor-color-mayors-place.png";
 
 // Shared sponsor list (same logos on both /fall and /futbol).
-// Adding a sponsor is one import + one array entry. All assets are
-// white-on-transparent monochrome PNGs generated from the original logos
-// (ink extraction, see club sponsor folder for originals).
+// Adding a sponsor is one import + one array entry. Assets are processed
+// for the dark strip: backgrounds removed, original colors kept, near-black
+// marks lightened so they read on black. Simple dark marks use the white
+// mono versions. Originals live in the club sponsor logos folder.
 export const SPONSORS: { name: string; src: string; url?: string }[] = [
   { name: "Herrera Farming Company", src: herreraLogo },
   { name: "JG Contracting", src: jgContractingLogo, url: "https://jgcontracting.biz/" },

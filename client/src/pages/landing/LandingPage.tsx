@@ -112,7 +112,7 @@ export default function LandingPage({ content }: { content: LandingContent }) {
         <div className="max-w-[1100px] mx-auto px-5 py-3 flex items-center justify-between gap-3">
           <a
             href="/"
-            className="inline-flex items-center flex-shrink-0"
+            className="inline-flex items-center gap-3 flex-shrink-0"
             aria-label="Nipomo Soccer"
           >
             <img
@@ -120,6 +120,9 @@ export default function LandingPage({ content }: { content: LandingContent }) {
               alt="Nipomo Soccer"
               className="h-10 w-auto object-contain"
             />
+            <span className="font-integral font-bold text-warmwhite text-base sm:text-lg leading-tight uppercase tracking-wide">
+              Nipomo Soccer
+            </span>
           </a>
           <a
             href={SPOND_MAIN}
