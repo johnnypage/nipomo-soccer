@@ -63,35 +63,37 @@ export interface LandingContent {
   hero: {
     headline: string;
     subhead: string;
+    noTryouts: string;
     urgency: string;
   };
   valueProps: { title: string; body: string }[];
   band1: { line: string; sub: string };
   band2: { line: string; sub: string };
   sponsors: { heading: string; sub: string };
-  pricing: {
+  divisions: {
     heading: string;
-    fromLine: string;
-    tiersLine: string;
+    sub: string;
     urgency: string;
-    scholarshipsLine: string;
-    parentAndMe: string;
-    specialNeeds: string;
+    scholarships: string;
+    cards: {
+      title: string;
+      age: string;
+      body: string;
+      price: string;
+      priceNote?: string;
+      cta: string;
+      href: string;
+    }[];
   };
-  ages: {
+  season: {
     heading: string;
-    leaguePlay: string;
-    teenNote: string;
+    sub: string;
+    milestones: { title: string; body: string }[];
   };
-  howItWorks: { heading: string; steps: { step: number; text: string }[] };
   faqs: { q: string; a: string }[];
   finalCta: {
     heading: string;
     urgency: string;
-  };
-  secondaryLinks: {
-    parentAndMeLabel: string;
-    specialNeedsLabel: string;
   };
   footerContact: string;
   footerPrivacyLabel: string;
@@ -104,11 +106,12 @@ export const enContent: LandingContent = {
   hero: {
     headline: "Fall soccer is back in Nipomo",
     subhead:
-      "Recreational soccer registration is open for the fall season. Saturday games right here in Nipomo, for Pre-K through 8th grade. The season runs August through November.",
+      "Nipomo Soccer's recreational fall season is open for registration. Players ages 2 through high school, up to 16 games, paid referees, and a community of families and coaches that makes game day the best part of the week.",
+    noTryouts: "No tryouts. No experience required. Just show up ready to play.",
     urgency: "Prices go up August 1.",
   },
   valueProps: [
-    { title: "UP TO 16 GAMES", body: "A real season that runs August through November." },
+    { title: "UP TO 16 GAMES", body: "Saturday games plus midweek matchups, August through November." },
     {
       title: "PAID REFEREES",
       body: "Trained and paid referees at every game from 1st grade up. New this season.",
@@ -124,45 +127,79 @@ export const enContent: LandingContent = {
     { title: "CLOSE TO HOME", body: "Every game right here in Nipomo." },
   ],
   band1: {
-    line: "Saturdays belong to the kids",
-    sub: "Real teams, real referees, and a sideline full of families every week.",
+    line: "The best part of the week happens on the field",
+    sub: "Families, coaches, and a whole town that shows up every Saturday.",
   },
   band2: {
-    line: "Rec soccer with a real season",
-    sub: "From the first whistle in August to medals and trophies in November.",
+    line: "A season your kid will remember",
+    sub: "First whistle in August. Medals and trophies in November.",
   },
   sponsors: {
     heading: "Sponsored by Nipomo businesses",
     sub: "Local sponsors help keep the season affordable for every family.",
   },
-  pricing: {
-    heading: "Pricing",
-    fromLine: "From $150",
-    tiersLine: "$150 Early Bird, $175 Regular, $200 Late",
-    urgency: "Prices go up after July 31",
-    scholarshipsLine:
-      "Scholarships available because every kid in Nipomo deserves a team",
-    parentAndMe: "Parent and Me is $120 flat",
-    specialNeeds: "Special Needs is $50 flat",
-  },
-  ages: {
-    heading: "Find your age group",
-    leaguePlay:
-      "League Play: recreational soccer for Pre-K through 6th grade. Weekly practices plus Saturday games.",
-    teenNote:
-      "Players in 7th grade and up have their own fast paced teen league that plays twice a week. Register through the same form.",
-  },
-  howItWorks: {
-    heading: "How it works",
-    steps: [
-      { step: 1, text: "Register in about two minutes on Spond." },
+  divisions: {
+    heading: "Find your division",
+    sub: "Four divisions, one quick registration. It takes about two minutes on Spond.",
+    urgency: "Prices go up after July 31.",
+    scholarships:
+      "Scholarships available because every kid in Nipomo deserves a team. Email admin@nipomosoccer.com.",
+    cards: [
       {
-        step: 2,
-        text: "Come to Kickoff Day for a player evaluation and team formation.",
+        title: "PARENT & ME",
+        age: "Ages 2 to 3",
+        body: "Your first introduction to soccer, together. Saturday sessions with your child on the field. No practices, no competition, just fun.",
+        price: "$120 flat",
+        cta: "Register for Parent and Me",
+        href: SPOND_PARENT_AND_ME,
       },
       {
-        step: 3,
-        text: "The season kicks off in August with games every Saturday through early November.",
+        title: "LEAGUE PLAY",
+        age: "Pre-K through 6th grade",
+        body: "The heart of the fall season. Weekly practices, Saturday games, midweek matches, and an end-of-season tournament for older divisions. Up to 16 games per team.",
+        price: "$150 / $175 / $200",
+        priceNote: "Early Bird / Regular / Late",
+        cta: "Register for League Play",
+        href: SPOND_MAIN,
+      },
+      {
+        title: "5V5",
+        age: "7th through 12th grade",
+        body: "No practices. Just games. Fast paced 5v5 soccer twice a week for middle school and high school players. Over 20 games per season.",
+        price: "$150 / $175 / $200",
+        priceNote: "Early Bird / Regular / Late",
+        cta: "Register for 5v5",
+        href: SPOND_MAIN,
+      },
+      {
+        title: "SPECIAL NEEDS",
+        age: "All ages",
+        body: "Drills and scrimmages with accommodations based on player needs. Every session is designed so every player can participate and have fun. Ten Saturday sessions, with kit, insurance, and a participation medal included.",
+        price: "$50 flat",
+        cta: "Register for Special Needs",
+        href: SPOND_SPECIAL_NEEDS,
+      },
+    ],
+  },
+  season: {
+    heading: "The season at a glance",
+    sub: "Here is what the fall looks like for League Play.",
+    milestones: [
+      {
+        title: "Kickoff Days: August 1 and 8",
+        body: "Every player attends one. Pickup style games so we can build balanced teams, plus jersey fitting. Not a tryout. Every kid plays.",
+      },
+      {
+        title: "Pre-Season: August 10 to September 7",
+        body: "Two weeks of weekday practices, then two scrimmage Saturdays while teams get settled and jerseys arrive.",
+      },
+      {
+        title: "Regular Season: September 12 to October 31",
+        body: "Eight weeks of Saturday games plus midweek matchups, with live standings for 1st grade and up.",
+      },
+      {
+        title: "Tournament: November 7",
+        body: "End-of-season tournament for 3rd through 6th grade, seeded by standings. At least two games per team.",
       },
     ],
   },
@@ -192,10 +229,6 @@ export const enContent: LandingContent = {
     heading: "Lock in your spot for fall",
     urgency: "Prices go up August 1. Register today.",
   },
-  secondaryLinks: {
-    parentAndMeLabel: "Parent and Me, ages 2 to 3, $120 flat",
-    specialNeedsLabel: "Special Needs, all ages, $50 flat",
-  },
   footerContact: "admin@nipomosoccer.com",
   footerPrivacyLabel: "Privacy",
 };
@@ -207,11 +240,12 @@ export const esContent: LandingContent = {
   hero: {
     headline: "El fútbol de otoño regresa a Nipomo",
     subhead:
-      "Ya abrió la inscripción para el fútbol recreativo de otoño de Nipomo Soccer. Partidos los sábados aquí mismo en Nipomo, desde Pre-K hasta 8vo grado. La temporada va de agosto a noviembre.",
+      "Ya abrió la inscripción para la temporada recreativa de otoño de Nipomo Soccer. Jugadores desde los 2 años hasta high school, hasta 16 partidos, árbitros pagados y una comunidad de familias y entrenadores que hace del día de partido lo mejor de la semana.",
+    noTryouts: "Sin pruebas. Sin experiencia previa. Solo llega listo para jugar.",
     urgency: "Los precios suben el 1 de agosto.",
   },
   valueProps: [
-    { title: "HASTA 16 PARTIDOS", body: "Una temporada de verdad, de agosto a noviembre." },
+    { title: "HASTA 16 PARTIDOS", body: "Partidos los sábados y entre semana, de agosto a noviembre." },
     {
       title: "ÁRBITROS PAGADOS",
       body: "Árbitros capacitados y pagados en cada partido desde 1er grado. Nuevo esta temporada.",
@@ -227,45 +261,79 @@ export const esContent: LandingContent = {
     { title: "CERCA DE CASA", body: "Cada partido aquí mismo en Nipomo." },
   ],
   band1: {
-    line: "Los sábados son de los niños",
-    sub: "Equipos de verdad, árbitros de verdad y una banda llena de familias cada semana.",
+    line: "Lo mejor de la semana pasa en la cancha",
+    sub: "Familias, entrenadores y todo un pueblo que llega cada sábado.",
   },
   band2: {
-    line: "Fútbol recreativo con temporada de verdad",
-    sub: "Desde el primer silbatazo en agosto hasta las medallas y trofeos en noviembre.",
+    line: "Una temporada que tu hijo va a recordar",
+    sub: "Primer silbatazo en agosto. Medallas y trofeos en noviembre.",
   },
   sponsors: {
     heading: "Patrocinado por negocios de Nipomo",
     sub: "Los patrocinadores locales ayudan a que la temporada sea accesible para cada familia.",
   },
-  pricing: {
-    heading: "Precios",
-    fromLine: "Desde $150",
-    tiersLine: "Inscripción temprana $150, regular $175, tardía $200",
-    urgency: "Los precios suben después del 31 de julio",
-    scholarshipsLine:
-      "Hay becas disponibles porque cada niño de Nipomo merece un equipo",
-    parentAndMe: "Parent and Me cuesta $120 fijo",
-    specialNeeds: "Special Needs cuesta $50 fijo",
-  },
-  ages: {
-    heading: "Encuentra tu grupo de edad",
-    leaguePlay:
-      "League Play: fútbol recreativo de Pre-K a 6to grado. Práctica semanal y partidos los sábados.",
-    teenNote:
-      "Los jugadores de 7mo grado en adelante tienen su propia liga juvenil que juega dos veces por semana. Se inscriben con el mismo formulario.",
-  },
-  howItWorks: {
-    heading: "Cómo funciona",
-    steps: [
-      { step: 1, text: "Inscríbete en unos dos minutos en Spond." },
+  divisions: {
+    heading: "Encuentra tu división",
+    sub: "Cuatro divisiones, una inscripción rápida. Toma unos dos minutos en Spond.",
+    urgency: "Los precios suben después del 31 de julio.",
+    scholarships:
+      "Hay becas disponibles porque cada niño de Nipomo merece un equipo. Escribe a admin@nipomosoccer.com.",
+    cards: [
       {
-        step: 2,
-        text: "Ven al Kickoff Day para la evaluación del jugador y la formación de equipos.",
+        title: "PARENT & ME",
+        age: "De 2 a 3 años",
+        body: "Tu primera introducción al fútbol, juntos. Sesiones los sábados con tu hijo en la cancha. Sin prácticas, sin competencia, pura diversión.",
+        price: "$120 fijo",
+        cta: "Inscríbete en Parent and Me",
+        href: SPOND_PARENT_AND_ME,
       },
       {
-        step: 3,
-        text: "La temporada arranca en agosto con partidos cada sábado hasta principios de noviembre.",
+        title: "LEAGUE PLAY",
+        age: "De Pre-K a 6to grado",
+        body: "El corazón de la temporada de otoño. Práctica semanal, partidos los sábados, partidos entre semana y un torneo de fin de temporada para las divisiones mayores. Hasta 16 partidos por equipo.",
+        price: "$150 / $175 / $200",
+        priceNote: "Temprana / Regular / Tardía",
+        cta: "Inscríbete en League Play",
+        href: SPOND_MAIN,
+      },
+      {
+        title: "5V5",
+        age: "De 7mo a 12vo grado",
+        body: "Sin prácticas. Solo partidos. Fútbol 5v5 rápido dos veces por semana para jugadores de middle school y high school. Más de 20 partidos por temporada.",
+        price: "$150 / $175 / $200",
+        priceNote: "Temprana / Regular / Tardía",
+        cta: "Inscríbete en 5v5",
+        href: SPOND_MAIN,
+      },
+      {
+        title: "SPECIAL NEEDS",
+        age: "Todas las edades",
+        body: "Ejercicios y partidos amistosos con adaptaciones según las necesidades de cada jugador. Cada sesión está diseñada para que todos participen y se diviertan. Diez sesiones los sábados, con uniforme, seguro y medalla de participación incluidos.",
+        price: "$50 fijo",
+        cta: "Inscríbete en Special Needs",
+        href: SPOND_SPECIAL_NEEDS,
+      },
+    ],
+  },
+  season: {
+    heading: "La temporada de un vistazo",
+    sub: "Así se ve el otoño para League Play.",
+    milestones: [
+      {
+        title: "Kickoff Days: 1 y 8 de agosto",
+        body: "Cada jugador asiste a uno. Partidos estilo cascarita para formar equipos parejos, más la medición del jersey. No es una prueba. Todos los niños juegan.",
+      },
+      {
+        title: "Pretemporada: del 10 de agosto al 7 de septiembre",
+        body: "Dos semanas de prácticas entre semana y luego dos sábados de partidos amistosos mientras los equipos se acomodan y llegan los jerseys.",
+      },
+      {
+        title: "Temporada regular: del 12 de septiembre al 31 de octubre",
+        body: "Ocho semanas de partidos los sábados más partidos entre semana, con tabla de posiciones en vivo desde 1er grado.",
+      },
+      {
+        title: "Torneo: 7 de noviembre",
+        body: "Torneo de fin de temporada de 3ro a 6to grado, sembrado por la tabla. Mínimo dos partidos por equipo.",
       },
     ],
   },
@@ -294,10 +362,6 @@ export const esContent: LandingContent = {
   finalCta: {
     heading: "Aparta tu lugar para el otoño",
     urgency: "Los precios suben el 1 de agosto. Inscríbete hoy.",
-  },
-  secondaryLinks: {
-    parentAndMeLabel: "Parent and Me, de 2 a 3 años, $120 fijo",
-    specialNeedsLabel: "Special Needs, todas las edades, $50 fijo",
   },
   footerContact: "admin@nipomosoccer.com",
   footerPrivacyLabel: "Privacidad",
