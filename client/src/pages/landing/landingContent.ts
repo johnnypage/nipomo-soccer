@@ -52,7 +52,7 @@ export const SPONSORS: { name: string; src: string; url?: string; boost?: boolea
   { name: "Fit Höuse Studios", src: fitHouseLogo },
   { name: "Painting Concepts", src: paintingConceptsLogo },
   { name: "PC Mechanical", src: pcMechanicalLogo },
-  { name: "Three Oaks BBQ", src: threeOaksLogo },
+  { name: "Three Oaks BBQ", src: threeOaksLogo, boost: true },
 ];
 
 export interface LandingContent {

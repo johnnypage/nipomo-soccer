@@ -172,8 +172,8 @@ export default function LandingPage({ content }: { content: LandingContent }) {
                   <img
                     src={s.src}
                     alt={copy === 0 ? s.name : ""}
-                    className={`w-auto object-contain opacity-85 max-w-[130px] md:max-w-[160px] ${
-                      s.boost ? "max-h-16 md:max-h-20" : "max-h-12 md:max-h-14"
+                    className={`object-contain opacity-85 max-w-[130px] md:max-w-[160px] ${
+                      s.boost ? "h-16 md:h-20" : "h-12 md:h-14"
                     }`}
                   />
                 );
@@ -181,7 +181,7 @@ export default function LandingPage({ content }: { content: LandingContent }) {
                   <div
                     key={`${copy}-${i}`}
                     aria-hidden={copy === 1 ? "true" : undefined}
-                    className="h-14 md:h-16 flex items-center justify-center flex-shrink-0"
+                    className="h-16 md:h-20 flex items-center justify-center flex-shrink-0"
                   >
                     {s.url ? (
                       <a
