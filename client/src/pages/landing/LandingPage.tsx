@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import clubLogo from "@assets/NipomoSoccer_1780982227404.png";
-import {
-  type LandingContent,
-  SPONSORS,
-  SPOND_MAIN,
-  SPOND_PARENT_AND_ME,
-  SPOND_SPECIAL_NEEDS,
-} from "./landingContent";
+import { type LandingContent, SPONSORS, SPOND_MAIN } from "./landingContent";
 
 const HERO_IMAGES = [
   "/landing-hero-1.jpg",
@@ -146,6 +140,9 @@ export default function LandingPage({ content }: { content: LandingContent }) {
           <p className="text-warmwhite/75 text-base sm:text-lg md:text-xl mt-4 sm:mt-6 leading-relaxed max-w-[640px]">
             {content.hero.subhead}
           </p>
+          <p className="text-warmwhite/60 text-sm sm:text-base mt-3 sm:mt-4 leading-relaxed max-w-[560px]">
+            {content.hero.noTryouts}
+          </p>
           <p className="text-gold font-semibold mt-3 sm:mt-5 text-base md:text-lg">
             {content.hero.urgency}
           </p>
@@ -203,6 +200,99 @@ export default function LandingPage({ content }: { content: LandingContent }) {
         </div>
       </section>
 
+      {/* 2c. Divisions (replaces the old Pricing and Find-your-age-group sections) */}
+      <section className="bg-night">
+        <div className="max-w-[1100px] mx-auto px-5 py-16">
+          <div className="text-center max-w-[640px] mx-auto">
+            <h2 className="font-display text-warmwhite uppercase tracking-tight text-2xl md:text-3xl">
+              {content.divisions.heading}
+            </h2>
+            <p className="text-gold font-semibold mt-3 text-base md:text-lg">
+              {content.divisions.urgency}
+            </p>
+            <p className="text-warmwhite/70 mt-3 text-[16px] leading-relaxed">
+              {content.divisions.sub}
+            </p>
+          </div>
+          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+            {content.divisions.cards.map((card) => {
+              const testId =
+                "division-" +
+                card.title
+                  .toLowerCase()
+                  .replace(/&/g, "and")
+                  .replace(/[^a-z0-9]+/g, "-")
+                  .replace(/^-+|-+$/g, "");
+              return (
+                <div
+                  key={card.title}
+                  className="flex flex-col bg-white/5 border border-warmwhite/10 rounded-xl px-6 py-6"
+                >
+                  <p className="font-display text-warmwhite uppercase tracking-tight text-xl md:text-2xl leading-tight">
+                    {card.title}
+                  </p>
+                  <p className="text-gold font-semibold mt-1 text-[15px]">
+                    {card.age}
+                  </p>
+                  <p className="text-warmwhite/70 text-[16px] leading-relaxed mt-3 flex-1">
+                    {card.body}
+                  </p>
+                  <p className="font-display text-gold text-2xl md:text-3xl leading-none mt-5">
+                    {card.price}
+                  </p>
+                  {card.priceNote && (
+                    <p className="text-warmwhite/50 text-[13px] mt-1">
+                      {card.priceNote}
+                    </p>
+                  )}
+                  <a
+                    href={card.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid={testId}
+                    className="mt-5 inline-flex items-center justify-center w-full px-6 py-3 bg-crimson text-warmwhite font-semibold rounded-lg hover:bg-crimson-dark transition-colors"
+                  >
+                    {card.cta}
+                  </a>
+                </div>
+              );
+            })}
+          </div>
+          <p className="text-warmwhite/60 text-center mt-8 text-[15px] leading-relaxed max-w-[640px] mx-auto">
+            {content.divisions.scholarships}
+          </p>
+        </div>
+      </section>
+
+      {/* 2d. Season at a glance */}
+      <section className="bg-[#181818]">
+        <div className="max-w-[820px] mx-auto px-5 py-16">
+          <div className="text-center">
+            <h2 className="font-display text-warmwhite uppercase tracking-tight text-2xl md:text-3xl">
+              {content.season.heading}
+            </h2>
+            <p className="text-warmwhite/70 mt-3 text-[16px] leading-relaxed">
+              {content.season.sub}
+            </p>
+          </div>
+          <div className="mt-10 flex flex-col gap-4">
+            {content.season.milestones.map((m, i) => (
+              <div
+                key={i}
+                className="bg-white/5 border border-warmwhite/10 rounded-xl px-6 py-5"
+              >
+                <p className="font-semibold text-warmwhite text-[17px]">
+                  {m.title}
+                </p>
+                <p className="text-warmwhite/70 text-[15px] leading-relaxed mt-2">
+                  {m.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 3. Value props */}
       <section className="bg-[#181818]">
         <div className="max-w-[1100px] mx-auto px-5 py-16">
@@ -226,100 +316,10 @@ export default function LandingPage({ content }: { content: LandingContent }) {
 
       {/* 4. Photo band 1 */}
       <PhotoBandSection
-        image="/landing-band-gameday.jpg"
+        image="/roots-photo-band.jpg"
         line={content.band1.line}
         sub={content.band1.sub}
       />
-
-      {/* 5. Pricing */}
-      <section className="bg-night">
-        <div className="max-w-[760px] mx-auto px-5 py-16 text-center">
-          <h2 className="font-display text-warmwhite uppercase tracking-tight text-2xl md:text-3xl">
-            {content.pricing.heading}
-          </h2>
-          <p className="font-display text-gold text-[clamp(48px,11vw,80px)] leading-none mt-4">
-            {content.pricing.fromLine}
-          </p>
-          <p className="text-warmwhite text-lg mt-3">
-            {content.pricing.tiersLine}
-          </p>
-          <p className="text-gold font-semibold mt-2">
-            {content.pricing.urgency}
-          </p>
-          <p className="text-warmwhite/70 mt-5 text-[16px] leading-relaxed max-w-[560px] mx-auto">
-            {content.pricing.scholarshipsLine}
-          </p>
-          <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center text-warmwhite text-[15px]">
-            <span className="bg-white/5 border border-warmwhite/10 rounded-lg px-4 py-2">
-              {content.pricing.parentAndMe}
-            </span>
-            <span className="bg-white/5 border border-warmwhite/10 rounded-lg px-4 py-2">
-              {content.pricing.specialNeeds}
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Ages (teen league demoted to one line) */}
-      <section className="bg-[#181818]">
-        <div className="max-w-[760px] mx-auto px-5 py-16">
-          <h2 className="font-display text-warmwhite uppercase tracking-tight text-2xl md:text-3xl text-center">
-            {content.ages.heading}
-          </h2>
-          <div className="mt-8 bg-white/5 border border-warmwhite/10 rounded-xl px-6 py-6">
-            <p className="text-warmwhite text-[16px] leading-relaxed">
-              {content.ages.leaguePlay}
-            </p>
-          </div>
-          <p className="text-warmwhite/70 text-center mt-5 text-[15px] leading-relaxed max-w-[600px] mx-auto">
-            {content.ages.teenNote}
-          </p>
-          <div className="mt-6 flex flex-col sm:flex-row items-center gap-x-8 gap-y-2 justify-center text-center text-[15px]">
-            <a
-              href={SPOND_PARENT_AND_ME}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="link-parent-and-me"
-              className="text-gold hover:underline font-medium"
-            >
-              {content.secondaryLinks.parentAndMeLabel}
-            </a>
-            <a
-              href={SPOND_SPECIAL_NEEDS}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="link-special-needs"
-              className="text-gold hover:underline font-medium"
-            >
-              {content.secondaryLinks.specialNeedsLabel}
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. How it works */}
-      <section className="bg-night">
-        <div className="max-w-[860px] mx-auto px-5 py-16">
-          <h2 className="font-display text-warmwhite uppercase tracking-tight text-2xl md:text-3xl text-center">
-            {content.howItWorks.heading}
-          </h2>
-          <div className="mt-8 flex flex-col gap-4">
-            {content.howItWorks.steps.map((s) => (
-              <div
-                key={s.step}
-                className="flex items-start gap-4 bg-white/5 border border-warmwhite/10 rounded-xl px-6 py-5"
-              >
-                <span className="flex-shrink-0 w-9 h-9 rounded-full bg-crimson text-warmwhite font-display flex items-center justify-center text-lg">
-                  {s.step}
-                </span>
-                <p className="text-warmwhite text-[16px] leading-relaxed pt-1">
-                  {s.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* 8. FAQ (all collapsed) */}
       <section className="bg-[#181818]">
