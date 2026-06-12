@@ -13,7 +13,7 @@ export default function PhotoBand() {
           The best part of the week happens on the field.
         </p>
         <p className="text-warmwhite/70 text-lg mt-5 max-w-xl mx-auto">
-          Real families, real coaches, and a whole community that shows up every Saturday.
+          Families, coaches, and a whole community that shows up every Saturday.
         </p>
       </div>
     </section>
