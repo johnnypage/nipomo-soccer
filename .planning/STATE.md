@@ -100,6 +100,7 @@ None yet.
 | 260612-g8d | Extract sponsor marquee into shared component and add to home page below hero | 2026-06-12 | 152d491, ba2d6bd, 683c245 |
 | 260612-gem | Logo sweep (already clean) + drop "Real X" copy from ROOTS photo band | 2026-06-12 | 4571e24 |
 | 260612-gi6 | Strip pill badges across ROOTS pages, plain display-font headings | 2026-06-12 | 20179c8 |
+| 260615-gtf | ROOTS hub simplification: hero photo rotation, cut WhatIs + hero quote, register-first cards, Recreational timeline | 2026-06-15 | e74ab1a, aedad40, 25341f2, 965ef74, 0a43a7a |
 
 ## Deferred Items
 
