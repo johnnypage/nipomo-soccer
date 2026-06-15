@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "./HeroSection";
-import WhatIsSection from "./WhatIsSection";
 import DivisionSection from "./DivisionSection";
 import PhotoBand from "./PhotoBand";
 import FamilyFeedbackSection from "./FamilyFeedbackSection";
@@ -15,7 +14,6 @@ export default function Roots() {
     <>
       <Header />
       <HeroSection />
-      <WhatIsSection />
       <DivisionSection />
       <PhotoBand />
       <FamilyFeedbackSection />

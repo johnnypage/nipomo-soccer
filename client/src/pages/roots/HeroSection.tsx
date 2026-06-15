@@ -16,6 +16,9 @@ export default function HeroSection() {
         <p className="text-warmwhite/50 mt-3 text-base">
           No tryouts. No experience required. Just show up ready to play.
         </p>
+        <p className="text-warmwhite/50 mt-2 text-base max-w-[620px]">
+          Many of the same people who ran youth soccer in Nipomo are continuing that work. If your family played last year, you will see familiar faces on the sidelines.
+        </p>
 
         <p className="text-warmwhite/55 text-sm font-medium mt-8 mb-10 max-w-[600px]">
           Ages 2 to high school &middot; 12-week season &middot; Up to 20 games &middot; Paid referees &middot; No tryouts
@@ -38,18 +41,6 @@ export default function HeroSection() {
           >
             Find Your Division <span aria-hidden="true">↓</span>
           </a>
-        </div>
-      </div>
-
-      <div className="max-w-[1280px] mx-auto px-6 pb-16 relative z-10">
-        <div className="relative bg-warmwhite/[0.04] rounded-lg pl-8 pr-6 py-6 md:pl-20 md:pr-12 md:py-9">
-          <span className="absolute left-2 top-2 font-display text-crimson text-4xl md:text-7xl md:left-6 md:top-4 leading-none select-none" aria-hidden="true">"</span>
-          <p className="text-warmwhite/80 italic text-lg leading-relaxed">
-            My son had the best time ever. He was super shy at first few games and it really helped him become more independent and love the game of soccer.
-          </p>
-          <div className="mt-3">
-            <span className="font-heading text-crimson font-bold text-xs uppercase tracking-widest">Parent / 2025 Survey</span>
-          </div>
         </div>
       </div>
     </section>
