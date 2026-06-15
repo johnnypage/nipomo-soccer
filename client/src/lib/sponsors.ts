@@ -33,7 +33,7 @@ export const SPONSORS: { name: string; src: string; url?: string; h: number }[] 
   { name: "The Shuck Ups Cornhole Club", src: shuckupsLogo, h: 84 },
   { name: "Shakedown Seasoning", src: shakedownLogo, h: 69 },
   { name: "The Mayor's Place", src: mayorsPlaceLogo, h: 56 },
-  { name: "805 BBQ & Smoke", src: bbq805Logo, h: 57 },
+  { name: "805 BBQ & Smoke", src: bbq805Logo, h: 66 },
   { name: "Fit Höuse Studios", src: fitHouseLogo, h: 40 },
   { name: "Painting Concepts", src: paintingConceptsLogo, h: 40 },
   { name: "PC Mechanical", src: pcMechanicalLogo, h: 40 },

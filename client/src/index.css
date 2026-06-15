@@ -301,7 +301,7 @@
   to { transform: translateX(-50%); }
 }
 .sponsor-marquee {
-  animation: sponsor-scroll 45s linear infinite;
+  animation: sponsor-scroll 30s linear infinite;
 }
 .sponsor-marquee:hover {
   animation-play-state: paused;
