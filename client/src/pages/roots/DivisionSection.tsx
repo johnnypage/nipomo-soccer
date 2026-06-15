@@ -1,3 +1,13 @@
+import {
+  SPOND_MAIN,
+  SPOND_PARENT_AND_ME,
+  SPOND_SPECIAL_NEEDS,
+} from "@/pages/landing/landingContent";
+
+// 5v5's learn-more currently points at its program page. Repoint this one
+// constant to the dedicated 5v5 landing page when it ships.
+const FIVE_V_FIVE_LEARN_MORE = "/roots/5v5"; // TODO: repoint to dedicated 5v5 landing page when it ships
+
 const DIVISIONS = [
   {
     id: "parent-and-me",
@@ -6,8 +16,9 @@ const DIVISIONS = [
     description:
       "Your first introduction to soccer, together. Saturday sessions with your child on the field. No practices, no competition, just fun.",
     price: "$120 flat rate",
-    href: "/roots/parent-and-me",
-    cta: "Learn more about Parent & Me",
+    registerUrl: SPOND_PARENT_AND_ME,
+    learnMoreHref: "/roots/parent-and-me",
+    learnMoreLabel: "Learn more about Parent & Me",
     color: "border-[#B99EE8]",
     badgeColor: "text-[#B99EE8]",
   },
@@ -19,8 +30,9 @@ const DIVISIONS = [
       "The core ROOTS experience. Weekly practices, Saturday games, midweek matches, and an end-of-season tournament for older divisions. Up to 16 games per team.",
     price: "$150 / $175 / $200",
     priceNote: "Early Bird / Regular / Late",
-    href: "/roots/recreational",
-    cta: "Find your division",
+    registerUrl: SPOND_MAIN,
+    learnMoreHref: "/roots/recreational",
+    learnMoreLabel: "Find your division",
     color: "border-crimson",
     badgeColor: "text-crimson",
   },
@@ -32,8 +44,9 @@ const DIVISIONS = [
       "No practices. Just games. Fast-paced 5v5 soccer twice a week for middle school and high school players. Over 20 games per season.",
     price: "$150 / $175 / $200",
     priceNote: "Early Bird / Regular / Late",
-    href: "/roots/5v5",
-    cta: "Learn more about 5v5",
+    registerUrl: SPOND_MAIN,
+    learnMoreHref: FIVE_V_FIVE_LEARN_MORE,
+    learnMoreLabel: "Learn more about 5v5",
     color: "border-risegreen",
     badgeColor: "text-risegreen",
   },
@@ -46,9 +59,7 @@ const DIVISIONS = [
     price: "$50 flat rate",
     schedule: "Saturday sessions only, 10 sessions per season",
     includes: "Kit, insurance, participation medal",
-    registerUrl:
-      "https://club.spond.com/landing/signup/nipomosc/form/212CA66EC0C84B88AB2BEB08FEE18ECF",
-    cta: "Sign up for Special Needs",
+    registerUrl: SPOND_SPECIAL_NEEDS,
     color: "border-gold",
     badgeColor: "text-gold",
   },
@@ -66,7 +77,7 @@ export default function DivisionSection() {
             Four programs, one registration.
           </h2>
           <p className="text-warmwhite/55 mt-2 text-[17px]">
-            ROOTS has tracks built for different ages and stages. Click into the one that fits your player.
+            ROOTS has tracks built for different ages and stages. Register for the one that fits your player.
           </p>
         </div>
 
@@ -111,21 +122,22 @@ export default function DivisionSection() {
                 )}
               </div>
 
-              {"href" in div && div.href ? (
+              <a
+                href={div.registerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid={`link-register-${div.id}`}
+                className="mt-5 px-5 py-2.5 bg-crimson hover:bg-crimson-dark text-warmwhite font-semibold rounded-lg text-sm transition-colors text-center"
+              >
+                Register Now <span aria-hidden="true">&#8594;</span>
+              </a>
+
+              {"learnMoreHref" in div && div.learnMoreHref && (
                 <a
-                  href={div.href}
-                  className="mt-5 px-5 py-2.5 bg-crimson hover:bg-crimson-dark text-warmwhite font-semibold rounded-lg text-sm transition-colors text-center"
+                  href={div.learnMoreHref}
+                  className="mt-3 text-sm font-medium text-crimson hover:underline text-center"
                 >
-                  {div.cta} <span aria-hidden="true">&#8594;</span>
-                </a>
-              ) : (
-                <a
-                  href={div.registerUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 px-5 py-2.5 bg-crimson hover:bg-crimson-dark text-warmwhite font-semibold rounded-lg text-sm transition-colors text-center"
-                >
-                  {div.cta} <span aria-hidden="true">&#8594;</span>
+                  {div.learnMoreLabel} <span aria-hidden="true">&#8594;</span>
                 </a>
               )}
             </div>
