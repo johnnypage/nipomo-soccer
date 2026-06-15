@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import HeroRotation from "./HeroRotation";
 import "./roots.css";
 
 const REGISTER_URL = "https://club.spond.com/landing/signup/nipomosc/form/7F3CC0F6316343DCB8851A6A05399DAA";
@@ -30,6 +31,7 @@ export default function ParentAndMe() {
 
       {/* Hero */}
       <section className="roots-hero bg-night" id="top">
+        <HeroRotation />
         <div className="roots-hero__inner text-center flex flex-col items-center">
           <h1 className="font-display text-warmwhite text-[clamp(44px,8vw,96px)] leading-[0.92] uppercase tracking-tight max-w-[900px]">
             Their first season, your first sideline.

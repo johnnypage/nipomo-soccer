@@ -1,6 +1,9 @@
+import HeroRotation from "./HeroRotation";
+
 export default function HeroSection() {
   return (
     <section className="roots-hero bg-night" id="top">
+      <HeroRotation />
       <div className="roots-hero__inner text-center flex flex-col items-center">
         <h1 className="font-display text-warmwhite text-[clamp(52px,9vw,112px)] leading-[0.92] uppercase tracking-tight max-w-[900px]">
           Soccer starts here.

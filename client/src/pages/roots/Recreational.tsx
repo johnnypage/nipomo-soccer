@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import HeroRotation from "./HeroRotation";
 import "./roots.css";
 
 const REGISTER_URL = "https://club.spond.com/landing/signup/nipomosc/form/534965DA898B4B7E9CC0A589047F6061";
@@ -78,6 +79,7 @@ export default function Recreational() {
 
       {/* Hero */}
       <section className="roots-hero bg-night" id="top">
+        <HeroRotation />
         <div className="roots-hero__inner text-center flex flex-col items-center">
           <h1 className="font-display text-warmwhite text-[clamp(44px,8vw,96px)] leading-[0.92] uppercase tracking-tight max-w-[900px]">
             Soccer Starts Here.
