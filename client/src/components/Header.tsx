@@ -239,7 +239,7 @@ export default function Header({ onNavigate }: HeaderProps) {
       className="fixed top-16 left-0 right-0 z-40 bg-crimson text-warmwhite text-center py-3 px-4 text-base font-heading font-semibold hover:bg-crimson/90 transition-colors cursor-pointer block"
       data-testid="banner-roots-registration"
     >
-      ROOTS Fall 2026 registration is open -- first 100 players save $20. <span className="underline underline-offset-2">Register now.</span>
+      ROOTS Fall 2026 registration is open. First 100 players save $20. <span className="underline underline-offset-2">Register now.</span>
     </a>
     <CartSheet open={cartOpen} onOpenChange={setCartOpen} />
     </>
