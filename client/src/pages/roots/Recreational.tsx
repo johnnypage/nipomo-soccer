@@ -69,6 +69,29 @@ const DIVISIONS = [
   },
 ];
 
+const SEASON_MILESTONES = [
+  {
+    dates: "AUG 1 & 8",
+    name: "Kickoff Days",
+    body: "Pickup-style games so coaches can build balanced teams. Not a tryout, every kid plays. Attend one of the two dates. Jersey fitting happens here too.",
+  },
+  {
+    dates: "AUG 10 to SEP 7",
+    name: "Pre-Season",
+    body: "Two weeks of weekday practices, then two scrimmage Saturdays in pennies while players and coaches get settled.",
+  },
+  {
+    dates: "SEP 12 to OCT 31",
+    name: "Regular Season",
+    body: "Eight Saturdays of scored games plus 2 to 4 midweek matches, with live standings on nipomosc.org seeding the tournament.",
+  },
+  {
+    dates: "NOV 7",
+    name: "Tournament",
+    body: "End-of-season tournament for 3rd through 6th grade. Minimum two games per team, seeded by regular season standings.",
+  },
+];
+
 export default function Recreational() {
   const [active, setActive] = useState("prek-k");
   const div = DIVISIONS.find((d) => d.id === active)!;
@@ -230,37 +253,58 @@ export default function Recreational() {
             The season
           </h2>
 
-          <div className="mt-8 space-y-8">
-            <div>
-              <h3 className="font-heading font-bold text-night text-lg">Kickoff Days (August 1 and 8)</h3>
-              <p className="text-slate text-[15px] leading-relaxed mt-2">
-                Before the season starts, all registered players come to Kickoff Day. Players play pickup-style games while coaches and evaluators watch. This is not a tryout. Every kid plays. It is how we see where every player is starting so we can build balanced teams. You only need to attend one of the two dates. Jersey fitting also happens at Kickoff Day.
-              </p>
-              <p className="text-slate/70 text-[14px] leading-relaxed mt-2">
-                For Pre-K / Kindergarten and 1st-2nd Grade, Kickoff Day is about meeting your coach and teammates and getting fitted for jerseys. Team balancing based on evaluations starts at 3rd grade.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-heading font-bold text-night text-lg">Pre-Season (August 10 through September 7)</h3>
-              <p className="text-slate text-[15px] leading-relaxed mt-2">
-                Two full weeks of weekday practices before the first game. Then two scrimmage Saturdays where teams play in pennies (jerseys are still in production). Scrimmages are just like real games, but referees are more instructive and accommodating while players and coaches get settled in.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-heading font-bold text-night text-lg">Regular Season (September 12 through October 31)</h3>
-              <p className="text-slate text-[15px] leading-relaxed mt-2">
-                Eight weeks of Saturday games plus 2 to 4 midweek games. For 1st grade and up, all games are scored with live standings on nipomosc.org. Standings are used to seed the end-of-season tournament.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-heading font-bold text-night text-lg">Tournament (November 7)</h3>
-              <p className="text-slate text-[15px] leading-relaxed mt-2">
-                End-of-season tournament for 3rd through 6th grade. Minimum two games per team. Seeded by regular season standings.
-              </p>
-            </div>
+          {/* Timeline: horizontal on desktop, vertical rail on mobile. No boxes. */}
+          <div className="mt-10 hidden md:grid md:grid-cols-4 md:gap-8 relative">
+            <div
+              aria-hidden="true"
+              className="absolute left-0 right-0 top-[5px] h-px bg-night/15"
+            />
+            {SEASON_MILESTONES.map((m, i) => (
+              <div key={i} className="relative">
+                <span
+                  aria-hidden="true"
+                  className="block w-[11px] h-[11px] rounded-full bg-gold mb-5"
+                />
+                <p className="text-crimson text-[13px] font-semibold tracking-[0.14em] uppercase whitespace-nowrap">
+                  {m.dates}
+                </p>
+                <p className="font-display text-night uppercase tracking-tight text-base lg:text-lg leading-tight mt-2">
+                  {m.name}
+                </p>
+                <p className="text-slate text-[14px] leading-relaxed mt-2">
+                  {m.body}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 md:hidden flex flex-col">
+            {SEASON_MILESTONES.map((m, i) => (
+              <div key={i} className="relative flex gap-5">
+                <div className="flex flex-col items-center">
+                  <span
+                    aria-hidden="true"
+                    className="block w-[11px] h-[11px] rounded-full bg-gold mt-1.5 flex-shrink-0"
+                  />
+                  {i < SEASON_MILESTONES.length - 1 && (
+                    <span
+                      aria-hidden="true"
+                      className="block w-px flex-1 bg-night/15"
+                    />
+                  )}
+                </div>
+                <div className={i < SEASON_MILESTONES.length - 1 ? "pb-8" : ""}>
+                  <p className="text-crimson text-[13px] font-semibold tracking-[0.14em] uppercase whitespace-nowrap">
+                    {m.dates}
+                  </p>
+                  <p className="font-display text-night uppercase tracking-tight text-lg leading-tight mt-1">
+                    {m.name}
+                  </p>
+                  <p className="text-slate text-[14px] leading-relaxed mt-2">
+                    {m.body}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
