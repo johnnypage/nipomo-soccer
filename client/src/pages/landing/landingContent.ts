@@ -18,10 +18,20 @@ export interface LandingContent {
   lang: "en" | "es";
   docTitle: string;
   ctaLabel: string;
+  // Optional override for the primary CTA destination (header + hero + final CTA).
+  // Falls back to SPOND_MAIN when omitted, so /fall and /futbol are unaffected.
+  ctaHref?: string;
   hero: {
     headline: string;
     subhead: string;
     urgency: string;
+  };
+  // Optional "how it works" explainer (numbered cards). Only renders when present,
+  // so existing landing pages that omit it are unaffected.
+  formatExplainer?: {
+    heading: string;
+    sub?: string;
+    steps: { title: string; body: string }[];
   };
   valuePropsHeading: string;
   valueProps: { title: string; body: string }[];
@@ -363,4 +373,152 @@ export const esContent: LandingContent = {
   },
   footerContact: "admin@nipomosoccer.com",
   footerPrivacyLabel: "Privacidad",
+};
+
+// 5v5 conversion landing page (/5v5). Single-division, format-first version of the
+// fall lander aimed at 7th through 12th graders. The whole job of this page is making
+// "how 5v5 works" instantly clear, so it leads with the format explainer.
+export const fiveVFiveContent: LandingContent = {
+  lang: "en",
+  docTitle: "Nipomo Soccer | 5v5 Fall 2026 Registration",
+  ctaLabel: "Register for 5v5",
+  // No dedicated 5v5 Spond form yet, so this points at the main registration form,
+  // matching the 5v5 division card on the fall page. Swap when a 5v5-only form exists.
+  ctaHref: SPOND_MAIN,
+  hero: {
+    headline: "Five a side. Twice a week. All the soccer.",
+    subhead:
+      "Nipomo Soccer 5v5 is built for 7th through 12th graders. Five players a side with a keeper, two matches every game day, and no separate practices. More touches, more playing time, more soccer in less time.",
+    urgency: "Fall registration is open. Prices go up after July 31.",
+  },
+  formatExplainer: {
+    heading: "How 5v5 works",
+    sub: "Quick to understand, built to keep older players in the game.",
+    steps: [
+      {
+        title: "Five a side",
+        body: "Four field players and a goalkeeper. A small grass field keeps everyone close to the ball, so every player is in the game the whole time.",
+      },
+      {
+        title: "Two matches a game day",
+        body: "Players warm up with a coach, then play two full matches against different teams. Two 12 minute halves each on a running clock. In and out in about two hours.",
+      },
+      {
+        title: "Twice a week, no extra practices",
+        body: "One weeknight and one Saturday. The coaching is built into game days, so there are no separate practices to drive to.",
+      },
+      {
+        title: "A real season",
+        body: "Ability balanced teams, refereed and scored matches, and live standings. The whole league re-drafts at the midpoint, and the season ends with a tournament.",
+      },
+    ],
+  },
+  valuePropsHeading: "Why 5v5 fits older players",
+  valueProps: [
+    {
+      title: "MORE TOUCHES",
+      body: "A smaller field with five a side means there is nowhere to hide. Every player is on the ball constantly, so they get better every game day.",
+    },
+    {
+      title: "BUILT FOR A TEEN SCHEDULE",
+      body: "No separate practices to drive to. Show up twice a week for under two hours and that is the whole commitment. Room left for everything else a teenager has going on.",
+    },
+    {
+      title: "EVERYONE PLAYS",
+      body: "Small rosters of 7 to 8 players mean every kid is in the rotation every game day. Miss a day and you still get two matches the other day that week.",
+    },
+    {
+      title: "A REAL LEAGUE",
+      body: "Refereed and scored matches, live standings, and a season long Golden Boot race for the top scorer. Not pickup. A real league with a tournament to finish.",
+    },
+    {
+      title: "THE FULL KIT",
+      body: "A custom jersey is included, the same as every Nipomo Soccer division. Teams are identified on game days by colored pennies.",
+    },
+  ],
+  band2: {
+    line: "More soccer, less standing around",
+    sub: "Five a side. Twice a week. All season long.",
+  },
+  sponsors: {
+    heading: "Sponsored by Nipomo businesses",
+    sub: "Local sponsors help keep the season affordable for every family.",
+  },
+  divisions: {
+    heading: "Ready to play?",
+    sub: "One quick registration on Spond. It takes about two minutes.",
+    urgency: "Prices go up after July 31.",
+    scholarships:
+      "Scholarships available because every kid in Nipomo deserves a team. Email admin@nipomosoccer.com.",
+    cards: [
+      {
+        title: "5V5",
+        age: "7th through 12th grade",
+        body: "Fast paced 5v5 soccer twice a week for middle school and high school players. Five a side with a keeper, two matches a game day, over 20 games per season, no separate practices.",
+        price: "$150 / $175 / $200",
+        priceNote: "Early Bird / Regular / Late",
+        cta: "Register for 5v5",
+        href: SPOND_MAIN,
+      },
+    ],
+  },
+  season: {
+    heading: "The season at a glance",
+    sub: "Here is what fall looks like for 5v5.",
+    milestones: [
+      {
+        name: "Kickoff Day",
+        dates: "Aug 1",
+        body: "Every player attends. Pickup style games so we can draft ability balanced teams, plus jersey fitting. Not a tryout. Every kid plays.",
+      },
+      {
+        name: "Regular Season",
+        dates: "Aug to Oct",
+        body: "One weeknight and one Saturday each week. Two matches a game day, with live standings and a season long Golden Boot race.",
+      },
+      {
+        name: "Mid-Season Re-Draft",
+        dates: "Midseason",
+        body: "The whole league re-drafts so every player gets new teammates for the second half. Individual stats carry over, so the Golden Boot race never resets.",
+      },
+      {
+        name: "Tournament",
+        dates: "Nov 7",
+        body: "The season closes with a tournament to crown the champions.",
+      },
+    ],
+  },
+  faqHeading: "Common questions",
+  faqs: [
+    {
+      q: "Is a goalkeeper part of 5v5?",
+      a: "Yes. Five players a side means four field players and a goalkeeper. The keeper is fully in the game, same as full sided soccer.",
+    },
+    {
+      q: "Are there practices during the week?",
+      a: "No separate practices. Players get a coached warm up at the start of every game day, then play. Showing up twice a week for under two hours is the entire commitment.",
+    },
+    {
+      q: "My kid plays other sports. Will this still work?",
+      a: "Yes. That is exactly who 5v5 is built for. Attendance is flexible with no minimum, and if your player misses a day they still get two matches the other day that week.",
+    },
+    {
+      q: "Is it competitive, or just for fun?",
+      a: "Both. Every match is refereed and scored, standings are live, and there is a Golden Boot race for the top scorer. The season ends with a tournament. It is a real league.",
+    },
+    {
+      q: "Why do the teams change halfway through the season?",
+      a: "The whole league re-drafts at the midpoint so every player gets new teammates and new matchups for the second half. Individual stats carry across the full season, so it is like getting two seasons in one.",
+    },
+    {
+      q: "What is included, and what does it cost?",
+      a: "A custom jersey, refereed and scored games, and live standings. Pricing is the same as every Nipomo Soccer division: $150 Early Bird, $175 Regular, $200 Late after July 31.",
+    },
+  ],
+  finalCta: {
+    heading: "Get in the game",
+    urgency: "Prices go up after July 31. Register today.",
+  },
+  footerContact: "admin@nipomosoccer.com",
+  footerPrivacyLabel: "Privacy",
 };
