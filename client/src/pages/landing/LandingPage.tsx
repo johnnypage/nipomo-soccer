@@ -115,6 +115,14 @@ export default function LandingPage({ content }: { content: LandingContent }) {
   }, [content.docTitle]);
 
   const ctaHref = content.ctaHref ?? SPOND_MAIN;
+  const singleDivision = content.divisions.cards.length === 1;
+  const seasonColsClass =
+    {
+      1: "md:grid-cols-1",
+      2: "md:grid-cols-2",
+      3: "md:grid-cols-3",
+      4: "md:grid-cols-4",
+    }[content.season.milestones.length] ?? "md:grid-cols-4";
 
   return (
     <div className="min-h-screen bg-night text-warmwhite">
@@ -227,7 +235,13 @@ export default function LandingPage({ content }: { content: LandingContent }) {
               {content.divisions.sub}
             </p>
           </div>
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div
+            className={
+              singleDivision
+                ? "mt-10 max-w-[560px] mx-auto"
+                : "mt-10 grid grid-cols-1 md:grid-cols-2 gap-4"
+            }
+          >
             {content.divisions.cards.map((card) => {
               const testId =
                 "division-" +
@@ -289,7 +303,7 @@ export default function LandingPage({ content }: { content: LandingContent }) {
             </p>
           </div>
           {/* Timeline: horizontal on desktop, vertical rail on mobile. No boxes. */}
-          <div className="mt-12 hidden md:grid md:grid-cols-4 md:gap-8 relative">
+          <div className={`mt-12 hidden md:grid ${seasonColsClass} md:gap-8 relative`}>
             <div
               aria-hidden="true"
               className="absolute left-0 right-0 top-[5px] h-px bg-warmwhite/15"

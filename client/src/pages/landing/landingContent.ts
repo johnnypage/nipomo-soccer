@@ -386,7 +386,7 @@ export const fiveVFiveContent: LandingContent = {
   // matching the 5v5 division card on the fall page. Swap when a 5v5-only form exists.
   ctaHref: SPOND_MAIN,
   hero: {
-    headline: "Five a side. Twice a week. All the soccer.",
+    headline: "Five a side. Twice a week. Always in the game.",
     subhead:
       "Nipomo Soccer 5v5 is built for 7th through 12th graders. Five players a side with a keeper, two matches every game day, and no separate practices. More touches, more playing time, more soccer in less time.",
     urgency: "Fall registration is open. Prices go up after July 31.",
@@ -409,7 +409,7 @@ export const fiveVFiveContent: LandingContent = {
       },
       {
         title: "A real season",
-        body: "Ability balanced teams, refereed and scored matches, and live standings. The whole league re-drafts at the midpoint, and the season ends with a tournament.",
+        body: "Ability balanced teams, refereed and scored matches, and live standings. The season ends with a tournament to crown the champions.",
       },
     ],
   },
@@ -454,7 +454,7 @@ export const fiveVFiveContent: LandingContent = {
       {
         title: "5V5",
         age: "7th through 12th grade",
-        body: "Fast paced 5v5 soccer twice a week for middle school and high school players. Five a side with a keeper, two matches a game day, over 20 games per season, no separate practices.",
+        body: "Fast paced 5v5 soccer twice a week for middle school and high school players, in separate divisions. Five a side with a keeper, two matches a game day, over 20 games per season, no separate practices.",
         price: "$150 / $175 / $200",
         priceNote: "Early Bird / Regular / Late",
         cta: "Register for 5v5",
@@ -469,17 +469,12 @@ export const fiveVFiveContent: LandingContent = {
       {
         name: "Kickoff Day",
         dates: "Aug 1",
-        body: "Every player attends. Pickup style games so we can draft ability balanced teams, plus jersey fitting. Not a tryout. Every kid plays.",
+        body: "Every player attends. Pickup style games so we can build balanced teams within the middle school and high school divisions, plus jersey fitting. Not a tryout. Every kid plays.",
       },
       {
         name: "Regular Season",
         dates: "Aug to Oct",
-        body: "One weeknight and one Saturday each week. Two matches a game day, with live standings and a season long Golden Boot race.",
-      },
-      {
-        name: "Mid-Season Re-Draft",
-        dates: "Midseason",
-        body: "The whole league re-drafts so every player gets new teammates for the second half. Individual stats carry over, so the Golden Boot race never resets.",
+        body: "One weeknight and one Saturday each week. Two matches a game day, with live standings and a season long Golden Boot race for the top scorer.",
       },
       {
         name: "Tournament",
@@ -491,8 +486,16 @@ export const fiveVFiveContent: LandingContent = {
   faqHeading: "Common questions",
   faqs: [
     {
+      q: "Why 5v5?",
+      a: "Smaller sides mean every player is on the ball far more often. More touches, more shots, and more playing time, in games built to fit a packed teenage week. It is the format that keeps older players improving and in the game.",
+    },
+    {
       q: "Is a goalkeeper part of 5v5?",
       a: "Yes. Five players a side means four field players and a goalkeeper. The keeper is fully in the game, same as full sided soccer.",
+    },
+    {
+      q: "Are middle school and high school players on the same teams?",
+      a: "No. Middle school and high school play in separate divisions, and teams are balanced within each one, so your player competes with and against kids their own age.",
     },
     {
       q: "Are there practices during the week?",
@@ -503,12 +506,16 @@ export const fiveVFiveContent: LandingContent = {
       a: "Yes. That is exactly who 5v5 is built for. Attendance is flexible with no minimum, and if your player misses a day they still get two matches the other day that week.",
     },
     {
+      q: "What if my player has never played?",
+      a: "Beginners are welcome. There are no tryouts. Players are evaluated at Kickoff Day so teams stay balanced and every kid gets a fair chance to grow.",
+    },
+    {
       q: "Is it competitive, or just for fun?",
       a: "Both. Every match is refereed and scored, standings are live, and there is a Golden Boot race for the top scorer. The season ends with a tournament. It is a real league.",
     },
     {
-      q: "Why do the teams change halfway through the season?",
-      a: "The whole league re-drafts at the midpoint so every player gets new teammates and new matchups for the second half. Individual stats carry across the full season, so it is like getting two seasons in one.",
+      q: "What does my player need?",
+      a: "Cleats, shin guards, and water. The custom jersey is included with registration and fitted at Kickoff Day.",
     },
     {
       q: "What is included, and what does it cost?",
