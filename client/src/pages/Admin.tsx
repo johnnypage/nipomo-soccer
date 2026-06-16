@@ -3,12 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { formatPrice } from "@shared/shopCatalog";
-import { Lock, Download, Search, Loader2, Plus, Pencil, Trash2, Upload, X, Package, ShoppingCart, Users, ClipboardList, Trophy } from "lucide-react";
+import { Lock, Download, Search, Loader2, Plus, Pencil, Trash2, Upload, X, Package, ShoppingCart, Users, ClipboardList, Trophy, Send } from "lucide-react";
 import type { ShopOrder, ShopProduct } from "@shared/schema";
 import type { OrderStatus } from "@shared/shopValidation";
 import CoachManager from "./CoachManager";
 import PlacementManager from "./PlacementManager";
 import ChallengeAdmin from "./ChallengeAdmin";
+import MetaCapiManager from "./MetaCapiManager";
 
 const STATUS_LABELS: Record<string, string> = {
   pending: "Pending",
@@ -986,7 +987,7 @@ export default function Admin() {
     const stored = sessionStorage.getItem("admin-token");
     return stored || null;
   });
-  const [tab, setTab] = useState<"products" | "orders" | "coaches" | "volunteers" | "placements" | "challenge">("products");
+  const [tab, setTab] = useState<"products" | "orders" | "coaches" | "volunteers" | "placements" | "challenge" | "meta">("products");
 
   function handleLogin(t: string) {
     sessionStorage.setItem("admin-token", t);
@@ -1085,6 +1086,17 @@ export default function Admin() {
             <Trophy className="h-4 w-4" />
             Challenge
           </button>
+          <button
+            onClick={() => setTab("meta")}
+            className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              tab === "meta"
+                ? "bg-crimson text-warmwhite"
+                : "text-warmwhite/50 hover:text-warmwhite hover:bg-slate/20"
+            }`}
+          >
+            <Send className="h-4 w-4" />
+            Meta Ads
+          </button>
         </div>
 
         {tab === "products" ? (
@@ -1097,8 +1109,10 @@ export default function Admin() {
           <VolunteersList token={token} />
         ) : tab === "placements" ? (
           <PlacementManager token={token} />
-        ) : (
+        ) : tab === "challenge" ? (
           <ChallengeAdmin token={token} />
+        ) : (
+          <MetaCapiManager token={token} />
         )}
       </div>
     </div>

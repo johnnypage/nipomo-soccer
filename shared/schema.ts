@@ -305,3 +305,19 @@ export const insertDrawingSchema = createInsertSchema(drawings).omit({ id: true,
 
 export type InsertDrawing = z.infer<typeof insertDrawingSchema>;
 export type Drawing = typeof drawings.$inferSelect;
+
+// Dedup ledger for registrations forwarded to the Meta Conversions API.
+// One row per registration ever sent, keyed on the registered kid's identity, so
+// re-uploading the cumulative Spond Members export never double-counts a conversion.
+export const metaCapiSent = pgTable("meta_capi_sent", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  regKey: text("reg_key").notNull().unique(),   // member first|last|dob (lowercased)
+  orderId: text("order_id").notNull(),          // event_id sent to Meta (dedup at Meta too)
+  label: text("label"),                         // human hint (registrant email), non-PII-critical
+  eventName: text("event_name").notNull().default("CompleteRegistration"),
+  eventTime: timestamp("event_time"),           // the registration's sign-up time
+  status: text("status").notNull().default("sent"), // "sent" | "failed"
+  sentAt: timestamp("sent_at").defaultNow().notNull(),
+});
+
+export type MetaCapiSent = typeof metaCapiSent.$inferSelect;
