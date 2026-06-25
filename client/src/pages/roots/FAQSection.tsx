@@ -56,7 +56,7 @@ const FAQS: { q: string; a: ReactNode }[] = [
     a: (
       <>
         Our 5v5 division is for 7th through 12th graders. Instead of traditional 11v11 with separate practices, players show up twice a week (one weeknight, one Saturday) for fast-paced 5v5 games on a smaller field with a goalkeeper. Each session includes a coached warmup and two competitive matches. Players get over 20 games per season.{" "}
-        <a href="/roots/5v5" className="text-crimson hover:underline">
+        <a href="/5v5" className="text-crimson hover:underline">
           Learn more about 5v5.
         </a>
       </>
