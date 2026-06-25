@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import RootsSubNav from "./RootsSubNav";
 import HeroSection from "./HeroSection";
 import DivisionSection from "./DivisionSection";
 import PhotoBand from "./PhotoBand";
@@ -13,6 +14,7 @@ export default function Roots() {
   return (
     <>
       <Header />
+      <RootsSubNav />
       <HeroSection />
       <DivisionSection />
       <PhotoBand />

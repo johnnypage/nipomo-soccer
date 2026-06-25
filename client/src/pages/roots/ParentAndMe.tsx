@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import RootsSubNav from "./RootsSubNav";
 import HeroRotation from "./HeroRotation";
 import "./roots.css";
 
@@ -28,6 +29,7 @@ export default function ParentAndMe() {
   return (
     <>
       <Header />
+      <RootsSubNav />
 
       {/* Hero */}
       <section className="roots-hero bg-night" id="top">
