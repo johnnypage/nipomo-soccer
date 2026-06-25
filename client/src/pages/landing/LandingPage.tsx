@@ -18,15 +18,17 @@ const HERO_IMAGES = [
 function CtaButton({
   label,
   testId,
+  href = SPOND_MAIN,
   className = "",
 }: {
   label: string;
   testId: string;
+  href?: string;
   className?: string;
 }) {
   return (
     <a
-      href={SPOND_MAIN}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       data-testid={testId}
@@ -112,6 +114,16 @@ export default function LandingPage({ content }: { content: LandingContent }) {
     document.title = content.docTitle;
   }, [content.docTitle]);
 
+  const ctaHref = content.ctaHref ?? SPOND_MAIN;
+  const singleDivision = content.divisions.cards.length === 1;
+  const seasonColsClass =
+    {
+      1: "md:grid-cols-1",
+      2: "md:grid-cols-2",
+      3: "md:grid-cols-3",
+      4: "md:grid-cols-4",
+    }[content.season.milestones.length] ?? "md:grid-cols-4";
+
   return (
     <div className="min-h-screen bg-night text-warmwhite">
       {/* 1. Sticky header */}
@@ -132,7 +144,7 @@ export default function LandingPage({ content }: { content: LandingContent }) {
             </span>
           </a>
           <a
-            href={SPOND_MAIN}
+            href={ctaHref}
             target="_blank"
             rel="noopener noreferrer"
             data-testid="cta-nav"
@@ -160,6 +172,7 @@ export default function LandingPage({ content }: { content: LandingContent }) {
             <CtaButton
               label={content.ctaLabel}
               testId="cta-hero"
+              href={ctaHref}
               className="w-full sm:w-auto"
             />
           </div>
@@ -168,6 +181,45 @@ export default function LandingPage({ content }: { content: LandingContent }) {
 
       {/* 2b. Sponsor ribbon (Monjur-style: dark strip, white monochrome logos, infinite marquee) */}
       <SponsorMarquee heading={content.sponsors.heading} />
+
+      {/* 2b2. Format explainer (optional, numbered cards). Only renders when content provides it. */}
+      {content.formatExplainer && (
+        <section className="bg-night border-t border-warmwhite/10">
+          <div className="max-w-[1100px] mx-auto px-5 py-16">
+            <div className="text-center max-w-[640px] mx-auto">
+              <h2 className="font-display text-warmwhite uppercase tracking-tight text-2xl md:text-3xl">
+                {content.formatExplainer.heading}
+              </h2>
+              {content.formatExplainer.sub && (
+                <p className="text-warmwhite/70 mt-3 text-[16px] leading-relaxed">
+                  {content.formatExplainer.sub}
+                </p>
+              )}
+            </div>
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {content.formatExplainer.steps.map((step, i) => (
+                <div
+                  key={i}
+                  className="flex flex-col bg-white/5 border border-warmwhite/10 rounded-xl px-6 py-6"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="font-display text-gold text-3xl leading-none"
+                  >
+                    {i + 1}
+                  </span>
+                  <p className="font-display text-warmwhite uppercase tracking-tight text-lg leading-tight mt-3">
+                    {step.title}
+                  </p>
+                  <p className="text-warmwhite/70 text-[15px] leading-relaxed mt-2 flex-1">
+                    {step.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* 2c. Divisions (replaces the old Pricing and Find-your-age-group sections) */}
       <section className="bg-night">
@@ -183,7 +235,13 @@ export default function LandingPage({ content }: { content: LandingContent }) {
               {content.divisions.sub}
             </p>
           </div>
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div
+            className={
+              singleDivision
+                ? "mt-10 max-w-[560px] mx-auto"
+                : "mt-10 grid grid-cols-1 md:grid-cols-2 gap-4"
+            }
+          >
             {content.divisions.cards.map((card) => {
               const testId =
                 "division-" +
@@ -245,7 +303,7 @@ export default function LandingPage({ content }: { content: LandingContent }) {
             </p>
           </div>
           {/* Timeline: horizontal on desktop, vertical rail on mobile. No boxes. */}
-          <div className="mt-12 hidden md:grid md:grid-cols-4 md:gap-8 relative">
+          <div className={`mt-12 hidden md:grid ${seasonColsClass} md:gap-8 relative`}>
             <div
               aria-hidden="true"
               className="absolute left-0 right-0 top-[5px] h-px bg-warmwhite/15"

@@ -39,12 +39,12 @@ const CHANGES = [
       "No practices. Just games. Twice a week, 7th through 12th graders show up for fast-paced 5v5 on a smaller field with a goalkeeper.",
     body: "No practices. Just games. Twice a week, 7th through 12th graders show up for fast-paced 5v5 on a smaller field with a goalkeeper. Thirty minutes of coached warmup, two competitive matches, done. Players touch the ball roughly 4 times per minute compared to less than once in traditional 11v11. It fits packed schedules and keeps older players on the field.",
     bullets: [
-      "Two game nights per week, no separate practices",
+      "One weeknight and one Saturday, no separate practices",
       "Over 20 games per season",
       "Players touch the ball roughly 4x per minute",
       "Fits alongside other sports, jobs, and homework",
     ],
-    link: "/roots/5v5",
+    link: "/5v5",
   },
   {
     id: "playtime",

@@ -4,9 +4,8 @@ import {
   SPOND_SPECIAL_NEEDS,
 } from "@/pages/landing/landingContent";
 
-// 5v5's learn-more currently points at its program page. Repoint this one
-// constant to the dedicated 5v5 landing page when it ships.
-const FIVE_V_FIVE_LEARN_MORE = "/roots/5v5"; // TODO: repoint to dedicated 5v5 landing page when it ships
+// 5v5's learn-more points at the dedicated 5v5 conversion landing page.
+const FIVE_V_FIVE_LEARN_MORE = "/5v5";
 
 const DIVISIONS = [
   {
