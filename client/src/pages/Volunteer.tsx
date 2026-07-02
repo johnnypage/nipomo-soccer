@@ -127,8 +127,7 @@ const ROLE_GROUPS: RoleGroup[] = [
         desc: "Recruits, trains, and manages the referee workforce. Owns scheduling and game-day coverage for every match.",
         time: "~5 hrs/wk",
         timeShort: "~5 hrs/wk",
-        status: "filled",
-        filledBy: { name: "Ashley Marsh", since: "2025", initials: "AM", photo: "/ashley-marsh.jpg", photoPosition: "center top" },
+        status: "open",
         summary: "Recruits, trains, and manages every referee in the program. No referees means no games. This role keeps the season running.",
         responsibilities: [
           "Recruit referees from within the community (parents, high school students) and externally",
@@ -171,8 +170,7 @@ const ROLE_GROUPS: RoleGroup[] = [
         desc: "Owns the fields, weekly painting, game-day setup logistics, and physical infrastructure.",
         time: "4-6 hrs/wk",
         timeShort: "4-6 hrs/wk",
-        status: "filled",
-        filledBy: { name: "Justin Marsh", since: "2025", initials: "JM", photo: "/justin-marsh.jpg", photoPosition: "center top" },
+        status: "open",
         summary: "Owns the fields, physical infrastructure, and oversees the facilities team.",
         responsibilities: [
           "Oversee weekly field painting (lines and markings across all active fields, midweek)",

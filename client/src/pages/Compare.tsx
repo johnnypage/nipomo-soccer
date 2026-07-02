@@ -78,8 +78,6 @@ const boardMembers = [
   { name: "Autumn Dalton", role: "Board Member", bg: "Former AYSO board member." },
   { name: "Johnny Page", role: "Head of Marketing & Recruiting", bg: "Former AYSO Coach Administrator." },
   { name: "Ashley Page", role: "Operations & Social Media", bg: "Ran social media and operations for AYSO; continues in that role for NSC." },
-  { name: "Justin Marsh", role: "Operations Director", bg: "Former AYSO Assistant Regional Commissioner." },
-  { name: "Ashley Marsh", role: "Referee Administrator", bg: "Served as AYSO Referee Administrator; continues in that role for NSC." },
   { name: "Andres Lopez", role: "Treasurer", bg: "" },
   { name: "Carla Alonso", role: "Registrar", bg: "" },
   { name: "Kacie Lopez", role: "Secretary", bg: "Serving since 2026." },
