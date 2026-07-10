@@ -64,7 +64,7 @@ export default function ProgramCard({
       <div className="relative h-48 overflow-hidden flex-shrink-0">
         {type === "roots" && (
           <Link
-            href="/roots"
+            href="/fall"
             className="absolute top-0 left-0 right-0 z-10 bg-crimson text-warmwhite text-center py-1.5 px-3 text-xs font-heading font-bold uppercase tracking-wider hover:bg-crimson/90 transition-colors cursor-pointer"
             data-testid="banner-roots-registration"
           >
@@ -92,7 +92,7 @@ export default function ProgramCard({
             {title}
           </h3>
           {type === "roots" && (
-            <Link href="/roots" className="px-2 py-0.5 bg-crimson text-warmwhite text-[10px] font-heading font-bold uppercase tracking-wider rounded-full whitespace-nowrap hover:bg-crimson/90 transition-colors" data-testid="tag-roots-registration-open">
+            <Link href="/fall" className="px-2 py-0.5 bg-crimson text-warmwhite text-[10px] font-heading font-bold uppercase tracking-wider rounded-full whitespace-nowrap hover:bg-crimson/90 transition-colors" data-testid="tag-roots-registration-open">
               Register Today
             </Link>
           )}
