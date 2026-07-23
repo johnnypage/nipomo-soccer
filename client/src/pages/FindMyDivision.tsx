@@ -46,30 +46,10 @@ const DIVISIONS: DivisionInfo[] = [
     color: "from-[#1a6b3c]/20 to-[#1a6b3c]/5 border-[#1a6b3c]/30",
   },
   {
-    name: "3rd - 4th Grade",
-    uGroup: "U9 / U10",
-    grade: "3rd and 4th Grade",
+    name: "3rd Grade",
+    uGroup: "U9",
+    grade: "3rd Grade",
     format: "7v7 with goalkeeper",
-    games: "14-16 games",
-    practices: "2x / week",
-    extra: "End-of-season tournament",
-    color: "from-crimson/20 to-crimson/5 border-crimson/30",
-  },
-  {
-    name: "5th - 6th Grade",
-    uGroup: "U11 / U12",
-    grade: "5th and 6th Grade",
-    format: "9v9 with goalkeeper",
-    games: "14-16 games",
-    practices: "2x / week",
-    extra: "End-of-season tournament",
-    color: "from-crimson/20 to-crimson/5 border-crimson/30",
-  },
-  {
-    name: "7th - 8th Grade",
-    uGroup: "U13 / U14",
-    grade: "7th and 8th Grade",
-    format: "11v11",
     games: "14-16 games",
     practices: "2x / week",
     extra: "End-of-season tournament",
@@ -87,8 +67,8 @@ type ResultType =
 function getDivision(dob: Date): ResultType {
   // Too young: born Sep 1, 2024 or later (under 2 years old as of Sep 1, 2026)
   const tooYoungCutoff = new Date(2024, 8, 1); // Sep 1, 2024
-  // Too old: born before Sep 1, 2012
-  const tooOldCutoff = new Date(2012, 8, 1);   // Sep 1, 2012
+  // Too old: born before Sep 1, 2017 (4th grade and older)
+  const tooOldCutoff = new Date(2017, 8, 1);   // Sep 1, 2017
 
   if (dob >= tooYoungCutoff) return { type: "too_young" };
   if (dob < tooOldCutoff) return { type: "too_old" };
@@ -101,12 +81,7 @@ function getDivision(dob: Date): ResultType {
     { start: new Date(2020, 8, 1), end: new Date(2021, 7, 31), divIndex: 1 }, // Pre-K / K
     { start: new Date(2019, 8, 1), end: new Date(2020, 7, 31), divIndex: 2 }, // 1st-2nd
     { start: new Date(2018, 8, 1), end: new Date(2019, 7, 31), divIndex: 2 }, // 1st-2nd
-    { start: new Date(2017, 8, 1), end: new Date(2018, 7, 31), divIndex: 3 }, // 3rd-4th
-    { start: new Date(2016, 8, 1), end: new Date(2017, 7, 31), divIndex: 3 }, // 3rd-4th
-    { start: new Date(2015, 8, 1), end: new Date(2016, 7, 31), divIndex: 4 }, // 5th-6th
-    { start: new Date(2014, 8, 1), end: new Date(2015, 7, 31), divIndex: 4 }, // 5th-6th
-    { start: new Date(2013, 8, 1), end: new Date(2014, 7, 31), divIndex: 5 }, // 7th-8th
-    { start: new Date(2012, 8, 1), end: new Date(2013, 7, 31), divIndex: 5 }, // 7th-8th
+    { start: new Date(2017, 8, 1), end: new Date(2018, 7, 31), divIndex: 3 }, // 3rd Grade
   ];
 
   const match = ranges.find((r) => dob >= r.start && dob <= r.end);
@@ -180,7 +155,7 @@ export default function FindMyDivision() {
               type="date"
               value={dob}
               onChange={(e) => handleDateChange(e.target.value)}
-              min="2012-09-01"
+              min="2017-09-01"
               max="2024-08-31"
               data-testid="input-birthday"
               className="w-full px-4 py-4 bg-warmwhite/8 border border-warmwhite/15 rounded-xl text-warmwhite text-lg text-center focus:outline-none focus:border-gold transition-colors [color-scheme:dark]"
@@ -283,12 +258,7 @@ export default function FindMyDivision() {
               { range: "Sep 2020 -- Aug 2021", uGroup: "U6",    div: "Pre-K / K" },
               { range: "Sep 2019 -- Aug 2020", uGroup: "U7",    div: "1st - 2nd Grade" },
               { range: "Sep 2018 -- Aug 2019", uGroup: "U8",    div: "1st - 2nd Grade" },
-              { range: "Sep 2017 -- Aug 2018", uGroup: "U9",    div: "3rd - 4th Grade" },
-              { range: "Sep 2016 -- Aug 2017", uGroup: "U10",   div: "3rd - 4th Grade" },
-              { range: "Sep 2015 -- Aug 2016", uGroup: "U11",   div: "5th - 6th Grade" },
-              { range: "Sep 2014 -- Aug 2015", uGroup: "U12",   div: "5th - 6th Grade" },
-              { range: "Sep 2013 -- Aug 2014", uGroup: "U13",   div: "7th - 8th Grade" },
-              { range: "Sep 2012 -- Aug 2013", uGroup: "U14",   div: "7th - 8th Grade" },
+              { range: "Sep 2017 -- Aug 2018", uGroup: "U9",    div: "3rd Grade" },
             ].map((row, i) => (
               <div
                 key={i}

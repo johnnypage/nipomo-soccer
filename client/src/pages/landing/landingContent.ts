@@ -74,7 +74,7 @@ export const enContent: LandingContent = {
   hero: {
     headline: "Fall soccer starts here",
     subhead:
-      "Nipomo Soccer's recreational fall season is open for registration. Ages 2 through high school. No tryouts. No experience required. Just show up ready to play.",
+      "Nipomo Soccer's recreational fall season is open for registration. Ages 2 through 3rd grade. No tryouts. No experience required. Just show up ready to play.",
     urgency: "Register today and save.",
   },
   valuePropsHeading: "What you get",
@@ -111,7 +111,7 @@ export const enContent: LandingContent = {
   },
   divisions: {
     heading: "Find your division",
-    sub: "Four divisions, one quick registration. It takes about two minutes on Spond.",
+    sub: "Three divisions, one quick registration. It takes about two minutes on Spond.",
     urgency: "Prices go up after July 31.",
     scholarships:
       "Scholarships available because every kid in Nipomo deserves a team. Email admin@nipomosoccer.com.",
@@ -126,20 +126,11 @@ export const enContent: LandingContent = {
       },
       {
         title: "LEAGUE PLAY",
-        age: "Pre-K through 6th grade",
-        body: "The heart of the fall season. Weekly practices with games on Saturdays and the occasional midweek match. We are emphasizing more games this year so kids get more touches and have more fun. The 3rd through 6th grade divisions close the season with a tournament.",
+        age: "Pre-K through 3rd grade",
+        body: "The heart of the fall season. Weekly practices with games on Saturdays and the occasional midweek match. We are emphasizing more games this year so kids get more touches and have more fun. The older divisions close the season with a tournament.",
         price: "$150 / $175 / $200",
         priceNote: "Early Bird / Regular / Late",
         cta: "Register for League Play",
-        href: SPOND_MAIN,
-      },
-      {
-        title: "5V5",
-        age: "7th through 12th grade",
-        body: "No practices. Just games. Fast paced 5v5 soccer twice a week for middle school and high school players. Over 20 games per season.",
-        price: "$150 / $175 / $200",
-        priceNote: "Early Bird / Regular / Late",
-        cta: "Register for 5v5",
         href: SPOND_MAIN,
       },
       {
@@ -174,7 +165,7 @@ export const enContent: LandingContent = {
       {
         name: "Tournament",
         dates: "Nov 7",
-        body: "End-of-season tournament for 3rd through 6th grade, seeded by standings. At least two games per team.",
+        body: "End-of-season tournament for older divisions, seeded by standings. At least two games per team.",
       },
     ],
   },
@@ -228,7 +219,7 @@ export const esContent: LandingContent = {
   hero: {
     headline: "El fútbol de otoño empieza aquí",
     subhead:
-      "Ya abrió la inscripción para la temporada recreativa de otoño de Nipomo Soccer. De 2 años hasta high school. Sin pruebas. Sin experiencia previa. Solo llega listo para jugar.",
+      "Ya abrió la inscripción para la temporada recreativa de otoño de Nipomo Soccer. De 2 años hasta 3er grado. Sin pruebas. Sin experiencia previa. Solo llega listo para jugar.",
     urgency: "Inscríbete hoy y ahorra.",
   },
   valuePropsHeading: "Lo que incluye",
@@ -265,7 +256,7 @@ export const esContent: LandingContent = {
   },
   divisions: {
     heading: "Encuentra tu división",
-    sub: "Cuatro divisiones, una inscripción rápida. Toma unos dos minutos en Spond.",
+    sub: "Tres divisiones, una inscripción rápida. Toma unos dos minutos en Spond.",
     urgency: "Los precios suben después del 31 de julio.",
     scholarships:
       "Hay becas disponibles porque cada niño de Nipomo merece un equipo. Escribe a admin@nipomosoccer.com.",
@@ -280,20 +271,11 @@ export const esContent: LandingContent = {
       },
       {
         title: "LEAGUE PLAY",
-        age: "De Pre-K a 6to grado",
-        body: "El corazón de la temporada de otoño. Práctica semanal con partidos los sábados y de vez en cuando un partido entre semana. Este año apostamos por más partidos para que los niños tengan más toques de balón y más diversión. Las divisiones de 3ro a 6to grado cierran la temporada con un torneo.",
+        age: "De Pre-K a 3er grado",
+        body: "El corazón de la temporada de otoño. Práctica semanal con partidos los sábados y de vez en cuando un partido entre semana. Este año apostamos por más partidos para que los niños tengan más toques de balón y más diversión. Las divisiones mayores cierran la temporada con un torneo.",
         price: "$150 / $175 / $200",
         priceNote: "Temprana / Regular / Tardía",
         cta: "Inscríbete en League Play",
-        href: SPOND_MAIN,
-      },
-      {
-        title: "5V5",
-        age: "De 7mo a 12vo grado",
-        body: "Sin prácticas. Solo partidos. Fútbol 5v5 rápido dos veces por semana para jugadores de middle school y high school. Más de 20 partidos por temporada.",
-        price: "$150 / $175 / $200",
-        priceNote: "Temprana / Regular / Tardía",
-        cta: "Inscríbete en 5v5",
         href: SPOND_MAIN,
       },
       {
@@ -328,7 +310,7 @@ export const esContent: LandingContent = {
       {
         name: "Torneo",
         dates: "7 nov",
-        body: "Torneo de fin de temporada de 3ro a 6to grado, sembrado por la tabla. Mínimo dos partidos por equipo.",
+        body: "Torneo de fin de temporada para las divisiones mayores, sembrado por la tabla. Mínimo dos partidos por equipo.",
       },
     ],
   },

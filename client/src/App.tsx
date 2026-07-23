@@ -27,7 +27,6 @@ import PlayerProfile from "@/pages/challenge/player";
 import CopaDeCostaComingSoon from "@/pages/CopaDeCostaComingSoon";
 import FallLanding from "@/pages/landing/FallLanding";
 import FutbolLanding from "@/pages/landing/FutbolLanding";
-import FiveVFiveLanding from "@/pages/landing/FiveVFiveLanding";
 import Privacy from "@/pages/legal/privacy";
 import Terms from "@/pages/legal/terms";
 import ParticipationAgreement from "@/pages/legal/participation-agreement";
@@ -41,7 +40,7 @@ function Router() {
       <Route path="/roots" component={RootsPage} />
       <Route path="/roots/parent-and-me" component={RootsParentAndMe} />
       <Route path="/roots/recreational" component={RootsRecreational} />
-      <Route path="/roots/5v5">{() => <Redirect to="/5v5" />}</Route>
+      <Route path="/roots/5v5">{() => <Redirect to="/fall" />}</Route>
       <Route path="/find-my-division" component={FindMyDivision} />
       <Route path="/volunteer" component={Volunteer} />
       <Route path="/about/compare" component={Compare} />
@@ -60,7 +59,7 @@ function Router() {
       <Route path="/copa-de-costa" component={CopaDeCostaComingSoon} />
       <Route path="/fall" component={FallLanding} />
       <Route path="/futbol" component={FutbolLanding} />
-      <Route path="/5v5" component={FiveVFiveLanding} />
+      <Route path="/5v5">{() => <Redirect to="/fall" />}</Route>
       <Route path="/tournament">{() => <Redirect to="/" />}</Route>
       <Route component={NotFound} />
     </Switch>
