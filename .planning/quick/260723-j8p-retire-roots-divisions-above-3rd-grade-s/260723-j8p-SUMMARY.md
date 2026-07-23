@@ -73,3 +73,19 @@ Per the additional instruction, the stale "Registration deadline: July 6, 2026" 
 ## Self-Check: PASSED
 - All 12 modified files present and committed across 3deb421, 9e59d07, 650c1a3.
 - Build verified green.
+
+## Amendment -- Remove Special Needs division (commit 6cbb0c5)
+
+The board also retired the Special Needs division. Removed it from every surface the same way the older divisions were removed:
+
+- **DivisionSection.tsx:** removed the Special Needs card and its `SPOND_SPECIAL_NEEDS` import; heading "Three programs" to "Two programs".
+- **RootsSubNav.tsx:** removed the Special Needs nav item and its `SPOND_SPECIAL_NEEDS` import.
+- **RegistrationSection.tsx:** removed the Special Needs ($50) pricing row.
+- **FAQSection.tsx:** the season-breakdown line "Parent & Me and Special Needs / These programs run..." reworded to "Parent & Me / This program runs..." (grammar and voice preserved).
+- **landingContent.ts:** removed the SPECIAL NEEDS division card from both EN and ES landers; divisions sub-heading decremented "Three divisions" to "Two divisions" and "Tres divisiones" to "Dos divisiones".
+
+### Judgment calls
+- **`SPOND_SPECIAL_NEEDS` export left in place** (landingContent.ts line 14). After removing all consumers it is an unused export, but exports without importers do not fail the build. Left intact to match the existing pattern of the retained-but-unused `fiveVFiveContent` export from the earlier /5v5 retirement. Safe to delete later if desired.
+- **Decremented lander division counts** ("Three/Tres" to "Two/Dos") -- not explicitly listed in the amendment but required for content correctness after removing a card (Rule 1), same as the earlier "Four to Three" fix.
+
+Build passes (`npx vite build`, ~3.2s). No Summer Skills Challenge WIP files touched; files staged individually by explicit path.
