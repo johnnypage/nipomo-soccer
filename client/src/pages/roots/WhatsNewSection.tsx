@@ -31,22 +31,6 @@ const CHANGES = [
     ],
   },
   {
-    id: "5v5",
-    icon: "⬡",
-    short: "A 5v5 league for middle school and high school",
-    ageBadge: "7th-12th Grade",
-    summary:
-      "No practices. Just games. Twice a week, 7th through 12th graders show up for fast-paced 5v5 on a smaller field with a goalkeeper.",
-    body: "No practices. Just games. Twice a week, 7th through 12th graders show up for fast-paced 5v5 on a smaller field with a goalkeeper. Thirty minutes of coached warmup, two competitive matches, done. Players touch the ball roughly 4 times per minute compared to less than once in traditional 11v11. It fits packed schedules and keeps older players on the field.",
-    bullets: [
-      "One weeknight and one Saturday, no separate practices",
-      "Over 20 games per season",
-      "Players touch the ball roughly 4x per minute",
-      "Fits alongside other sports, jobs, and homework",
-    ],
-    link: "/5v5",
-  },
-  {
     id: "playtime",
     icon: "⌁",
     short: "Playing time that rewards participation",
@@ -102,10 +86,10 @@ export default function WhatsNewSection() {
             What's new this year
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-night">
-            Six big upgrades to this year's season
+            Five big upgrades to this year's season
           </h2>
           <p className="text-slate mt-2 text-[17px] leading-relaxed">
-            We make small improvements every season. But this year, there are six big shifts
+            We make small improvements every season. But this year, there are five big shifts
             coming to soccer in Nipomo that change how things work for players, coaches, and families.
           </p>
         </div>

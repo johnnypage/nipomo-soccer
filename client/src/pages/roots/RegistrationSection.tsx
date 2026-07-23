@@ -21,7 +21,7 @@ export default function RegistrationSection() {
             </thead>
             <tbody>
               <tr>
-                <td className="font-medium text-night">Pre-K through 12th Grade</td>
+                <td className="font-medium text-night">Pre-K through 3rd Grade</td>
                 <td className="text-slate">$150</td>
                 <td className="text-slate">$175</td>
                 <td className="text-slate">$200</td>

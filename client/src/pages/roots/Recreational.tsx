@@ -40,27 +40,12 @@ const DIVISIONS = [
   },
   {
     id: "3rd-4th",
-    label: "3rd-4th Grade",
-    age: "3rd & 4th Grade",
-    birthYear: "Born 2016-2017",
+    label: "3rd Grade",
+    age: "3rd Grade",
+    birthYear: "Born 2017-2018",
     format: "7v7 with goalkeepers",
     expect:
       "Practices and games every week. Games move to 7v7 with goalkeepers. Starting at this division, teams are balanced using player data from the pre-season Kickoff Day. End-of-season tournament for all teams.",
-    schedule: "2 practices per week + 14-16 games per season",
-    price: "$150 / $175 / $200",
-    priceNote: "Early Bird (first 100) / Regular / Late",
-    includes: ["Kit", "Insurance", "End-of-season tournament", "Awards based on tournament results"],
-    color: "text-risegreen",
-    badgeColor: "bg-risegreen/10 border-risegreen/30 text-risegreen",
-  },
-  {
-    id: "5th-6th",
-    label: "5th-6th Grade",
-    age: "5th & 6th Grade",
-    birthYear: "Born 2014-2015",
-    format: "9v9 with goalkeepers",
-    expect:
-      "Practices and games every week. Games move to 9v9 with goalkeepers. Teams are balanced using returning player data and the pre-season Kickoff Day. End-of-season tournament for all teams.",
     schedule: "2 practices per week + 14-16 games per season",
     price: "$150 / $175 / $200",
     priceNote: "Early Bird (first 100) / Regular / Late",
@@ -89,7 +74,7 @@ const SEASON_MILESTONES = [
   {
     dates: "NOV 7",
     name: "Tournament",
-    body: "End-of-season tournament for 3rd through 6th grade. Minimum two games per team, seeded by regular season standings.",
+    body: "End-of-season tournament for older divisions. Minimum two games per team, seeded by regular season standings.",
   },
 ];
 
@@ -110,7 +95,7 @@ export default function Recreational() {
             Soccer Starts Here.
           </h1>
           <p className="text-warmwhite/80 text-xl mt-6 leading-relaxed max-w-[640px]">
-            The core ROOTS experience for Pre-K through 6th graders. Weekly practices, Saturday games, midweek matches, and an end-of-season tournament for older divisions. Up to 16 games per team this season.
+            The core ROOTS experience for Pre-K through 3rd graders. Weekly practices, Saturday games, midweek matches, and an end-of-season tournament for older divisions. Up to 16 games per team this season.
           </p>
 
           <div className="flex flex-wrap gap-3 justify-center mt-10">

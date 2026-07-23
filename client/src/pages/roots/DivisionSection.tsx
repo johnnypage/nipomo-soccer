@@ -4,9 +4,6 @@ import {
   SPOND_SPECIAL_NEEDS,
 } from "@/pages/landing/landingContent";
 
-// 5v5's learn-more points at the dedicated 5v5 conversion landing page.
-const FIVE_V_FIVE_LEARN_MORE = "/5v5";
-
 const DIVISIONS = [
   {
     id: "parent-and-me",
@@ -24,7 +21,7 @@ const DIVISIONS = [
   {
     id: "league-play",
     label: "League Play",
-    age: "Pre-K through 6th Grade",
+    age: "Pre-K through 3rd Grade",
     description:
       "The core ROOTS experience. Weekly practices, Saturday games, midweek matches, and an end-of-season tournament for older divisions. Up to 16 games per team.",
     price: "$150 / $175 / $200",
@@ -34,20 +31,6 @@ const DIVISIONS = [
     learnMoreLabel: "Find your division",
     color: "border-crimson",
     badgeColor: "text-crimson",
-  },
-  {
-    id: "5v5",
-    label: "5v5",
-    age: "7th-12th Grade",
-    description:
-      "No practices. Just games. Fast-paced 5v5 soccer twice a week for middle school and high school players. Over 20 games per season.",
-    price: "$150 / $175 / $200",
-    priceNote: "Early Bird / Regular / Late",
-    registerUrl: SPOND_MAIN,
-    learnMoreHref: FIVE_V_FIVE_LEARN_MORE,
-    learnMoreLabel: "Learn more about 5v5",
-    color: "border-risegreen",
-    badgeColor: "text-risegreen",
   },
   {
     id: "special-needs",
@@ -73,7 +56,7 @@ export default function DivisionSection() {
             Find your division
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">
-            Four programs, one registration.
+            Three programs, one registration.
           </h2>
           <p className="text-warmwhite/55 mt-2 text-[17px]">
             ROOTS has tracks built for different ages and stages. Register for the one that fits your player.

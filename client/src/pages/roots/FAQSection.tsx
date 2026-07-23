@@ -52,17 +52,6 @@ const FAQS: { q: string; a: ReactNode }[] = [
     a: "Yes. ROOTS is open to all players regardless of what other programs or sports they are in. Playtime is tied to practice attendance, and that applies to everyone equally.",
   },
   {
-    q: "What is the 5v5 division?",
-    a: (
-      <>
-        Our 5v5 division is for 7th through 12th graders. Instead of traditional 11v11 with separate practices, players show up twice a week (one weeknight, one Saturday) for fast-paced 5v5 games on a smaller field with a goalkeeper. Each session includes a coached warmup and two competitive matches. Players get over 20 games per season.{" "}
-        <a href="/5v5" className="text-crimson hover:underline">
-          Learn more about 5v5.
-        </a>
-      </>
-    ),
-  },
-  {
     q: "What is the playtime policy?",
     a: "For 1st grade and up, playing time is tied to practice attendance tracked in Spond. Kids who come to practice consistently earn more game time. Players with full participation follow the three-quarter rule, meaning every player must play three quarters before any player plays the full game. This rewards effort while making sure every committed player gets meaningful time on the field.",
   },

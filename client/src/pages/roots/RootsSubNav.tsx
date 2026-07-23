@@ -13,8 +13,6 @@ type SubNavItem = {
 const ITEMS: SubNavItem[] = [
   { id: "parent-and-me", label: "Parent & Me", href: "/roots/parent-and-me" },
   { id: "league-play", label: "League Play", href: "/roots/recreational" },
-  // 5v5 lives only on the dedicated /5v5 landing page now.
-  { id: "5v5", label: "5v5", href: "/5v5", match: ["/5v5", "/roots/5v5"] },
   { id: "special-needs", label: "Special Needs", href: SPOND_SPECIAL_NEEDS, external: true },
 ];
 

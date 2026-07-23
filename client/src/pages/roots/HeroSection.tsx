@@ -9,8 +9,8 @@ export default function HeroSection() {
           Soccer starts here.
         </h1>
         <p className="text-warmwhite/80 text-xl mt-6 leading-relaxed max-w-[600px]">
-          ROOTS is Nipomo Soccer's recreational program for players ages 2 through high school.
-          A 12-week season with up to 20 games per player, paid referees, and a community
+          ROOTS is Nipomo Soccer's recreational program for players ages 2 through 3rd grade.
+          A 12-week season with up to 16 games per player, paid referees, and a community
           of families and coaches that makes game day the best part of the week.
         </p>
         <p className="text-warmwhite/50 mt-3 text-base">
@@ -21,7 +21,7 @@ export default function HeroSection() {
         </p>
 
         <p className="text-warmwhite/55 text-sm font-medium mt-8 mb-10 max-w-[600px]">
-          Ages 2 to high school &middot; 12-week season &middot; Up to 20 games &middot; Paid referees &middot; No tryouts
+          Ages 2 to 3rd grade &middot; 12-week season &middot; Up to 16 games &middot; Paid referees &middot; No tryouts
         </p>
 
         <div className="flex flex-wrap gap-3 justify-center">
