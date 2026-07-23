@@ -97,6 +97,7 @@ None yet.
 | fast | Landing pages: state recreational soccer clearly, center program links | 2026-06-12 | 69a5411 |
 | 260612-cih | Landing hero photo rotation + 9-logo sponsor ribbon | 2026-06-12 | eebf026, 06b1554 |
 | 260612-ehr | Landing content revision: divisions section, season timeline, copy rewrite | 2026-06-12 | 0ba0c5d, a0e344c |
+| 260723-j8p | Retire ROOTS divisions above 3rd grade + Copa De Costa dates to May 8-9 2027 | 2026-07-23 | 3deb421, 9e59d07, 650c1a3 |
 | 260612-g8d | Extract sponsor marquee into shared component and add to home page below hero | 2026-06-12 | 152d491, ba2d6bd, 683c245 |
 | 260612-gem | Logo sweep (already clean) + drop "Real X" copy from ROOTS photo band | 2026-06-12 | 4571e24 |
 | 260612-gi6 | Strip pill badges across ROOTS pages, plain display-font headings | 2026-06-12 | 20179c8 |
