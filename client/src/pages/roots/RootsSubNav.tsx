@@ -1,5 +1,4 @@
 import { Link, useLocation } from "wouter";
-import { SPOND_SPECIAL_NEEDS } from "@/pages/landing/landingContent";
 
 type SubNavItem = {
   id: string;
@@ -13,7 +12,6 @@ type SubNavItem = {
 const ITEMS: SubNavItem[] = [
   { id: "parent-and-me", label: "Parent & Me", href: "/roots/parent-and-me" },
   { id: "league-play", label: "League Play", href: "/roots/recreational" },
-  { id: "special-needs", label: "Special Needs", href: SPOND_SPECIAL_NEEDS, external: true },
 ];
 
 // Secondary navigation for the ROOTS section. Sticks just below the fixed

@@ -24,8 +24,8 @@ const FAQS: { q: string; a: ReactNode }[] = [
             A weekend tournament seeded by regular season standings. For 8U and up. 6U plays the full regular season but does not participate in the tournament.
           </li>
           <li>
-            <strong>Parent &amp; Me and Special Needs</strong><br />
-            These programs run a 10-week season from August 22 through October 31. No Kickoff Day required, no tournament.
+            <strong>Parent &amp; Me</strong><br />
+            This program runs a 10-week season from August 22 through October 31. No Kickoff Day required, no tournament.
           </li>
         </ul>
       </>

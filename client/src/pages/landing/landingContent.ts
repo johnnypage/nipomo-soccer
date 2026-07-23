@@ -111,7 +111,7 @@ export const enContent: LandingContent = {
   },
   divisions: {
     heading: "Find your division",
-    sub: "Three divisions, one quick registration. It takes about two minutes on Spond.",
+    sub: "Two divisions, one quick registration. It takes about two minutes on Spond.",
     urgency: "Prices go up after July 31.",
     scholarships:
       "Scholarships available because every kid in Nipomo deserves a team. Email admin@nipomosoccer.com.",
@@ -132,14 +132,6 @@ export const enContent: LandingContent = {
         priceNote: "Early Bird / Regular / Late",
         cta: "Register for League Play",
         href: SPOND_MAIN,
-      },
-      {
-        title: "SPECIAL NEEDS",
-        age: "All ages",
-        body: "Drills and scrimmages with accommodations based on player needs. Every session is designed so every player can participate and have fun. Ten Saturday sessions, with kit and participation medal included.",
-        price: "$50 flat",
-        cta: "Register for Special Needs",
-        href: SPOND_SPECIAL_NEEDS,
       },
     ],
   },
@@ -256,7 +248,7 @@ export const esContent: LandingContent = {
   },
   divisions: {
     heading: "Encuentra tu división",
-    sub: "Tres divisiones, una inscripción rápida. Toma unos dos minutos en Spond.",
+    sub: "Dos divisiones, una inscripción rápida. Toma unos dos minutos en Spond.",
     urgency: "Los precios suben después del 31 de julio.",
     scholarships:
       "Hay becas disponibles porque cada niño de Nipomo merece un equipo. Escribe a admin@nipomosoccer.com.",
@@ -277,14 +269,6 @@ export const esContent: LandingContent = {
         priceNote: "Temprana / Regular / Tardía",
         cta: "Inscríbete en League Play",
         href: SPOND_MAIN,
-      },
-      {
-        title: "SPECIAL NEEDS",
-        age: "Todas las edades",
-        body: "Ejercicios y partidos amistosos con adaptaciones según las necesidades de cada jugador. Cada sesión está diseñada para que todos participen y se diviertan. Diez sesiones los sábados, con uniforme y medalla de participación incluidos.",
-        price: "$50 fijo",
-        cta: "Inscríbete en Special Needs",
-        href: SPOND_SPECIAL_NEEDS,
       },
     ],
   },

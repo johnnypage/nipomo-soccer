@@ -32,12 +32,6 @@ export default function RegistrationSection() {
                 <td className="text-slate">$120 flat</td>
                 <td className="text-slate">$120 flat</td>
               </tr>
-              <tr>
-                <td className="font-medium text-night">Special Needs</td>
-                <td className="text-slate">$50 flat</td>
-                <td className="text-slate">$50 flat</td>
-                <td className="text-slate">$50 flat</td>
-              </tr>
             </tbody>
           </table>
         </div>

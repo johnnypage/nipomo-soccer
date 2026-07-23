@@ -1,7 +1,6 @@
 import {
   SPOND_MAIN,
   SPOND_PARENT_AND_ME,
-  SPOND_SPECIAL_NEEDS,
 } from "@/pages/landing/landingContent";
 
 const DIVISIONS = [
@@ -32,19 +31,6 @@ const DIVISIONS = [
     color: "border-crimson",
     badgeColor: "text-crimson",
   },
-  {
-    id: "special-needs",
-    label: "Special Needs",
-    age: "All ages",
-    description:
-      "A combination of drills and scrimmages with accommodations based on player needs. Every session is designed so every player can participate and have fun.",
-    price: "$50 flat rate",
-    schedule: "Saturday sessions only, 10 sessions per season",
-    includes: "Kit, insurance, participation medal",
-    registerUrl: SPOND_SPECIAL_NEEDS,
-    color: "border-gold",
-    badgeColor: "text-gold",
-  },
 ];
 
 export default function DivisionSection() {
@@ -56,7 +42,7 @@ export default function DivisionSection() {
             Find your division
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">
-            Three programs, one registration.
+            Two programs, one registration.
           </h2>
           <p className="text-warmwhite/55 mt-2 text-[17px]">
             ROOTS has tracks built for different ages and stages. Register for the one that fits your player.
