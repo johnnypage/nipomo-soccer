@@ -86,12 +86,12 @@ const boardMembers = [
 
 const faqItems = [
   { q: "Is Nipomo Soccer a non-profit?", a: "Yes. Nipomo Soccer is a registered non-profit organization." },
-  { q: 'Does "soccer club" mean it\'s only for competitive players?', a: 'Not at all. The word "club" refers to the organization, not the level of play. Nipomo Soccer is the umbrella for all soccer in Nipomo. Roots is recreational soccer: Saturday games, weekday practices, team assignments, ages 4 to 14. Rise is a developmental bridge for players who want more training without the full commitment of a competitive team. Reign is competitive, year-round training and tournament play. Your child can play Roots every season and have a great experience, or they can grow into Rise or Reign over time. No pressure, no wrong path.' },
+  { q: 'Does "soccer club" mean it\'s only for competitive players?', a: 'Not at all. The word "club" refers to the organization, not the level of play. Nipomo Soccer is the umbrella for all soccer in Nipomo. Roots is recreational soccer: Saturday games, weekday practices, team assignments, Pre-K through 3rd grade. Rise is a developmental bridge for players who want more training without the full commitment of a competitive team. Reign is competitive, year-round training and tournament play. Your child can play Roots every season and have a great experience, or they can grow into Rise or Reign over time. No pressure, no wrong path.' },
   { q: "Will Roots cost more than AYSO?", a: "We expect registration to be around $155, the same as last year's AYSO season. That's despite Nipomo Soccer having to purchase all new equipment from scratch, including goals, balls, and jerseys, and now paying referees. We've worked hard to keep costs the same for families." },
   { q: "Do I have to volunteer?", a: "Volunteering isn't mandatory per parent, but Nipomo Soccer still depends heavily on community support. Our entire board is volunteer. All coaches are volunteer. As we grow revenue through fundraisers, sponsorships, and hosting club tournaments, we expect to add paid positions over time to reduce the volunteer burden. Right now, every helping hand makes a real difference." },
   { q: "How will teams be balanced?", a: "Two ways. First, players on competitive teams, whether Reign or any outside club, are not eligible to play in Roots. Recreational soccer should feel recreational. Second, we'll be collecting detailed coach assessment data on all players and using that data to balance teams fairly across every division. All teams will be formed by someone who has no ties to a player in that division, removing any conflict of interest from the process. No more lopsided matchups." },
   { q: "Can local businesses sponsor jerseys?", a: "Yes, this is new. Under AYSO, jersey sponsorship funds didn't benefit local teams. Under Nipomo SC, local businesses can sponsor jerseys and support the program directly. If you're a business owner interested in sponsoring, email admin@nipomosc.org." },
-  { q: "What ages does Nipomo SC cover?", a: "Roots (recreational) serves ages 4 to 14. Visit nipomosc.org for details on Rise and Reign age ranges." },
+  { q: "What ages does Nipomo SC cover?", a: "Roots (recreational) serves Pre-K through 3rd grade. Visit nipomosc.org for details on Rise and Reign age ranges." },
   { q: "When does the season start?", a: "Visit nipomosc.org for the latest on season dates and registration." },
   { q: "How can I get involved?", a: "We're actively looking for board members, coaches, referees, and volunteers. Email admin@nipomosc.org to learn more." },
 ];
@@ -284,7 +284,7 @@ function ShortOnTimeSection() {
 
 function ProgramsSection() {
   const programs = [
-    { name: "Roots", tagline: "Community Recreational Soccer", desc: "Saturday games, weekday practices, ages 4-14. The heart of Nipomo soccer.", color: COLORS.green, href: "/#programs" },
+    { name: "Roots", tagline: "Community Recreational Soccer", desc: "Saturday games, weekday practices, Pre-K through 3rd grade. The heart of Nipomo soccer.", color: COLORS.green, href: "/#programs" },
     { name: "Rise", tagline: "Spring Development League", desc: "A developmental bridge for players who want more training without the full commitment of competitive.", color: COLORS.gold, href: "/rise" },
     { name: "Reign", tagline: "Competitive Club Soccer", desc: "Year-round training and tournament play. The next level of competition, right here in Nipomo.", color: COLORS.maroon, href: "/reign" },
   ];

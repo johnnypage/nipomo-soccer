@@ -53,7 +53,7 @@ const faq = [
   },
   {
     q: "What is the registration deadline?",
-    a: "July 6, 2026. Applications submitted through GotSport are reviewed and you will be notified of acceptance, waitlist, or decline status by email.",
+    a: "Registration details are coming soon. Applications submitted through GotSport are reviewed and you will be notified of acceptance, waitlist, or decline status by email.",
   },
   {
     q: "What happens if my division doesn't fill?",
@@ -116,7 +116,7 @@ export default function CopaDeCostaComingSoon() {
 
             <div className="flex flex-wrap justify-center gap-3 text-sm font-heading font-medium">
               <span className="bg-[#D4A747]/15 border border-[#D4A747]/40 rounded-full px-4 py-1.5 text-[#D4A747]">
-                July 25 – 26, 2026
+                May 8 – 9, 2027
               </span>
               <span className="bg-[#D4A747]/15 border border-[#D4A747]/40 rounded-full px-4 py-1.5 text-[#D4A747]">
                 Nipomo, CA · Central Coast
@@ -135,7 +135,7 @@ export default function CopaDeCostaComingSoon() {
             </a>
 
             <p className="text-[#595959] text-sm">
-              Registration deadline: <span className="text-[#F5F5F5]/70">July 6, 2026</span>
+              Registration details coming soon
             </p>
           </motion.div>
         </section>
@@ -262,7 +262,7 @@ export default function CopaDeCostaComingSoon() {
               variants={fadeUp}
               className="text-[#595959] text-xs text-center mt-4"
             >
-              Registration through GotSport · Deadline July 6, 2026 · Cal South affiliated teams only
+              Registration through GotSport · Cal South affiliated teams only
             </motion.p>
           </motion.div>
         </section>
@@ -359,12 +359,12 @@ export default function CopaDeCostaComingSoon() {
               {[
                 {
                   day: "Day 1",
-                  date: "Saturday, July 25",
+                  date: "Saturday, May 8",
                   rows: scheduleDay1,
                 },
                 {
                   day: "Day 2",
-                  date: "Sunday, July 26",
+                  date: "Sunday, May 9",
                   rows: scheduleDay2,
                 },
               ].map(({ day, date, rows }) => (
@@ -470,7 +470,7 @@ export default function CopaDeCostaComingSoon() {
                 <span aria-hidden="true">→</span>
               </a>
               <p className="mt-3 text-[#595959] text-xs">
-                Deadline: July 6, 2026
+                Registration details coming soon
               </p>
             </motion.div>
           </motion.div>
@@ -591,8 +591,8 @@ export default function CopaDeCostaComingSoon() {
               See You on the Coast
             </h2>
             <p className="text-[#F5F5F5]/55 text-base mb-8">
-              July 25 – 26, 2026 · Nipomo, CA<br />
-              Registration deadline July 6, 2026
+              May 8 – 9, 2027 · Nipomo, CA<br />
+              Registration details coming soon
             </p>
             <a
               href={GOTSPORT_URL}
