@@ -89,3 +89,18 @@ The board also retired the Special Needs division. Removed it from every surface
 - **Decremented lander division counts** ("Three/Tres" to "Two/Dos") -- not explicitly listed in the amendment but required for content correctness after removing a card (Rule 1), same as the earlier "Four to Three" fix.
 
 Build passes (`npx vite build`, ~3.2s). No Summer Skills Challenge WIP files touched; files staged individually by explicit path.
+
+## Second Amendment -- Single Kickoff Day on August 8 (commit 4aa6a87)
+
+The board collapsed the two planned Kickoff Days (Aug 1 and Aug 8) into a single Kickoff Day on August 8. Updated every ROOTS/lander reference:
+
+- **Recreational.tsx:** timeline milestone "AUG 1 & 8" / "Kickoff Days" to "AUG 8" / "Kickoff Day"; dropped the "Attend one of the two dates." sentence from the body.
+- **FAQSection.tsx:** season now "runs from August 8 through November 7" (the Aug 1 start was the retired first Kickoff Day); "Kickoff Days (August 1 & 8)" to "Kickoff Day (August 8)"; reworded "Two Saturday events... Players only need to attend one." to "A Saturday event where players play small-sided pickup games...".
+- **landingContent.ts:** EN timeline "Kickoff Days" / "Aug 1 and 8" to "Kickoff Day" / "Aug 8" with body "Every player attends one." to "Every player attends."; ES timeline "Kickoff Days" / "1 y 8 ago" to "Kickoff Day" / "8 ago" with "Cada jugador asiste a uno." to "Cada jugador asiste.".
+
+### Judgment calls
+- **Reworded surrounding sentences, not just dates.** "Attend one of the two dates" / "Players only need to attend one" / "attends one" all implied two events, so they were rewritten to match a single day (Rule 1 content correctness).
+- **Left explicitly-excluded Aug 1 references untouched:** RegistrationSection "Late registration begins August 1" and Recreational.tsx:352 "August 1 and after" (registration pricing tiers), FindMyDivision U.S. Soccer cutoff mentions, and the dead `fiveVFiveContent` block (its "Kickoff Day" / "Aug 1" left as-is).
+- **Already-singular generic "Kickoff Day" mentions** (e.g. team-balancing prose, valueProps, FAQ answers) were left unchanged since they refer to the event generically and are now correct.
+
+Build passes (`npx vite build`, ~3.1s). No Summer Skills Challenge WIP files touched; files staged individually by explicit path.
