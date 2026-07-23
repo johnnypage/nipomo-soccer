@@ -23,10 +23,9 @@ export default function Header({ onNavigate }: HeaderProps) {
   const { totalItems } = useCart();
 
   const programLinks = [
-    { label: "Roots", href: "/roots", description: "Community Recreational Soccer" },
+    { label: "Roots", href: "/fall", description: "Community Recreational Soccer" },
     { label: "Rise", href: "/rise", description: "Spring Development League" },
     { label: "Reign", href: "/reign", description: "Competitive Club Soccer" },
-    { label: "Copa De Costa", href: "/copa-de-costa", description: "July 25–26 Tournament" },
   ];
 
   const aboutLinks = [

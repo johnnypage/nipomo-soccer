@@ -38,7 +38,7 @@ export default function Footer({ onNavigate }: FooterProps) {
 
   const footerLinks = {
     programs: [
-      { label: "Roots (U4 and up)", href: "/roots" },
+      { label: "Roots (U4 and up)", href: "/fall" },
       { label: "Rise (U8 and up)", href: "/rise" },
       { label: "Reign (U8 and up)", href: "/reign" },
     ],
@@ -54,7 +54,6 @@ export default function Footer({ onNavigate }: FooterProps) {
       { label: "Registration", section: "contact" },
       { label: "Find My Division", href: "/find-my-division" },
       { label: "Team Placement Request", href: "/team-placement" },
-      { label: "Copa De Costa", href: "/copa-de-costa" },
     ],
   };
 
