@@ -140,9 +140,9 @@ export const enContent: LandingContent = {
     sub: "Here is what the fall looks like for League Play.",
     milestones: [
       {
-        name: "Kickoff Days",
-        dates: "Aug 1 and 8",
-        body: "Every player attends one. Pickup style games so we can build balanced teams, plus jersey fitting. Not a tryout. Every kid plays.",
+        name: "Kickoff Day",
+        dates: "Aug 8",
+        body: "Every player attends. Pickup style games so we can build balanced teams, plus jersey fitting. Not a tryout. Every kid plays.",
       },
       {
         name: "Pre-Season",
@@ -277,9 +277,9 @@ export const esContent: LandingContent = {
     sub: "Así se ve el otoño para League Play.",
     milestones: [
       {
-        name: "Kickoff Days",
-        dates: "1 y 8 ago",
-        body: "Cada jugador asiste a uno. Partidos estilo cascarita para formar equipos parejos, más la medición del jersey. No es una prueba. Todos los niños juegan.",
+        name: "Kickoff Day",
+        dates: "8 ago",
+        body: "Cada jugador asiste. Partidos estilo cascarita para formar equipos parejos, más la medición del jersey. No es una prueba. Todos los niños juegan.",
       },
       {
         name: "Pretemporada",

@@ -57,9 +57,9 @@ const DIVISIONS = [
 
 const SEASON_MILESTONES = [
   {
-    dates: "AUG 1 & 8",
-    name: "Kickoff Days",
-    body: "Pickup-style games so coaches can build balanced teams. Not a tryout, every kid plays. Attend one of the two dates. Jersey fitting happens here too.",
+    dates: "AUG 8",
+    name: "Kickoff Day",
+    body: "Pickup-style games so coaches can build balanced teams. Not a tryout, every kid plays. Jersey fitting happens here too.",
   },
   {
     dates: "AUG 10 to SEP 7",

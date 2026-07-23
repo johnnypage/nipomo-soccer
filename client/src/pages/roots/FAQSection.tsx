@@ -5,11 +5,11 @@ const FAQS: { q: string; a: ReactNode }[] = [
     q: "When does the ROOTS season run?",
     a: (
       <>
-        <p className="mb-3">The ROOTS Fall 2026 season runs from <strong>August 1 through November 7</strong>. Here's how it breaks down:</p>
+        <p className="mb-3">The ROOTS Fall 2026 season runs from <strong>August 8 through November 7</strong>. Here's how it breaks down:</p>
         <ul className="space-y-3">
           <li>
-            <strong>Kickoff Days (August 1 &amp; 8)</strong><br />
-            Two Saturday events where players play small-sided pickup games for team balancing and get measured for custom jerseys. Players only need to attend one.
+            <strong>Kickoff Day (August 8)</strong><br />
+            A Saturday event where players play small-sided pickup games for team balancing and get measured for custom jerseys.
           </li>
           <li>
             <strong>Pre-Season (August 10 -- September 7)</strong><br />
