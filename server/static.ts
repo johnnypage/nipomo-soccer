@@ -32,13 +32,13 @@ export function serveStatic(app: Express) {
 
     const pageOg: Record<string, { title: string; description: string; type?: string; image?: string }> = {
       "/fall": {
-        title: "Fall Soccer Registration Is Open | Nipomo Soccer",
-        description: "Recreational soccer for ages 2 through high school. Saturday games in Nipomo, paid referees, balanced teams, and a season that runs August through November. Register today.",
+        title: "Fall Soccer Season | Nipomo Soccer",
+        description: "Recreational soccer for ages 2 through high school. Saturday games in Nipomo, paid referees, balanced teams, and a season that runs August through November. Registration for this season is closed.",
         image: "https://nipomosc.org/og-fall.jpg",
       },
       "/futbol": {
-        title: "Inscripci\u00f3n Abierta: F\u00fatbol de Oto\u00f1o | Nipomo Soccer",
-        description: "F\u00fatbol recreativo para ni\u00f1os de 2 a\u00f1os hasta high school. Partidos los s\u00e1bados en Nipomo, \u00e1rbitros pagados y una temporada de agosto a noviembre. Inscr\u00edbete hoy.",
+        title: "F\u00fatbol de Oto\u00f1o | Nipomo Soccer",
+        description: "F\u00fatbol recreativo para ni\u00f1os de 2 a\u00f1os hasta high school. Partidos los s\u00e1bados en Nipomo, \u00e1rbitros pagados y una temporada de agosto a noviembre. La inscripci\u00f3n para esta temporada est\u00e1 cerrada.",
         image: "https://nipomosc.org/og-futbol.jpg",
       },
       "/about/compare": {

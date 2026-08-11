@@ -104,8 +104,8 @@ const FAQS = [
     a: "Nipomo Soccer places players in the division matching the California school-year grade for their birth date (September 1 cutoff). If your child was held back or skipped a grade, their division placement is still based on birth date. Reach out at admin@nipomosoccer.com if you have a specific situation and we'll work with you.",
   },
   {
-    q: "When does registration open?",
-    a: "Early Bird registration opens soon. Follow @nipomo.soccer on Instagram or visit nipomosoccer.com for updates.",
+    q: "Can we still register for Fall 2026?",
+    a: "No. Registration for the Fall 2026 season is closed and the season is already underway. Follow @nipomo.soccer on Instagram or email admin@nipomosoccer.com and we will let you know when the next season opens.",
   },
 ];
 
@@ -224,13 +224,11 @@ export default function FindMyDivision() {
                   </div>
 
                   <a
-                    href="https://club.spond.com/landing/signup/nipomosc"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-testid="link-register-now"
+                    href="/#contact"
+                    data-testid="link-contact-us"
                     className="block w-full py-3.5 bg-crimson text-warmwhite font-semibold text-center rounded-xl hover:bg-crimson/90 transition-colors"
                   >
-                    Register Now
+                    Contact Us
                   </a>
                 </div>
               )}
@@ -317,20 +315,19 @@ export default function FindMyDivision() {
             <footer className="mt-2 text-xs font-mono text-warmwhite/40 uppercase tracking-wider">Parent -- 2025 Survey</footer>
           </blockquote>
           <h2 className="font-display text-warmwhite text-[clamp(48px,7vw,88px)] uppercase leading-[0.95]">
-            Ready to play?
+            Want in next season?
           </h2>
           <p className="text-warmwhite/75 mt-4 text-lg leading-relaxed">
-            Registration is open for ROOTS Fall 2026. Sign up today and lock in your spot.
+            Registration for ROOTS Fall 2026 is closed. Reach out and we will make sure you
+            hear first when the next season opens.
           </p>
           <div className="flex flex-wrap gap-3 justify-center mt-8">
             <a
-              href="https://club.spond.com/landing/signup/nipomosc/form/534965DA898B4B7E9CC0A589047F6061"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="link-register-cta"
+              href="/#contact"
+              data-testid="link-contact-cta"
               className="px-8 py-4 bg-white text-crimson font-bold rounded-lg hover:bg-warmwhite transition-colors text-lg"
             >
-              Register Now →
+              Contact Us →
             </a>
           </div>
         </div>

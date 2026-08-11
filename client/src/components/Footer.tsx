@@ -36,22 +36,30 @@ export default function Footer({ onNavigate }: FooterProps) {
     }
   };
 
+  // On the homepage the parent passes onNavigate and we smooth-scroll. Everywhere
+  // else the Footer renders bare, so fall back to a real navigation.
+  const handleNavigate = (section: string) => {
+    if (onNavigate) {
+      onNavigate(section);
+    } else {
+      window.location.href = `/#${section}`;
+    }
+  };
+
   const footerLinks = {
     programs: [
-      { label: "Roots (U4 and up)", href: "/fall" },
+      { label: "Roots (U4 and up)", href: "/roots" },
       { label: "Rise (U8 and up)", href: "/rise" },
       { label: "Reign (U8 and up)", href: "/reign" },
     ],
     club: [
       { label: "About Us", section: "about" },
       { label: "Shop", section: "shop", href: "/shop" },
-      { label: "Contact", section: "contact" },
-      { label: "Join Now", section: "contact" },
+      { label: "Contact Us", section: "contact" },
       { label: "Coach With Us", section: "coach", href: "/coach" },
     ],
     resources: [
       { label: "Training Schedule", section: "programs" },
-      { label: "Registration", section: "contact" },
       { label: "Find My Division", href: "/find-my-division" },
       { label: "Team Placement Request", href: "/team-placement" },
     ],
@@ -169,7 +177,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                     </Link>
                   ) : (
                     <button
-                      onClick={() => onNavigate?.(link.section)}
+                      onClick={() => handleNavigate(link.section)}
                       className="text-warmwhite/60 hover:text-warmwhite text-sm transition-colors"
                       data-testid={`footer-link-${link.label.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
                     >
@@ -198,7 +206,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                     </Link>
                   ) : (
                     <button
-                      onClick={() => onNavigate?.((link as any).section)}
+                      onClick={() => handleNavigate((link as any).section)}
                       className="text-warmwhite/60 hover:text-warmwhite text-sm transition-colors"
                       data-testid={`footer-link-${link.label.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
                     >

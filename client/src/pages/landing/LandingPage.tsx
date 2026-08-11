@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import clubLogo from "@assets/NipomoSoccer_1780982227404.png";
-import { type LandingContent, SPOND_MAIN } from "./landingContent";
+import { type LandingContent } from "./landingContent";
 import SponsorMarquee from "@/components/SponsorMarquee";
 
 const HERO_IMAGES = [
@@ -18,19 +18,21 @@ const HERO_IMAGES = [
 function CtaButton({
   label,
   testId,
-  href = SPOND_MAIN,
+  href,
   className = "",
 }: {
   label: string;
   testId: string;
-  href?: string;
+  href: string;
   className?: string;
 }) {
+  // Internal destinations stay in the same tab; only off-site links open a new one.
+  const isExternal = /^https?:\/\//.test(href);
+
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       data-testid={testId}
       className={`inline-flex items-center justify-center px-8 py-4 bg-crimson text-warmwhite font-semibold text-lg rounded-lg hover:bg-crimson-dark transition-colors ${className}`}
     >
@@ -114,7 +116,7 @@ export default function LandingPage({ content }: { content: LandingContent }) {
     document.title = content.docTitle;
   }, [content.docTitle]);
 
-  const ctaHref = content.ctaHref ?? SPOND_MAIN;
+  const ctaHref = content.ctaHref;
   const singleDivision = content.divisions.cards.length === 1;
   const seasonColsClass =
     {
@@ -145,8 +147,6 @@ export default function LandingPage({ content }: { content: LandingContent }) {
           </a>
           <a
             href={ctaHref}
-            target="_blank"
-            rel="noopener noreferrer"
             data-testid="cta-nav"
             className="inline-flex items-center justify-center px-4 py-2 text-sm sm:px-6 sm:py-2.5 sm:text-base bg-crimson text-warmwhite font-semibold rounded-lg hover:bg-crimson-dark transition-colors whitespace-nowrap"
           >
@@ -274,8 +274,6 @@ export default function LandingPage({ content }: { content: LandingContent }) {
                   )}
                   <a
                     href={card.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     data-testid={testId}
                     className="mt-5 inline-flex items-center justify-center w-full px-6 py-3 bg-crimson text-warmwhite font-semibold rounded-lg hover:bg-crimson-dark transition-colors"
                   >

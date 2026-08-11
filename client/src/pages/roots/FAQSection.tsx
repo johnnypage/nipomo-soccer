@@ -2,6 +2,22 @@ import type { ReactNode } from "react";
 
 const FAQS: { q: string; a: ReactNode }[] = [
   {
+    q: "Can we still register for Fall 2026?",
+    a: (
+      <>
+        <p>
+          No. Registration for the Fall 2026 season is closed and the season is already
+          underway. If you would like to be told when the next season opens, or you have a
+          question about your player, email{" "}
+          <a href="mailto:admin@nipomosoccer.com" className="text-crimson hover:underline">
+            admin@nipomosoccer.com
+          </a>{" "}
+          or use the contact form.
+        </p>
+      </>
+    ),
+  },
+  {
     q: "When does the ROOTS season run?",
     a: (
       <>
@@ -130,7 +146,7 @@ export default function FAQSection() {
             FAQ
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-night">
-            Questions families ask before registering
+            Questions families ask
           </h2>
           <p className="text-slate mt-3 text-[17px]">
             If something is missing, email{" "}

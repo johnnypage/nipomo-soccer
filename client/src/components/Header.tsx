@@ -23,7 +23,7 @@ export default function Header({ onNavigate }: HeaderProps) {
   const { totalItems } = useCart();
 
   const programLinks = [
-    { label: "Roots", href: "/fall", description: "Community Recreational Soccer" },
+    { label: "Roots", href: "/roots", description: "Community Recreational Soccer" },
     { label: "Rise", href: "/rise", description: "Spring Development League" },
     { label: "Reign", href: "/reign", description: "Competitive Club Soccer" },
   ];
@@ -33,10 +33,6 @@ export default function Header({ onNavigate }: HeaderProps) {
     { label: "Nipomo Soccer vs. AYSO", href: "/about/compare" },
     { label: "Volunteer With Us", href: "/volunteer" },
     { label: "Coach With Us", href: "/coach" },
-  ];
-
-  const navItems = [
-    { label: "Contact", section: "contact" },
   ];
 
   const handleNavigate = (section: string) => {
@@ -114,16 +110,6 @@ export default function Header({ onNavigate }: HeaderProps) {
             >
               Shop
             </Link>
-            {navItems.map((item) => (
-              <button
-                key={item.section}
-                onClick={() => handleNavigate(item.section)}
-                className="font-integral text-warmwhite/80 hover:text-warmwhite font-bold uppercase tracking-wide transition-colors"
-                data-testid={`nav-${item.section}`}
-              >
-                {item.label}
-              </button>
-            ))}
           </nav>
 
           <div className="flex items-center gap-3">
@@ -139,15 +125,13 @@ export default function Header({ onNavigate }: HeaderProps) {
                 </span>
               )}
             </button>
-            <a
-              href="https://club.spond.com/landing/signup/nipomosc/form/534965DA898B4B7E9CC0A589047F6061"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => handleNavigate("contact")}
               className="hidden sm:flex items-center px-4 py-2 bg-crimson hover:bg-crimson-dark text-warmwhite border-crimson rounded-md text-sm font-medium transition-colors"
-              data-testid="button-join-now"
+              data-testid="button-contact-us"
             >
-              Sign Up to Play
-            </a>
+              Contact Us
+            </button>
             <Button
               variant="ghost"
               size="icon"
@@ -207,39 +191,18 @@ export default function Header({ onNavigate }: HeaderProps) {
               >
                 Shop
               </Link>
-              {navItems.map((item) => (
-                <button
-                  key={item.section}
-                  onClick={() => handleNavigate(item.section)}
-                  className="block w-full text-left text-warmwhite/80 hover:text-warmwhite font-medium py-2"
-                  data-testid={`mobile-nav-${item.section}`}
-                >
-                  {item.label}
-                </button>
-              ))}
             </div>
-            <a
-              href="https://club.spond.com/landing/signup/nipomosc/form/534965DA898B4B7E9CC0A589047F6061"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => handleNavigate("contact")}
               className="flex items-center justify-center w-full px-4 py-2 bg-crimson hover:bg-crimson-dark text-warmwhite rounded-md text-sm font-medium transition-colors mt-2"
-              data-testid="button-mobile-join"
+              data-testid="button-mobile-contact-us"
             >
-              Sign Up to Play
-            </a>
+              Contact Us
+            </button>
           </div>
         </div>
       )}
     </header>
-    <a
-      href="https://club.spond.com/landing/signup/nipomosc/form/534965DA898B4B7E9CC0A589047F6061"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="fixed top-16 left-0 right-0 z-40 bg-crimson text-warmwhite text-center py-3 px-4 text-base font-heading font-semibold hover:bg-crimson/90 transition-colors cursor-pointer block"
-      data-testid="banner-roots-registration"
-    >
-      ROOTS Fall 2026 registration is open. First 100 players save $20. <span className="underline underline-offset-2">Register now.</span>
-    </a>
     <CartSheet open={cartOpen} onOpenChange={setCartOpen} />
     </>
   );

@@ -203,14 +203,10 @@ export default function Contact() {
               <h4 className="font-heading font-semibold text-warmwhite mb-2">
                 Player Pathway
               </h4>
-              <p className="text-warmwhite/70 text-sm mb-4">
-                Roots → Rise → Reign. A connected journey from first steps to advanced 
+              <p className="text-warmwhite/70 text-sm">
+                Roots → Rise → Reign. A connected journey from first steps to advanced
                 competition. Selection for Reign is earned through performance in Roots and Rise.
               </p>
-              <div className="flex items-center gap-2 text-sm">
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-warmwhite/80">Registration Open</span>
-              </div>
             </div>
           </div>
         </div>

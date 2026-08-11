@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Programs from "@/components/Programs";
@@ -24,6 +24,16 @@ export default function Home() {
       ref.current.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  // Links from other pages arrive as /#contact or /#about. The browser's native
+  // anchor jump fires before React mounts these sections, so scroll ourselves
+  // once the page has rendered.
+  useEffect(() => {
+    const section = window.location.hash.replace("#", "");
+    if (!section) return;
+    const timer = setTimeout(() => scrollToSection(section), 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleGetStarted = () => {
     scrollToSection("contact");

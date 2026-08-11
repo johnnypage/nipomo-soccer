@@ -1,8 +1,3 @@
-import {
-  SPOND_MAIN,
-  SPOND_PARENT_AND_ME,
-} from "@/pages/landing/landingContent";
-
 const DIVISIONS = [
   {
     id: "parent-and-me",
@@ -10,8 +5,8 @@ const DIVISIONS = [
     age: "Ages 2-3",
     description:
       "Your first introduction to soccer, together. Saturday sessions with your child on the field. No practices, no competition, just fun.",
-    price: "$120 flat rate",
-    registerUrl: SPOND_PARENT_AND_ME,
+    price: "$120",
+    priceNote: "Fall 2026 season fee",
     learnMoreHref: "/roots/parent-and-me",
     learnMoreLabel: "Learn more about Parent & Me",
     color: "border-[#B99EE8]",
@@ -23,9 +18,8 @@ const DIVISIONS = [
     age: "Pre-K through 3rd Grade",
     description:
       "The core ROOTS experience. Weekly practices, Saturday games, midweek matches, and an end-of-season tournament for older divisions. Up to 16 games per team.",
-    price: "$150 / $175 / $200",
-    priceNote: "Early Bird / Regular / Late",
-    registerUrl: SPOND_MAIN,
+    price: "$150 to $200",
+    priceNote: "Fall 2026 season fee",
     learnMoreHref: "/roots/recreational",
     learnMoreLabel: "Find your division",
     color: "border-crimson",
@@ -42,10 +36,10 @@ export default function DivisionSection() {
             Find your division
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-warmwhite">
-            Two programs, one registration.
+            Two programs, every age and stage.
           </h2>
           <p className="text-warmwhite/55 mt-2 text-[17px]">
-            ROOTS has tracks built for different ages and stages. Register for the one that fits your player.
+            ROOTS has tracks built for different ages and stages. Here is how the Fall 2026 season is set up.
           </p>
         </div>
 
@@ -67,43 +61,22 @@ export default function DivisionSection() {
                 {div.description}
               </p>
 
-              {"schedule" in div && div.schedule && (
-                <p className="text-slate/70 text-xs mt-3">
-                  <strong>Schedule:</strong> {div.schedule}
-                </p>
-              )}
-
-              {"includes" in div && div.includes && (
-                <p className="text-slate/70 text-xs mt-1">
-                  <strong>Includes:</strong> {div.includes}
-                </p>
-              )}
-
               <div className="mt-5 pt-5 border-t border-black/8">
                 <div className="font-display text-2xl text-crimson tracking-wide leading-none">
                   {div.price}
                 </div>
-                {"priceNote" in div && div.priceNote && (
+                {div.priceNote && (
                   <p className="text-night/50 text-xs mt-1 font-mono uppercase tracking-wide">
                     {div.priceNote}
                   </p>
                 )}
               </div>
 
-              <a
-                href={div.registerUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-testid={`link-register-${div.id}`}
-                className="mt-5 px-5 py-2.5 bg-crimson hover:bg-crimson-dark text-warmwhite font-semibold rounded-lg text-sm transition-colors text-center"
-              >
-                Register Now <span aria-hidden="true">&#8594;</span>
-              </a>
-
-              {"learnMoreHref" in div && div.learnMoreHref && (
+              {div.learnMoreHref && (
                 <a
                   href={div.learnMoreHref}
-                  className="mt-3 text-sm font-medium text-crimson hover:underline text-center"
+                  data-testid={`link-learn-more-${div.id}`}
+                  className="mt-5 px-5 py-2.5 bg-crimson hover:bg-crimson-dark text-warmwhite font-semibold rounded-lg text-sm transition-colors text-center"
                 >
                   {div.learnMoreLabel} <span aria-hidden="true">&#8594;</span>
                 </a>

@@ -20,19 +20,22 @@ export default function HeroSection() {
           Many of the same people who ran youth soccer in Nipomo are continuing that work. If your family played last year, you will see familiar faces on the sidelines.
         </p>
 
-        <p className="text-warmwhite/55 text-sm font-medium mt-8 mb-10 max-w-[600px]">
+        <p className="text-warmwhite/55 text-sm font-medium mt-8 max-w-[600px]">
           Ages 2 to 3rd grade &middot; 12-week season &middot; Up to 16 games &middot; Paid referees &middot; No tryouts
+        </p>
+
+        <p className="text-warmwhite/70 text-base mt-8 mb-10 max-w-[560px] border border-warmwhite/15 rounded-lg px-5 py-4">
+          Registration for Fall 2026 is closed. The season is underway and runs through
+          November 7. Get in touch and we will let you know when the next season opens.
         </p>
 
         <div className="flex flex-wrap gap-3 justify-center">
           <a
-            href="https://club.spond.com/landing/signup/nipomosc/form/534965DA898B4B7E9CC0A589047F6061"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/#contact"
             className="px-6 py-3 bg-crimson text-warmwhite font-semibold rounded-lg hover:bg-crimson-dark transition-colors"
-            data-testid="link-register-hero"
+            data-testid="link-contact-hero"
           >
-            Register Now <span aria-hidden="true">→</span>
+            Contact Us <span aria-hidden="true">→</span>
           </a>
           <a
             href="#divisions"

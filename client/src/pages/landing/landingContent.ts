@@ -7,20 +7,12 @@
 // - Never name specific field locations.
 // - Never position against any other organization.
 
-export const SPOND_MAIN =
-  "https://club.spond.com/landing/signup/nipomosc/form/534965DA898B4B7E9CC0A589047F6061";
-export const SPOND_PARENT_AND_ME =
-  "https://club.spond.com/landing/signup/nipomosc/form/7F3CC0F6316343DCB8851A6A05399DAA";
-export const SPOND_SPECIAL_NEEDS =
-  "https://club.spond.com/landing/signup/nipomosc/form/212CA66EC0C84B88AB2BEB08FEE18ECF";
-
 export interface LandingContent {
   lang: "en" | "es";
   docTitle: string;
   ctaLabel: string;
-  // Optional override for the primary CTA destination (header + hero + final CTA).
-  // Falls back to SPOND_MAIN when omitted, so /fall and /futbol are unaffected.
-  ctaHref?: string;
+  // Destination for the primary CTA (header + hero + final CTA).
+  ctaHref: string;
   hero: {
     headline: string;
     subhead: string;
@@ -69,13 +61,14 @@ export interface LandingContent {
 
 export const enContent: LandingContent = {
   lang: "en",
-  docTitle: "Nipomo Soccer | Fall 2026 Registration",
-  ctaLabel: "Register Now",
+  docTitle: "Nipomo Soccer | Fall 2026 Season",
+  ctaLabel: "Contact Us",
+  ctaHref: "/#contact",
   hero: {
     headline: "Fall soccer starts here",
     subhead:
-      "Nipomo Soccer's recreational fall season is open for registration. Ages 2 through 3rd grade. No tryouts. No experience required. Just show up ready to play.",
-    urgency: "Register today and save.",
+      "Nipomo Soccer's recreational fall season is underway. Ages 2 through 3rd grade. No tryouts. No experience required. Just show up ready to play.",
+    urgency: "Registration for this season is closed.",
   },
   valuePropsHeading: "What you get",
   valueProps: [
@@ -111,8 +104,8 @@ export const enContent: LandingContent = {
   },
   divisions: {
     heading: "Find your division",
-    sub: "Two divisions, one quick registration. It takes about two minutes on Spond.",
-    urgency: "Prices go up after July 31.",
+    sub: "Two divisions built for different ages and stages. Here is how this season is set up.",
+    urgency: "Registration for this season is closed.",
     scholarships:
       "Scholarships available because every kid in Nipomo deserves a team. Email admin@nipomosoccer.com.",
     cards: [
@@ -120,18 +113,19 @@ export const enContent: LandingContent = {
         title: "PARENT & ME",
         age: "Ages 2 to 3",
         body: "Your first introduction to soccer, together. Saturday sessions with your child on the field. No practices, no competition, just fun.",
-        price: "$120 flat",
-        cta: "Register for Parent and Me",
-        href: SPOND_PARENT_AND_ME,
+        price: "$120",
+        priceNote: "Fall 2026 season fee",
+        cta: "Contact Us",
+        href: "/#contact",
       },
       {
         title: "LEAGUE PLAY",
         age: "Pre-K through 3rd grade",
         body: "The heart of the fall season. Weekly practices with games on Saturdays and the occasional midweek match. We are emphasizing more games this year so kids get more touches and have more fun. The older divisions close the season with a tournament.",
-        price: "$150 / $175 / $200",
-        priceNote: "Early Bird / Regular / Late",
-        cta: "Register for League Play",
-        href: SPOND_MAIN,
+        price: "$150 to $200",
+        priceNote: "Fall 2026 season fee",
+        cta: "Contact Us",
+        href: "/#contact",
       },
     ],
   },
@@ -188,8 +182,8 @@ export const enContent: LandingContent = {
       a: "Cleats, shin guards, and water. The custom jersey is included with registration and fitted at Kickoff Day.",
     },
     {
-      q: "Can we register late?",
-      a: "Yes. Late registration stays open through August 29. Registering early costs less and helps us build balanced teams at Kickoff Day.",
+      q: "Can we still register?",
+      a: "No. Registration for this season is closed and the season is already underway. Get in touch and we will let you know as soon as the next season opens.",
     },
     {
       q: "What if I can't afford it?",
@@ -197,8 +191,8 @@ export const enContent: LandingContent = {
     },
   ],
   finalCta: {
-    heading: "Lock in your spot for fall",
-    urgency: "Prices go up after July 31. Register today.",
+    heading: "Want in next season?",
+    urgency: "Registration for this season is closed. Reach out and we will keep you posted.",
   },
   footerContact: "admin@nipomosoccer.com",
   footerPrivacyLabel: "Privacy",
@@ -206,13 +200,14 @@ export const enContent: LandingContent = {
 
 export const esContent: LandingContent = {
   lang: "es",
-  docTitle: "Nipomo Soccer | Inscripción Otoño 2026",
-  ctaLabel: "Inscribe a tu hijo",
+  docTitle: "Nipomo Soccer | Temporada Otoño 2026",
+  ctaLabel: "Contáctanos",
+  ctaHref: "/#contact",
   hero: {
     headline: "El fútbol de otoño empieza aquí",
     subhead:
-      "Ya abrió la inscripción para la temporada recreativa de otoño de Nipomo Soccer. De 2 años hasta 3er grado. Sin pruebas. Sin experiencia previa. Solo llega listo para jugar.",
-    urgency: "Inscríbete hoy y ahorra.",
+      "La temporada recreativa de otoño de Nipomo Soccer ya está en marcha. De 2 años hasta 3er grado. Sin pruebas. Sin experiencia previa. Solo llega listo para jugar.",
+    urgency: "La inscripción para esta temporada está cerrada.",
   },
   valuePropsHeading: "Lo que incluye",
   valueProps: [
@@ -248,8 +243,8 @@ export const esContent: LandingContent = {
   },
   divisions: {
     heading: "Encuentra tu división",
-    sub: "Dos divisiones, una inscripción rápida. Toma unos dos minutos en Spond.",
-    urgency: "Los precios suben después del 31 de julio.",
+    sub: "Dos divisiones para diferentes edades y etapas. Así está organizada esta temporada.",
+    urgency: "La inscripción para esta temporada está cerrada.",
     scholarships:
       "Hay becas disponibles porque cada niño de Nipomo merece un equipo. Escribe a admin@nipomosoccer.com.",
     cards: [
@@ -257,18 +252,19 @@ export const esContent: LandingContent = {
         title: "PARENT & ME",
         age: "De 2 a 3 años",
         body: "Tu primera introducción al fútbol, juntos. Sesiones los sábados con tu hijo en la cancha. Sin prácticas, sin competencia, pura diversión.",
-        price: "$120 fijo",
-        cta: "Inscríbete en Parent and Me",
-        href: SPOND_PARENT_AND_ME,
+        price: "$120",
+        priceNote: "Cuota de la temporada Otoño 2026",
+        cta: "Contáctanos",
+        href: "/#contact",
       },
       {
         title: "LEAGUE PLAY",
         age: "De Pre-K a 3er grado",
         body: "El corazón de la temporada de otoño. Práctica semanal con partidos los sábados y de vez en cuando un partido entre semana. Este año apostamos por más partidos para que los niños tengan más toques de balón y más diversión. Las divisiones mayores cierran la temporada con un torneo.",
-        price: "$150 / $175 / $200",
-        priceNote: "Temprana / Regular / Tardía",
-        cta: "Inscríbete en League Play",
-        href: SPOND_MAIN,
+        price: "$150 a $200",
+        priceNote: "Cuota de la temporada Otoño 2026",
+        cta: "Contáctanos",
+        href: "/#contact",
       },
     ],
   },
@@ -325,8 +321,8 @@ export const esContent: LandingContent = {
       a: "Tachones, espinilleras y agua. El jersey personalizado va incluido con la inscripción y se mide en el Kickoff Day.",
     },
     {
-      q: "¿Podemos inscribirnos tarde?",
-      a: "Sí. La inscripción tardía sigue abierta hasta el 29 de agosto. Inscribirse temprano cuesta menos y nos ayuda a formar equipos parejos en el Kickoff Day.",
+      q: "¿Todavía podemos inscribirnos?",
+      a: "No. La inscripción para esta temporada está cerrada y la temporada ya comenzó. Contáctanos y te avisamos en cuanto abra la siguiente temporada.",
     },
     {
       q: "¿Y si no me alcanza?",
@@ -334,164 +330,9 @@ export const esContent: LandingContent = {
     },
   ],
   finalCta: {
-    heading: "Aparta tu lugar para el otoño",
-    urgency: "Los precios suben después del 31 de julio. Inscríbete hoy.",
+    heading: "¿Quieres entrar la próxima temporada?",
+    urgency: "La inscripción para esta temporada está cerrada. Contáctanos y te mantenemos al tanto.",
   },
   footerContact: "admin@nipomosoccer.com",
   footerPrivacyLabel: "Privacidad",
-};
-
-// 5v5 conversion landing page (/5v5). Single-division, format-first version of the
-// fall lander aimed at 7th through 12th graders. The whole job of this page is making
-// "how 5v5 works" instantly clear, so it leads with the format explainer.
-export const fiveVFiveContent: LandingContent = {
-  lang: "en",
-  docTitle: "Nipomo Soccer | 5v5 Fall 2026 Registration",
-  ctaLabel: "Register for 5v5",
-  // No dedicated 5v5 Spond form yet, so this points at the main registration form,
-  // matching the 5v5 division card on the fall page. Swap when a 5v5-only form exists.
-  ctaHref: SPOND_MAIN,
-  hero: {
-    headline: "Five a side. Twice a week. Always in the game.",
-    subhead:
-      "Nipomo Soccer 5v5 is built for 7th through 12th graders. Five players a side with a keeper, two matches every game day, and no separate practices. More touches, more playing time, more soccer in less time.",
-    urgency: "Fall registration is open. Prices go up after July 31.",
-  },
-  formatExplainer: {
-    heading: "How 5v5 works",
-    sub: "Quick to understand, built to keep older players in the game.",
-    steps: [
-      {
-        title: "Five a side",
-        body: "Four field players and a goalkeeper. A small grass field keeps everyone close to the ball, so every player is in the game the whole time.",
-      },
-      {
-        title: "Two matches a game day",
-        body: "Players warm up with a coach, then play two full matches against different teams. Two 12 minute halves each on a running clock. In and out in about two hours.",
-      },
-      {
-        title: "Twice a week, no extra practices",
-        body: "One weeknight and one Saturday. The coaching is built into game days, so there are no separate practices to drive to.",
-      },
-      {
-        title: "A real season",
-        body: "Ability balanced teams, refereed and scored matches, and live standings. The season ends with a tournament to crown the champions.",
-      },
-    ],
-  },
-  valuePropsHeading: "Why 5v5 fits older players",
-  valueProps: [
-    {
-      title: "MORE TOUCHES",
-      body: "A smaller field with five a side means there is nowhere to hide. Every player is on the ball constantly, so they get better every game day.",
-    },
-    {
-      title: "BUILT FOR A TEEN SCHEDULE",
-      body: "No separate practices to drive to. Show up twice a week for under two hours and that is the whole commitment. Room left for everything else a teenager has going on.",
-    },
-    {
-      title: "EVERYONE PLAYS",
-      body: "Small rosters of 7 to 8 players mean every kid is in the rotation every game day. Miss a day and you still get two matches the other day that week.",
-    },
-    {
-      title: "A REAL LEAGUE",
-      body: "Refereed and scored matches, live standings, and a season long Golden Boot race for the top scorer. Not pickup. A real league with a tournament to finish.",
-    },
-    {
-      title: "THE FULL KIT",
-      body: "A custom jersey is included, the same as every Nipomo Soccer division. Teams are identified on game days by colored pennies.",
-    },
-  ],
-  band2: {
-    line: "More soccer, less standing around",
-    sub: "Five a side. Twice a week. All season long.",
-  },
-  sponsors: {
-    heading: "Sponsored by Nipomo businesses",
-    sub: "Local sponsors help keep the season affordable for every family.",
-  },
-  divisions: {
-    heading: "Ready to play?",
-    sub: "One quick registration on Spond. It takes about two minutes.",
-    urgency: "Prices go up after July 31.",
-    scholarships:
-      "Scholarships available because every kid in Nipomo deserves a team. Email admin@nipomosoccer.com.",
-    cards: [
-      {
-        title: "5V5",
-        age: "7th through 12th grade",
-        body: "Fast paced 5v5 soccer twice a week for middle school and high school players, in separate divisions. Five a side with a keeper, two matches a game day, over 20 games per season, no separate practices.",
-        price: "$150 / $175 / $200",
-        priceNote: "Early Bird / Regular / Late",
-        cta: "Register for 5v5",
-        href: SPOND_MAIN,
-      },
-    ],
-  },
-  season: {
-    heading: "The season at a glance",
-    sub: "Here is what fall looks like for 5v5.",
-    milestones: [
-      {
-        name: "Kickoff Day",
-        dates: "Aug 1",
-        body: "Every player attends. Pickup style games so we can build balanced teams within the middle school and high school divisions, plus jersey fitting. Not a tryout. Every kid plays.",
-      },
-      {
-        name: "Regular Season",
-        dates: "Aug to Oct",
-        body: "One weeknight and one Saturday each week. Two matches a game day, with live standings and a season long Golden Boot race for the top scorer.",
-      },
-      {
-        name: "Tournament",
-        dates: "Nov 7",
-        body: "The season closes with a tournament to crown the champions.",
-      },
-    ],
-  },
-  faqHeading: "Common questions",
-  faqs: [
-    {
-      q: "Why 5v5?",
-      a: "Smaller sides mean every player is on the ball far more often. More touches, more shots, and more playing time, in games built to fit a packed teenage week. It is the format that keeps older players improving and in the game.",
-    },
-    {
-      q: "Is a goalkeeper part of 5v5?",
-      a: "Yes. Five players a side means four field players and a goalkeeper. The keeper is fully in the game, same as full sided soccer.",
-    },
-    {
-      q: "Are middle school and high school players on the same teams?",
-      a: "No. Middle school and high school play in separate divisions, and teams are balanced within each one, so your player competes with and against kids their own age.",
-    },
-    {
-      q: "Are there practices during the week?",
-      a: "No separate practices. Players get a coached warm up at the start of every game day, then play. Showing up twice a week for under two hours is the entire commitment.",
-    },
-    {
-      q: "My kid plays other sports. Will this still work?",
-      a: "Yes. That is exactly who 5v5 is built for. Attendance is flexible with no minimum, and if your player misses a day they still get two matches the other day that week.",
-    },
-    {
-      q: "What if my player has never played?",
-      a: "Beginners are welcome. There are no tryouts. Players are evaluated at Kickoff Day so teams stay balanced and every kid gets a fair chance to grow.",
-    },
-    {
-      q: "Is it competitive, or just for fun?",
-      a: "Both. Every match is refereed and scored, standings are live, and there is a Golden Boot race for the top scorer. The season ends with a tournament. It is a real league.",
-    },
-    {
-      q: "What does my player need?",
-      a: "Cleats, shin guards, and water. The custom jersey is included with registration and fitted at Kickoff Day.",
-    },
-    {
-      q: "What is included, and what does it cost?",
-      a: "A custom jersey, refereed and scored games, and live standings. Pricing is the same as every Nipomo Soccer division: $150 Early Bird, $175 Regular, $200 Late after July 31.",
-    },
-  ],
-  finalCta: {
-    heading: "Get in the game",
-    urgency: "Prices go up after July 31. Register today.",
-  },
-  footerContact: "admin@nipomosoccer.com",
-  footerPrivacyLabel: "Privacy",
 };

@@ -4,8 +4,6 @@ import RootsSubNav from "./RootsSubNav";
 import HeroRotation from "./HeroRotation";
 import "./roots.css";
 
-const REGISTER_URL = "https://club.spond.com/landing/signup/nipomosc/form/7F3CC0F6316343DCB8851A6A05399DAA";
-
 const FAQS = [
   {
     q: "Does my 2 year old need to know how to play soccer?",
@@ -42,13 +40,15 @@ export default function ParentAndMe() {
             A Saturday morning program for 2 and 3 year olds where you get on the field with your child for soccer-related games, drills, and play. No practices during the week. No competitive games. Just an introduction to the sport with mom or dad right there.
           </p>
 
+          <p className="text-warmwhite/70 text-base mt-8 max-w-[560px] border border-warmwhite/15 rounded-lg px-5 py-4">
+            Registration for Fall 2026 is closed. Sessions run through October 31.
+          </p>
+
           <a
-            href={REGISTER_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-10 px-6 py-3 bg-crimson text-warmwhite font-semibold rounded-lg hover:bg-crimson-dark transition-colors"
+            href="/#contact"
+            className="mt-8 px-6 py-3 bg-crimson text-warmwhite font-semibold rounded-lg hover:bg-crimson-dark transition-colors"
           >
-            Register Now <span aria-hidden="true">&#8594;</span>
+            Contact Us <span aria-hidden="true">&#8594;</span>
           </a>
         </div>
       </section>
@@ -114,14 +114,17 @@ export default function ParentAndMe() {
             Registration
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-night">
-            Registration and pricing
+            Registration is closed for Fall 2026
           </h2>
+          <p className="text-slate mt-3 text-[17px] leading-relaxed">
+            The season is underway and we are no longer accepting new families.
+          </p>
 
           <div className="mt-8 bg-white rounded-xl border border-black/8 p-8">
             <div className="font-display text-4xl text-crimson tracking-wide leading-none">
               $120
             </div>
-            <p className="text-slate text-sm mt-1">Flat rate. No early bird or late tiers.</p>
+            <p className="text-slate text-sm mt-1">Fall 2026 season fee. Flat rate per family.</p>
 
             <div className="mt-6">
               <div className="text-xs font-semibold tracking-wider uppercase text-crimson mb-3 font-mono">
@@ -143,12 +146,10 @@ export default function ParentAndMe() {
             </p>
 
             <a
-              href={REGISTER_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/#contact"
               className="inline-block mt-6 px-6 py-3 bg-crimson text-warmwhite font-semibold rounded-lg hover:bg-crimson-dark transition-colors"
             >
-              Sign up for Parent & Me <span aria-hidden="true">&#8594;</span>
+              Contact Us <span aria-hidden="true">&#8594;</span>
             </a>
           </div>
         </div>
@@ -198,19 +199,18 @@ export default function ParentAndMe() {
       <section className="roots-final-cta bg-crimson py-16 text-center">
         <div className="relative z-10 max-w-[760px] mx-auto px-6">
           <h2 className="font-display text-warmwhite text-[clamp(40px,6vw,72px)] uppercase leading-[0.95]">
-            Ready to play?
+            Want in next season?
           </h2>
           <p className="text-warmwhite/75 mt-4 text-lg leading-relaxed">
-            Sign up for Parent & Me and get your family on the field this fall.
+            Fall 2026 is closed. Reach out and we will make sure you hear first when Parent
+            and Me opens again.
           </p>
           <div className="flex flex-wrap gap-3 justify-center mt-8">
             <a
-              href={REGISTER_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/#contact"
               className="px-8 py-4 bg-white text-crimson font-bold rounded-lg hover:bg-warmwhite transition-colors text-lg"
             >
-              Register Now <span aria-hidden="true">&#8594;</span>
+              Contact Us <span aria-hidden="true">&#8594;</span>
             </a>
           </div>
           <a

@@ -5,8 +5,6 @@ import RootsSubNav from "./RootsSubNav";
 import HeroRotation from "./HeroRotation";
 import "./roots.css";
 
-const REGISTER_URL = "https://club.spond.com/landing/signup/nipomosc/form/534965DA898B4B7E9CC0A589047F6061";
-
 const DIVISIONS = [
   {
     id: "prek-k",
@@ -17,8 +15,8 @@ const DIVISIONS = [
     expect:
       "Saturday sessions start with 30 minutes of soccer-oriented drills followed by 30 minutes of scrimmages, anywhere from 3v3 to 5v5. Practices are at the coach's discretion based on the experience level of the group. Some coaches hold one practice per week, others keep it games only.",
     schedule: "10 games per season, practices vary by team",
-    price: "$150 / $175 / $200",
-    priceNote: "Early Bird (first 100) / Regular / Late",
+    price: "$150 to $200",
+    priceNote: "Fall 2026 season fee",
     includes: ["Kit", "Insurance", "Participation medal"],
     color: "text-gold",
     badgeColor: "bg-gold/10 border-gold/30 text-gold",
@@ -32,8 +30,8 @@ const DIVISIONS = [
     expect:
       "Practices and games every week. Games are typically 4v4 to 6v6 depending on how many players show up and what coaches agree on. This is where kids start building real soccer skills in a structured but fun environment.",
     schedule: "1-2 practices per week (up to coach) + 14-16 games per season",
-    price: "$150 / $175 / $200",
-    priceNote: "Early Bird (first 100) / Regular / Late",
+    price: "$150 to $200",
+    priceNote: "Fall 2026 season fee",
     includes: ["Kit", "Insurance", "Participation medal"],
     color: "text-crimson",
     badgeColor: "bg-crimson/10 border-crimson/30 text-crimson",
@@ -47,8 +45,8 @@ const DIVISIONS = [
     expect:
       "Practices and games every week. Games move to 7v7 with goalkeepers. Starting at this division, teams are balanced using player data from the pre-season Kickoff Day. End-of-season tournament for all teams.",
     schedule: "2 practices per week + 14-16 games per season",
-    price: "$150 / $175 / $200",
-    priceNote: "Early Bird (first 100) / Regular / Late",
+    price: "$150 to $200",
+    priceNote: "Fall 2026 season fee",
     includes: ["Kit", "Insurance", "End-of-season tournament", "Awards based on tournament results"],
     color: "text-risegreen",
     badgeColor: "bg-risegreen/10 border-risegreen/30 text-risegreen",
@@ -98,14 +96,16 @@ export default function Recreational() {
             The core ROOTS experience for Pre-K through 3rd graders. Weekly practices, Saturday games, midweek matches, and an end-of-season tournament for older divisions. Up to 16 games per team this season.
           </p>
 
-          <div className="flex flex-wrap gap-3 justify-center mt-10">
+          <p className="text-warmwhite/70 text-base mt-8 max-w-[560px] mx-auto border border-warmwhite/15 rounded-lg px-5 py-4">
+            Registration for Fall 2026 is closed. The season runs through November 7.
+          </p>
+
+          <div className="flex flex-wrap gap-3 justify-center mt-8">
             <a
-              href={REGISTER_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/#contact"
               className="px-6 py-3 bg-crimson text-warmwhite font-semibold rounded-lg hover:bg-crimson-dark transition-colors"
             >
-              Register Now <span aria-hidden="true">&#8594;</span>
+              Contact Us <span aria-hidden="true">&#8594;</span>
             </a>
             <a
               href="#divisions"
@@ -178,14 +178,6 @@ export default function Recreational() {
                 <h3 className="font-heading text-warmwhite font-bold text-xl">{div.label}</h3>
                 <p className={`text-sm font-medium mt-0.5 ${div.color}`}>{div.format}</p>
               </div>
-              <a
-                href={REGISTER_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-5 py-2.5 bg-crimson hover:bg-crimson-dark text-warmwhite font-semibold rounded-lg text-sm transition-colors shrink-0"
-              >
-                Register for {div.label} &#8594;
-              </a>
             </div>
 
             <div className="roots-division-detail px-8 py-8 bg-white">
@@ -324,37 +316,22 @@ export default function Recreational() {
             Registration
           </span>
           <h2 className="font-heading text-2xl md:text-3xl font-bold mt-2 text-night">
-            Registration and pricing
+            Registration is closed for Fall 2026
           </h2>
+          <p className="text-slate mt-3 text-[17px] leading-relaxed">
+            The season is underway and we are no longer accepting new players. Fall 2026 fees
+            ran $150 to $200 per player depending on when a family signed up. If you want to
+            hear when the next season opens, or you have a question about your player, get in
+            touch.
+          </p>
+          <a
+            href="/#contact"
+            className="inline-block mt-6 px-6 py-3 bg-crimson text-warmwhite font-semibold rounded-lg hover:bg-crimson-dark transition-colors"
+          >
+            Contact Us <span aria-hidden="true">&#8594;</span>
+          </a>
 
           <div className="mt-8 bg-white rounded-xl border border-black/8 overflow-hidden">
-            <table className="roots-pricing-table">
-              <thead>
-                <tr>
-                  <th>Tier</th>
-                  <th>Dates</th>
-                  <th>Price</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="font-medium text-night">Early Bird</td>
-                  <td className="text-slate">Now through first 100 families</td>
-                  <td className="font-display text-xl text-crimson">$150</td>
-                </tr>
-                <tr>
-                  <td className="font-medium text-night">Regular</td>
-                  <td className="text-slate">After Early Bird sells out, through July 31</td>
-                  <td className="font-display text-xl text-crimson">$175</td>
-                </tr>
-                <tr>
-                  <td className="font-medium text-night">Late</td>
-                  <td className="text-slate">August 1 and after</td>
-                  <td className="font-display text-xl text-crimson">$200</td>
-                </tr>
-              </tbody>
-            </table>
-
             <div className="px-6 pb-6 pt-2">
               <div className="text-xs font-semibold tracking-wider uppercase text-crimson mb-3 font-mono mt-4">
                 What's included
@@ -368,7 +345,7 @@ export default function Recreational() {
               </ul>
 
               <p className="text-slate text-[15px] mt-6 leading-relaxed">
-                <strong>Coach perk:</strong> All volunteer coaches receive Early Bird pricing ($150) for their player, regardless of when they register.
+                <strong>Coach perk:</strong> Volunteer coaches receive the lowest season rate for their own player.
               </p>
 
               <p className="text-slate text-[15px] mt-3 leading-relaxed">
@@ -403,19 +380,18 @@ export default function Recreational() {
       <section className="bg-night py-16 text-center">
         <div className="max-w-[760px] mx-auto px-6">
           <h2 className="font-display text-warmwhite text-[clamp(40px,6vw,72px)] uppercase leading-[0.95]">
-            Ready to play?
+            Want in next season?
           </h2>
           <p className="text-warmwhite/75 mt-4 text-lg leading-relaxed">
-            Registration is open for ROOTS Fall 2026. Find your division above and sign up today.
+            Fall 2026 is closed, but the next season comes around fast. Reach out and we will
+            make sure you hear first.
           </p>
           <div className="flex flex-wrap gap-3 justify-center mt-8">
             <a
-              href={REGISTER_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/#contact"
               className="px-8 py-4 bg-crimson text-warmwhite font-bold rounded-lg hover:bg-crimson-dark transition-colors text-lg"
             >
-              Register Now <span aria-hidden="true">&#8594;</span>
+              Contact Us <span aria-hidden="true">&#8594;</span>
             </a>
           </div>
           <a
